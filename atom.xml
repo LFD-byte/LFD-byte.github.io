@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-05-28T03:02:08.879Z</updated>
+  <updated>2023-05-28T08:53:06.583Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>图神经网络学习日记（二）节点嵌入</title>
+    <link href="http://example.com/2023/05/28/tu-shen-jing-wang-luo-xue-xi-ri-ji-er/"/>
+    <id>http://example.com/2023/05/28/tu-shen-jing-wang-luo-xue-xi-ri-ji-er/</id>
+    <published>2023-05-28T08:52:00.000Z</published>
+    <updated>2023-05-28T08:53:06.583Z</updated>
+    
+    
+    
+    
+    <category term="图神经网络" scheme="http://example.com/categories/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+    
+    <category term="图神经网络" scheme="http://example.com/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>Latex 字母类符号</title>
@@ -49,14 +66,14 @@
     <link href="http://example.com/2023/05/24/tu-shen-jing-wang-luo-xue-xi-ri-ji-yi/"/>
     <id>http://example.com/2023/05/24/tu-shen-jing-wang-luo-xue-xi-ri-ji-yi/</id>
     <published>2023-05-24T07:22:00.000Z</published>
-    <updated>2023-05-28T03:02:18.100Z</updated>
+    <updated>2023-05-28T08:51:05.081Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;图的定义&quot;&gt;&lt;a href=&quot;#图的定义&quot; class=&quot;headerlink&quot; title=&quot;图的定义&quot;&gt;&lt;/a&gt;图的定义&lt;/h2&gt;&lt;h2 id=&quot;图的表示&quot;&gt;&lt;a href=&quot;#图的表示&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h2 id=&quot;图的定义&quot;&gt;&lt;a href=&quot;#图的定义&quot; class=&quot;headerlink&quot;</summary>
         
       
     
