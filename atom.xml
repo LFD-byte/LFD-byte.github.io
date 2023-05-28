@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-05-28T14:02:55.221Z</updated>
+  <updated>2023-05-28T14:11:53.380Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,42 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>宋词（一）图基础知识</title>
+    <title>宋词（二）</title>
+    <link href="http://example.com/2023/05/28/2023-05-28-song-ci-er/"/>
+    <id>http://example.com/2023/05/28/2023-05-28-song-ci-er/</id>
+    <published>2023-05-28T14:07:00.000Z</published>
+    <updated>2023-05-28T14:11:53.380Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;center&gt;蝶恋花&lt;/center&gt;
+
+&lt;center&gt;宋</summary>
+        
+      
+    
+    
+    
+    <category term="宋词" scheme="http://example.com/categories/%E5%AE%8B%E8%AF%8D/"/>
+    
+    
+    <category term="宋词" scheme="http://example.com/tags/%E5%AE%8B%E8%AF%8D/"/>
+    
+    <category term="文学" scheme="http://example.com/tags/%E6%96%87%E5%AD%A6/"/>
+    
+    <category term="诗词" scheme="http://example.com/tags/%E8%AF%97%E8%AF%8D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>宋词（一）</title>
     <link href="http://example.com/2023/05/28/song-ci-yi/"/>
     <id>http://example.com/2023/05/28/song-ci-yi/</id>
     <published>2023-05-28T13:55:00.000Z</published>
-    <updated>2023-05-28T14:02:55.221Z</updated>
+    <updated>2023-05-28T14:05:39.300Z</updated>
     
     
       
