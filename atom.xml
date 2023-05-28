@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>培根请加蛋</title>
+  
+  <subtitle>聪明勇敢有力气，我真的羡慕我自己</subtitle>
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2023-05-28T03:02:08.879Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>培根请加蛋</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Latex 字母类符号</title>
+    <link href="http://example.com/2023/05/24/latex-zi-mu-lei-fu-hao/"/>
+    <id>http://example.com/2023/05/24/latex-zi-mu-lei-fu-hao/</id>
+    <published>2023-05-24T12:17:00.000Z</published>
+    <updated>2023-05-28T03:02:08.879Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Caligraphic letters: &lt;code&gt;$&#92;mathcal{A}$ &lt;/code&gt; etc.: $&#92;mathcal{A B C D E F G H I J K L M N O P Q I S T U V W X Y Z}$&lt;/p&gt;
+&lt;p&gt;Mathbb</summary>
+        
+      
+    
+    
+    
+    <category term="Latex" scheme="http://example.com/categories/Latex/"/>
+    
+    
+    <category term="Latex" scheme="http://example.com/tags/Latex/"/>
+    
+    <category term="Markdown" scheme="http://example.com/tags/Markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>图神经网络学习日记（一）图基础知识</title>
+    <link href="http://example.com/2023/05/24/tu-shen-jing-wang-luo-xue-xi-ri-ji-yi/"/>
+    <id>http://example.com/2023/05/24/tu-shen-jing-wang-luo-xue-xi-ri-ji-yi/</id>
+    <published>2023-05-24T07:22:00.000Z</published>
+    <updated>2023-05-28T03:02:18.100Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;图的定义&quot;&gt;&lt;a href=&quot;#图的定义&quot; class=&quot;headerlink&quot; title=&quot;图的定义&quot;&gt;&lt;/a&gt;图的定义&lt;/h2&gt;&lt;h2 id=&quot;图的表示&quot;&gt;&lt;a href=&quot;#图的表示&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="图神经网络" scheme="http://example.com/categories/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+    
+    <category term="图神经网络" scheme="http://example.com/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+</feed>
