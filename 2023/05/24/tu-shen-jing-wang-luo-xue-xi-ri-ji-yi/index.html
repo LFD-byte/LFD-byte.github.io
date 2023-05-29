@@ -15,6 +15,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="referrer" content="no-referrer-when-downgrade">
     <meta name="google-site-verification" content="qvBHqgbyc_CYw3ZE9lrEIxYSUzkcL8LH9-_uDtcme5A" />
+    <meta name="baidu-site-verification" content="codeva-mJZ2sqHuqv" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
@@ -53,9 +54,9 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="培根请加蛋" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="培根请加蛋" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
@@ -406,7 +407,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    871
+                    855
                 </div>
                 
 
@@ -449,12 +450,12 @@
 <p>具有相似局部结构的节点将具有相似的标签。</p>
 <p><strong>节点预测是有监督还是半监督任务？</strong></p>
 <p><strong>非标准的半监督任务。</strong></p>
-<p>在半监督学习中，模型训练过程同时使用有标签数据和无标签数据，标准呢半监督学习以独立同分布假设为前提，标准的监督学习在训练过程中不适用所有无标签的测试数据。节点分类任务中，图中节点全部都被使用，包括无标签节点，故节点分类任务是半监督学习，同时节点分类任务对一组相互连接的节点进行建模，打破了独立同分布假设，故节点分类是非标准的半监督任务。</p>
-<h3 id="关系预测"><a href="#关系预测" class="headerlink" title="关系预测"></a>关系预测</h3><p>给定一组节点$\mathcal{V}$和部分边的集合$\varepsilon_{train}$，利用这些给定信息推断缺失边的集合（$\varepsilon_{train} \subset \varepsilon, \varepsilon$表示全体边的集合），利用这些给定信息推断缺失边的集合$\varepsilon \ \varepsilon_{train}$。</p>
+<p>在半监督学习中，模型训练过程同时使用有标签数据和无标签数据，标准的半监督学习以独立同分布假设为前提，标准的监督学习在训练过程中不使用所有无标签的测试数据。节点分类任务中，图中节点全部都被使用，包括无标签节点，故节点分类任务是半监督学习，同时节点分类任务对一组相互连接的节点进行建模，打破了独立同分布假设，故节点分类是非标准的半监督任务。</p>
+<h3 id="关系预测"><a href="#关系预测" class="headerlink" title="关系预测"></a>关系预测</h3><p>给定一组节点$\mathcal{V}$和部分边的集合$\varepsilon_{train}$（$\varepsilon_{train} \subset \varepsilon, \varepsilon$表示全体边的集合），利用这些给定信息推断缺失边的集合$\varepsilon \ \varepsilon_{train}$。</p>
 <h3 id="社区发现"><a href="#社区发现" class="headerlink" title="社区发现"></a>社区发现</h3><p>通过输入一张图$\mathcal{G}=(\mathcal{V},\varepsilon)$推断出潜在的社区结构。</p>
 <p>社区发现常被类比为图领域的无监督学习中的聚类任务。</p>
 <h3 id="图预测"><a href="#图预测" class="headerlink" title="图预测"></a>图预测</h3><p>图预测包括对整张图进行分类、回归与聚类。</p>
-<p>图分类或图回归任务中，数据集由多张不同图构成，图机器学习算法针对每张图进行独立预测，二补数预测图的组成部分。在图聚类任务中，目标是学习一个无监督的测量图与图之间相似性的策略。</p>
+<p>图分类或图回归任务中，数据集由多张不同图构成，图机器学习算法针对每张图进行独立预测，而不是预测图的组成部分。在图聚类任务中，目标是学习一个无监督的测量图与图之间相似性的策略。</p>
 <p>图分类与图回归任务属于标准监督学习范畴。</p>
 
                 
