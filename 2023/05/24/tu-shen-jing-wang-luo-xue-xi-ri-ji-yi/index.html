@@ -399,21 +399,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-05-28
+                    2023-05-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    239
+                    558
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -436,11 +436,20 @@
                 <h2 id="图的定义"><a href="#图的定义" class="headerlink" title="图的定义"></a>图的定义</h2><p>图由节点集合$\mathcal{V}$和边集合$\varepsilon$组成，记作$\mathcal{G}=(\mathcal{V},\varepsilon)$，节点$u\in \mathcal{V}$到节点$v\in \mathcal{V}$的边表示为$(u,v)\in\varepsilon$.</p>
 <h2 id="图的表示"><a href="#图的表示" class="headerlink" title="图的表示"></a>图的表示</h2><p>图可以由邻接矩阵$A\in \mathbb{R}^{|\mathcal{V}|\times|\mathcal{V}|}$表示，矩阵的行和列代表节点索引，矩阵元素$A[u,v]$表示节点$u$和节点$v$的连接情况，如果$(u,v)\in \varepsilon$，则$A[u,v]=1$，否则$A[u,v]=0$。</p>
 <h2 id="多关系图的分类"><a href="#多关系图的分类" class="headerlink" title="多关系图的分类"></a>多关系图的分类</h2><p><strong>异构图</strong></p>
-<p>异构图可以通过节点类型将节点划分为不相交的子集，即$\mathcal{V}$。</p>
+<p>异构图可以通过节点类型将节点划分为不相交的子集，即$\mathcal{V} = \mathcal{V}_1 \bigcup \mathcal{V}_2 \bigcup \cdots  \bigcup \mathcal{V}_k$，其中$\mathcal{V}_i \bigcap \mathcal{V}_j = \emptyset, \forall \neq j$。</p>
 <p><strong>多重图</strong></p>
-<h2 id="图机器学习任务"><a href="#图机器学习任务" class="headerlink" title="图机器学习任务"></a>图机器学习任务</h2><h3 id="节点预测"><a href="#节点预测" class="headerlink" title="节点预测"></a>节点预测</h3><p><strong>同质性</strong></p>
+<p>多重图中的边只能连接不同类型的节点，即$(u,\tau_i,v)\in \varepsilon \rightarrow u \in \mathcal{V}_k \bigwedge j \neq k$。在多重图中，通常假设图可以被分解为$k$个层级，每个节点可以属于一层或多层，每层代表唯一特定关系，表示本层内边的类型。</p>
+<h2 id="图机器学习任务"><a href="#图机器学习任务" class="headerlink" title="图机器学习任务"></a>图机器学习任务</h2><h3 id="节点预测"><a href="#节点预测" class="headerlink" title="节点预测"></a>节点预测</h3><p>提供训练集真实的标签$\mathcal{V}_{train} \subset \mathcal{V}$时，通过所有的节点$u \in \mathcal{V}$预测标签$y_u$应该属于哪种类型、类别或属性。</p>
+<p>节点预测可通过显式利用节点之间的连接进行分类，如下几种节点之间的连接性质：</p>
+<p><strong>同质性</strong></p>
+<p>图中的节点与其邻居节点的属性相似，即节点有与邻居节点共享属性的趋势。</p>
 <p><strong>异质性</strong></p>
+<p>假定节点将优先连接到具有不同标签的节点。</p>
 <p><strong>结构等价性</strong></p>
+<p>具有相似局部结构的节点将具有相似的标签。</p>
+<p><strong>节点预测是有监督还是半监督任务？</strong></p>
+<p>非标准的半监督任务。</p>
+<p>在半监督学习中，模型训练过程同时使用有标签数据和无标签数据，监督学习</p>
 <h3 id="关系预测"><a href="#关系预测" class="headerlink" title="关系预测"></a>关系预测</h3><p>给定一组节点和部分边的集合$\varepsilon_{train}$，利用这些给定信息推断缺失边的集合（$\varepsilon\ \varepsilon_{train}$）</p>
 <h3 id="图预测"><a href="#图预测" class="headerlink" title="图预测"></a>图预测</h3><p>度反映与这个节点相连接的边的数目，</p>
 
@@ -865,7 +874,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">546</span>
+                        class="white-color">865</span>
             
             
             
