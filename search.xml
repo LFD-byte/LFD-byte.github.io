@@ -66,7 +66,7 @@
       <link href="/2023/05/28/tu-shen-jing-wang-luo-xue-xi-ri-ji-er/"/>
       <url>/2023/05/28/tu-shen-jing-wang-luo-xue-xi-ri-ji-er/</url>
       
-        <content type="html"><![CDATA[<p><strong>标准机器学习范式</strong></p><p>首先，基于启发式函数或领域知识提取一些统计特征；然后将其作为标准机器学习分类器（如逻辑回归）的输入。</p>]]></content>
+        <content type="html"><![CDATA[<p><strong>标准机器学习范式</strong></p><p>首先，基于启发式函数或领域知识提取一些统计特征；然后将其作为标准机器学习分类器（如逻辑回归）的输入。</p><h2 id="图统计特征"><a href="#图统计特征" class="headerlink" title="图统计特征"></a>图统计特征</h2><h3 id="节点层面的统计特征"><a href="#节点层面的统计特征" class="headerlink" title="节点层面的统计特征"></a>节点层面的统计特征</h3><p><strong>节点的度</strong></p><p><strong>节点的中心性</strong></p><p><strong>聚类系数</strong></p><p><strong>闭合三角形、自我中心图、Motifs</strong></p><p><strong>闭合三角形</strong></p><h3 id="图层面的统计特征"><a href="#图层面的统计特征" class="headerlink" title="图层面的统计特征"></a>图层面的统计特征</h3><h2 id="邻域重叠检测"><a href="#邻域重叠检测" class="headerlink" title="邻域重叠检测"></a>邻域重叠检测</h2>]]></content>
       
       
       <categories>

@@ -81,7 +81,7 @@
     <link href="https://blog.lfd-world.online/2023/05/28/tu-shen-jing-wang-luo-xue-xi-ri-ji-er/"/>
     <id>https://blog.lfd-world.online/2023/05/28/tu-shen-jing-wang-luo-xue-xi-ri-ji-er/</id>
     <published>2023-05-28T08:52:00.000Z</published>
-    <updated>2023-05-29T07:20:29.770Z</updated>
+    <updated>2023-05-29T07:28:05.540Z</updated>
     
     
       
@@ -90,7 +90,7 @@
         
     <summary type="html">&lt;p&gt;&lt;strong&gt;标准机器学习范式&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;首先，基于启发式函数或领域知识提取一些统计特征；然后将其作为标准机器学习分类器（如逻辑回归）的输入。&lt;/p&gt;
-</summary>
+&lt;h2 id=&quot;图统计特征&quot;&gt;&lt;a href=&quot;#图统计特征&quot;</summary>
         
       
     
