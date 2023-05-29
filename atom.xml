@@ -3,11 +3,11 @@
   <title>培根请加蛋</title>
   
   <subtitle>聪明勇敢有力气，我真的羡慕我自己</subtitle>
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="https://blog.lfd-world.online/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
+  <link href="https://blog.lfd-world.online/"/>
   <updated>2023-05-28T14:11:53.380Z</updated>
-  <id>http://example.com/</id>
+  <id>https://blog.lfd-world.online/</id>
   
   <author>
     <name>培根请加蛋</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>宋词（二）</title>
-    <link href="http://example.com/2023/05/28/2023-05-28-song-ci-er/"/>
-    <id>http://example.com/2023/05/28/2023-05-28-song-ci-er/</id>
+    <link href="https://blog.lfd-world.online/2023/05/28/2023-05-28-song-ci-er/"/>
+    <id>https://blog.lfd-world.online/2023/05/28/2023-05-28-song-ci-er/</id>
     <published>2023-05-28T14:07:00.000Z</published>
     <updated>2023-05-28T14:11:53.380Z</updated>
     
@@ -36,21 +36,21 @@
     
     
     
-    <category term="宋词" scheme="http://example.com/categories/%E5%AE%8B%E8%AF%8D/"/>
+    <category term="宋词" scheme="https://blog.lfd-world.online/categories/%E5%AE%8B%E8%AF%8D/"/>
     
     
-    <category term="宋词" scheme="http://example.com/tags/%E5%AE%8B%E8%AF%8D/"/>
+    <category term="宋词" scheme="https://blog.lfd-world.online/tags/%E5%AE%8B%E8%AF%8D/"/>
     
-    <category term="文学" scheme="http://example.com/tags/%E6%96%87%E5%AD%A6/"/>
+    <category term="文学" scheme="https://blog.lfd-world.online/tags/%E6%96%87%E5%AD%A6/"/>
     
-    <category term="诗词" scheme="http://example.com/tags/%E8%AF%97%E8%AF%8D/"/>
+    <category term="诗词" scheme="https://blog.lfd-world.online/tags/%E8%AF%97%E8%AF%8D/"/>
     
   </entry>
   
   <entry>
     <title>宋词（一）</title>
-    <link href="http://example.com/2023/05/28/song-ci-yi/"/>
-    <id>http://example.com/2023/05/28/song-ci-yi/</id>
+    <link href="https://blog.lfd-world.online/2023/05/28/song-ci-yi/"/>
+    <id>https://blog.lfd-world.online/2023/05/28/song-ci-yi/</id>
     <published>2023-05-28T13:55:00.000Z</published>
     <updated>2023-05-28T14:12:29.304Z</updated>
     
@@ -65,38 +65,48 @@
     
     
     
-    <category term="宋词" scheme="http://example.com/categories/%E5%AE%8B%E8%AF%8D/"/>
+    <category term="宋词" scheme="https://blog.lfd-world.online/categories/%E5%AE%8B%E8%AF%8D/"/>
     
     
-    <category term="宋词" scheme="http://example.com/tags/%E5%AE%8B%E8%AF%8D/"/>
+    <category term="宋词" scheme="https://blog.lfd-world.online/tags/%E5%AE%8B%E8%AF%8D/"/>
     
-    <category term="文学" scheme="http://example.com/tags/%E6%96%87%E5%AD%A6/"/>
+    <category term="文学" scheme="https://blog.lfd-world.online/tags/%E6%96%87%E5%AD%A6/"/>
     
-    <category term="诗词" scheme="http://example.com/tags/%E8%AF%97%E8%AF%8D/"/>
+    <category term="诗词" scheme="https://blog.lfd-world.online/tags/%E8%AF%97%E8%AF%8D/"/>
     
   </entry>
   
   <entry>
-    <title>图神经网络学习日记（二）节点嵌入</title>
-    <link href="http://example.com/2023/05/28/tu-shen-jing-wang-luo-xue-xi-ri-ji-er/"/>
-    <id>http://example.com/2023/05/28/tu-shen-jing-wang-luo-xue-xi-ri-ji-er/</id>
+    <title>图神经网络学习日记（二）传统机器学习方法</title>
+    <link href="https://blog.lfd-world.online/2023/05/28/tu-shen-jing-wang-luo-xue-xi-ri-ji-er/"/>
+    <id>https://blog.lfd-world.online/2023/05/28/tu-shen-jing-wang-luo-xue-xi-ri-ji-er/</id>
     <published>2023-05-28T08:52:00.000Z</published>
-    <updated>2023-05-28T08:53:06.583Z</updated>
+    <updated>2023-05-29T07:20:29.770Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;标准机器学习范式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;首先，基于启发式函数或领域知识提取一些统计特征；然后将其作为标准机器学习分类器（如逻辑回归）的输入。&lt;/p&gt;
+</summary>
+        
+      
     
     
     
+    <category term="图神经网络" scheme="https://blog.lfd-world.online/categories/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
-    <category term="图神经网络" scheme="http://example.com/categories/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
-    
-    <category term="图神经网络" scheme="http://example.com/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    <category term="图神经网络" scheme="https://blog.lfd-world.online/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
   <entry>
     <title>Latex 字母类符号</title>
-    <link href="http://example.com/2023/05/24/latex-zi-mu-lei-fu-hao/"/>
-    <id>http://example.com/2023/05/24/latex-zi-mu-lei-fu-hao/</id>
+    <link href="https://blog.lfd-world.online/2023/05/24/latex-zi-mu-lei-fu-hao/"/>
+    <id>https://blog.lfd-world.online/2023/05/24/latex-zi-mu-lei-fu-hao/</id>
     <published>2023-05-24T12:17:00.000Z</published>
     <updated>2023-05-28T03:02:08.879Z</updated>
     
@@ -112,19 +122,19 @@
     
     
     
-    <category term="Latex" scheme="http://example.com/categories/Latex/"/>
+    <category term="Latex" scheme="https://blog.lfd-world.online/categories/Latex/"/>
     
     
-    <category term="Latex" scheme="http://example.com/tags/Latex/"/>
+    <category term="Latex" scheme="https://blog.lfd-world.online/tags/Latex/"/>
     
-    <category term="Markdown" scheme="http://example.com/tags/Markdown/"/>
+    <category term="Markdown" scheme="https://blog.lfd-world.online/tags/Markdown/"/>
     
   </entry>
   
   <entry>
     <title>图神经网络学习日记（一）图基础知识</title>
-    <link href="http://example.com/2023/05/24/tu-shen-jing-wang-luo-xue-xi-ri-ji-yi/"/>
-    <id>http://example.com/2023/05/24/tu-shen-jing-wang-luo-xue-xi-ri-ji-yi/</id>
+    <link href="https://blog.lfd-world.online/2023/05/24/tu-shen-jing-wang-luo-xue-xi-ri-ji-yi/"/>
+    <id>https://blog.lfd-world.online/2023/05/24/tu-shen-jing-wang-luo-xue-xi-ri-ji-yi/</id>
     <published>2023-05-24T07:22:00.000Z</published>
     <updated>2023-05-29T07:12:35.946Z</updated>
     
@@ -139,10 +149,10 @@
     
     
     
-    <category term="图神经网络" scheme="http://example.com/categories/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    <category term="图神经网络" scheme="https://blog.lfd-world.online/categories/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
     
-    <category term="图神经网络" scheme="http://example.com/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    <category term="图神经网络" scheme="https://blog.lfd-world.online/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
