@@ -6,7 +6,7 @@
   <link href="https://blog.lfd-world.online/atom.xml" rel="self"/>
   
   <link href="https://blog.lfd-world.online/"/>
-  <updated>2023-05-28T14:11:53.380Z</updated>
+  <updated>2023-05-29T07:29:42.944Z</updated>
   <id>https://blog.lfd-world.online/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>图神经网络学习日记（三）节点嵌入</title>
+    <link href="https://blog.lfd-world.online/2023/05/29/tu-shen-jing-wang-luo-xue-xi-ri-ji-san/"/>
+    <id>https://blog.lfd-world.online/2023/05/29/tu-shen-jing-wang-luo-xue-xi-ri-ji-san/</id>
+    <published>2023-05-29T07:29:00.000Z</published>
+    <updated>2023-05-29T07:29:42.944Z</updated>
+    
+    
+    
+    
+    <category term="图神经网络" scheme="https://blog.lfd-world.online/categories/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+    
+    <category term="图神经网络" scheme="https://blog.lfd-world.online/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>宋词（二）</title>
