@@ -87,6 +87,31 @@
     
     
     <entry>
+      <title>Python程序运行时间查看方法</title>
+      <link href="/2023/05/28/python-cheng-xu-yun-xing-shi-jian-cha-kan-fang-fa/"/>
+      <url>/2023/05/28/python-cheng-xu-yun-xing-shi-jian-cha-kan-fang-fa/</url>
+      
+        <content type="html"><![CDATA[<p>time包查看程序运行时间</p><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> timestart_time <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 记录程序开始运行时间</span><span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">10000000</span><span class="token punctuation">)</span><span class="token punctuation">:</span>    <span class="token keyword">pass</span>end_time <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 记录程序结束运行时间</span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'cost %f s'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>end_time <span class="token operator">-</span> start_time<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre><p>输出</p><pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> cost <span class="token number">0.179781</span> s</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>图神经网络学习日记（二）传统机器学习方法</title>
       <link href="/2023/05/28/tu-shen-jing-wang-luo-xue-xi-ri-ji-er/"/>
       <url>/2023/05/28/tu-shen-jing-wang-luo-xue-xi-ri-ji-er/</url>

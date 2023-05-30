@@ -94,6 +94,34 @@
   </entry>
   
   <entry>
+    <title>Python程序运行时间查看方法</title>
+    <link href="https://blog.lfd-world.online/2023/05/28/python-cheng-xu-yun-xing-shi-jian-cha-kan-fang-fa/"/>
+    <id>https://blog.lfd-world.online/2023/05/28/python-cheng-xu-yun-xing-shi-jian-cha-kan-fang-fa/</id>
+    <published>2023-05-28T08:52:00.000Z</published>
+    <updated>2023-05-30T02:06:22.560Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;time包查看程序运行时间&lt;/p&gt;
+&lt;pre class=&quot; language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; time
+
+start_time</summary>
+        
+      
+    
+    
+    
+    <category term="Python" scheme="https://blog.lfd-world.online/categories/Python/"/>
+    
+    
+    <category term="Python" scheme="https://blog.lfd-world.online/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>图神经网络学习日记（二）传统机器学习方法</title>
     <link href="https://blog.lfd-world.online/2023/05/28/tu-shen-jing-wang-luo-xue-xi-ri-ji-er/"/>
     <id>https://blog.lfd-world.online/2023/05/28/tu-shen-jing-wang-luo-xue-xi-ri-ji-er/</id>
