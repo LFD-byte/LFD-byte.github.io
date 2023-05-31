@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="宋词（二）, 培根请加蛋">
-    <meta name="description" content="宋词（二）">
+    <meta name="keywords" content="Github kex_exchange_identification Connection closed by remote host, 培根请加蛋">
+    <meta name="description" content="kex_exchange_identification Connection closed by remote host">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>宋词（二） | 培根请加蛋</title>
+    <title>Github kex_exchange_identification Connection closed by remote host | 培根请加蛋</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -339,12 +339,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">宋词（二）</h1>
+                    <h1 class="description center-align post-title">Github kex_exchange_identification Connection closed by remote host</h1>
                 </div>
             </div>
         </div>
@@ -368,16 +368,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%AE%8B%E8%AF%8D/">
-                                <span class="chip bg-color">宋词</span>
-                            </a>
-                        
-                            <a href="/tags/%E6%96%87%E5%AD%A6/">
-                                <span class="chip bg-color">文学</span>
-                            </a>
-                        
-                            <a href="/tags/%E8%AF%97%E8%AF%8D/">
-                                <span class="chip bg-color">诗词</span>
+                            <a href="/tags/Github/">
+                                <span class="chip bg-color">Github</span>
                             </a>
                         
                     </div>
@@ -388,8 +380,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%AE%8B%E8%AF%8D/" class="post-category">
-                                宋词
+                            <a href="/categories/Github/" class="post-category">
+                                Github
                             </a>
                         
                     </div>
@@ -401,7 +393,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-05-28
+                    2023-05-31
                 </div>
                 
 
@@ -415,7 +407,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    128
+                    186
                 </div>
                 
 
@@ -442,23 +434,35 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <center>蝶恋花</center>
+                <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><pre class=" language-bash"><code class="language-bash">kex_exchange_identification: Connection closed by remote host
+Connection closed by 20.205.243.166 port 22
+fatal: Could not <span class="token function">read</span> from remote repository.
 
-<center>宋 柳永</center>
+Please <span class="token function">make</span> sure you have the correct access rights
+and the repository exists.
+</code></pre>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p><strong>本地生成.pub文件</strong></p>
+<pre class=" language-bash"><code class="language-bash">ssh-keygen -t ed25519 -C <span class="token string">"your_mail@xxx.com"</span>
+ssh-agent <span class="token function">bash</span>
+</code></pre>
+<p>会在<code>C:\Users\admin\.ssh</code>目录生成一个<code>id_ed25519.pub</code>文件，复制里面的内容。</p>
+<p><strong>Github 新建 SSH key</strong></p>
+<p>打开 Github，点击 Setting 如下图所示：</p>
+<p><img src="http://images.lfd-world.online/image-20230531145549324.png" alt="image-20230531145549324"></p>
+<p>在 Setting 页面中找到 SSH and GPG keys 选项，新建 SSH key。</p>
+<p><img src="http://images.lfd-world.online/image-20230531145936726.png" alt="image-20230531145936726"></p>
+<p>Title 内容任意，Key 文本框内填入 <code>id_ed25519.pub</code> 内的内容。</p>
+<p><img src="http://images.lfd-world.online/image-20230531150100824.png" alt="image-20230531150100824"></p>
+<p>重新尝试上传。</p>
+<p>如果仍然有上述错误提示可进行以下操作：</p>
+<pre class=" language-shell"><code class="language-shell">git init
+git add .
+git commit -m "init"
+git branch -M main
+git remote add origin git@github.com:xxx/xxx.git
+git push -f -u origin main
+</code></pre>
 
-<center>伫倚危楼风细细，望极春愁，黯黯生天际。草色烟光残照里，无言谁会凭栏意？</center>
-
-<center>拟把疏狂图一醉，对酒当歌，强乐还无味。衣带渐宽终不悔，为伊消得人憔悴。</center>
-
-
-
-<center>木兰花</center>
-
-<center>钱惟演</center>
-
-<center>城上风光莺语乱，城下烟波春拍岸。绿杨芳草几时休，泪眼愁肠先已断。</center>
-
-<center>情怀渐觉成衰晚，鸾镜朱颜惊暗换。昔年多病厌芳尊，今日芳尊惟恐浅。</center>
                 
             </div>
             <hr/>
@@ -484,7 +488,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://blog.lfd-world.online/2023/05/28/song-ci-er/">https://blog.lfd-world.online/2023/05/28/song-ci-er/</a>
+                    <a href="https://blog.lfd-world.online/2023/05/31/github-kex-exchange/">https://blog.lfd-world.online/2023/05/31/github-kex-exchange/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -522,16 +526,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%AE%8B%E8%AF%8D/">
-                                    <span class="chip bg-color">宋词</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%96%87%E5%AD%A6/">
-                                    <span class="chip bg-color">文学</span>
-                                </a>
-                            
-                                <a href="/tags/%E8%AF%97%E8%AF%8D/">
-                                    <span class="chip bg-color">诗词</span>
+                                <a href="/tags/Github/">
+                                    <span class="chip bg-color">Github</span>
                                 </a>
                             
                         </div>
@@ -610,46 +606,48 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2023/05/29/tu-shen-jing-wang-luo-xue-xi-ri-ji-san/">
+                <a href="/2023/05/31/github-kex-exchange/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="图神经网络学习日记（三）节点嵌入">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Github kex_exchange_identification Connection closed by remote host">
                         
-                        <span class="card-title">图神经网络学习日记（三）节点嵌入</span>
+                        <span class="card-title">Github kex_exchange_identification Connection closed by remote host</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            图神经网络学习日记（三）
+                            kex_exchange_identification Connection closed by remote host
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-05-29
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-31
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="post-category">
-                                    图神经网络
+                            <a href="/categories/Github/" class="post-category">
+                                    Github
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
-                        <span class="chip bg-color">图神经网络</span>
+                    <a href="/tags/Github/">
+                        <span class="chip bg-color">Github</span>
                     </a>
                     
                 </div>
@@ -663,31 +661,31 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/05/28/song-ci-yi/">
+                <a href="/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="宋词（一）">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Github Pages + Hexo + Vercel 个人博客搭建（一）基础部署">
                         
-                        <span class="card-title">宋词（一）</span>
+                        <span class="card-title">Github Pages + Hexo + Vercel 个人博客搭建（一）基础部署</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            宋词（二）
+                            基础部署
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-31
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%AE%8B%E8%AF%8D/" class="post-category">
-                                    宋词
+                            <a href="/categories/Blog/" class="post-category">
+                                    Blog
                                 </a>
                             
                             
@@ -697,16 +695,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%AE%8B%E8%AF%8D/">
-                        <span class="chip bg-color">宋词</span>
+                    <a href="/tags/Blog/">
+                        <span class="chip bg-color">Blog</span>
                     </a>
                     
-                    <a href="/tags/%E6%96%87%E5%AD%A6/">
-                        <span class="chip bg-color">文学</span>
-                    </a>
-                    
-                    <a href="/tags/%E8%AF%97%E8%AF%8D/">
-                        <span class="chip bg-color">诗词</span>
+                    <a href="/tags/Hexo/">
+                        <span class="chip bg-color">Hexo</span>
                     </a>
                     
                 </div>

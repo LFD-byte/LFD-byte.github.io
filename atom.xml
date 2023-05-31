@@ -6,7 +6,7 @@
   <link href="https://blog.lfd-world.online/atom.xml" rel="self"/>
   
   <link href="https://blog.lfd-world.online/"/>
-  <updated>2023-05-31T05:59:23.564Z</updated>
+  <updated>2023-05-31T07:10:36.987Z</updated>
   <id>https://blog.lfd-world.online/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Github Pages + Hexo + Vercel 个人博客搭建（一）Matery 主题</title>
-    <link href="https://blog.lfd-world.online/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi-matery-zhu-ti/"/>
-    <id>https://blog.lfd-world.online/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi-matery-zhu-ti/</id>
+    <title>Github kex_exchange_identification Connection closed by remote host</title>
+    <link href="https://blog.lfd-world.online/2023/05/31/github-kex-exchange/"/>
+    <id>https://blog.lfd-world.online/2023/05/31/github-kex-exchange/</id>
+    <published>2023-05-31T06:49:00.000Z</published>
+    <updated>2023-05-31T07:10:36.987Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h2&gt;&lt;pre class=&quot; language-bash&quot;&gt;&lt;code</summary>
+        
+      
+    
+    
+    
+    <category term="Github" scheme="https://blog.lfd-world.online/categories/Github/"/>
+    
+    
+    <category term="Github" scheme="https://blog.lfd-world.online/tags/Github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Github Pages + Hexo + Vercel 个人博客搭建（一）基础部署</title>
+    <link href="https://blog.lfd-world.online/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi/"/>
+    <id>https://blog.lfd-world.online/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi/</id>
     <published>2023-05-31T05:57:00.000Z</published>
-    <updated>2023-05-31T05:59:23.564Z</updated>
+    <updated>2023-05-31T05:59:39.803Z</updated>
     
     
     
@@ -36,11 +61,11 @@
   </entry>
   
   <entry>
-    <title>Github Pages + Hexo + Vercel 个人博客搭建（一）基础部署</title>
-    <link href="https://blog.lfd-world.online/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi/"/>
-    <id>https://blog.lfd-world.online/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi/</id>
+    <title>Github Pages + Hexo + Vercel 个人博客搭建（一）Matery 主题</title>
+    <link href="https://blog.lfd-world.online/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi-matery-zhu-ti/"/>
+    <id>https://blog.lfd-world.online/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi-matery-zhu-ti/</id>
     <published>2023-05-31T05:57:00.000Z</published>
-    <updated>2023-05-31T05:59:39.803Z</updated>
+    <updated>2023-05-31T05:59:23.564Z</updated>
     
     
     
