@@ -6,7 +6,7 @@
   <link href="https://blog.lfd-world.online/atom.xml" rel="self"/>
   
   <link href="https://blog.lfd-world.online/"/>
-  <updated>2023-05-31T05:59:23.564Z</updated>
+  <updated>2023-05-31T05:59:39.803Z</updated>
   <id>https://blog.lfd-world.online/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Github Pages + Hexo + Vercel 个人博客搭建（一）Matery 主题</title>
-    <link href="https://blog.lfd-world.online/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi-matery-zhu-ti/"/>
-    <id>https://blog.lfd-world.online/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi-matery-zhu-ti/</id>
+    <title>Github Pages + Hexo + Vercel 个人博客搭建（一）基础部署</title>
+    <link href="https://blog.lfd-world.online/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi/"/>
+    <id>https://blog.lfd-world.online/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi/</id>
     <published>2023-05-31T05:57:00.000Z</published>
-    <updated>2023-05-31T05:59:23.564Z</updated>
+    <updated>2023-05-31T05:59:39.803Z</updated>
     
     
     
@@ -36,11 +36,11 @@
   </entry>
   
   <entry>
-    <title>Github Pages + Hexo + Vercel 个人博客搭建（一）基础部署</title>
-    <link href="https://blog.lfd-world.online/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi/"/>
-    <id>https://blog.lfd-world.online/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi/</id>
+    <title>Github Pages + Hexo + Vercel 个人博客搭建（一）Matery 主题</title>
+    <link href="https://blog.lfd-world.online/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi-matery-zhu-ti/"/>
+    <id>https://blog.lfd-world.online/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi-matery-zhu-ti/</id>
     <published>2023-05-31T05:57:00.000Z</published>
-    <updated>2023-05-31T05:59:39.803Z</updated>
+    <updated>2023-05-31T05:59:23.564Z</updated>
     
     
     
