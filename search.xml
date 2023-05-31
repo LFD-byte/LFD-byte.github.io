@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>图神经网络学习日记（五）图神经网络（GNN）</title>
+      <link href="/2023/05/31/tu-shen-jing-wang-luo-xue-xi-ri-ji-wu-tu-shen-jing-wang-luo-gnn/"/>
+      <url>/2023/05/31/tu-shen-jing-wang-luo-xue-xi-ri-ji-wu-tu-shen-jing-wang-luo-gnn/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 图神经网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 图神经网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python程序运行时间查看方法</title>
+      <link href="/2023/05/30/python-cheng-xu-yun-xing-shi-jian-cha-kan-fang-fa/"/>
+      <url>/2023/05/30/python-cheng-xu-yun-xing-shi-jian-cha-kan-fang-fa/</url>
+      
+        <content type="html"><![CDATA[<p>time包查看程序运行时间</p><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> timestart_time <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 记录程序开始运行时间</span><span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">10000000</span><span class="token punctuation">)</span><span class="token punctuation">:</span>    <span class="token keyword">pass</span>end_time <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 记录程序结束运行时间</span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'cost %f s'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>end_time <span class="token operator">-</span> start_time<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre><p>输出</p><pre class=" language-python"><code class="language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> cost <span class="token number">0.179781</span> s</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>图神经网络学习日记（三）节点嵌入</title>
       <link href="/2023/05/29/tu-shen-jing-wang-luo-xue-xi-ri-ji-san/"/>
       <url>/2023/05/29/tu-shen-jing-wang-luo-xue-xi-ri-ji-san/</url>
@@ -30,10 +80,10 @@
     
     <entry>
       <title>宋词（二）</title>
-      <link href="/2023/05/28/2023-05-28-song-ci-er/"/>
-      <url>/2023/05/28/2023-05-28-song-ci-er/</url>
+      <link href="/2023/05/28/song-ci-er/"/>
+      <url>/2023/05/28/song-ci-er/</url>
       
-        <content type="html"><![CDATA[<center>蝶恋花</center><center>宋 柳永</center><center>伫倚危楼风细细，望极春愁，黯黯生天际。草色烟光残照里，无言谁会凭栏意？</center><center>拟把疏狂图一醉，对酒当歌，强乐还无味。衣带渐宽终不悔，为伊消得人憔悴。</center>]]></content>
+        <content type="html"><![CDATA[<center>蝶恋花</center><center>宋 柳永</center><center>伫倚危楼风细细，望极春愁，黯黯生天际。草色烟光残照里，无言谁会凭栏意？</center><center>拟把疏狂图一醉，对酒当歌，强乐还无味。衣带渐宽终不悔，为伊消得人憔悴。</center><center>木兰花</center><center>钱惟演</center><center>城上风光莺语乱，城下烟波春拍岸。绿杨芳草几时休，泪眼愁肠先已断。</center><center>情怀渐觉成衰晚，鸾镜朱颜惊暗换。昔年多病厌芳尊，今日芳尊惟恐浅。</center>]]></content>
       
       
       <categories>
@@ -87,36 +137,11 @@
     
     
     <entry>
-      <title>Python程序运行时间查看方法</title>
-      <link href="/2023/05/28/python-cheng-xu-yun-xing-shi-jian-cha-kan-fang-fa/"/>
-      <url>/2023/05/28/python-cheng-xu-yun-xing-shi-jian-cha-kan-fang-fa/</url>
-      
-        <content type="html"><![CDATA[<p>time包查看程序运行时间</p><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> timestart_time <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 记录程序开始运行时间</span><span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">10000000</span><span class="token punctuation">)</span><span class="token punctuation">:</span>    <span class="token keyword">pass</span>end_time <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 记录程序结束运行时间</span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'cost %f s'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>end_time <span class="token operator">-</span> start_time<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre><p>输出</p><pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> cost <span class="token number">0.179781</span> s</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> Python </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Python </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>图神经网络学习日记（二）传统机器学习方法</title>
       <link href="/2023/05/28/tu-shen-jing-wang-luo-xue-xi-ri-ji-er/"/>
       <url>/2023/05/28/tu-shen-jing-wang-luo-xue-xi-ri-ji-er/</url>
       
-        <content type="html"><![CDATA[<p><strong>标准机器学习范式</strong></p><p>首先，基于启发式函数或领域知识提取一些统计特征；然后将其作为标准机器学习分类器（如逻辑回归）的输入。</p><h2 id="图统计特征"><a href="#图统计特征" class="headerlink" title="图统计特征"></a>图统计特征</h2><h3 id="节点层面的统计特征"><a href="#节点层面的统计特征" class="headerlink" title="节点层面的统计特征"></a>节点层面的统计特征</h3><p><strong>节点的度</strong></p><p>节点$u$的度反映与这个节点相连接的边的数目，可由下式表示<br>$$<br>d_u = \sum_{v \in \mathcal{V}} A[u,v]<br>$$<br>对于有向图和加权图，度分为入度和出度。对矩阵$A$中的节点$u$的行求和可以得到出度，对节点$u$的列求和可以得到入度。</p><p><strong>节点的中心性</strong></p><p><strong>聚类系数</strong></p><p><strong>闭合三角形、自我中心图、Motifs</strong></p><p><strong>闭合三角形</strong></p><h3 id="图层面的统计特征"><a href="#图层面的统计特征" class="headerlink" title="图层面的统计特征"></a>图层面的统计特征</h3><h2 id="邻域重叠检测"><a href="#邻域重叠检测" class="headerlink" title="邻域重叠检测"></a>邻域重叠检测</h2>]]></content>
+        <content type="html"><![CDATA[<p><strong>标准机器学习范式</strong></p><p>首先，基于启发式函数或领域知识提取一些统计特征；然后将其作为标准机器学习分类器（如逻辑回归）的输入。</p><h2 id="图统计特征"><a href="#图统计特征" class="headerlink" title="图统计特征"></a>图统计特征</h2><h3 id="节点层面的统计特征"><a href="#节点层面的统计特征" class="headerlink" title="节点层面的统计特征"></a>节点层面的统计特征</h3><p><strong>节点的度</strong></p><p>节点$u$的度反映与这个节点相连接的边的数目，可由下式表示<br>$$<br>d_u = \sum_{v \in \mathcal{V}} A[u,v]<br>$$<br>对于有向图和加权图，度分为入度和出度。对矩阵$A$中的节点$u$的行求和可以得到出度，对节点$u$的列求和可以得到入度。</p><p><strong>节点的中心性</strong></p><p>角度一：特征向量中心性度量不仅考虑邻居节点个数的度，还考虑了邻居节点的重要性。<br>$$<br>e_u = \frac{1}{\lambda}\sum_{v\in \mathcal{V}}A[u,v]e_v, \forall u \in \mathcal{V}<br>$$<br>将向量表示$e$代入上述等式取代节点中心性向量可得到邻接矩阵的标准特征向量方程：<br>$$<br>\lambda e = Ae<br>$$<br>角度二：特征向量中心性衡量了一个节点在路径无限长的情况下在随机游走时被访问的概率。这种理解方式连接了节点重要性、随机游走和谱三个重要概念。$\lambda$是$A$的主要特征向量，可通过幂次迭代法则计算$e$如下所示：<br>$$<br>e^{(t+1)} = Ae^{(t)}<br>$$<br>从向量$e^{(0)}=(1,1,\cdots,1)^T$开始，依据幂次迭代法则，第一次迭代可以得到每个节点的度，在第$t$次迭代$(t \geq 1)$时，$e^{(t)}$包括了尝试到达每个节点且长度为$t$的路线的长度的数量，无限重复下去可得到路径无限长时每个节点被访问的次数。</p><p><strong>聚类系数</strong></p><p>聚类系数通过一个节点的局部邻域中闭合三角形的比例度量节点的邻居节点聚类的紧密程度。聚类系数计算方法 Local Variant 方法如下式所示：<br>$$<br>c_u = \frac{|(v_1, v_2)\in \varepsilon: v_1, v_2 \in \mathcal{N}(u)|}{\binom{d_u}{2}}<br>$$<br>其中$\mathcal{N}(u)={v\in \mathcal{V}: (u,v)\in \varepsilon}$表示节点$u$的邻居节点。</p><p><strong>闭合三角形、自我中心图、Motifs</strong></p><p><strong>闭合三角形</strong></p><h3 id="图层面的统计特征"><a href="#图层面的统计特征" class="headerlink" title="图层面的统计特征"></a>图层面的统计特征</h3><h2 id="邻域重叠检测"><a href="#邻域重叠检测" class="headerlink" title="邻域重叠检测"></a>邻域重叠检测</h2>]]></content>
       
       
       <categories>
