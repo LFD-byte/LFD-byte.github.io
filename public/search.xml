@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Github Pages + Hexo + Vercel 个人博客搭建（一）Matery 主题</title>
+      <link href="/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi-matery-zhu-ti/"/>
+      <url>/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi-matery-zhu-ti/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Blog </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Blog </tag>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Github Pages + Hexo + Vercel 个人博客搭建（一）基础部署</title>
+      <link href="/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi/"/>
+      <url>/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Blog </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Blog </tag>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Github Pages + Hexo + Vercel 个人博客搭建（一）Typora + PicGo+ 七牛云图床</title>
+      <link href="/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi-typora-qi-niu-yun-tu-chuang/"/>
+      <url>/2023/05/31/github-pages-hexo-vercel-ge-ren-bo-ke-da-jian-yi-typora-qi-niu-yun-tu-chuang/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> Blog </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Blog </tag>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图神经网络学习日记（五）图神经网络（GNN）</title>
+      <link href="/2023/05/31/tu-shen-jing-wang-luo-xue-xi-ri-ji-wu/"/>
+      <url>/2023/05/31/tu-shen-jing-wang-luo-xue-xi-ri-ji-wu/</url>
+      
+        <content type="html"><![CDATA[<p><strong>置换不变性和置换同变性</strong></p><p>任何将邻接矩阵$A$作为输入的函数$f$在理想状态下，都应满足下面两个条件之一：<br>$$<br>f(PAP^T)=f(A)(置换不变)<br>$$</p><p>$$<br>f(PAP^T)=Pf(A)(置换同变)<br>$$</p><p>其中$P$是置换矩阵。置换不变是指函数不依赖邻接矩阵中行/列的任意顺序，置换同变表示当置换邻接矩阵时$f$的输出以一致的方式置换。</p><h2 id="神经消息传递"><a href="#神经消息传递" class="headerlink" title="神经消息传递"></a>神经消息传递</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> 图神经网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 图神经网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python程序运行时间查看方法</title>
+      <link href="/2023/05/30/python-cheng-xu-yun-xing-shi-jian-cha-kan-fang-fa/"/>
+      <url>/2023/05/30/python-cheng-xu-yun-xing-shi-jian-cha-kan-fang-fa/</url>
+      
+        <content type="html"><![CDATA[<p>time包查看程序运行时间</p><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> timestart_time <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 记录程序开始运行时间</span><span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">10000000</span><span class="token punctuation">)</span><span class="token punctuation">:</span>    <span class="token keyword">pass</span>end_time <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 记录程序结束运行时间</span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'cost %f s'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>end_time <span class="token operator">-</span> start_time<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre><p>输出</p><pre class=" language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> cost <span class="token number">0.179781</span> s</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图神经网络学习日记（三）节点嵌入</title>
+      <link href="/2023/05/29/tu-shen-jing-wang-luo-xue-xi-ri-ji-san/"/>
+      <url>/2023/05/29/tu-shen-jing-wang-luo-xue-xi-ri-ji-san/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 图神经网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 图神经网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>宋词（二）</title>
+      <link href="/2023/05/28/song-ci-er/"/>
+      <url>/2023/05/28/song-ci-er/</url>
+      
+        <content type="html"><![CDATA[<center>蝶恋花</center><center>宋 柳永</center><center>伫倚危楼风细细，望极春愁，黯黯生天际。草色烟光残照里，无言谁会凭栏意？</center><center>拟把疏狂图一醉，对酒当歌，强乐还无味。衣带渐宽终不悔，为伊消得人憔悴。</center><center>木兰花</center><center>钱惟演</center><center>城上风光莺语乱，城下烟波春拍岸。绿杨芳草几时休，泪眼愁肠先已断。</center><center>情怀渐觉成衰晚，鸾镜朱颜惊暗换。昔年多病厌芳尊，今日芳尊惟恐浅。</center>]]></content>
+      
+      
+      <categories>
+          
+          <category> 宋词 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 宋词 </tag>
+            
+            <tag> 文学 </tag>
+            
+            <tag> 诗词 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>宋词（一）</title>
+      <link href="/2023/05/28/song-ci-yi/"/>
+      <url>/2023/05/28/song-ci-yi/</url>
+      
+        <content type="html"><![CDATA[<center>木兰花 春景</center><center>宋祁</center><center>东城渐觉风光好，縠皱波纹迎客掉。绿杨烟外晓云轻，红杏枝头春意闹。</center><center>浮生长恨欢娱少，肯爱千金轻一笑？为君持酒劝斜阳，且向花间留晚照。</center>]]></content>
+      
+      
+      <categories>
+          
+          <category> 宋词 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 宋词 </tag>
+            
+            <tag> 文学 </tag>
+            
+            <tag> 诗词 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图神经网络学习日记（二）传统机器学习方法</title>
+      <link href="/2023/05/28/tu-shen-jing-wang-luo-xue-xi-ri-ji-er/"/>
+      <url>/2023/05/28/tu-shen-jing-wang-luo-xue-xi-ri-ji-er/</url>
+      
+        <content type="html"><![CDATA[<p><strong>标准机器学习范式</strong></p><p>首先，基于启发式函数或领域知识提取一些统计特征；然后将其作为标准机器学习分类器（如逻辑回归）的输入。</p><h2 id="图统计特征"><a href="#图统计特征" class="headerlink" title="图统计特征"></a>图统计特征</h2><h3 id="节点层面的统计特征"><a href="#节点层面的统计特征" class="headerlink" title="节点层面的统计特征"></a>节点层面的统计特征</h3><p><strong>节点的度</strong></p><p>节点$u$的度反映与这个节点相连接的边的数目，可由下式表示<br>$$<br>d_u = \sum_{v \in \mathcal{V}} A[u,v]<br>$$<br>对于有向图和加权图，度分为入度和出度。对矩阵$A$中的节点$u$的行求和可以得到出度，对节点$u$的列求和可以得到入度。</p><p><strong>节点的中心性</strong></p><p>角度一：特征向量中心性度量不仅考虑邻居节点个数的度，还考虑了邻居节点的重要性。<br>$$<br>e_u = \frac{1}{\lambda}\sum_{v\in \mathcal{V}}A[u,v]e_v, \forall u \in \mathcal{V}<br>$$<br>将向量表示$e$代入上述等式取代节点中心性向量可得到邻接矩阵的标准特征向量方程：<br>$$<br>\lambda e = Ae<br>$$<br>角度二：特征向量中心性衡量了一个节点在路径无限长的情况下在随机游走时被访问的概率。这种理解方式连接了节点重要性、随机游走和谱三个重要概念。$\lambda$是$A$的主要特征向量，可通过幂次迭代法则计算$e$如下所示：<br>$$<br>e^{(t+1)} = Ae^{(t)}<br>$$<br>从向量$e^{(0)}=(1,1,\cdots,1)^T$开始，依据幂次迭代法则，第一次迭代可以得到每个节点的度，在第$t$次迭代$(t \geq 1)$时，$e^{(t)}$包括了尝试到达每个节点且长度为$t$的路线的长度的数量，无限重复下去可得到路径无限长时每个节点被访问的次数。</p><p><strong>聚类系数</strong></p><p>聚类系数通过一个节点的局部邻域中闭合三角形的比例度量节点的邻居节点聚类的紧密程度。聚类系数计算方法 Local Variant 方法如下式所示：<br>$$<br>c_u = \frac{|(v_1, v_2)\in \varepsilon: v_1, v_2 \in \mathcal{N}(u)|}{\binom{d_u}{2}}<br>$$<br>其中$\mathcal{N}(u)={v\in \mathcal{V}: (u,v)\in \varepsilon}$表示节点$u$的邻居节点。</p><p><strong>闭合三角形、自我中心图、Motifs</strong></p><p><strong>闭合三角形</strong></p><h3 id="图层面的统计特征"><a href="#图层面的统计特征" class="headerlink" title="图层面的统计特征"></a>图层面的统计特征</h3><p>节点袋</p><p>Weisfeiler-Lehman 核</p><p>Graphlets 和基于路径的方法</p><h2 id="邻域重叠检测"><a href="#邻域重叠检测" class="headerlink" title="邻域重叠检测"></a>邻域重叠检测</h2><h2 id="图的拉普拉斯矩阵和图的谱方法"><a href="#图的拉普拉斯矩阵和图的谱方法" class="headerlink" title="图的拉普拉斯矩阵和图的谱方法"></a>图的拉普拉斯矩阵和图的谱方法</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> 图神经网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 图神经网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Latex 字母类符号</title>
+      <link href="/2023/05/24/latex-zi-mu-lei-fu-hao/"/>
+      <url>/2023/05/24/latex-zi-mu-lei-fu-hao/</url>
+      
+        <content type="html"><![CDATA[<p>Caligraphic letters: <code>$\mathcal{A}$ </code> etc.: $\mathcal{A B C D E F G H I J K L M N O P Q I S T U V W X Y Z}$</p><p>Mathbb letters: <code>$\mathbb{A}$</code>etc.: $\mathbb{A B C D E F G H I J K L M N O P Q I S T U V W X Y Z}$</p><p>Mathfrak letters: <code>$\mathfrak{A}$</code>etc.: $\mathfrak{A B C D E F G H I J K L M N O P Q I S T U V W X Y Z}$</p><p>Math Sans serif letters: <code>$\mathsf{A}$</code>etc.: $\mathsf{A B C D E F G H I J K L M N O P Q I S T U V W X Y Z}$</p><p>Math bold letters: <code>$\mathbf{A}$</code>etc.: $\mathbf{A B C D E F G H I J K L M N O P Q I S T U V W X Y Z}$</p><p>Math bold italic letters: define <code>\def\mathbi#1{\textbf{\em #1}}</code> then use <code>$\mathbi{A}$</code></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Latex </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Latex </tag>
+            
+            <tag> Markdown </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图神经网络学习日记（一）图基础知识</title>
+      <link href="/2023/05/24/tu-shen-jing-wang-luo-xue-xi-ri-ji-yi/"/>
+      <url>/2023/05/24/tu-shen-jing-wang-luo-xue-xi-ri-ji-yi/</url>
+      
+        <content type="html"><![CDATA[<h2 id="图的定义"><a href="#图的定义" class="headerlink" title="图的定义"></a>图的定义</h2><p>图由节点集合$\mathcal{V}$和边集合$\varepsilon$组成，记作$\mathcal{G}=(\mathcal{V},\varepsilon)$，节点$u\in \mathcal{V}$到节点$v\in \mathcal{V}$的边表示为$(u,v)\in\varepsilon$.</p><h2 id="图的表示"><a href="#图的表示" class="headerlink" title="图的表示"></a>图的表示</h2><p>图可以由邻接矩阵$A\in \mathbb{R}^{|\mathcal{V}|\times|\mathcal{V}|}$表示，矩阵的行和列代表节点索引，矩阵元素$A[u,v]$表示节点$u$和节点$v$的连接情况，如果$(u,v)\in \varepsilon$，则$A[u,v]=1$，否则$A[u,v]=0$。</p><h2 id="多关系图的分类"><a href="#多关系图的分类" class="headerlink" title="多关系图的分类"></a>多关系图的分类</h2><p><strong>异构图</strong></p><p>异构图可以通过节点类型将节点划分为不相交的子集，即$\mathcal{V} = \mathcal{V}_1 \bigcup \mathcal{V}_2 \bigcup \cdots  \bigcup \mathcal{V}_k$，其中$\mathcal{V}_i \bigcap \mathcal{V}_j = \emptyset, \forall \neq j$。</p><p><strong>多重图</strong></p><p>多重图中的边只能连接不同类型的节点，即$(u,\tau_i,v)\in \varepsilon \rightarrow u \in \mathcal{V}_j,v \in \mathcal{V}_k \bigwedge j \neq k$。在多重图中，通常假设图可以被分解为$k$个层级，每个节点可以属于一层或多层，每层代表唯一特定关系，表示本层内边的类型。</p><h2 id="图机器学习任务"><a href="#图机器学习任务" class="headerlink" title="图机器学习任务"></a>图机器学习任务</h2><h3 id="节点预测"><a href="#节点预测" class="headerlink" title="节点预测"></a>节点预测</h3><p>提供训练集真实的标签$\mathcal{V}_{train} \subset \mathcal{V}$时，通过所有的节点$u \in \mathcal{V}$预测标签$y_u$应该属于哪种类型、类别或属性。</p><p>节点预测可通过显式利用节点之间的连接进行分类，如下几种节点之间的连接性质：</p><p><strong>同质性</strong></p><p>图中的节点与其邻居节点的属性相似，即节点有与邻居节点共享属性的趋势。</p><p><strong>异质性</strong></p><p>假定节点将优先连接到具有不同标签的节点。</p><p><strong>结构等价性</strong></p><p>具有相似局部结构的节点将具有相似的标签。</p><p><strong>节点预测是有监督还是半监督任务？</strong></p><p><strong>非标准的半监督任务。</strong></p><p>在半监督学习中，模型训练过程同时使用有标签数据和无标签数据，标准的半监督学习以独立同分布假设为前提，标准的监督学习在训练过程中不使用所有无标签的测试数据。节点分类任务中，图中节点全部都被使用，包括无标签节点，故节点分类任务是半监督学习，同时节点分类任务对一组相互连接的节点进行建模，打破了独立同分布假设，故节点分类是非标准的半监督任务。</p><h3 id="关系预测"><a href="#关系预测" class="headerlink" title="关系预测"></a>关系预测</h3><p>给定一组节点$\mathcal{V}$和部分边的集合$\varepsilon_{train}$（$\varepsilon_{train} \subset \varepsilon, \varepsilon$表示全体边的集合），利用这些给定信息推断缺失边的集合$\varepsilon \ \varepsilon_{train}$。</p><h3 id="社区发现"><a href="#社区发现" class="headerlink" title="社区发现"></a>社区发现</h3><p>通过输入一张图$\mathcal{G}=(\mathcal{V},\varepsilon)$推断出潜在的社区结构。</p><p>社区发现常被类比为图领域的无监督学习中的聚类任务。</p><h3 id="图预测"><a href="#图预测" class="headerlink" title="图预测"></a>图预测</h3><p>图预测包括对整张图进行分类、回归与聚类。</p><p>图分类或图回归任务中，数据集由多张不同图构成，图机器学习算法针对每张图进行独立预测，而不是预测图的组成部分。在图聚类任务中，目标是学习一个无监督的测量图与图之间相似性的策略。</p><p>图分类与图回归任务属于标准监督学习范畴。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 图神经网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 图神经网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
