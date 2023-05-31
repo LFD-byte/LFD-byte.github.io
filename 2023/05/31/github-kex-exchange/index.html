@@ -15,7 +15,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google-site-verification" content="qvBHqgbyc_CYw3ZE9lrEIxYSUzkcL8LH9-_uDtcme5A" />
     <meta name="baidu-site-verification" content="codeva-mJZ2sqHuqv" />
-    <meta name="referrer" content="no-referrer" />
+    <meta name="referrer" content="no-referrer-when-downgrade">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
@@ -448,11 +448,11 @@ ssh-agent <span class="token function">bash</span>
 <p>会在<code>C:\Users\admin\.ssh</code>目录生成一个<code>id_ed25519.pub</code>文件，复制里面的内容。</p>
 <p><strong>Github 新建 SSH key</strong></p>
 <p>打开 Github，点击 Setting 如下图所示：</p>
-<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230531145549324.png" alt="image-20230531145549324"></p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230531145549324.png" alt="Setting"></p>
 <p>在 Setting 页面中找到 SSH and GPG keys 选项，新建 SSH key。</p>
-<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230531145936726.png" alt="image-20230531145936726"></p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230531145936726.png" alt="SSH and GPG keys"></p>
 <p>Title 内容任意，Key 文本框内填入 <code>id_ed25519.pub</code> 内的内容。</p>
-<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230531150100824.png" alt="image-20230531150100824"></p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230531150100824.png" alt="SSH keys"></p>
 <p>重新尝试上传。</p>
 <p>如果仍然有上述错误提示可进行以下操作：</p>
 <pre class=" language-shell"><code class="language-shell">git init
