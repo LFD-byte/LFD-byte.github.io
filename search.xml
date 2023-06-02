@@ -8,7 +8,7 @@
       <link href="/2023/06/01/latex-duo-xing-gong-shi-dui-qi/"/>
       <url>/2023/06/01/latex-duo-xing-gong-shi-dui-qi/</url>
       
-        <content type="html"><![CDATA[<p>在 LaTeX 中，使用“align”环境可以方便地实现等号对齐。使用“&amp;”符号可以在每行中分隔等号两边的内容，表示对齐位置，‘’\\‘’表示换行：</p><pre class=" language-latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">align</span><span class="token punctuation">}</span><span class="token equation string">  2x + 3y &amp;= 7 <span class="token equation-command regex">\\</span>  5x - 2y &amp;= 1</span><span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">align</span><span class="token punctuation">}</span></code></pre><p>该代码将产生以下等式：<br>$$<br>\begin{align}<br>  2x + 3y &amp;= 7 \<br>  5x - 2y &amp;= 1<br>\end{align}<br>$$</p>]]></content>
+        <content type="html"><![CDATA[<p>在 LaTeX 中，使用“align”环境可以方便地实现等号对齐。使用“&amp;”符号可以在每行中分隔等号两边的内容，表示对齐位置，‘’\\‘’表示换行$\lambda$：</p><pre class=" language-python"><code class="language-python">\begin<span class="token punctuation">{</span>aligned<span class="token punctuation">}</span>  2x <span class="token operator">+</span> 3y <span class="token operator">&amp;</span><span class="token operator">=</span> <span class="token number">7</span> \\  5x <span class="token operator">-</span> 2y <span class="token operator">&amp;</span><span class="token operator">=</span> <span class="token number">1</span>\end<span class="token punctuation">{</span>aligned<span class="token punctuation">}</span></code></pre><p>该代码将产生以下等式：<br>$$<br>\begin{aligned}<br>  2x + 3y &amp;= 7 \<br>  5x - 2y &amp;= 1<br>\end{aligned}<br>$$</p>]]></content>
       
       
       <categories>
@@ -21,6 +21,8 @@
         <tags>
             
             <tag> Latex </tag>
+            
+            <tag> Markdown </tag>
             
         </tags>
       
@@ -81,9 +83,9 @@
     
     
     <entry>
-      <title>Github Pages + Hexo + Vercel 个人博客搭建（一）Matery 主题</title>
-      <link href="/2023/05/31/github-pages-ge-ren-bo-ke-da-jian-er-matery-zhu-ti/"/>
-      <url>/2023/05/31/github-pages-ge-ren-bo-ke-da-jian-er-matery-zhu-ti/</url>
+      <title>Github Pages + Hexo + Vercel 个人博客搭建（一）Typora + PicGo+ 腾讯云图床</title>
+      <link href="/2023/05/31/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/"/>
+      <url>/2023/05/31/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -108,9 +110,9 @@
     
     
     <entry>
-      <title>Github Pages + Hexo + Vercel 个人博客搭建（一）Typora + PicGo+ 腾讯云图床</title>
-      <link href="/2023/05/31/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/"/>
-      <url>/2023/05/31/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/</url>
+      <title>Github Pages + Hexo + Vercel 个人博客搭建（一）Matery 主题</title>
+      <link href="/2023/05/31/github-pages-ge-ren-bo-ke-da-jian-er-matery-zhu-ti/"/>
+      <url>/2023/05/31/github-pages-ge-ren-bo-ke-da-jian-er-matery-zhu-ti/</url>
       
         <content type="html"><![CDATA[]]></content>
       
