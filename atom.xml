@@ -6,7 +6,7 @@
   <link href="https://blog.lfd-world.online/atom.xml" rel="self"/>
   
   <link href="https://blog.lfd-world.online/"/>
-  <updated>2023-06-02T10:29:56.592Z</updated>
+  <updated>2023-06-02T12:21:44.058Z</updated>
   <id>https://blog.lfd-world.online/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blog.lfd-world.online/2023/06/01/latex-duo-xing-gong-shi-dui-qi/"/>
     <id>https://blog.lfd-world.online/2023/06/01/latex-duo-xing-gong-shi-dui-qi/</id>
     <published>2023-06-01T01:52:00.000Z</published>
-    <updated>2023-06-02T10:29:56.592Z</updated>
+    <updated>2023-06-02T12:21:44.058Z</updated>
     
     
       
@@ -29,7 +29,7 @@
         
         
     <summary type="html">&lt;p&gt;在 LaTeX 中，使用“align”环境可以方便地实现等号对齐。使用“&amp;amp;”符号可以在每行中分隔等号两边的内容，表示对齐位置，‘’&#92;&#92;‘’表示换行$&#92;lambda$：&lt;/p&gt;
-&lt;pre class=&quot; language-python&quot;&gt;&lt;code</summary>
+&lt;pre class=&quot; language-latex&quot;&gt;&lt;code</summary>
         
       
     
@@ -131,7 +131,7 @@
     <link href="https://blog.lfd-world.online/2023/05/31/tu-shen-jing-wang-luo-xue-xi-ri-ji-wu/"/>
     <id>https://blog.lfd-world.online/2023/05/31/tu-shen-jing-wang-luo-xue-xi-ri-ji-wu/</id>
     <published>2023-05-31T02:07:00.000Z</published>
-    <updated>2023-06-01T01:51:09.440Z</updated>
+    <updated>2023-06-02T12:22:32.096Z</updated>
     
     
       
@@ -290,7 +290,7 @@ start_time</summary>
     <link href="https://blog.lfd-world.online/2023/05/24/latex-zi-mu-lei-fu-hao/"/>
     <id>https://blog.lfd-world.online/2023/05/24/latex-zi-mu-lei-fu-hao/</id>
     <published>2023-05-24T12:17:00.000Z</published>
-    <updated>2023-05-28T03:02:08.879Z</updated>
+    <updated>2023-06-02T12:23:38.914Z</updated>
     
     
       
