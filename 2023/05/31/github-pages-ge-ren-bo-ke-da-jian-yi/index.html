@@ -404,14 +404,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-05-31
+                    2023-06-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    452
                 </div>
                 
 
@@ -438,7 +438,45 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="本地创建环境"><a href="#本地创建环境" class="headerlink" title="本地创建环境"></a>本地创建环境</h2><p>本人环境：</p>
+<p><code>windows 10</code></p>
+<h3 id="安装-node-js"><a href="#安装-node-js" class="headerlink" title="安装 node.js"></a>安装 node.js</h3><p>建议使用 nvm （node version manager（node版本管理工具））安装 node.js，</p>
+<p><strong>下载地址</strong>：<a target="_blank" rel="noopener" href="https://github.com/coreybutler/nvm-windows/releases">https://github.com/coreybutler/nvm-windows/releases</a></p>
+<p><strong>安装</strong></p>
+<p>（1）双击解压后的文件<code>nvm-setup.exe</code>；<br>（2）选择 nvm 安装路径（填坑警告：路径不能有空格！！！）<br>（3）选择 nodejs 路径；<br>（4）确认安装；<br>（5）检测：打开 cmd，输入<code>nvm</code>，显示当前 nvm 版本以及 nvm 命令，成功！</p>
+<p><strong>使用 nvm</strong></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 1.nvm list 命令 - 显示版本列表</span>
+nvm list // 显示已安装的版本（同 nvm list installed）
+nvm list installed // 显示已安装的版本
+nvm list available // 显示所有可以下载的版本
+
+<span class="token comment" spellcheck="true"># 2.nvm install 命令 - 安装指定版本nodejs</span>
+nvm <span class="token function">install</span> 16.15.1// 安装16.15.1版本node
+nvm <span class="token function">install</span> latest // 安装最新版本node
+
+<span class="token comment" spellcheck="true"># 3.nvm use 命令 - 使用指定版本node</span>
+nvm use 16.15.1 // 使用16.15.1版本node
+
+<span class="token comment" spellcheck="true"># 4.nvm uninstall 命令 - 卸载指定版本 node</span>
+nvm uninstall 16.15.1 // 卸载16.15.1版本node
+</code></pre>
+<p>填坑警告：nvm install 的时候，出现无权安装~~~~，需 <code>以管理员身份</code>运行 cmd。！！！</p>
+<p>本人目前安装 node.js 版本为16.15.1.</p>
+<p><strong>设置nodejs prefix（全局）和cache（缓存）路径（非必须操作）</strong></p>
+<p>（1）在<code>nodejs</code> 安装目录下新建两个文件夹，用于存放全局包和缓存，如下：<br>我的 node.js 安装目录：<code>E:\Program\nvm</code></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> config <span class="token keyword">set</span> prefix <span class="token string">"E:\Program\nvm\node_gobal"</span> 
+<span class="token function">npm</span> config <span class="token keyword">set</span> cache <span class="token string">"E:\Program\nvm\node_cache"</span>
+</code></pre>
+<h3 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h3><p>命令行输入以下命令安装 Hexo：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> -g hexo-cli
+</code></pre>
+<p>输入以下命令验证是否安装成功：</p>
+<pre class=" language-bash"><code class="language-bash">hexo -v
+</code></pre>
+<h2 id="连接Github"><a href="#连接Github" class="headerlink" title="连接Github"></a>连接Github</h2><h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>若 npm 不能下载包，可通过 nvm 更换 node.js 版本重新尝试下载。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>[1] <a target="_blank" rel="noopener" href="https://mfrank2016.github.io/breeze-blog/2020/05/02/hexo/hexo-start/">【Hexo】使用Hexo+github pages+travis ci搭建好看的个人博客（一）</a></p>
+<p>[2] <a target="_blank" rel="noopener" href="https://blog.csdn.net/liangpingguo/article/details/125324362">Windows下使用nvm安装nodejs</a></p>
+
                 
             </div>
             <hr/>
@@ -863,7 +901,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">2.5k</span>
+                        class="white-color">3k</span>
             
             
             
