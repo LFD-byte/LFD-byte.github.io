@@ -411,7 +411,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    1.2k
                 </div>
                 
 
@@ -517,6 +517,28 @@ nvm uninstall 16.15.1 // 卸载16.15.1版本node
 </code></pre>
 <p>在 <code>LFD-byte.github.io</code> 仓库下 Settings 中开启 Github Pages：</p>
 <p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230604152021402.png" alt="open github pages"></p>
+<p>然后我们修改一下本地的 <code>hexo</code> 的配置文件(<code>_config.yml</code>)，我的在 <code>LFD-byte.github.io</code> 根目录下，找到对应的地方进行修改，指定我们的仓库信息，并修改 <code>root</code> 和 <code>url</code> 信息。</p>
+<pre><code>deploy:
+    type: git
+    repo: git@github.com:xxx/blogxxx
+    branch: main
+</code></pre>
+<p>把这里的 <code>repo</code> 地址修改为你的仓库地址即可。</p>
+<p>安装 <code>hexo-deployer-git</code>：</p>
+<pre><code>cd LFD-byte.github.io
+npm install hexo-deployer-git --save
+</code></pre>
+<p>进行部署</p>
+<pre><code>hexo clean &amp;&amp; hexo generate
+hexo deploy
+</code></pre>
+<p>运行完成后，我们的博客文件就顺利部署到 <code>github pages</code> 上了，现在我们打开下面网址来查看我们的博客效果：</p>
+<pre><code>https://用户名.github.io
+</code></pre>
+<p>之后每次我们添加或修改完本地文件后，使用：</p>
+<pre><code>hexo clean &amp;&amp; hexo g -d
+</code></pre>
+<p>即可重新生成项目文件。</p>
 <h2 id="部署到-Vercel"><a href="#部署到-Vercel" class="headerlink" title="部署到 Vercel"></a>部署到 Vercel</h2><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>若 npm 不能下载包，可通过 nvm 更换 node.js 版本重新尝试下载。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>[1] <a target="_blank" rel="noopener" href="https://mfrank2016.github.io/breeze-blog/2020/05/02/hexo/hexo-start/">【Hexo】使用Hexo+github pages+travis ci搭建好看的个人博客（一）</a></p>
 <p>[2] <a target="_blank" rel="noopener" href="https://blog.csdn.net/liangpingguo/article/details/125324362">Windows下使用nvm安装nodejs</a></p>
@@ -546,7 +568,7 @@ nvm uninstall 16.15.1 // 卸载16.15.1版本node
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://blog.lfd-world.online/2023/05/31/github-pages-ge-ren-bo-ke-da-jian-yi/">https://blog.lfd-world.online/2023/05/31/github-pages-ge-ren-bo-ke-da-jian-yi/</a>
+                    <a href="http://example.com/2023/05/31/github-pages-ge-ren-bo-ke-da-jian-yi/">http://example.com/2023/05/31/github-pages-ge-ren-bo-ke-da-jian-yi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -941,7 +963,7 @@ nvm uninstall 16.15.1 // 卸载16.15.1版本node
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">3.5k</span>
+                        class="white-color">3.7k</span>
             
             
             
