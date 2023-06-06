@@ -404,21 +404,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-06-04
+                    2023-06-06
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    5 分
                 </div>
                 
 
@@ -539,9 +539,24 @@ hexo deploy
 <pre class=" language-bash"><code class="language-bash">hexo clean <span class="token operator">&amp;&amp;</span> hexo g -d
 </code></pre>
 <p>即可重新生成项目文件。</p>
-<h2 id="部署到-Vercel"><a href="#部署到-Vercel" class="headerlink" title="部署到 Vercel"></a>部署到 Vercel</h2><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>若 npm 不能下载包，可通过 nvm 更换 node.js 版本重新尝试下载。</p>
+<h2 id="部署到-Vercel"><a href="#部署到-Vercel" class="headerlink" title="部署到 Vercel"></a>部署到 Vercel</h2><p>注册 <a target="_blank" rel="noopener" href="https://vercel.com/">Vercel</a> 账号，建议谷歌邮箱注册。</p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedvercel-logo-freelogovectors.net.jpg" alt="vercel"></p>
+<p>使用 GitHub 账户登录 <a target="_blank" rel="noopener" href="https://vercel.com/">Vercel</a>，授予 Vercel repo 的 read 权限。</p>
+<p>导入 GitHub 账户中的网站 repo，比如此处的 LFD-byte.github.io。</p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230606205007431.png" alt="Project import"></p>
+<p>在项目构建中，Framework Preset 选择 Other，其余不做改动。</p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230606205116417.png" alt="image-20230606205116417"></p>
+<p>稍等片刻，部署成功，此时我们就可以直接通过部署完成后 Vercel 提供的域名访问个人网站了，点击 Visit 进行访问。</p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230606205341204.png" alt="image-20230606205341204"></p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230606205507057.png" alt="image-20230606205507057"></p>
+<p>之后每次我们添加或修改完本地文件后，使用：</p>
+<pre class=" language-bash"><code class="language-bash">hexo clean <span class="token operator">&amp;&amp;</span> hexo g -d
+</code></pre>
+<p>就可以生成静态文件同步部署到 Vercel 上了。</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>若 npm 不能下载包，可通过 nvm 更换 node.js 版本重新尝试下载。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>[1] <a target="_blank" rel="noopener" href="https://mfrank2016.github.io/breeze-blog/2020/05/02/hexo/hexo-start/">【Hexo】使用Hexo+github pages+travis ci搭建好看的个人博客（一）</a></p>
 <p>[2] <a target="_blank" rel="noopener" href="https://blog.csdn.net/liangpingguo/article/details/125324362">Windows下使用nvm安装nodejs</a></p>
+<p>[3] <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_40026797/article/details/126919662">建站过程中的踩坑记录：自定义域名、百度收录与备案</a></p>
 
                 
             </div>
@@ -963,7 +978,7 @@ hexo deploy
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">3.8k</span>
+                        class="white-color">4.2k</span>
             
             
             

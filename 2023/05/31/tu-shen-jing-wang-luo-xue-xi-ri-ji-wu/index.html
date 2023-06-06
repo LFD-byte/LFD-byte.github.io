@@ -407,14 +407,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    237
+                    503
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -435,10 +435,17 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p><strong>置换不变性和置换同变性</strong></p>
-<p>任何将邻接矩阵$A$作为输入的函数$f$在理想状态下，都应满足下面两个条件之一：<br>$$<br>f(PAP^T)=f(A)(置换不变) \\<br>f(PAP^T)=Pf(A)(置换同变)<br>$$</p>
+<p>任何将邻接矩阵$A$作为输入的函数$f$在理想状态下，都应满足下面两个条件之一：<br>$$<br>f(PAP^T)=f(A)\text{(置换不变)} \\<br>f(PAP^T)=Pf(A)\text{(置换同变)}<br>$$</p>
 <p>其中$P$是置换矩阵。置换不变是指函数不依赖邻接矩阵中行/列的任意顺序，置换同变表示当置换邻接矩阵时$f$的输出以一致的方式置换。</p>
-<h2 id="神经消息传递"><a href="#神经消息传递" class="headerlink" title="神经消息传递"></a>神经消息传递</h2><p>在 GNN 的每个消息传递迭代期，通过聚合每个节点$u \in \mathcal{V}$的邻域$\mathcal{N}(u)$的信息来更新其隐藏嵌入$h_u^{(k)}$，过程如下式所示：<br>$$<br>\begin{align}<br>  h_u^{(k+1)} &amp; = UPDATE^{(k)}(h_u^{(k)}, AGGREGATE^{(k)}({h_v^{(k)}, \forall v \in \mathcal{V}(u)})) \\<br>  &amp; = UPDATE^{(k)}(h_u^{(k)}, m_{\mathcal{N}(u)}^{(k)})<br>\end{align}<br>$$</p>
-<p>其中 $UPDATA$ 和 $AGGREGATE$ 是任意可微函数，$m_{\mathcal{N}(u)}$ 是聚合节点 $u$ 邻域消息的结果。</p>
+<h2 id="神经消息传递"><a href="#神经消息传递" class="headerlink" title="神经消息传递"></a>神经消息传递</h2><h3 id="GNN-框架"><a href="#GNN-框架" class="headerlink" title="GNN 框架"></a>GNN 框架</h3><p>在 GNN 的每个消息传递迭代期，通过聚合每个节点$u \in \mathcal{V}$的邻域$\mathcal{N}(u)$的信息来更新其隐藏嵌入$h_u^{(k)}$，过程如下式所示：<br>$$<br>\begin{align}<br>  h_u^{(k+1)} &amp; = UPDATE^{(k)}(h_u^{(k)}, AGGREGATE^{(k)}({h_v^{(k)}, \forall v \in \mathcal{V}(u)})) \\<br>  &amp; = UPDATE^{(k)}(h_u^{(k)}, m_{\mathcal{N}(u)}^{(k)})<br>\end{align}<br>$$</p>
+<p>其中 $UPDATA$ 和 $AGGREGATE$ 是任意可微函数，$m_{\mathcal{N}(u)}$ 是聚合节点 $u$ 邻域消息的结果，上标表示消息迭代期的索引。</p>
+<p>迭代最后一层的输出定义为每个节点的嵌入：<br>$$<br>z_u = h_u^{(K)}, \forall u \in \mathcal{V}<br>$$<br>由于 $AGGREGATE$ 函数将整个集合作为输入，这种方式定义的 GNN 是置换同变的。</p>
+<p>节点嵌入编码了两种形式的信息。</p>
+<p><strong>图的结构信息</strong></p>
+<p><strong>基于节点特征的信息</strong></p>
+<h3 id="GNN-实例"><a href="#GNN-实例" class="headerlink" title="GNN 实例"></a>GNN 实例</h3><p>基本 GNN 的消息传递定义如下式：<br>$$<br>h_u^{(k)} = \sigma(W_{self}^{(k)}h_u^{(k-1)} + W_{neigh}^{(k)}\sum_{v \in \mathcal{N}(u)} h_v^{(k-1)} + b^{(k)})<br>$$<br>其中，$W_{self}^{(k)}$ 和 $W_{neigh}^{(k)} \in \mathbb{R}^{d^{(k)} \times d^{(k-1)}}$ 是可训练参数矩阵，$\sigma$ 表示逐元素的非线性函数。</p>
+<p>通过定义更新和聚合函数等效地定义基本的 $GNN$：<br>$$<br>m_{\mathcal{N}(u)} = \sum_{v \in \mathcal{N}(u)} h_v \\<br>UPDATE(h_u, m_{\mathcal{N}(u)}) = \sigma (W_{self} h_u + W_{neigh}m_{\mathcal{N}(u)})<br>$$<br>下式可作为从节点 $u$ 的图上邻域聚合消息的简写：<br>$$<br>m_{\mathcal{N}(u)} = AGGREGATE^{(k)}({h_v^{(k)}, \forall v \in \mathcal{N}(u)})<br>$$<br>图级别 GNN 定义：<br>$$</p>
+<p>$$</p>
 
                 
             </div>
@@ -860,7 +867,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">3.8k</span>
+                        class="white-color">4.2k</span>
             
             
             
