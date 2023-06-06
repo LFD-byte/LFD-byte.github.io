@@ -6,7 +6,7 @@
   <link href="https://blog.lfd-world.online/atom.xml" rel="self"/>
   
   <link href="https://blog.lfd-world.online/"/>
-  <updated>2023-06-04T07:31:17.730Z</updated>
+  <updated>2023-06-06T13:03:15.146Z</updated>
   <id>https://blog.lfd-world.online/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Github Pages + Hexo + Vercel 个人博客搭建（二）Matery 主题</title>
-    <link href="https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-er-matery-zhu-ti/"/>
-    <id>https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-er-matery-zhu-ti/</id>
+    <title>Github Pages + Hexo + Vercel 个人博客搭建（四）自定义域名及百度谷歌收录</title>
+    <link href="https://blog.lfd-world.online/2023/06/04/2023-0github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/"/>
+    <id>https://blog.lfd-world.online/2023/06/04/2023-0github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/</id>
     <published>2023-06-04T07:31:00.000Z</published>
-    <updated>2023-06-04T07:31:17.730Z</updated>
+    <updated>2023-06-06T13:03:15.146Z</updated>
     
     
     
@@ -41,6 +41,25 @@
     <id>https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/</id>
     <published>2023-06-04T07:31:00.000Z</published>
     <updated>2023-06-04T07:31:45.783Z</updated>
+    
+    
+    
+    
+    <category term="Blog" scheme="https://blog.lfd-world.online/categories/Blog/"/>
+    
+    
+    <category term="Blog" scheme="https://blog.lfd-world.online/tags/Blog/"/>
+    
+    <category term="Hexo" scheme="https://blog.lfd-world.online/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Github Pages + Hexo + Vercel 个人博客搭建（二）Matery 主题</title>
+    <link href="https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-er-matery-zhu-ti/"/>
+    <id>https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-er-matery-zhu-ti/</id>
+    <published>2023-06-04T07:31:00.000Z</published>
+    <updated>2023-06-06T12:57:51.171Z</updated>
     
     
     
@@ -112,7 +131,7 @@
     <link href="https://blog.lfd-world.online/2023/05/31/github-pages-ge-ren-bo-ke-da-jian-yi/"/>
     <id>https://blog.lfd-world.online/2023/05/31/github-pages-ge-ren-bo-ke-da-jian-yi/</id>
     <published>2023-05-31T05:57:00.000Z</published>
-    <updated>2023-06-06T12:56:54.699Z</updated>
+    <updated>2023-06-06T13:01:32.449Z</updated>
     
     
       
