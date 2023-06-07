@@ -400,21 +400,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-06-05
+                    2023-06-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    503
+                    709
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -444,8 +444,10 @@
 <p><strong>图的结构信息</strong></p>
 <p><strong>基于节点特征的信息</strong></p>
 <h3 id="GNN-实例"><a href="#GNN-实例" class="headerlink" title="GNN 实例"></a>GNN 实例</h3><p>基本 GNN 的消息传递定义如下式：<br>$$<br>h_u^{(k)} = \sigma(W_{self}^{(k)}h_u^{(k-1)} + W_{neigh}^{(k)}\sum_{v \in \mathcal{N}(u)} h_v^{(k-1)} + b^{(k)})<br>$$<br>其中，$W_{self}^{(k)}$ 和 $W_{neigh}^{(k)} \in \mathbb{R}^{d^{(k)} \times d^{(k-1)}}$ 是可训练参数矩阵，$\sigma$ 表示逐元素的非线性函数。</p>
-<p>通过定义更新和聚合函数等效地定义基本的 $GNN$：<br>$$<br>m_{\mathcal{N}(u)} = \sum_{v \in \mathcal{N}(u)} h_v \\<br>UPDATE(h_u, m_{\mathcal{N}(u)}) = \sigma (W_{self} h_u + W_{neigh}m_{\mathcal{N}(u)})<br>$$<br>下式可作为从节点 $u$ 的图上邻域聚合消息的简写：<br>$$<br>m_{\mathcal{N}(u)} = AGGREGATE^{(k)}({h_v^{(k)}, \forall v \in \mathcal{N}(u)})<br>$$<br>图级别 GNN 定义：<br>$$</p>
-<p>$$</p>
+<p>通过定义更新和聚合函数等效地定义基本的 GNN：<br>$$<br>m_{\mathcal{N}(u)} = \sum_{v \in \mathcal{N}(u)} h_v \\<br>UPDATE(h_u, m_{\mathcal{N}(u)}) = \sigma (W_{self} h_u + W_{neigh}m_{\mathcal{N}(u)})<br>$$<br>下式可作为从节点 $u$ 的图上邻域聚合消息的简写：<br>$$<br>m_{\mathcal{N}(u)} = AGGREGATE^{(k)}({h_v^{(k)}, \forall v \in \mathcal{N}(u)})<br>$$<br><strong>图级别 GNN 定义</strong><br>$$<br>H^{(k)} = \sigma(AH^{(k-1)}W_{neigh}^{(k)} + H^{(k-1)}W_{self}^{(k)})<br>$$<br>其中，$H^{(k)} \in \mathbb{R}^{|\mathcal{V}| \times d}$ 表示 GNN 中第 $k$ 层的节点表示矩阵（每个节点对应矩阵的一行），$A$ 是邻接矩阵。</p>
+<p><strong>自环消息传递</strong></p>
+<p>添加自环并省略显示的更新步骤消息传递可定义如下：<br>$$<br>h_u^{(k)} = AGGREGATE({ h_v^{(k-1)}, \forall v \in \mathcal{N}(n) \bigcup {u} })<br>$$<br>其中，聚合在集合 $\mathcal{N}(u) \bigcup {u}$ 上进行。这种消息传递方式可以缓解拟合问题，也因为无法区分节点和邻域的信息严重限制了 GNN 的表达能力。</p>
+<p>在基本 GNN 模型中，添加自环等效于在 $W_{self}$ 和 $W_{neigh}$ 矩阵之间共享参数，<strong>图级别更新方式</strong>如下所示：<br>$$<br>H^{(t)} = \sigma ((A+I)H^{(t-1)}W^{(t)})<br>$$</p>
 
                 
             </div>
@@ -867,7 +869,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">8.7k</span>
+                        class="white-color">8.9k</span>
             
             
             
