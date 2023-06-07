@@ -741,7 +741,7 @@
 <h3 id="添加note"><a href="#添加note" class="headerlink" title="添加note"></a>添加note</h3><blockquote>
 <p><a target="_blank" rel="noopener" href="https://blog.17lai.site/posts/cf0f47fd/#tag-note">演示</a></p>
 </blockquote>
-<h4 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h4><pre><code>{% note [class] [no-icon] [summary] %}
+<h4 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h4><pre class=" language-html"><code class="language-html">{% note [class] [no-icon] [summary] %}
 Any content (support inline tags too).
 {% endnote %}
 </code></pre>
@@ -751,7 +751,7 @@ Any content (support inline tags too).
 <li><code>[summary]</code> : <em>Optional parameter.</em> Optional summary of the note.</li>
 </ul>
 <p>All parameters are optional.</p>
-<h4 id="example"><a href="#example" class="headerlink" title="example"></a>example</h4><pre><code>{% note %}
+<h4 id="example"><a href="#example" class="headerlink" title="example"></a>example</h4><pre class=" language-html"><code class="language-html">{% note %}
 #### Header
 (without define class style)
 {% endnote %}
@@ -759,10 +759,10 @@ Any content (support inline tags too).
 <h3 id="添加button"><a href="#添加button" class="headerlink" title="添加button"></a>添加button</h3><blockquote>
 <p><a target="_blank" rel="noopener" href="https://blog.17lai.site/posts/cf0f47fd/#tag-button">演示</a></p>
 </blockquote>
-<h4 id="Usage-1"><a href="#Usage-1" class="headerlink" title="Usage"></a>Usage</h4><pre><code>{% button url, text, icon [class], [title] %}
+<h4 id="Usage-1"><a href="#Usage-1" class="headerlink" title="Usage"></a>Usage</h4><pre class=" language-html"><code class="language-html">{% button url, text, icon [class], [title] %}
 </code></pre>
 <p>or</p>
-<pre><code>{% btn url, text, icon [class], [title] %}
+<pre class=" language-html"><code class="language-html">{% btn url, text, icon [class], [title] %}
 </code></pre>
 <ul>
 <li><code>url</code> : Absolute or relative path to URL.</li>
@@ -771,7 +771,7 @@ Any content (support inline tags too).
 <li><code>[class]</code> : <em>Optional parameter.</em> Font Awesome class(es): <code>fa-fw</code> | <code>fa-lg</code> | <code>fa-2x</code> | <code>fa-3x</code> | <code>fa-4x</code> | <code>fa-5x</code></li>
 <li><code>[title]</code> : <em>Optional parameter.</em> Tooltip at mouseover.</li>
 </ul>
-<h4 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h4><pre><code>{% button #, Text %}
+<h4 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h4><pre class=" language-html"><code class="language-html">{% button #, Text %}
 </code></pre>
 <h2 id="文章-Front-matter-介绍"><a href="#文章-Front-matter-介绍" class="headerlink" title="文章 Front-matter 介绍"></a>文章 Front-matter 介绍</h2><h3 id="Front-matter-选项详解"><a href="#Front-matter-选项详解" class="headerlink" title="Front-matter 选项详解"></a>Front-matter 选项详解</h3><p><code>Front-matter</code> 选项中的所有内容均为<strong>非必填</strong>的。但我仍然建议至少填写 <code>title</code> 和 <code>date</code> 的值。</p>
 <table>
@@ -897,11 +897,6 @@ Any content (support inline tags too).
   <span class="token punctuation">-</span> Markdown
 <span class="token punctuation">---</span>
 </code></pre>
-<h2 id="效果截图"><a href="#效果截图" class="headerlink" title="效果截图"></a>效果截图</h2><p><img src="http://static.blinkfox.com/matery-20181202-1.png" alt="首页"></p>
-<p><img src="http://static.blinkfox.com/matery-20181202-2.png" alt="首页推荐文章"></p>
-<p><img src="http://static.blinkfox.com/matery-20181202-3.png" alt="首页文章列表"></p>
-<p><img src="http://static.blinkfox.com/matery-20181202-7.png" alt="首页文章列表"></p>
-<p><img src="http://static.blinkfox.com/matery-20181202-8.png" alt="首页文章列表"></p>
 <h2 id="自定制修改"><a href="#自定制修改" class="headerlink" title="自定制修改"></a>自定制修改</h2><p>在本主题的 <code>_config.yml</code> 中可以修改部分自定义信息，有以下几个部分：</p>
 <ul>
 <li>菜单</li>
