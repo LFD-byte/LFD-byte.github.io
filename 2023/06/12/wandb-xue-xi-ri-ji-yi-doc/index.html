@@ -411,14 +411,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    2.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    14 分
                 </div>
                 
 
@@ -619,8 +619,8 @@ device <span class="token operator">=</span> <span class="token string">"cuda:0"
 </code></pre>
 <p>您现在已经使用 wandb 训练了您的第一个模型！ 👆 单击上面的 wandb 链接查看您的指标</p>
 <h3 id="Try-W-amp-B-Alerts"><a href="#Try-W-amp-B-Alerts" class="headerlink" title="Try W&amp;B Alerts"></a>Try W&amp;B Alerts</h3><p><strong><a target="_blank" rel="noopener" href="https://docs.wandb.ai/guides/track/alert">W&amp;B Alerts</a></strong>  允许您将从 Python 代码触发的警报发送到您的 Slack 或电子邮件。第一次发送 Slack 或电子邮件警报时，需要执行 2 个步骤，这些警报由您的代码触发：</p>
-<p>\1) 在你的 W&amp;B <a target="_blank" rel="noopener" href="https://wandb.ai/settings">User Settings</a> 开启警报</p>
-<p>\2) 添加 <code>wandb.alert()</code> 到你的代码:</p>
+<p>1) 在你的 W&amp;B <a target="_blank" rel="noopener" href="https://wandb.ai/settings">User Settings</a> 开启警报</p>
+<p>2) 添加 <code>wandb.alert()</code> 到你的代码:</p>
 <pre class=" language-python"><code class="language-python">wandb<span class="token punctuation">.</span>alert<span class="token punctuation">(</span>
     title<span class="token operator">=</span><span class="token string">"Low accuracy"</span><span class="token punctuation">,</span> 
     text<span class="token operator">=</span>f<span class="token string">"Accuracy is below the acceptable threshold"</span>
@@ -654,7 +654,202 @@ acc_threshold <span class="token operator">=</span> <span class="token number">0
 <span class="token comment" spellcheck="true"># Mark the run as finished (useful in Jupyter notebooks)</span>
 wandb<span class="token punctuation">.</span>finish<span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre>
-<h2 id="Visualize-predictions"><a href="#Visualize-predictions" class="headerlink" title="Visualize predictions"></a>Visualize predictions</h2><h2 id="Tune-hyperparameters"><a href="#Tune-hyperparameters" class="headerlink" title="Tune hyperparameters"></a>Tune hyperparameters</h2><h2 id="Track-models-and-datasets"><a href="#Track-models-and-datasets" class="headerlink" title="Track models and datasets"></a>Track models and datasets</h2>
+<h2 id="Visualize-predictions"><a href="#Visualize-predictions" class="headerlink" title="Visualize predictions"></a>Visualize predictions</h2><p>这包括如何在训练过程中使用 PyTorch 对 MNIST 数据进行跟踪、可视化和比较模型预测。</p>
+<p>你将学到如何：</p>
+<ol>
+<li>在模型训练或评估期间将指标、图像、文本等记录到 <code>wandb.Table()</code></li>
+<li>查看、排序、筛选、分组、加入、交互式查询和探索这些表</li>
+<li>比较模型预测或结果：动态地跨越特定图像、超参数/模型版本或时间步长。</li>
+</ol>
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><h4 id="Compare-predicted-scores-for-specific-images"><a href="#Compare-predicted-scores-for-specific-images" class="headerlink" title="Compare predicted scores for specific images"></a>Compare predicted scores for specific images</h4><p><a target="_blank" rel="noopener" href="https://wandb.ai/stacey/table-quickstart/reports/CNN-2-Progress-over-Training-Time--Vmlldzo3NDY5ODU?_gl=1*6z1980*_ga*MTUwMzMwNTA4NC4xNjg1MzI0NjI3*_ga_JH1SJHJQXJ*MTY4NjU0ODg1NC40LjEuMTY4NjU1MTg0Ni4zOC4wLjA.#compare-predictions-after-1-vs-5-epochs">实例：比较 1 和 5 个训练周期后的预测</a></p>
+<p><img src="https://i.imgur.com/NMme6Qj.png" alt="1 epoch vs 5 epochs of training"></p>
+<p>直方图比较了两个模型之间的每类分数。每个直方图中顶部的绿色条代表模型“CNN-2, 1 epoch”（id 0），它只训练了 1 个 epoch。底部的紫色条代表模型“CNN-2, 5 epochs” (id 1)，它训练了 5 个 epochs。图像被过滤到模型不一致的情况。例如，在第一行中，“4”在 1 个时期后在所有可能的数字中获得高分，但在 5 个时期后，它在正确标签上得分最高，而在其余部分得分非常低。</p>
+<h4 id="Focus-on-top-errors-over-time"><a href="#Focus-on-top-errors-over-time" class="headerlink" title="Focus on top errors over time"></a>Focus on top errors over time</h4><p><a target="_blank" rel="noopener" href="https://wandb.ai/stacey/table-quickstart/reports/CNN-2-Progress-over-Training-Time--Vmlldzo3NDY5ODU?_gl=1*1nxbzl7*_ga*MTUwMzMwNTA4NC4xNjg1MzI0NjI3*_ga_JH1SJHJQXJ*MTY4NjU0ODg1NC40LjEuMTY4NjU1MTg0Ni4zOC4wLjA.#top-errors-over-time">实例 →</a></p>
+<p>查看完整测试数据的不正确预测（过滤 “guess” != “truth” 的行）。请注意，在 1 个训练时期后有 229 个错误猜测，但在 5 个时期后只有 98 个。</p>
+<p><img src="https://i.imgur.com/7g8nodn.png" alt="side by side, 1 vs 5 epochs of training"></p>
+<h4 id="Compare-model-performance-and-find-patterns"><a href="#Compare-model-performance-and-find-patterns" class="headerlink" title="Compare model performance and find patterns"></a>Compare model performance and find patterns</h4><p><a target="_blank" rel="noopener" href="https://wandb.ai/stacey/table-quickstart/reports/CNN-2-Progress-over-Training-Time--Vmlldzo3NDY5ODU?_gl=1*8r828v*_ga*MTUwMzMwNTA4NC4xNjg1MzI0NjI3*_ga_JH1SJHJQXJ*MTY4NjU0ODg1NC40LjEuMTY4NjU1MTg0Ni4zOC4wLjA.#false-positives-grouped-by-guess">查看实例中的完整详细信息 →</a></p>
+<p>过滤出正确答案，然后按猜测分组，以查看错误分类图像的示例和真实标签的基本分布——并排显示两个模型。具有 2X layer sizes 和学习率的模型变体在左侧，基线在右侧。请注意，对于每个猜测的类，基线都会犯更多的错误。</p>
+<p><img src="https://i.imgur.com/i5PP9AE.png" alt="grouped errors for baseline vs double variant"></p>
+<h3 id="Sign-up-or-login"><a href="#Sign-up-or-login" class="headerlink" title="Sign up or login"></a>Sign up or login</h3><p><a target="_blank" rel="noopener" href="https://wandb.ai/login">Sign up or login</a> W&amp;B 以在浏览器中查看您的实验并与之互动。</p>
+<p>在此示例中，我们使用 Google Colab 作为方便的托管环境，但您可以从任何地方运行自己的训练脚本，并使用 W&amp;B 的实验跟踪工具可视化指标。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">!</span>pip <span class="token function">install</span> wandb -qqq
+</code></pre>
+<p>登录您的帐户</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> wandb
+wandb<span class="token punctuation">.</span>login<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+WANDB_PROJECT <span class="token operator">=</span> <span class="token string">"mnist-viz"</span>
+</code></pre>
+<h3 id="0-Setup"><a href="#0-Setup" class="headerlink" title="0. Setup"></a>0. Setup</h3><p>安装依赖项，下载 MNIST，并使用 PyTorch 创建训练和测试数据集。</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> torch
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn <span class="token keyword">as</span> nn
+<span class="token keyword">import</span> torchvision
+<span class="token keyword">import</span> torchvision<span class="token punctuation">.</span>transforms <span class="token keyword">as</span> T 
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>functional <span class="token keyword">as</span> F
+
+
+device <span class="token operator">=</span> <span class="token string">"cuda:0"</span> <span class="token keyword">if</span> torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">"cpu"</span>
+
+<span class="token comment" spellcheck="true"># create train and test dataloaders</span>
+<span class="token keyword">def</span> <span class="token function">get_dataloader</span><span class="token punctuation">(</span>is_train<span class="token punctuation">,</span> batch_size<span class="token punctuation">,</span> slice<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token string">"Get a training dataloader"</span>
+    ds <span class="token operator">=</span> torchvision<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>MNIST<span class="token punctuation">(</span>root<span class="token operator">=</span><span class="token string">"."</span><span class="token punctuation">,</span> train<span class="token operator">=</span>is_train<span class="token punctuation">,</span> transform<span class="token operator">=</span>T<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    loader <span class="token operator">=</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data<span class="token punctuation">.</span>DataLoader<span class="token punctuation">(</span>dataset<span class="token operator">=</span>ds<span class="token punctuation">,</span> 
+                                         batch_size<span class="token operator">=</span>batch_size<span class="token punctuation">,</span> 
+                                         shuffle<span class="token operator">=</span><span class="token boolean">True</span> <span class="token keyword">if</span> is_train <span class="token keyword">else</span> <span class="token boolean">False</span><span class="token punctuation">,</span> 
+                                         pin_memory<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> num_workers<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> loader
+</code></pre>
+<h3 id="1-Define-the-model-and-training-schedule"><a href="#1-Define-the-model-and-training-schedule" class="headerlink" title="1. Define the model and training schedule"></a>1. Define the model and training schedule</h3><ul>
+<li>设置要运行的纪元数，其中每个纪元包含一个训练步骤和一个验证（测试）步骤。 （可选）配置每个测试步骤要记录的数据量。这里要可视化的批次数和每批次的图像数设置得较低，以简化演示。</li>
+<li>定义一个简单的卷积神经网络（遵循 <a target="_blank" rel="noopener" href="https://github.com/yunjey/pytorch-tutorial">pytorch-tutorial</a> 代码）。</li>
+<li>使用 PyTorch 加载训练集和测试集</li>
+</ul>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># Number of epochs to run</span>
+<span class="token comment" spellcheck="true"># Each epoch includes a training step and a test step, so this sets</span>
+<span class="token comment" spellcheck="true"># the number of tables of test predictions to log</span>
+EPOCHS <span class="token operator">=</span> <span class="token number">1</span>
+
+<span class="token comment" spellcheck="true"># Number of batches to log from the test data for each test step</span>
+<span class="token comment" spellcheck="true"># (default set low to simplify demo)</span>
+NUM_BATCHES_TO_LOG <span class="token operator">=</span> <span class="token number">10</span> <span class="token comment" spellcheck="true">#79</span>
+
+<span class="token comment" spellcheck="true"># Number of images to log per test batch</span>
+<span class="token comment" spellcheck="true"># (default set low to simplify demo)</span>
+NUM_IMAGES_PER_BATCH <span class="token operator">=</span> <span class="token number">32</span> <span class="token comment" spellcheck="true">#128</span>
+
+<span class="token comment" spellcheck="true"># training configuration and hyperparameters</span>
+NUM_CLASSES <span class="token operator">=</span> <span class="token number">10</span>
+BATCH_SIZE <span class="token operator">=</span> <span class="token number">32</span>
+LEARNING_RATE <span class="token operator">=</span> <span class="token number">0.001</span>
+L1_SIZE <span class="token operator">=</span> <span class="token number">32</span>
+L2_SIZE <span class="token operator">=</span> <span class="token number">64</span>
+<span class="token comment" spellcheck="true"># changing this may require changing the shape of adjacent layers</span>
+CONV_KERNEL_SIZE <span class="token operator">=</span> <span class="token number">5</span>
+
+<span class="token comment" spellcheck="true"># define a two-layer convolutional neural network</span>
+<span class="token keyword">class</span> <span class="token class-name">ConvNet</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> num_classes<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        super<span class="token punctuation">(</span>ConvNet<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>layer1 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>
+            nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> L1_SIZE<span class="token punctuation">,</span> CONV_KERNEL_SIZE<span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>BatchNorm2d<span class="token punctuation">(</span>L1_SIZE<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>MaxPool2d<span class="token punctuation">(</span>kernel_size<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>layer2 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>
+            nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span>L1_SIZE<span class="token punctuation">,</span> L2_SIZE<span class="token punctuation">,</span> CONV_KERNEL_SIZE<span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>BatchNorm2d<span class="token punctuation">(</span>L2_SIZE<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>MaxPool2d<span class="token punctuation">(</span>kernel_size<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>fc <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">7</span><span class="token operator">*</span><span class="token number">7</span><span class="token operator">*</span>L2_SIZE<span class="token punctuation">,</span> NUM_CLASSES<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>softmax <span class="token operator">=</span> nn<span class="token punctuation">.</span>Softmax<span class="token punctuation">(</span>NUM_CLASSES<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># uncomment to see the shape of a given layer:</span>
+        <span class="token comment" spellcheck="true">#print("x: ", x.size())</span>
+        out <span class="token operator">=</span> self<span class="token punctuation">.</span>layer1<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        out <span class="token operator">=</span> self<span class="token punctuation">.</span>layer2<span class="token punctuation">(</span>out<span class="token punctuation">)</span>
+        out <span class="token operator">=</span> out<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>out<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+        out <span class="token operator">=</span> self<span class="token punctuation">.</span>fc<span class="token punctuation">(</span>out<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> out
+
+train_loader <span class="token operator">=</span> get_dataloader<span class="token punctuation">(</span>is_train<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> batch_size<span class="token operator">=</span>BATCH_SIZE<span class="token punctuation">)</span>
+test_loader <span class="token operator">=</span> get_dataloader<span class="token punctuation">(</span>is_train<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">2</span><span class="token operator">*</span>BATCH_SIZE<span class="token punctuation">)</span>
+
+device <span class="token operator">=</span> torch<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">"cuda:0"</span> <span class="token keyword">if</span> torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">"cpu"</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="2-Run-training-and-log-test-predictions"><a href="#2-Run-training-and-log-test-predictions" class="headerlink" title="2. Run training and log test predictions"></a>2. Run training and log test predictions</h3><p>对于每个时期，运行一个训练步骤和一个测试步骤。对于每个测试步骤，创建一个 wandb.Table() 来存储测试预测。这些可以在您的浏览器中进行可视化、动态查询和并排比较。</p>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># ✨ W&amp;B: Initialize a new run to track this model's training</span>
+wandb<span class="token punctuation">.</span>init<span class="token punctuation">(</span>project<span class="token operator">=</span><span class="token string">"table-quickstart"</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># ✨ W&amp;B: Log hyperparameters using config</span>
+cfg <span class="token operator">=</span> wandb<span class="token punctuation">.</span>config
+cfg<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"epochs"</span> <span class="token punctuation">:</span> EPOCHS<span class="token punctuation">,</span> <span class="token string">"batch_size"</span><span class="token punctuation">:</span> BATCH_SIZE<span class="token punctuation">,</span> <span class="token string">"lr"</span> <span class="token punctuation">:</span> LEARNING_RATE<span class="token punctuation">,</span>
+            <span class="token string">"l1_size"</span> <span class="token punctuation">:</span> L1_SIZE<span class="token punctuation">,</span> <span class="token string">"l2_size"</span><span class="token punctuation">:</span> L2_SIZE<span class="token punctuation">,</span>
+            <span class="token string">"conv_kernel"</span> <span class="token punctuation">:</span> CONV_KERNEL_SIZE<span class="token punctuation">,</span>
+            <span class="token string">"img_count"</span> <span class="token punctuation">:</span> min<span class="token punctuation">(</span><span class="token number">10000</span><span class="token punctuation">,</span> NUM_IMAGES_PER_BATCH<span class="token operator">*</span>NUM_BATCHES_TO_LOG<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># define model, loss, and optimizer</span>
+model <span class="token operator">=</span> ConvNet<span class="token punctuation">(</span>NUM_CLASSES<span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+criterion <span class="token operator">=</span> nn<span class="token punctuation">.</span>CrossEntropyLoss<span class="token punctuation">(</span><span class="token punctuation">)</span>
+optimizer <span class="token operator">=</span> torch<span class="token punctuation">.</span>optim<span class="token punctuation">.</span>Adam<span class="token punctuation">(</span>model<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lr<span class="token operator">=</span>LEARNING_RATE<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># convenience funtion to log predictions for a batch of test images</span>
+<span class="token keyword">def</span> <span class="token function">log_test_predictions</span><span class="token punctuation">(</span>images<span class="token punctuation">,</span> labels<span class="token punctuation">,</span> outputs<span class="token punctuation">,</span> predicted<span class="token punctuation">,</span> test_table<span class="token punctuation">,</span> log_counter<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token comment" spellcheck="true"># obtain confidence scores for all classes</span>
+  scores <span class="token operator">=</span> F<span class="token punctuation">.</span>softmax<span class="token punctuation">(</span>outputs<span class="token punctuation">.</span>data<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+  log_scores <span class="token operator">=</span> scores<span class="token punctuation">.</span>cpu<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  log_images <span class="token operator">=</span> images<span class="token punctuation">.</span>cpu<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  log_labels <span class="token operator">=</span> labels<span class="token punctuation">.</span>cpu<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  log_preds <span class="token operator">=</span> predicted<span class="token punctuation">.</span>cpu<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token comment" spellcheck="true"># adding ids based on the order of the images</span>
+  _id <span class="token operator">=</span> <span class="token number">0</span>
+  <span class="token keyword">for</span> i<span class="token punctuation">,</span> l<span class="token punctuation">,</span> p<span class="token punctuation">,</span> s <span class="token keyword">in</span> zip<span class="token punctuation">(</span>log_images<span class="token punctuation">,</span> log_labels<span class="token punctuation">,</span> log_preds<span class="token punctuation">,</span> log_scores<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># add required info to data table:</span>
+    <span class="token comment" spellcheck="true"># id, image pixels, model's guess, true label, scores for all classes</span>
+    img_id <span class="token operator">=</span> str<span class="token punctuation">(</span>_id<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"_"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>log_counter<span class="token punctuation">)</span>
+    test_table<span class="token punctuation">.</span>add_data<span class="token punctuation">(</span>img_id<span class="token punctuation">,</span> wandb<span class="token punctuation">.</span>Image<span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">,</span> p<span class="token punctuation">,</span> l<span class="token punctuation">,</span> <span class="token operator">*</span>s<span class="token punctuation">)</span>
+    _id <span class="token operator">+=</span> <span class="token number">1</span>
+    <span class="token keyword">if</span> _id <span class="token operator">==</span> NUM_IMAGES_PER_BATCH<span class="token punctuation">:</span>
+      <span class="token keyword">break</span>
+
+<span class="token comment" spellcheck="true"># train the model</span>
+total_step <span class="token operator">=</span> len<span class="token punctuation">(</span>train_loader<span class="token punctuation">)</span>
+<span class="token keyword">for</span> epoch <span class="token keyword">in</span> range<span class="token punctuation">(</span>EPOCHS<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># training step</span>
+    <span class="token keyword">for</span> i<span class="token punctuation">,</span> <span class="token punctuation">(</span>images<span class="token punctuation">,</span> labels<span class="token punctuation">)</span> <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>train_loader<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        images <span class="token operator">=</span> images<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+        labels <span class="token operator">=</span> labels<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># forward pass</span>
+        outputs <span class="token operator">=</span> model<span class="token punctuation">(</span>images<span class="token punctuation">)</span>
+        loss <span class="token operator">=</span> criterion<span class="token punctuation">(</span>outputs<span class="token punctuation">,</span> labels<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># backward and optimize</span>
+        optimizer<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  
+        <span class="token comment" spellcheck="true"># ✨ W&amp;B: Log loss over training steps, visualized in the UI live</span>
+        wandb<span class="token punctuation">.</span>log<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"loss"</span> <span class="token punctuation">:</span> loss<span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">100</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">'Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}'</span>
+                <span class="token punctuation">.</span>format<span class="token punctuation">(</span>epoch<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> EPOCHS<span class="token punctuation">,</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> total_step<span class="token punctuation">,</span> loss<span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            
+
+    <span class="token comment" spellcheck="true"># ✨ W&amp;B: Create a Table to store predictions for each test step</span>
+    columns<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"id"</span><span class="token punctuation">,</span> <span class="token string">"image"</span><span class="token punctuation">,</span> <span class="token string">"guess"</span><span class="token punctuation">,</span> <span class="token string">"truth"</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> digit <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+      columns<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">"score_"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>digit<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    test_table <span class="token operator">=</span> wandb<span class="token punctuation">.</span>Table<span class="token punctuation">(</span>columns<span class="token operator">=</span>columns<span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># test the model</span>
+    model<span class="token punctuation">.</span>eval<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    log_counter <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">with</span> torch<span class="token punctuation">.</span>no_grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        correct <span class="token operator">=</span> <span class="token number">0</span>
+        total <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">for</span> images<span class="token punctuation">,</span> labels <span class="token keyword">in</span> test_loader<span class="token punctuation">:</span>
+            images <span class="token operator">=</span> images<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+            labels <span class="token operator">=</span> labels<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+            outputs <span class="token operator">=</span> model<span class="token punctuation">(</span>images<span class="token punctuation">)</span>
+            _<span class="token punctuation">,</span> predicted <span class="token operator">=</span> torch<span class="token punctuation">.</span>max<span class="token punctuation">(</span>outputs<span class="token punctuation">.</span>data<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> log_counter <span class="token operator">&lt;</span> NUM_BATCHES_TO_LOG<span class="token punctuation">:</span>
+              log_test_predictions<span class="token punctuation">(</span>images<span class="token punctuation">,</span> labels<span class="token punctuation">,</span> outputs<span class="token punctuation">,</span> predicted<span class="token punctuation">,</span> test_table<span class="token punctuation">,</span> log_counter<span class="token punctuation">)</span>
+              log_counter <span class="token operator">+=</span> <span class="token number">1</span>
+            total <span class="token operator">+=</span> labels<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+            correct <span class="token operator">+=</span> <span class="token punctuation">(</span>predicted <span class="token operator">==</span> labels<span class="token punctuation">)</span><span class="token punctuation">.</span>sum<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        acc <span class="token operator">=</span> <span class="token number">100</span> <span class="token operator">*</span> correct <span class="token operator">/</span> total
+        <span class="token comment" spellcheck="true"># ✨ W&amp;B: Log accuracy across training epochs, to visualize in the UI</span>
+        wandb<span class="token punctuation">.</span>log<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"epoch"</span> <span class="token punctuation">:</span> epoch<span class="token punctuation">,</span> <span class="token string">"acc"</span> <span class="token punctuation">:</span> acc<span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Test Accuracy of the model on the 10000 test images: {} %'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>acc<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># ✨ W&amp;B: Log predictions table to wandb</span>
+    wandb<span class="token punctuation">.</span>log<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"test_predictions"</span> <span class="token punctuation">:</span> test_table<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># ✨ W&amp;B: Mark the run as complete (useful for multi-cell notebook)</span>
+wandb<span class="token punctuation">.</span>finish<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="Tune-hyperparameters"><a href="#Tune-hyperparameters" class="headerlink" title="Tune hyperparameters"></a>Tune hyperparameters</h2><h2 id="Track-models-and-datasets"><a href="#Track-models-and-datasets" class="headerlink" title="Track models and datasets"></a>Track models and datasets</h2>
                 
             </div>
             <hr/>
@@ -1085,7 +1280,7 @@ wandb<span class="token punctuation">.</span>finish<span class="token punctuatio
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">11k</span>
+                        class="white-color">12.5k</span>
             
             
             
