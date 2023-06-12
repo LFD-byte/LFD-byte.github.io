@@ -6,7 +6,7 @@
   <link href="https://blog.lfd-world.online/atom.xml" rel="self"/>
   
   <link href="https://blog.lfd-world.online/"/>
-  <updated>2023-06-04T07:31:45.783Z</updated>
+  <updated>2023-06-12T06:22:12.836Z</updated>
   <id>https://blog.lfd-world.online/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>WandB 学习日记（一）Doc</title>
+    <link href="https://blog.lfd-world.online/2023/06/12/wandb-xue-xi-ri-ji-yi-doc/"/>
+    <id>https://blog.lfd-world.online/2023/06/12/wandb-xue-xi-ri-ji-yi-doc/</id>
+    <published>2023-06-12T06:06:00.000Z</published>
+    <updated>2023-06-12T06:22:12.836Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Track-experiments&quot;&gt;&lt;a href=&quot;#Track-experiments&quot; class=&quot;headerlink&quot; title=&quot;Track experiments&quot;&gt;&lt;/a&gt;Track</summary>
+        
+      
+    
+    
+    
+    <category term="WandB" scheme="https://blog.lfd-world.online/categories/WandB/"/>
+    
+    
+    <category term="WandB" scheme="https://blog.lfd-world.online/tags/WandB/"/>
+    
+    <category term="深度学习" scheme="https://blog.lfd-world.online/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>Github Pages + Hexo + Vercel 个人博客搭建（三）Typora + PicGo+ 腾讯云图床</title>
@@ -168,7 +195,7 @@
     <link href="https://blog.lfd-world.online/2023/05/31/tu-shen-jing-wang-luo-xue-xi-ri-ji-wu/"/>
     <id>https://blog.lfd-world.online/2023/05/31/tu-shen-jing-wang-luo-xue-xi-ri-ji-wu/</id>
     <published>2023-05-31T02:07:00.000Z</published>
-    <updated>2023-06-07T13:04:03.918Z</updated>
+    <updated>2023-06-12T02:37:31.093Z</updated>
     
     
       
