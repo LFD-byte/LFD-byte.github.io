@@ -404,21 +404,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-06-12
+                    2023-06-13
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.9k
+                    5.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    14 分
+                    24 分
                 </div>
                 
 
@@ -849,7 +849,223 @@ total_step <span class="token operator">=</span> len<span class="token punctuati
 <span class="token comment" spellcheck="true"># ✨ W&amp;B: Mark the run as complete (useful for multi-cell notebook)</span>
 wandb<span class="token punctuation">.</span>finish<span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre>
-<h2 id="Tune-hyperparameters"><a href="#Tune-hyperparameters" class="headerlink" title="Tune hyperparameters"></a>Tune hyperparameters</h2><h2 id="Track-models-and-datasets"><a href="#Track-models-and-datasets" class="headerlink" title="Track models and datasets"></a>Track models and datasets</h2>
+<h2 id="Tune-hyperparameters"><a href="#Tune-hyperparameters" class="headerlink" title="Tune hyperparameters"></a>Tune hyperparameters</h2><p><a target="_blank" rel="noopener" href="https://colab.research.google.com/github/wandb/examples/blob/master/colabs/pytorch/Organizing_Hyperparameter_Sweeps_in_PyTorch_with_W&amp;B.ipynb">在此处试用 Colab Notebook →</a></p>
+<p>在高维超参数空间中搜索以找到性能最高的模型可能会很快变得笨拙。超参数扫描提供了一种有组织且高效的方式来进行模型大逃杀并选择最准确的模型。他们通过自动搜索超参数值的组合（例如 learning rate, batch size, number of hidden layers, optimizer type）来找到最佳值来实现这一点。</p>
+<p>在本教程中，我们将了解如何使用 Weights &amp; Biases 通过 3 个简单步骤运行复杂的超参数扫描。</p>
+<h3 id="Follow-along-with-a-video-tutorial"><a href="#Follow-along-with-a-video-tutorial" class="headerlink" title="Follow along with a video tutorial!"></a>Follow along with a <a target="_blank" rel="noopener" href="http://wandb.me/sweeps-video">video tutorial</a>!</h3><p><img src="https://i.imgur.com/WVKkMWw.png" alt="img"></p>
+<h3 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h3><p>首先安装实验跟踪库并设置您的免费 W&amp;B 帐户：</p>
+<ol>
+<li>使用 <code>pip install</code> 安装</li>
+<li><code>import</code> Python 所需依赖</li>
+<li><code>.login()</code> 这样您就可以将指标记录到您的项目中</li>
+</ol>
+<p>如果您以前从未使用过 Weights &amp; Biases，登录电话会给您一个注册帐户的链接。 W&amp;B 可免费用于个人和学术项目！</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">!</span>pip <span class="token function">install</span> wandb -Uq
+</code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> wandb
+
+wandb<span class="token punctuation">.</span>login<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="Step-1️⃣-Define-the-Sweep"><a href="#Step-1️⃣-Define-the-Sweep" class="headerlink" title="Step 1️⃣. Define the Sweep"></a>Step 1️⃣. Define the Sweep</h3><p>从根本上说，Sweep 将尝试一堆超参数值的策略与评估它们的代码结合在一起。您只需要以<a target="_blank" rel="noopener" href="https://docs.wandb.com/sweeps/configuration">配置</a>的形式定义您的策略。</p>
+<p>当您像这样在笔记本中设置 Sweep 时，该配置对象是一个嵌套字典。当您通过命令行运行 Sweep 时，配置对象是一个 <a target="_blank" rel="noopener" href="https://docs.wandb.com/sweeps/quickstart#2-sweep-config">YAML file</a>。</p>
+<p>让我们一起了解 Sweep 配置的定义。我们会慢慢来，这样我们就有机会解释每个组件。在典型的 Sweep 管道中，此步骤将在单个分配中完成。</p>
+<h4 id="Pick-a-method"><a href="#Pick-a-method" class="headerlink" title="Pick a method"></a>Pick a <code>method</code></h4><p>我们需要定义的第一件事是选择新参数值的 <code>method</code>。</p>
+<p>我们提供以下搜索 <code>methods</code>：</p>
+<ul>
+<li>**<code>grid</code> Search **– 迭代超参数值的每个组合。非常有效，但计算量大。</li>
+<li><strong><code>random</code> Search</strong> – 根据提供的 <code>distribution</code> 随机选择每个新组合。出乎意料的有效！</li>
+<li><strong><code>bayesian</code> Search</strong> – 创建一个度量分数作为超参数函数的概率模型，并选择具有提高度量的高概率的参数。适用于少量连续参数但扩展性差。</li>
+</ul>
+<p><code>random</code> 方法：</p>
+<pre class=" language-python"><code class="language-python">sweep_config <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'method'</span><span class="token punctuation">:</span> <span class="token string">'random'</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<p>对于 <code>bayesian</code> Sweeps，您还需要告诉我们一些关于您的 metric 的信息。我们需要知道它的名称，以便我们可以在模型输出中找到它，我们需要知道您的目标是最小化它（例如，如果它是 squared error）还是最大化它（例如，如果它是 accuracy）。</p>
+<pre class=" language-python"><code class="language-python">metric <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'loss'</span><span class="token punctuation">,</span>
+    <span class="token string">'goal'</span><span class="token punctuation">:</span> <span class="token string">'minimize'</span>   
+    <span class="token punctuation">}</span>
+
+sweep_config<span class="token punctuation">[</span><span class="token string">'metric'</span><span class="token punctuation">]</span> <span class="token operator">=</span> metric
+</code></pre>
+<p>如果您没有运行 <code>bayesian</code> Sweep，则不必这样做，但无论如何将其包含在您的 <code>sweep_config</code> 中并不是一个坏主意，以防您以后改变主意。记录这样的事情也是很好的再现性实践，以防万一您或其他人在 6 个月或 6 年后回到您的 Sweep 并且不知道 <code>val_G_batch</code> 应该是高还是低。</p>
+<h4 id="Name-the-hyperparameters"><a href="#Name-the-hyperparameters" class="headerlink" title="Name the hyperparameters"></a>Name the hyper<code>parameters</code></h4><p>一旦您选择了一种 <code>method</code> 来尝试超参数的新值，您需要定义这些 <code>parameters</code>是什么</p>
+<p>大多数时候，这一步很简单：您只需为 <code>parameter</code> 命名并指定参数的合法 <code>values</code> 列表。</p>
+<p>例如，当我们为我们的网络选择 <code>optimizer</code> 时，只有有限数量的选项。在这里，我们坚持使用两个最受欢迎的选择，<code>adam</code> 和 <code>sgd</code>。即使对于具有潜在无限选项的超参数，通常也只尝试几个选择 <code>values</code> 才有意义，就像我们在此处对隐藏层 <code>layer_size</code> 和 <code>dropout</code> 所做的那样。</p>
+<pre class=" language-python"><code class="language-python">parameters_dict <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'optimizer'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'values'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'adam'</span><span class="token punctuation">,</span> <span class="token string">'sgd'</span><span class="token punctuation">]</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">'fc_layer_size'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'values'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">256</span><span class="token punctuation">,</span> <span class="token number">512</span><span class="token punctuation">]</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">'dropout'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          <span class="token string">'values'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token number">0.4</span><span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">]</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+
+sweep_config<span class="token punctuation">[</span><span class="token string">'parameters'</span><span class="token punctuation">]</span> <span class="token operator">=</span> parameters_dict
+</code></pre>
+<p>通常情况下，有些超参数我们不想在此 Sweep 中改变，但我们仍希望在我们的 <code>sweep_config</code> 中设置它们。</p>
+<p>在那种情况下，我们直接设置 <code>value</code>：</p>
+<pre class=" language-python"><code class="language-python">parameters_dict<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token string">'epochs'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'value'</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>对于 <code>grid</code> 搜索，这就是您所需要的。</p>
+<p>对于 <code>random</code> 搜索，参数的所有 <code>values</code> 在给定运行中被选择的可能性相同。</p>
+<p>如果这样做不行，您可以改为指定命名 <code>distribution</code> 及其参数，例如 <code>normal</code> 分布的均值 <code>mu</code> 和标准差 <code>sigma</code>。</p>
+<p>在<a target="_blank" rel="noopener" href="https://docs.wandb.com/sweeps/configuration#distributions">此处</a>查看有关如何设置随机变量分布的更多信息。</p>
+<pre class=" language-python"><code class="language-python">parameters_dict<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token string">'learning_rate'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true"># a flat distribution between 0 and 0.1</span>
+        <span class="token string">'distribution'</span><span class="token punctuation">:</span> <span class="token string">'uniform'</span><span class="token punctuation">,</span>
+        <span class="token string">'min'</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token string">'max'</span><span class="token punctuation">:</span> <span class="token number">0.1</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">'batch_size'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true"># integers between 32 and 256</span>
+        <span class="token comment" spellcheck="true"># with evenly-distributed logarithms </span>
+        <span class="token string">'distribution'</span><span class="token punctuation">:</span> <span class="token string">'q_log_uniform_values'</span><span class="token punctuation">,</span>
+        <span class="token string">'q'</span><span class="token punctuation">:</span> <span class="token number">8</span><span class="token punctuation">,</span>
+        <span class="token string">'min'</span><span class="token punctuation">:</span> <span class="token number">32</span><span class="token punctuation">,</span>
+        <span class="token string">'max'</span><span class="token punctuation">:</span> <span class="token number">256</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>当我们完成后，<code>sweep_config</code> 是一个嵌套的字典，它准确地指定了我们有兴趣尝试哪些 <code>parameters</code> 以及我们将使用什么 <code>method</code> 来尝试它们。</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> pprint
+
+pprint<span class="token punctuation">.</span>pprint<span class="token punctuation">(</span>sweep_config<span class="token punctuation">)</span>
+</code></pre>
+<p>但这不是所有的配置选项！</p>
+<p>例如，我们还提供了使用 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1603.06560.pdf">HyperBand</a> 调度算法 <code>early_terminate</code> 运行的选项。在<a target="_blank" rel="noopener" href="https://docs.wandb.com/sweeps/configuration#stopping-criteria">这里</a>查看更多。</p>
+<p>您可以在<a target="_blank" rel="noopener" href="https://docs.wandb.com/library/sweeps/configuration">此处</a>找到所有配置选项的列表，并在<a target="_blank" rel="noopener" href="https://github.com/wandb/examples/tree/master/examples/keras/keras-cnn-fashion">此处</a>找到大量 YAML 格式的示例。</p>
+<h3 id="Step-2️⃣-Initialize-the-Sweep"><a href="#Step-2️⃣-Initialize-the-Sweep" class="headerlink" title="Step 2️⃣. Initialize the Sweep"></a>Step 2️⃣. Initialize the Sweep</h3><p>一旦您定义了搜索策略，就该设置一些东西来实现它了。</p>
+<p>负责我们 Sweep 的 clockwork taskmaster 被称为 <em>Sweep Controller</em>。每次运行完成时，它将发出一组新的指令来描述要执行的新运行。这些指令由实际执行运行的 <em>agents</em> 获取。</p>
+<p>在典型的 Sweep 中，Controller 位于我们的机器上，而完成运行的代理位于您的机器上，如下图所示。这种分工使得只需添加更多机器来运行代理就可以非常容易地扩展 Sweeps！</p>
+<p><img src="https://i.imgur.com/zlbw3vQ.png" alt="sweeps-diagram"></p>
+<p>我们可以通过使用适当的 <code>sweep_config</code> 和 <code>project</code> 名称调用 <code>wandb.sweep</code> 来结束 Sweep Controller。</p>
+<p>此函数返回一个 <code>sweep_id</code>，我们稍后将使用它来将 agents 分配给此 Controller。</p>
+<p>旁注：在命令行上，此功能被替换为</p>
+<pre class=" language-bash"><code class="language-bash">wandb sweep config.yaml
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://docs.wandb.com/sweeps/quickstart">了解更多关于在命令行中使用 Sweeps ➡</a></p>
+<pre class=" language-python"><code class="language-python">sweep_id <span class="token operator">=</span> wandb<span class="token punctuation">.</span>sweep<span class="token punctuation">(</span>sweep_config<span class="token punctuation">,</span> project<span class="token operator">=</span><span class="token string">"pytorch-sweeps-demo"</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="Step-3️⃣-Run-the-Sweep-agent"><a href="#Step-3️⃣-Run-the-Sweep-agent" class="headerlink" title="Step 3️⃣. Run the Sweep agent"></a>Step 3️⃣. Run the Sweep agent</h3><h4 id="Define-Your-Training-Procedure"><a href="#Define-Your-Training-Procedure" class="headerlink" title="Define Your Training Procedure"></a>Define Your Training Procedure</h4><p>在我们实际执行 sweep 之前，我们需要定义使用这些值的训练过程。</p>
+<p>在下面的函数中，我们在 PyTorch 中定义了一个简单的全连接神经网络，并添加了以下 <code>wandb</code> 工具来记录模型指标、可视化性能和输出并跟踪我们的实验：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.wandb.com/library/init"><strong><code>wandb.init()</code></strong></a> – 初始化新的 W&amp;B 运行。每次运行都是训练功能的一次执行。</li>
+<li><a target="_blank" rel="noopener" href="https://docs.wandb.com/library/config"><strong><code>wandb.config</code></strong></a> – 将所有超参数保存在配置对象中，以便记录它们。在<a target="_blank" rel="noopener" href="https://colab.research.google.com/github/wandb/examples/blob/master/colabs/wandb-config/Configs_in_W%26B.ipynb">此处</a>阅读有关如何使用 <code>wandb.config</code> 的更多信息。</li>
+<li><a target="_blank" rel="noopener" href="https://docs.wandb.com/library/log"><strong><code>wandb.log()</code></strong></a> – 将模型行为记录到 W&amp;B。在这里，我们只记录性能；有关可以使用 <code>wandb.log</code> 记录的所有其他富媒体，请参阅此 <a target="_blank" rel="noopener" href="https://colab.research.google.com/github/wandb/examples/blob/master/colabs/wandb-log/Log_(Almost)_Anything_with_W%26B_Media.ipynb">Colab</a>。</li>
+</ul>
+<p>有关使用 PyTorch 检测 W&amp;B 的更多详细信息，请参阅此 <a target="_blank" rel="noopener" href="https://colab.research.google.com/github/wandb/examples/blob/master/colabs/pytorch/Simple_PyTorch_Integration.ipynb">Colab</a>。</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> torch
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>optim <span class="token keyword">as</span> optim
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>functional <span class="token keyword">as</span> F
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn <span class="token keyword">as</span> nn
+<span class="token keyword">from</span> torchvision <span class="token keyword">import</span> datasets<span class="token punctuation">,</span> transforms
+
+device <span class="token operator">=</span> torch<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">"cuda"</span> <span class="token keyword">if</span> torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">"cpu"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">train</span><span class="token punctuation">(</span>config<span class="token operator">=</span>None<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># Initialize a new wandb run</span>
+    <span class="token keyword">with</span> wandb<span class="token punctuation">.</span>init<span class="token punctuation">(</span>config<span class="token operator">=</span>config<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># If called by wandb.agent, as below,</span>
+        <span class="token comment" spellcheck="true"># this config will be set by Sweep Controller</span>
+        config <span class="token operator">=</span> wandb<span class="token punctuation">.</span>config
+
+        loader <span class="token operator">=</span> build_dataset<span class="token punctuation">(</span>config<span class="token punctuation">.</span>batch_size<span class="token punctuation">)</span>
+        network <span class="token operator">=</span> build_network<span class="token punctuation">(</span>config<span class="token punctuation">.</span>fc_layer_size<span class="token punctuation">,</span> config<span class="token punctuation">.</span>dropout<span class="token punctuation">)</span>
+        optimizer <span class="token operator">=</span> build_optimizer<span class="token punctuation">(</span>network<span class="token punctuation">,</span> config<span class="token punctuation">.</span>optimizer<span class="token punctuation">,</span> config<span class="token punctuation">.</span>learning_rate<span class="token punctuation">)</span>
+
+        <span class="token keyword">for</span> epoch <span class="token keyword">in</span> range<span class="token punctuation">(</span>config<span class="token punctuation">.</span>epochs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            avg_loss <span class="token operator">=</span> train_epoch<span class="token punctuation">(</span>network<span class="token punctuation">,</span> loader<span class="token punctuation">,</span> optimizer<span class="token punctuation">)</span>
+            wandb<span class="token punctuation">.</span>log<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"loss"</span><span class="token punctuation">:</span> avg_loss<span class="token punctuation">,</span> <span class="token string">"epoch"</span><span class="token punctuation">:</span> epoch<span class="token punctuation">}</span><span class="token punctuation">)</span>           
+</code></pre>
+<p>这个单元格定义了我们训练过程的四个部分：<code>build_dataset</code>, <code>build_network</code>, <code>build_optimizer</code> 和<code>train_epoch</code>.</p>
+<p>所有这些都是基本 PyTorch 管道的标准部分，它们的实现不受使用 W&amp;B 的影响，因此我们不会对它们发表评论。</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">build_dataset</span><span class="token punctuation">(</span>batch_size<span class="token punctuation">)</span><span class="token punctuation">:</span>
+   
+    transform <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span>
+        <span class="token punctuation">[</span>transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+         transforms<span class="token punctuation">.</span>Normalize<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">0.1307</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">0.3081</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># download MNIST training dataset</span>
+    dataset <span class="token operator">=</span> datasets<span class="token punctuation">.</span>MNIST<span class="token punctuation">(</span><span class="token string">"."</span><span class="token punctuation">,</span> train<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+                             transform<span class="token operator">=</span>transform<span class="token punctuation">)</span>
+    sub_dataset <span class="token operator">=</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data<span class="token punctuation">.</span>Subset<span class="token punctuation">(</span>
+        dataset<span class="token punctuation">,</span> indices<span class="token operator">=</span>range<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> len<span class="token punctuation">(</span>dataset<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    loader <span class="token operator">=</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data<span class="token punctuation">.</span>DataLoader<span class="token punctuation">(</span>sub_dataset<span class="token punctuation">,</span> batch_size<span class="token operator">=</span>batch_size<span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> loader
+
+
+<span class="token keyword">def</span> <span class="token function">build_network</span><span class="token punctuation">(</span>fc_layer_size<span class="token punctuation">,</span> dropout<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    network <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>  <span class="token comment" spellcheck="true"># fully-connected, single hidden layer</span>
+        nn<span class="token punctuation">.</span>Flatten<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">784</span><span class="token punctuation">,</span> fc_layer_size<span class="token punctuation">)</span><span class="token punctuation">,</span> nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        nn<span class="token punctuation">.</span>Dropout<span class="token punctuation">(</span>dropout<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>fc_layer_size<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        nn<span class="token punctuation">.</span>LogSoftmax<span class="token punctuation">(</span>dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> network<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+        
+
+<span class="token keyword">def</span> <span class="token function">build_optimizer</span><span class="token punctuation">(</span>network<span class="token punctuation">,</span> optimizer<span class="token punctuation">,</span> learning_rate<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> optimizer <span class="token operator">==</span> <span class="token string">"sgd"</span><span class="token punctuation">:</span>
+        optimizer <span class="token operator">=</span> optim<span class="token punctuation">.</span>SGD<span class="token punctuation">(</span>network<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                              lr<span class="token operator">=</span>learning_rate<span class="token punctuation">,</span> momentum<span class="token operator">=</span><span class="token number">0.9</span><span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> optimizer <span class="token operator">==</span> <span class="token string">"adam"</span><span class="token punctuation">:</span>
+        optimizer <span class="token operator">=</span> optim<span class="token punctuation">.</span>Adam<span class="token punctuation">(</span>network<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                               lr<span class="token operator">=</span>learning_rate<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> optimizer
+
+
+<span class="token keyword">def</span> <span class="token function">train_epoch</span><span class="token punctuation">(</span>network<span class="token punctuation">,</span> loader<span class="token punctuation">,</span> optimizer<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    cumu_loss <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">for</span> _<span class="token punctuation">,</span> <span class="token punctuation">(</span>data<span class="token punctuation">,</span> target<span class="token punctuation">)</span> <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>loader<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        data<span class="token punctuation">,</span> target <span class="token operator">=</span> data<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span><span class="token punctuation">,</span> target<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+        optimizer<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token comment" spellcheck="true"># ➡ Forward pass</span>
+        loss <span class="token operator">=</span> F<span class="token punctuation">.</span>nll_loss<span class="token punctuation">(</span>network<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">,</span> target<span class="token punctuation">)</span>
+        cumu_loss <span class="token operator">+=</span> loss<span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token comment" spellcheck="true"># ⬅ Backward pass + weight update</span>
+        loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        wandb<span class="token punctuation">.</span>log<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"batch loss"</span><span class="token punctuation">:</span> loss<span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> cumu_loss <span class="token operator">/</span> len<span class="token punctuation">(</span>loader<span class="token punctuation">)</span>
+</code></pre>
+<p>现在，我们准备开始 sweeping 了！</p>
+<p>Sweep Controllers，就像我们通过运行 <code>wandb.sweep</code> 制作的控制器一样，坐等有人要求他们提供 <code>config </code>来试用。</p>
+<p>某人是 <code>agent</code>，他们是用 <code>wandb.agent</code> 创建的。要开始，agent 只需要知道</p>
+<ol>
+<li>它是 (<code>sweep_id</code>) 的一部分</li>
+<li>它应该运行哪个函数（这里是 <code>train</code>）</li>
+<li>（可选）有多少配置要求控制器（<code>count</code>）</li>
+</ol>
+<p>仅供参考，您可以在不同的计算资源上启动具有相同 <code>sweep_id</code> 的多个 <code>agent</code>，Controller 将确保它们根据 <code>sweep_config</code> 中制定的策略协同工作。这使得在尽可能多的节点上扩展 Sweeps 变得轻而易举！</p>
+<p>旁注：在命令行上，此功能被替换为</p>
+<pre class=" language-bash"><code class="language-bash">wandb agent sweep_id
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://docs.wandb.com/sweeps/quickstart">了解更多关于在命令行中使用 Sweeps ➡</a></p>
+<p>下面的单元格将启动一个运行 <code>train</code> 5 次的 <code>agent</code>，使用 Sweep Controller 返回的随机生成的超参数值。执行时间不到 5 分钟。</p>
+<pre class=" language-python"><code class="language-python">wandb<span class="token punctuation">.</span>agent<span class="token punctuation">(</span>sweep_id<span class="token punctuation">,</span> train<span class="token punctuation">,</span> count<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="Visualize-Sweep-Results"><a href="#Visualize-Sweep-Results" class="headerlink" title="Visualize Sweep Results"></a>Visualize Sweep Results</h3><h4 id="Parallel-Coordinates-Plot"><a href="#Parallel-Coordinates-Plot" class="headerlink" title="Parallel Coordinates Plot"></a>Parallel Coordinates Plot</h4><p>此图将超参数值映射到模型指标。它对于磨练导致最佳模型性能的超参数组合很有用。</p>
+<p><img src="https://assets.website-files.com/5ac6b7f2924c652fd013a891/5e190366778ad831455f9af2_s_194708415DEC35F74A7691FF6810D3B14703D1EFE1672ED29000BA98171242A5_1578695138341_image.png" alt="img"></p>
+<h4 id="Hyperparameter-Importance-Plot"><a href="#Hyperparameter-Importance-Plot" class="headerlink" title="Hyperparameter Importance Plot"></a>Hyperparameter Importance Plot</h4><p>超参数重要性图表明哪些超参数是指标的最佳预测因子。我们报告特征重要性（来自随机森林模型）和相关性（隐式线性模型）。</p>
+<p><img src="https://assets.website-files.com/5ac6b7f2924c652fd013a891/5e190367778ad820b35f9af5_s_194708415DEC35F74A7691FF6810D3B14703D1EFE1672ED29000BA98171242A5_1578695757573_image.png" alt="img"></p>
+<p>这些可视化可以通过磨练最重要的参数（和值范围）来帮助您节省运行昂贵的超参数优化的时间和资源，因此值得进一步探索。</p>
+<h3 id="Get-your-hands-dirty-with-sweeps"><a href="#Get-your-hands-dirty-with-sweeps" class="headerlink" title="Get your hands dirty with sweeps"></a>Get your hands dirty with sweeps</h3><p>我们创建了一个简单的训练脚本和一些<a target="_blank" rel="noopener" href="https://github.com/wandb/examples/tree/master/examples/keras/keras-cnn-fashion">sweep configs</a> 风格供您使用。我们强烈建议您尝试一下。</p>
+<p>该存储库还提供了一些示例，可帮助您尝试更高级的扫描功能，例如 <a target="_blank" rel="noopener" href="https://app.wandb.ai/wandb/examples-keras-cnn-fashion/sweeps/us0ifmrf?workspace=user-lavanyashukla&amp;_gl=1*1h57q6p*_ga*MTUwMzMwNTA4NC4xNjg1MzI0NjI3*_ga_JH1SJHJQXJ*MTY4NjYyMjIyOS43LjAuMTY4NjYyMjIyOS42MC4wLjA.">Bayesian Hyperband</a> 和 <a target="_blank" rel="noopener" href="https://app.wandb.ai/wandb/examples-keras-cnn-fashion/sweeps/xbs2wm5e?workspace=user-lavanyashukla&amp;_gl=1*5hk37j*_ga*MTUwMzMwNTA4NC4xNjg1MzI0NjI3*_ga_JH1SJHJQXJ*MTY4NjYyMjIyOS43LjAuMTY4NjYyMjIyOS42MC4wLjA.">Hyperopt</a>。</p>
+<h2 id="Track-models-and-datasets"><a href="#Track-models-and-datasets" class="headerlink" title="Track models and datasets"></a>Track models and datasets</h2>
                 
             </div>
             <hr/>
@@ -1280,7 +1496,7 @@ wandb<span class="token punctuation">.</span>finish<span class="token punctuatio
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">12.5k</span>
+                        class="white-color">15k</span>
             
             
             

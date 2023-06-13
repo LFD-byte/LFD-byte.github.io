@@ -6,7 +6,7 @@
   <link href="https://blog.lfd-world.online/atom.xml" rel="self"/>
   
   <link href="https://blog.lfd-world.online/"/>
-  <updated>2023-06-12T06:48:31.331Z</updated>
+  <updated>2023-06-13T07:16:28.909Z</updated>
   <id>https://blog.lfd-world.online/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blog.lfd-world.online/2023/06/12/wandb-xue-xi-ri-ji-yi-doc/"/>
     <id>https://blog.lfd-world.online/2023/06/12/wandb-xue-xi-ri-ji-yi-doc/</id>
     <published>2023-06-12T06:06:00.000Z</published>
-    <updated>2023-06-12T06:48:31.331Z</updated>
+    <updated>2023-06-13T07:16:28.909Z</updated>
     
     
       
@@ -63,6 +63,25 @@
   </entry>
   
   <entry>
+    <title>Github Pages + Hexo + Vercel 个人博客搭建（三）Typora + PicGo+ 腾讯云图床</title>
+    <link href="https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/"/>
+    <id>https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/</id>
+    <published>2023-06-04T07:31:00.000Z</published>
+    <updated>2023-06-04T07:31:45.783Z</updated>
+    
+    
+    
+    
+    <category term="Blog" scheme="https://blog.lfd-world.online/categories/Blog/"/>
+    
+    
+    <category term="Blog" scheme="https://blog.lfd-world.online/tags/Blog/"/>
+    
+    <category term="Hexo" scheme="https://blog.lfd-world.online/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Github Pages + Hexo + Vercel 个人博客搭建（二）Matery 主题</title>
     <link href="https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-er-matery-zhu-ti/"/>
     <id>https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-er-matery-zhu-ti/</id>
@@ -77,25 +96,6 @@
     <summary type="html">&lt;h2 id=&quot;下载&quot;&gt;&lt;a href=&quot;#下载&quot; class=&quot;headerlink&quot; title=&quot;下载&quot;&gt;&lt;/a&gt;下载&lt;/h2&gt;&lt;p&gt;本主题&lt;strong&gt;推荐你使用 Hexo 5.0.0 及以上的版本&lt;/strong&gt;。如果，你已经有一个自己的 &lt;a</summary>
         
       
-    
-    
-    
-    <category term="Blog" scheme="https://blog.lfd-world.online/categories/Blog/"/>
-    
-    
-    <category term="Blog" scheme="https://blog.lfd-world.online/tags/Blog/"/>
-    
-    <category term="Hexo" scheme="https://blog.lfd-world.online/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Github Pages + Hexo + Vercel 个人博客搭建（三）Typora + PicGo+ 腾讯云图床</title>
-    <link href="https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/"/>
-    <id>https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/</id>
-    <published>2023-06-04T07:31:00.000Z</published>
-    <updated>2023-06-04T07:31:45.783Z</updated>
-    
     
     
     
