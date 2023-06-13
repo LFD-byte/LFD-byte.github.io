@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="WandB 学习日记（一）Doc, 培根请加蛋">
-    <meta name="description" content="WandB 学习日记（一）Doc">
+    <meta name="keywords" content="WandB 学习日记（一）Tutorials, 培根请加蛋">
+    <meta name="description" content="WandB 学习日记（一）Tutorials">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>WandB 学习日记（一）Doc | 培根请加蛋</title>
+    <title>WandB 学习日记（一）Tutorials | 培根请加蛋</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -54,9 +54,9 @@
     
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.2">
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="培根请加蛋" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="培根请加蛋" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
@@ -339,12 +339,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">WandB 学习日记（一）Doc</h1>
+                    <h1 class="description center-align post-title">WandB 学习日记（一）Tutorials</h1>
                 </div>
             </div>
         </div>
@@ -411,14 +411,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.4k
+                    9.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    24 分
+                    42 分
                 </div>
                 
 
@@ -1063,9 +1063,500 @@ device <span class="token operator">=</span> torch<span class="token punctuation
 <h4 id="Hyperparameter-Importance-Plot"><a href="#Hyperparameter-Importance-Plot" class="headerlink" title="Hyperparameter Importance Plot"></a>Hyperparameter Importance Plot</h4><p>超参数重要性图表明哪些超参数是指标的最佳预测因子。我们报告特征重要性（来自随机森林模型）和相关性（隐式线性模型）。</p>
 <p><img src="https://assets.website-files.com/5ac6b7f2924c652fd013a891/5e190367778ad820b35f9af5_s_194708415DEC35F74A7691FF6810D3B14703D1EFE1672ED29000BA98171242A5_1578695757573_image.png" alt="img"></p>
 <p>这些可视化可以通过磨练最重要的参数（和值范围）来帮助您节省运行昂贵的超参数优化的时间和资源，因此值得进一步探索。</p>
-<h3 id="Get-your-hands-dirty-with-sweeps"><a href="#Get-your-hands-dirty-with-sweeps" class="headerlink" title="Get your hands dirty with sweeps"></a>Get your hands dirty with sweeps</h3><p>我们创建了一个简单的训练脚本和一些<a target="_blank" rel="noopener" href="https://github.com/wandb/examples/tree/master/examples/keras/keras-cnn-fashion">sweep configs</a> 风格供您使用。我们强烈建议您尝试一下。</p>
-<p>该存储库还提供了一些示例，可帮助您尝试更高级的扫描功能，例如 <a target="_blank" rel="noopener" href="https://app.wandb.ai/wandb/examples-keras-cnn-fashion/sweeps/us0ifmrf?workspace=user-lavanyashukla&amp;_gl=1*1h57q6p*_ga*MTUwMzMwNTA4NC4xNjg1MzI0NjI3*_ga_JH1SJHJQXJ*MTY4NjYyMjIyOS43LjAuMTY4NjYyMjIyOS42MC4wLjA.">Bayesian Hyperband</a> 和 <a target="_blank" rel="noopener" href="https://app.wandb.ai/wandb/examples-keras-cnn-fashion/sweeps/xbs2wm5e?workspace=user-lavanyashukla&amp;_gl=1*5hk37j*_ga*MTUwMzMwNTA4NC4xNjg1MzI0NjI3*_ga_JH1SJHJQXJ*MTY4NjYyMjIyOS43LjAuMTY4NjYyMjIyOS42MC4wLjA.">Hyperopt</a>。</p>
-<h2 id="Track-models-and-datasets"><a href="#Track-models-and-datasets" class="headerlink" title="Track models and datasets"></a>Track models and datasets</h2>
+<h3 id="Get-your-hands-dirty-with-sweeps"><a href="#Get-your-hands-dirty-with-sweeps" class="headerlink" title="Get your hands dirty with sweeps"></a>Get your hands dirty with sweeps</h3><p>我们创建了一个简单的训练脚本和一些 <a target="_blank" rel="noopener" href="https://github.com/wandb/examples/tree/master/examples/keras/keras-cnn-fashion">sweep configs</a> 风格供您使用。我们强烈建议您尝试一下。</p>
+<p>该存储库还提供了一些示例，可帮助您尝试更高级的 sweep 功能，例如 <a target="_blank" rel="noopener" href="https://app.wandb.ai/wandb/examples-keras-cnn-fashion/sweeps/us0ifmrf?workspace=user-lavanyashukla&amp;_gl=1*1h57q6p*_ga*MTUwMzMwNTA4NC4xNjg1MzI0NjI3*_ga_JH1SJHJQXJ*MTY4NjYyMjIyOS43LjAuMTY4NjYyMjIyOS42MC4wLjA.">Bayesian Hyperband</a> 和 <a target="_blank" rel="noopener" href="https://app.wandb.ai/wandb/examples-keras-cnn-fashion/sweeps/xbs2wm5e?workspace=user-lavanyashukla&amp;_gl=1*5hk37j*_ga*MTUwMzMwNTA4NC4xNjg1MzI0NjI3*_ga_JH1SJHJQXJ*MTY4NjYyMjIyOS43LjAuMTY4NjYyMjIyOS42MC4wLjA.">Hyperopt</a>。</p>
+<h2 id="Track-models-and-datasets"><a href="#Track-models-and-datasets" class="headerlink" title="Track models and datasets"></a>Track models and datasets</h2><p><a target="_blank" rel="noopener" href="https://colab.research.google.com/github/wandb/examples/blob/master/colabs/wandb-artifacts/Pipeline_Versioning_with_W&amp;B_Artifacts.ipynb">在此处试用 Colab Notebook →</a></p>
+<p>在此笔记本中，我们将向您展示如何使用 W&amp;B Artifacts 跟踪您的 ML 实验管道。</p>
+<h4 id="Follow-along-with-a-video-tutorial-1"><a href="#Follow-along-with-a-video-tutorial-1" class="headerlink" title="Follow along with a video tutorial!"></a>Follow along with a <a target="_blank" rel="noopener" href="http://tiny.cc/wb-artifacts-video">video tutorial</a>!</h4><h5 id="What-are-Artifacts-and-Why-Should-I-Care"><a href="#What-are-Artifacts-and-Why-Should-I-Care" class="headerlink" title="What are Artifacts and Why Should I Care?"></a>What are Artifacts and Why Should I Care?</h5><p>“artifact”，如希腊双耳瓶🏺，是一个生产的对象——一个过程的输出。在 ML 中，最重要的工件是 <em>datasets</em> 和 <em>models</em>。</p>
+<p>而且，就像 <a target="_blank" rel="noopener" href="https://indianajones.fandom.com/wiki/Cross_of_Coronado">Cross of Coronado</a> 一样，这些重要的文物属于博物馆！也就是说，应该对它们进行分类和组织，以便您、您的团队和整个 ML 社区可以向它们学习。毕竟，那些不跟踪训练的人注定要重蹈覆辙。</p>
+<p>使用我们的 Artifacts API，您可以将 <code>Artifacts</code> 记录为 W&amp;B <code>Runs</code> 的输出，或使用 <code>Artifacts</code> 作为 <code>Runs</code> 的输入，如此图所示，其中训练运行接受数据集并生成模型。</p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedsimple%20artifact%20diagram%202.png" alt="simple artifact diagram 2"></p>
+<p>由于一次运行可以使用另一次的输出作为输入，因此 Artifacts 和 Runs 一起形成了一个有向图——实际上是一个二分 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Directed_acyclic_graph">DAG</a>！ – 带有 <code>Artifact</code>s 和 <code>Run</code>s 的节点，以及将 <code>Run</code>s 连接到它们消耗或生产的 <code>Artifact</code>s 的箭头。</p>
+<h3 id="0️⃣-Install-and-Import"><a href="#0️⃣-Install-and-Import" class="headerlink" title="0️⃣ Install and Import"></a>0️⃣ Install and Import</h3><p>Artifacts 是我们 Python 库的一部分，从 <code>0.9.2</code> 版开始。</p>
+<p>与 ML Python 堆栈的大多数部分一样，它可以通过 <code>pip</code> 获得。</p>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># Compatible with wandb version 0.9.2+</span>
+!pip install wandb <span class="token operator">-</span>qqq
+!apt install tree
+</code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> os
+<span class="token keyword">import</span> wandb
+</code></pre>
+<h3 id="1️⃣-Log-a-Dataset"><a href="#1️⃣-Log-a-Dataset" class="headerlink" title="1️⃣ Log a Dataset"></a>1️⃣ Log a Dataset</h3><p>首先，让我们定义一些 Artifacts。</p>
+<p>此示例基于此 PyTorch <a target="_blank" rel="noopener" href="https://github.com/pytorch/examples/tree/master/mnist/">“Basic MNIST Example”</a>，但可以在 <a target="_blank" rel="noopener" href="http://wandb.me/artifacts-colab">TensorFlow</a>、任何其他框架或纯 Python 中轻松完成。</p>
+<p>我们从 <code>Dataset</code>s 开始：</p>
+<ul>
+<li>一个 <code>train</code>ing set，用于选择参数，</li>
+<li>一个 <code>validation</code> set，用于选择超参数，</li>
+<li>一个 <code>test</code>ing set，用于评估最终模型</li>
+</ul>
+<p>下面的第一个单元格定义了这三个数据集。</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> random 
+
+<span class="token keyword">import</span> torch
+<span class="token keyword">import</span> torchvision
+<span class="token keyword">from</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data <span class="token keyword">import</span> TensorDataset
+<span class="token keyword">from</span> tqdm<span class="token punctuation">.</span>auto <span class="token keyword">import</span> tqdm
+
+<span class="token comment" spellcheck="true"># Ensure deterministic behavior</span>
+torch<span class="token punctuation">.</span>backends<span class="token punctuation">.</span>cudnn<span class="token punctuation">.</span>deterministic <span class="token operator">=</span> <span class="token boolean">True</span>
+random<span class="token punctuation">.</span>seed<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+torch<span class="token punctuation">.</span>manual_seed<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>manual_seed_all<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># Device configuration</span>
+device <span class="token operator">=</span> torch<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">"cuda:0"</span> <span class="token keyword">if</span> torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token string">"cpu"</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># Data parameters</span>
+num_classes <span class="token operator">=</span> <span class="token number">10</span>
+input_shape <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># drop slow mirror from list of MNIST mirrors</span>
+torchvision<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>MNIST<span class="token punctuation">.</span>mirrors <span class="token operator">=</span> <span class="token punctuation">[</span>mirror <span class="token keyword">for</span> mirror <span class="token keyword">in</span> torchvision<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>MNIST<span class="token punctuation">.</span>mirrors
+                                      <span class="token keyword">if</span> <span class="token operator">not</span> mirror<span class="token punctuation">.</span>startswith<span class="token punctuation">(</span><span class="token string">"http://yann.lecun.com"</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+
+<span class="token keyword">def</span> <span class="token function">load</span><span class="token punctuation">(</span>train_size<span class="token operator">=</span>50_000<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    # Load the data
+    """</span>
+
+    <span class="token comment" spellcheck="true"># the data, split between train and test sets</span>
+    train <span class="token operator">=</span> torchvision<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>MNIST<span class="token punctuation">(</span><span class="token string">"./"</span><span class="token punctuation">,</span> train<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    test <span class="token operator">=</span> torchvision<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>MNIST<span class="token punctuation">(</span><span class="token string">"./"</span><span class="token punctuation">,</span> train<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    <span class="token punctuation">(</span>x_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>x_test<span class="token punctuation">,</span> y_test<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span>train<span class="token punctuation">.</span>data<span class="token punctuation">,</span> train<span class="token punctuation">.</span>targets<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>test<span class="token punctuation">.</span>data<span class="token punctuation">,</span> test<span class="token punctuation">.</span>targets<span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># split off a validation set for hyperparameter tuning</span>
+    x_train<span class="token punctuation">,</span> x_val <span class="token operator">=</span> x_train<span class="token punctuation">[</span><span class="token punctuation">:</span>train_size<span class="token punctuation">]</span><span class="token punctuation">,</span> x_train<span class="token punctuation">[</span>train_size<span class="token punctuation">:</span><span class="token punctuation">]</span>
+    y_train<span class="token punctuation">,</span> y_val <span class="token operator">=</span> y_train<span class="token punctuation">[</span><span class="token punctuation">:</span>train_size<span class="token punctuation">]</span><span class="token punctuation">,</span> y_train<span class="token punctuation">[</span>train_size<span class="token punctuation">:</span><span class="token punctuation">]</span>
+
+    training_set <span class="token operator">=</span> TensorDataset<span class="token punctuation">(</span>x_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+    validation_set <span class="token operator">=</span> TensorDataset<span class="token punctuation">(</span>x_val<span class="token punctuation">,</span> y_val<span class="token punctuation">)</span>
+    test_set <span class="token operator">=</span> TensorDataset<span class="token punctuation">(</span>x_test<span class="token punctuation">,</span> y_test<span class="token punctuation">)</span>
+
+    datasets <span class="token operator">=</span> <span class="token punctuation">[</span>training_set<span class="token punctuation">,</span> validation_set<span class="token punctuation">,</span> test_set<span class="token punctuation">]</span>
+
+    <span class="token keyword">return</span> datasets
+</code></pre>
+<p>这建立了一个模式，我们将在这个例子中看到重复：将数据记录为工件的代码包裹在生成该数据的代码周围。在这种情况下，用于 <code>load</code>ing 数据的代码与用于 <code>load_and_log</code>ging 数据的代码分开。</p>
+<p>这是很好的做法！</p>
+<p>为了将这些数据集记录为工件，我们只需要</p>
+<ol>
+<li>使用 <code>wandb.init</code> 创建 <code>Run</code>，(L4)</li>
+<li>为数据集 (L10) 创建一个 <code>Artifact</code>，以及</li>
+<li>保存并记录相关 <code>file</code>s（L20、L23）。</li>
+</ol>
+<p>查看下面代码单元的示例，然后展开后面的部分以了解更多详细信息。</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">load_and_log</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    <span class="token comment" spellcheck="true"># 🚀 start a run, with a type to label it and a project it can call home</span>
+    <span class="token keyword">with</span> wandb<span class="token punctuation">.</span>init<span class="token punctuation">(</span>project<span class="token operator">=</span><span class="token string">"artifacts-example"</span><span class="token punctuation">,</span> job_type<span class="token operator">=</span><span class="token string">"load-data"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> run<span class="token punctuation">:</span>
+        
+        datasets <span class="token operator">=</span> load<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># separate code for loading the datasets</span>
+        names <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"training"</span><span class="token punctuation">,</span> <span class="token string">"validation"</span><span class="token punctuation">,</span> <span class="token string">"test"</span><span class="token punctuation">]</span>
+
+        <span class="token comment" spellcheck="true"># 🏺 create our Artifact</span>
+        raw_data <span class="token operator">=</span> wandb<span class="token punctuation">.</span>Artifact<span class="token punctuation">(</span>
+            <span class="token string">"mnist-raw"</span><span class="token punctuation">,</span> type<span class="token operator">=</span><span class="token string">"dataset"</span><span class="token punctuation">,</span>
+            description<span class="token operator">=</span><span class="token string">"Raw MNIST dataset, split into train/val/test"</span><span class="token punctuation">,</span>
+            metadata<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">"source"</span><span class="token punctuation">:</span> <span class="token string">"torchvision.datasets.MNIST"</span><span class="token punctuation">,</span>
+                      <span class="token string">"sizes"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>len<span class="token punctuation">(</span>dataset<span class="token punctuation">)</span> <span class="token keyword">for</span> dataset <span class="token keyword">in</span> datasets<span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">for</span> name<span class="token punctuation">,</span> data <span class="token keyword">in</span> zip<span class="token punctuation">(</span>names<span class="token punctuation">,</span> datasets<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token comment" spellcheck="true"># 🐣 Store a new file in the artifact, and write something into its contents.</span>
+            <span class="token keyword">with</span> raw_data<span class="token punctuation">.</span>new_file<span class="token punctuation">(</span>name <span class="token operator">+</span> <span class="token string">".pt"</span><span class="token punctuation">,</span> mode<span class="token operator">=</span><span class="token string">"wb"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> file<span class="token punctuation">:</span>
+                x<span class="token punctuation">,</span> y <span class="token operator">=</span> data<span class="token punctuation">.</span>tensors
+                torch<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">,</span> file<span class="token punctuation">)</span>
+
+        <span class="token comment" spellcheck="true"># ✍️ Save the artifact to W&amp;B.</span>
+        run<span class="token punctuation">.</span>log_artifact<span class="token punctuation">(</span>raw_data<span class="token punctuation">)</span>
+
+load_and_log<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<h4 id="🚀-wandb-init"><a href="#🚀-wandb-init" class="headerlink" title="🚀 wandb.init"></a>🚀 <code>wandb.init</code></h4><p>当我们制作将要产生 <code>Artifact</code>s 的 <code>Run</code>时，我们需要说明它属于哪个 <code>project</code>。</p>
+<p>根据您的工作流程，项目可能大到 <code>car-that-drives-itself</code>，也可能小到 <code>iterative-architecture-experiment-117</code>。</p>
+<p>Depending on your workflow, a project might be as big as <code>car-that-drives-itself</code> or as small as <code>iterative-architecture-experiment-117</code>.</p>
+<blockquote>
+<p>👍规则：如果可以，请将所有共享 <code>Artifact</code>s 的 <code>Run</code>s 保留在一个项目中。这使事情变得简单，但不要担心 <code>Artifact</code>s 可以跨项目移植！</p>
+</blockquote>
+<p>为了帮助跟踪您可能运行的所有不同类型的作业，在进行 <code>Run</code>s 时提供 <code>job_type</code> 很有用。这可以使您的 Artifacts 图表保持整洁。</p>
+<blockquote>
+<p>👍规则：<code>job_type</code> 应该是描述性的，并且对应于你的管道的单个步骤。在这里，我们将 <code>load</code>ing 数据与 <code>preprocess</code>ing 数据分开。</p>
+</blockquote>
+<h4 id="🏺-wandb-Artifact"><a href="#🏺-wandb-Artifact" class="headerlink" title="🏺 wandb.Artifact"></a>🏺 <code>wandb.Artifact</code></h4><p>要将某物记录为 <code>Artifact</code>，我们必须首先创建一个 <code>Artifact</code> 对象。</p>
+<p>每个 <code>Artifact</code> 都有一个 <code>name</code>——这是第一个参数设置的名称。</p>
+<blockquote>
+<p>👍的规则：<code>name</code> 应该是描述性的，但易于记忆和输入——我们喜欢使用连字符分隔的名称，并与代码中的变量名相对应。</p>
+</blockquote>
+<p>它也有一个 <code>type</code>。就像 <code>Run</code>s 的 <code>job_types</code> 一样，它用于组织 <code>Run</code>s 和 <code>Artifact</code>s 的图表。</p>
+<blockquote>
+<p>👍的规则：<code>type</code> 应该简单：比 <code>mnist-data-YYYYMMDD</code> 更像 <code>dataset</code> 或 <code>model</code>。</p>
+</blockquote>
+<p>您还可以附加 <code>description</code> 和一些 <code>metadata</code>，作为字典。<code>metadata</code> 只需要可序列化为 JSON。</p>
+<blockquote>
+<p>👍规则：<code>metadata</code>应尽可能具有描述性。</p>
+</blockquote>
+<h4 id="🐣-artifact-new-file-and-✍️-run-log-artifact"><a href="#🐣-artifact-new-file-and-✍️-run-log-artifact" class="headerlink" title="🐣 artifact.new_file and ✍️ run.log_artifact"></a>🐣 <code>artifact.new_file</code> and ✍️ <code>run.log_artifact</code></h4><p>一旦我们创建了一个 <code>Artifact</code> 对象，我们需要向它添加文件。</p>
+<p>您没看错：带有 s 的 <em>files</em>。<code>Artifact</code>s 的结构类似于目录，包含文件和子目录。</p>
+<blockquote>
+<p>👍规则：只要有必要，将 <code>Artifact</code> 的内容拆分为多个文件。如果需要扩展，这将有所帮助！</p>
+</blockquote>
+<p>我们使用 <code>new_file</code> 方法同时写入文件并将其附加到 <code>Artifact</code>。下面，我们将使用 <code>add_file</code> 方法，它将这两个步骤分开</p>
+<p>添加完所有文件后，我们需要将 <code>log_artifact</code> 添加到 <a target="_blank" rel="noopener" href="https://wandb.ai/?_gl=1*r07jdw*_ga*MTUwMzMwNTA4NC4xNjg1MzI0NjI3*_ga_JH1SJHJQXJ*MTY4NjY1MzgzNC45LjEuMTY4NjY1MzgzOS41NS4wLjA.">wandb.ai</a>。</p>
+<p>您会注意到一些 URL 出现在输出中，包括一个用于运行页面的 URL。您可以在此处查看 <code>Run</code> 结果，包括已记录的任何 <code>Artifact</code>s。</p>
+<p>我们将在下面看到一些示例，这些示例可以更好地利用“运行”页面的其他组件。</p>
+<h3 id="2️⃣-Use-a-Logged-Dataset-Artifact"><a href="#2️⃣-Use-a-Logged-Dataset-Artifact" class="headerlink" title="2️⃣ Use a Logged Dataset Artifact"></a>2️⃣ Use a Logged Dataset Artifact</h3><p>与博物馆中的 artifacts 不同，W&amp;B 中的 <code>Artifact</code>s 旨在使用，而不仅仅是存储。</p>
+<p>让我们看看它是什么样的。</p>
+<p>下面的单元格定义了一个管道步骤，该步骤接收原始数据集并使用它来生成 <code>preprocess</code>ed  数据集：<code>normalize</code>d 和正确整形。</p>
+<p>再次注意，我们从与 <code>wandb</code> 接口的代码中分离出了代码的主体，即 <code>preprocess</code>。</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">preprocess</span><span class="token punctuation">(</span>dataset<span class="token punctuation">,</span> normalize<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> expand_dims<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    ## Prepare the data
+    """</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">=</span> dataset<span class="token punctuation">.</span>tensors
+
+    <span class="token keyword">if</span> normalize<span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># Scale images to the [0, 1] range</span>
+        x <span class="token operator">=</span> x<span class="token punctuation">.</span>type<span class="token punctuation">(</span>torch<span class="token punctuation">.</span>float32<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">255</span>
+
+    <span class="token keyword">if</span> expand_dims<span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># Make sure images have shape (1, 28, 28)</span>
+        x <span class="token operator">=</span> torch<span class="token punctuation">.</span>unsqueeze<span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    
+    <span class="token keyword">return</span> TensorDataset<span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+</code></pre>
+<p>现在是使用 <code>wandb.Artifact</code> 日志记录这个 <code>preprocess</code> 步骤的代码。</p>
+<p>请注意，下面的示例都 <code>use</code>s 了一个新的 <code>Artifact</code>，并将其 <code>log</code>s 下来，这与上一步相同。<code>Artifact</code>s 既是 <code>Run</code>s 的输入又是输出！</p>
+<p>我们使用一个新的 <code>job_type</code>，<code>preprocess-data</code>，来明确这是一个不同于之前的 job。</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">preprocess_and_log</span><span class="token punctuation">(</span>steps<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    <span class="token keyword">with</span> wandb<span class="token punctuation">.</span>init<span class="token punctuation">(</span>project<span class="token operator">=</span><span class="token string">"artifacts-example"</span><span class="token punctuation">,</span> job_type<span class="token operator">=</span><span class="token string">"preprocess-data"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> run<span class="token punctuation">:</span>
+
+        processed_data <span class="token operator">=</span> wandb<span class="token punctuation">.</span>Artifact<span class="token punctuation">(</span>
+            <span class="token string">"mnist-preprocess"</span><span class="token punctuation">,</span> type<span class="token operator">=</span><span class="token string">"dataset"</span><span class="token punctuation">,</span>
+            description<span class="token operator">=</span><span class="token string">"Preprocessed MNIST dataset"</span><span class="token punctuation">,</span>
+            metadata<span class="token operator">=</span>steps<span class="token punctuation">)</span>
+         
+        <span class="token comment" spellcheck="true"># ✔️ declare which artifact we'll be using</span>
+        raw_data_artifact <span class="token operator">=</span> run<span class="token punctuation">.</span>use_artifact<span class="token punctuation">(</span><span class="token string">'mnist-raw:latest'</span><span class="token punctuation">)</span>
+
+        <span class="token comment" spellcheck="true"># 📥 if need be, download the artifact</span>
+        raw_dataset <span class="token operator">=</span> raw_data_artifact<span class="token punctuation">.</span>download<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        
+        <span class="token keyword">for</span> split <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token string">"training"</span><span class="token punctuation">,</span> <span class="token string">"validation"</span><span class="token punctuation">,</span> <span class="token string">"test"</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+            raw_split <span class="token operator">=</span> read<span class="token punctuation">(</span>raw_dataset<span class="token punctuation">,</span> split<span class="token punctuation">)</span>
+            processed_dataset <span class="token operator">=</span> preprocess<span class="token punctuation">(</span>raw_split<span class="token punctuation">,</span> <span class="token operator">**</span>steps<span class="token punctuation">)</span>
+
+            <span class="token keyword">with</span> processed_data<span class="token punctuation">.</span>new_file<span class="token punctuation">(</span>split <span class="token operator">+</span> <span class="token string">".pt"</span><span class="token punctuation">,</span> mode<span class="token operator">=</span><span class="token string">"wb"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> file<span class="token punctuation">:</span>
+                x<span class="token punctuation">,</span> y <span class="token operator">=</span> processed_dataset<span class="token punctuation">.</span>tensors
+                torch<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">,</span> file<span class="token punctuation">)</span>
+
+        run<span class="token punctuation">.</span>log_artifact<span class="token punctuation">(</span>processed_data<span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">read</span><span class="token punctuation">(</span>data_dir<span class="token punctuation">,</span> split<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    filename <span class="token operator">=</span> split <span class="token operator">+</span> <span class="token string">".pt"</span>
+    x<span class="token punctuation">,</span> y <span class="token operator">=</span> torch<span class="token punctuation">.</span>load<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>data_dir<span class="token punctuation">,</span> filename<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> TensorDataset<span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+</code></pre>
+<p>这里要注意的一件事是预处理的 <code>steps</code> 作为 <code>metadata</code> 与 <code>preprocessed_data</code> 一起保存。</p>
+<p>如果您想让您的实验可重现，捕获大量元数据是个好主意！</p>
+<p>此外，即使我们的数据集是 “<code>large artifact</code>“，<code>download</code> 步骤也可以在不到一秒的时间内完成。</p>
+<p>展开下面的 markdown 单元格以了解详细信息。</p>
+<pre class=" language-python"><code class="language-python">steps <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"normalize"</span><span class="token punctuation">:</span> <span class="token boolean">True</span><span class="token punctuation">,</span>
+         <span class="token string">"expand_dims"</span><span class="token punctuation">:</span> <span class="token boolean">True</span><span class="token punctuation">}</span>
+
+preprocess_and_log<span class="token punctuation">(</span>steps<span class="token punctuation">)</span>
+</code></pre>
+<h4 id="✔️-run-use-artifact"><a href="#✔️-run-use-artifact" class="headerlink" title="✔️ run.use_artifact"></a>✔️ <code>run.use_artifact</code></h4><p>这些步骤比较简单。消费者只需要知道 <code>Artifact</code> 的<code>name</code>，再加上 bit more。</p>
+<p>“bit more” 是您想要的 <code>Artifact</code> 的特定版本的 <code>alias</code>。</p>
+<p>默认情况下，最后上传的版本被标记为<code>latest</code>。否则，您可以选择带有 <code>v0</code>/<code>v1</code> 等的旧版本，或者您可以提供自己的别名，例如 <code>best</code> 或 <code>jit-script</code>。就像 <a target="_blank" rel="noopener" href="https://hub.docker.com/">Docker Hub</a> 标签一样，别名与名称用 <code>:</code> 分隔，所以我们想要的 <code>Artifact</code> 是 <code>mnist-raw:latest</code>。</p>
+<blockquote>
+<p>👍规则：保持别名简短而甜美。当您想要满足某些属性的 <code>Artifact</code> 时，请使用自定义 <code>alias</code>es，如 <code>latest</code> 或 <code>best</code></p>
+</blockquote>
+<h4 id="📥-artifact-download"><a href="#📥-artifact-download" class="headerlink" title="📥 artifact.download"></a>📥 <code>artifact.download</code></h4><p>现在，您可能正在担心 <code>download</code> 调用。如果我们再下载一份，内存的负担会不会加倍？</p>
+<p>别担心，朋友。在我们实际下载任何东西之前，我们会检查本地是否有正确的版本。使用和版本控制 <code>git</code> 和 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Torrent_file">torrenting</a> 相同的技术：hashing。</p>
+<p>随着 <code>Artifact</code>s 的创建和记录，工作目录中名为 <code>artifacts</code> 的文件夹将开始填充子目录，每个 <code>Artifact</code>一个。使用  <code>!tree artifacts</code> 检查其内容：</p>
+<pre class=" language-python"><code class="language-python">!tree artifacts
+</code></pre>
+<h4 id="🌐-The-Artifacts-page-on-wandb-ai"><a href="#🌐-The-Artifacts-page-on-wandb-ai" class="headerlink" title="🌐 The Artifacts page on wandb.ai"></a>🌐 The Artifacts page on <a target="_blank" rel="noopener" href="https://wandb.ai/">wandb.ai</a></h4><p>现在我们已经记录并使用了一个 <code>Artifact</code>，让我们检查一下 Run 页面上的 Artifacts 选项卡。</p>
+<p>从<code> wandb</code> 输出导航到运行页面 URL，然后从左侧边栏中选择“工件”选项卡（它是带有数据库图标的选项卡，看起来像三个冰球叠在一起）。</p>
+<p>单击 “Input Artifacts” 表或 “Output Artifacts” 表中的一行，然后查看选项卡（”Overview”, “Metadata”）以查看记录的有关 <code>Artifact</code> 的所有内容。</p>
+<p>我们特别喜欢 “Graph View”。默认情况下，它显示一个图表，其中 <code>Artifact</code>s 的 <code>type</code>s 和 <code>Run</code> 的 <code>job_types</code> 是两种类型的节点，箭头代表消费和生产。</p>
+<h3 id="3️⃣-Log-a-Model"><a href="#3️⃣-Log-a-Model" class="headerlink" title="3️⃣ Log a Model"></a>3️⃣ Log a Model</h3><p>这足以了解 <code>Artifact</code>s 的 API 如何工作，但让我们按照这个示例一直到管道的末尾，以便我们可以了解 <code>Artifact</code>s 如何改进您的 ML 工作流程。</p>
+<p>这里的第一个单元格在 PyTorch 中构建了一个 DNN <code>model</code>——一个非常简单的 ConvNet。</p>
+<p>我们将从初始化 <code>model</code> 开始，而不是训练它。这样，我们可以重复训练，同时保持其他一切不变。</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">from</span> math <span class="token keyword">import</span> floor
+
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn <span class="token keyword">as</span> nn
+
+<span class="token keyword">class</span> <span class="token class-name">ConvNet</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> hidden_layer_sizes<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                  kernel_sizes<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                  activation<span class="token operator">=</span><span class="token string">"ReLU"</span><span class="token punctuation">,</span>
+                  pool_sizes<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                  dropout<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">,</span>
+                  num_classes<span class="token operator">=</span>num_classes<span class="token punctuation">,</span>
+                  input_shape<span class="token operator">=</span>input_shape<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      
+        super<span class="token punctuation">(</span>ConvNet<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        self<span class="token punctuation">.</span>layer1 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>
+              nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span>in_channels<span class="token operator">=</span>input_shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> out_channels<span class="token operator">=</span>hidden_layer_sizes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span>kernel_sizes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+              getattr<span class="token punctuation">(</span>nn<span class="token punctuation">,</span> activation<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+              nn<span class="token punctuation">.</span>MaxPool2d<span class="token punctuation">(</span>kernel_size<span class="token operator">=</span>pool_sizes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>layer2 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>
+              nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span>in_channels<span class="token operator">=</span>hidden_layer_sizes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> out_channels<span class="token operator">=</span>hidden_layer_sizes<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span>kernel_sizes<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+              getattr<span class="token punctuation">(</span>nn<span class="token punctuation">,</span> activation<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+              nn<span class="token punctuation">.</span>MaxPool2d<span class="token punctuation">(</span>kernel_size<span class="token operator">=</span>pool_sizes<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>layer3 <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>
+              nn<span class="token punctuation">.</span>Flatten<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+              nn<span class="token punctuation">.</span>Dropout<span class="token punctuation">(</span>dropout<span class="token punctuation">)</span>
+        <span class="token punctuation">)</span>
+
+        fc_input_dims <span class="token operator">=</span> floor<span class="token punctuation">(</span><span class="token punctuation">(</span>input_shape<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> kernel_sizes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">/</span> pool_sizes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># layer 1 output size</span>
+        fc_input_dims <span class="token operator">=</span> floor<span class="token punctuation">(</span><span class="token punctuation">(</span>fc_input_dims <span class="token operator">-</span> kernel_sizes<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">/</span> pool_sizes<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># layer 2 output size</span>
+        fc_input_dims <span class="token operator">=</span> fc_input_dims<span class="token operator">*</span>fc_input_dims<span class="token operator">*</span>hidden_layer_sizes<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true"># layer 3 output size</span>
+
+        self<span class="token punctuation">.</span>fc <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>fc_input_dims<span class="token punctuation">,</span> num_classes<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        x <span class="token operator">=</span> self<span class="token punctuation">.</span>layer1<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x <span class="token operator">=</span> self<span class="token punctuation">.</span>layer2<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x <span class="token operator">=</span> self<span class="token punctuation">.</span>layer3<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x <span class="token operator">=</span> self<span class="token punctuation">.</span>fc<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> x
+</code></pre>
+<p>在这里，我们使用 W&amp;B 来跟踪运行，因此使用 <code>wandb.config</code> 对象来存储所有超参数。</p>
+<p>该 <code>config</code> 对象的 <code>dict</code>ionary 版本是一个非常有用的 <code>metadata</code>，所以一定要包含它！</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">build_model_and_log</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">with</span> wandb<span class="token punctuation">.</span>init<span class="token punctuation">(</span>project<span class="token operator">=</span><span class="token string">"artifacts-example"</span><span class="token punctuation">,</span> job_type<span class="token operator">=</span><span class="token string">"initialize"</span><span class="token punctuation">,</span> config<span class="token operator">=</span>config<span class="token punctuation">)</span> <span class="token keyword">as</span> run<span class="token punctuation">:</span>
+        config <span class="token operator">=</span> wandb<span class="token punctuation">.</span>config
+        
+        model <span class="token operator">=</span> ConvNet<span class="token punctuation">(</span><span class="token operator">**</span>config<span class="token punctuation">)</span>
+
+        model_artifact <span class="token operator">=</span> wandb<span class="token punctuation">.</span>Artifact<span class="token punctuation">(</span>
+            <span class="token string">"convnet"</span><span class="token punctuation">,</span> type<span class="token operator">=</span><span class="token string">"model"</span><span class="token punctuation">,</span>
+            description<span class="token operator">=</span><span class="token string">"Simple AlexNet style CNN"</span><span class="token punctuation">,</span>
+            metadata<span class="token operator">=</span>dict<span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        torch<span class="token punctuation">.</span>save<span class="token punctuation">(</span>model<span class="token punctuation">.</span>state_dict<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"initialized_model.pth"</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># ➕ another way to add a file to an Artifact</span>
+        model_artifact<span class="token punctuation">.</span>add_file<span class="token punctuation">(</span><span class="token string">"initialized_model.pth"</span><span class="token punctuation">)</span>
+
+        wandb<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token string">"initialized_model.pth"</span><span class="token punctuation">)</span>
+
+        run<span class="token punctuation">.</span>log_artifact<span class="token punctuation">(</span>model_artifact<span class="token punctuation">)</span>
+
+model_config <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"hidden_layer_sizes"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token string">"kernel_sizes"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token string">"activation"</span><span class="token punctuation">:</span> <span class="token string">"ReLU"</span><span class="token punctuation">,</span>
+                <span class="token string">"pool_sizes"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token string">"dropout"</span><span class="token punctuation">:</span> <span class="token number">0.5</span><span class="token punctuation">,</span>
+                <span class="token string">"num_classes"</span><span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">}</span>
+
+build_model_and_log<span class="token punctuation">(</span>model_config<span class="token punctuation">)</span>
+</code></pre>
+<h4 id="➕-artifact-add-file"><a href="#➕-artifact-add-file" class="headerlink" title="➕ artifact.add_file"></a>➕ <code>artifact.add_file</code></h4><p>与在数据集日志记录示例中同时编写 <code>new_file</code> 并将其添加到 <code>Artifact</code> 不同，我们还可以一步写入文件（此处为 <code>torch.save</code>），然后在另一步中将它们 <code>add</code> 到 <code>Artifact</code>。</p>
+<blockquote>
+<p>👍规则：尽可能使用 <code>new_file</code>，以防止重复。</p>
+</blockquote>
+<h3 id="4️⃣-Use-a-Logged-Model-Artifact"><a href="#4️⃣-Use-a-Logged-Model-Artifact" class="headerlink" title="4️⃣ Use a Logged Model Artifact"></a>4️⃣ Use a Logged Model Artifact</h3><p>就像我们可以在 <code>dataset</code> 上调用 <code>use_artifact</code> 一样，我们可以在我们的 <code>initialized_model</code> 上调用它以在另一个运行中使用它。</p>
+<p>这一次，让我们 <code>train</code> <code>model</code>。</p>
+<p>有关更多详细信息，请查看我们关于 <a target="_blank" rel="noopener" href="http://wandb.me/pytorch-colab">instrumenting W&amp;B with PyTorch</a> 的 Colab。</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>functional <span class="token keyword">as</span> F
+
+<span class="token keyword">def</span> <span class="token function">train</span><span class="token punctuation">(</span>model<span class="token punctuation">,</span> train_loader<span class="token punctuation">,</span> valid_loader<span class="token punctuation">,</span> config<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    optimizer <span class="token operator">=</span> getattr<span class="token punctuation">(</span>torch<span class="token punctuation">.</span>optim<span class="token punctuation">,</span> config<span class="token punctuation">.</span>optimizer<span class="token punctuation">)</span><span class="token punctuation">(</span>model<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    model<span class="token punctuation">.</span>train<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    example_ct <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">for</span> epoch <span class="token keyword">in</span> range<span class="token punctuation">(</span>config<span class="token punctuation">.</span>epochs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> batch_idx<span class="token punctuation">,</span> <span class="token punctuation">(</span>data<span class="token punctuation">,</span> target<span class="token punctuation">)</span> <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>train_loader<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            data<span class="token punctuation">,</span> target <span class="token operator">=</span> data<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span><span class="token punctuation">,</span> target<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+            optimizer<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            output <span class="token operator">=</span> model<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+            loss <span class="token operator">=</span> F<span class="token punctuation">.</span>cross_entropy<span class="token punctuation">(</span>output<span class="token punctuation">,</span> target<span class="token punctuation">)</span>
+            loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+            example_ct <span class="token operator">+=</span> len<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+
+            <span class="token keyword">if</span> batch_idx <span class="token operator">%</span> config<span class="token punctuation">.</span>batch_log_interval <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Train Epoch: {} [{}/{} ({:.0%})]\tLoss: {:.6f}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>
+                    epoch<span class="token punctuation">,</span> batch_idx <span class="token operator">*</span> len<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">,</span> len<span class="token punctuation">(</span>train_loader<span class="token punctuation">.</span>dataset<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                    batch_idx <span class="token operator">/</span> len<span class="token punctuation">(</span>train_loader<span class="token punctuation">)</span><span class="token punctuation">,</span> loss<span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                
+                train_log<span class="token punctuation">(</span>loss<span class="token punctuation">,</span> example_ct<span class="token punctuation">,</span> epoch<span class="token punctuation">)</span>
+
+        <span class="token comment" spellcheck="true"># evaluate the model on the validation set at each epoch</span>
+        loss<span class="token punctuation">,</span> accuracy <span class="token operator">=</span> test<span class="token punctuation">(</span>model<span class="token punctuation">,</span> valid_loader<span class="token punctuation">)</span>  
+        test_log<span class="token punctuation">(</span>loss<span class="token punctuation">,</span> accuracy<span class="token punctuation">,</span> example_ct<span class="token punctuation">,</span> epoch<span class="token punctuation">)</span>
+
+    
+<span class="token keyword">def</span> <span class="token function">test</span><span class="token punctuation">(</span>model<span class="token punctuation">,</span> test_loader<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    model<span class="token punctuation">.</span>eval<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    test_loss <span class="token operator">=</span> <span class="token number">0</span>
+    correct <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">with</span> torch<span class="token punctuation">.</span>no_grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> data<span class="token punctuation">,</span> target <span class="token keyword">in</span> test_loader<span class="token punctuation">:</span>
+            data<span class="token punctuation">,</span> target <span class="token operator">=</span> data<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span><span class="token punctuation">,</span> target<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+            output <span class="token operator">=</span> model<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+            test_loss <span class="token operator">+=</span> F<span class="token punctuation">.</span>cross_entropy<span class="token punctuation">(</span>output<span class="token punctuation">,</span> target<span class="token punctuation">,</span> reduction<span class="token operator">=</span><span class="token string">'sum'</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># sum up batch loss</span>
+            pred <span class="token operator">=</span> output<span class="token punctuation">.</span>argmax<span class="token punctuation">(</span>dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> keepdim<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># get the index of the max log-probability</span>
+            correct <span class="token operator">+=</span> pred<span class="token punctuation">.</span>eq<span class="token punctuation">(</span>target<span class="token punctuation">.</span>view_as<span class="token punctuation">(</span>pred<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>sum<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    test_loss <span class="token operator">/=</span> len<span class="token punctuation">(</span>test_loader<span class="token punctuation">.</span>dataset<span class="token punctuation">)</span>
+
+    accuracy <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">.</span> <span class="token operator">*</span> correct <span class="token operator">/</span> len<span class="token punctuation">(</span>test_loader<span class="token punctuation">.</span>dataset<span class="token punctuation">)</span>
+    
+    <span class="token keyword">return</span> test_loss<span class="token punctuation">,</span> accuracy
+
+
+<span class="token keyword">def</span> <span class="token function">train_log</span><span class="token punctuation">(</span>loss<span class="token punctuation">,</span> example_ct<span class="token punctuation">,</span> epoch<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    loss <span class="token operator">=</span> float<span class="token punctuation">(</span>loss<span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># where the magic happens</span>
+    wandb<span class="token punctuation">.</span>log<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"epoch"</span><span class="token punctuation">:</span> epoch<span class="token punctuation">,</span> <span class="token string">"train/loss"</span><span class="token punctuation">:</span> loss<span class="token punctuation">}</span><span class="token punctuation">,</span> step<span class="token operator">=</span>example_ct<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token string">"Loss after "</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>example_ct<span class="token punctuation">)</span><span class="token punctuation">.</span>zfill<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">+</span> f<span class="token string">" examples: {loss:.3f}"</span><span class="token punctuation">)</span>
+    
+
+<span class="token keyword">def</span> <span class="token function">test_log</span><span class="token punctuation">(</span>loss<span class="token punctuation">,</span> accuracy<span class="token punctuation">,</span> example_ct<span class="token punctuation">,</span> epoch<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    loss <span class="token operator">=</span> float<span class="token punctuation">(</span>loss<span class="token punctuation">)</span>
+    accuracy <span class="token operator">=</span> float<span class="token punctuation">(</span>accuracy<span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># where the magic happens</span>
+    wandb<span class="token punctuation">.</span>log<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"epoch"</span><span class="token punctuation">:</span> epoch<span class="token punctuation">,</span> <span class="token string">"validation/loss"</span><span class="token punctuation">:</span> loss<span class="token punctuation">,</span> <span class="token string">"validation/accuracy"</span><span class="token punctuation">:</span> accuracy<span class="token punctuation">}</span><span class="token punctuation">,</span> step<span class="token operator">=</span>example_ct<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>f<span class="token string">"Loss/accuracy after "</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>example_ct<span class="token punctuation">)</span><span class="token punctuation">.</span>zfill<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">+</span> f<span class="token string">" examples: {loss:.3f}/{accuracy:.3f}"</span><span class="token punctuation">)</span>
+</code></pre>
+<p>这次我们将运行两个独立的 <code>Artifact</code> 生产 <code>Run</code>s。</p>
+<p>一旦第一个完成 <code>train</code>ing <code>model</code>，第二个将通过评估其在 <code>test_dataset</code> 上的性能来使用 <code>trained-model</code> <code>Artifact</code>。</p>
+<p>此外，我们将提取网络最混乱的 32 个示例——在这些示例中，<code>categorical_crossentropy</code> 最高。</p>
+<p>这是诊断数据集和模型问题的好方法！</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">evaluate</span><span class="token punctuation">(</span>model<span class="token punctuation">,</span> test_loader<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    ## Evaluate the trained model
+    """</span>
+
+    loss<span class="token punctuation">,</span> accuracy <span class="token operator">=</span> test<span class="token punctuation">(</span>model<span class="token punctuation">,</span> test_loader<span class="token punctuation">)</span>
+    highest_losses<span class="token punctuation">,</span> hardest_examples<span class="token punctuation">,</span> true_labels<span class="token punctuation">,</span> predictions <span class="token operator">=</span> get_hardest_k_examples<span class="token punctuation">(</span>model<span class="token punctuation">,</span> test_loader<span class="token punctuation">.</span>dataset<span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> loss<span class="token punctuation">,</span> accuracy<span class="token punctuation">,</span> highest_losses<span class="token punctuation">,</span> hardest_examples<span class="token punctuation">,</span> true_labels<span class="token punctuation">,</span> predictions
+
+<span class="token keyword">def</span> <span class="token function">get_hardest_k_examples</span><span class="token punctuation">(</span>model<span class="token punctuation">,</span> testing_set<span class="token punctuation">,</span> k<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    model<span class="token punctuation">.</span>eval<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    loader <span class="token operator">=</span> DataLoader<span class="token punctuation">(</span>testing_set<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> shuffle<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># get the losses and predictions for each item in the dataset</span>
+    losses <span class="token operator">=</span> None
+    predictions <span class="token operator">=</span> None
+    <span class="token keyword">with</span> torch<span class="token punctuation">.</span>no_grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> data<span class="token punctuation">,</span> target <span class="token keyword">in</span> loader<span class="token punctuation">:</span>
+            data<span class="token punctuation">,</span> target <span class="token operator">=</span> data<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span><span class="token punctuation">,</span> target<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+            output <span class="token operator">=</span> model<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+            loss <span class="token operator">=</span> F<span class="token punctuation">.</span>cross_entropy<span class="token punctuation">(</span>output<span class="token punctuation">,</span> target<span class="token punctuation">)</span>
+            pred <span class="token operator">=</span> output<span class="token punctuation">.</span>argmax<span class="token punctuation">(</span>dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> keepdim<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+            
+            <span class="token keyword">if</span> losses <span class="token keyword">is</span> None<span class="token punctuation">:</span>
+                losses <span class="token operator">=</span> loss<span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                predictions <span class="token operator">=</span> pred
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                losses <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">(</span>losses<span class="token punctuation">,</span> loss<span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+                predictions <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">(</span>predictions<span class="token punctuation">,</span> pred<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+
+    argsort_loss <span class="token operator">=</span> torch<span class="token punctuation">.</span>argsort<span class="token punctuation">(</span>losses<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+
+    highest_k_losses <span class="token operator">=</span> losses<span class="token punctuation">[</span>argsort_loss<span class="token punctuation">[</span><span class="token operator">-</span>k<span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+    hardest_k_examples <span class="token operator">=</span> testing_set<span class="token punctuation">[</span>argsort_loss<span class="token punctuation">[</span><span class="token operator">-</span>k<span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+    true_labels <span class="token operator">=</span> testing_set<span class="token punctuation">[</span>argsort_loss<span class="token punctuation">[</span><span class="token operator">-</span>k<span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+    predicted_labels <span class="token operator">=</span> predictions<span class="token punctuation">[</span>argsort_loss<span class="token punctuation">[</span><span class="token operator">-</span>k<span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">return</span> highest_k_losses<span class="token punctuation">,</span> hardest_k_examples<span class="token punctuation">,</span> true_labels<span class="token punctuation">,</span> predicted_labels
+</code></pre>
+<p>这些日志记录功能不会添加任何新的 <code>Artifact</code> 功能，因此我们不会对其进行评论：我们只是在使用、下载和记录 <code>Artifact</code>s。</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">from</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data <span class="token keyword">import</span> DataLoader
+
+<span class="token keyword">def</span> <span class="token function">train_and_log</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    <span class="token keyword">with</span> wandb<span class="token punctuation">.</span>init<span class="token punctuation">(</span>project<span class="token operator">=</span><span class="token string">"artifacts-example"</span><span class="token punctuation">,</span> job_type<span class="token operator">=</span><span class="token string">"train"</span><span class="token punctuation">,</span> config<span class="token operator">=</span>config<span class="token punctuation">)</span> <span class="token keyword">as</span> run<span class="token punctuation">:</span>
+        config <span class="token operator">=</span> wandb<span class="token punctuation">.</span>config
+
+        data <span class="token operator">=</span> run<span class="token punctuation">.</span>use_artifact<span class="token punctuation">(</span><span class="token string">'mnist-preprocess:latest'</span><span class="token punctuation">)</span>
+        data_dir <span class="token operator">=</span> data<span class="token punctuation">.</span>download<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        training_dataset <span class="token operator">=</span>  read<span class="token punctuation">(</span>data_dir<span class="token punctuation">,</span> <span class="token string">"training"</span><span class="token punctuation">)</span>
+        validation_dataset <span class="token operator">=</span> read<span class="token punctuation">(</span>data_dir<span class="token punctuation">,</span> <span class="token string">"validation"</span><span class="token punctuation">)</span>
+
+        train_loader <span class="token operator">=</span> DataLoader<span class="token punctuation">(</span>training_dataset<span class="token punctuation">,</span> batch_size<span class="token operator">=</span>config<span class="token punctuation">.</span>batch_size<span class="token punctuation">)</span>
+        validation_loader <span class="token operator">=</span> DataLoader<span class="token punctuation">(</span>validation_dataset<span class="token punctuation">,</span> batch_size<span class="token operator">=</span>config<span class="token punctuation">.</span>batch_size<span class="token punctuation">)</span>
+        
+        model_artifact <span class="token operator">=</span> run<span class="token punctuation">.</span>use_artifact<span class="token punctuation">(</span><span class="token string">"convnet:latest"</span><span class="token punctuation">)</span>
+        model_dir <span class="token operator">=</span> model_artifact<span class="token punctuation">.</span>download<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        model_path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>model_dir<span class="token punctuation">,</span> <span class="token string">"initialized_model.pth"</span><span class="token punctuation">)</span>
+        model_config <span class="token operator">=</span> model_artifact<span class="token punctuation">.</span>metadata
+        config<span class="token punctuation">.</span>update<span class="token punctuation">(</span>model_config<span class="token punctuation">)</span>
+
+        model <span class="token operator">=</span> ConvNet<span class="token punctuation">(</span><span class="token operator">**</span>model_config<span class="token punctuation">)</span>
+        model<span class="token punctuation">.</span>load_state_dict<span class="token punctuation">(</span>torch<span class="token punctuation">.</span>load<span class="token punctuation">(</span>model_path<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        model <span class="token operator">=</span> model<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+ 
+        train<span class="token punctuation">(</span>model<span class="token punctuation">,</span> train_loader<span class="token punctuation">,</span> validation_loader<span class="token punctuation">,</span> config<span class="token punctuation">)</span>
+
+        model_artifact <span class="token operator">=</span> wandb<span class="token punctuation">.</span>Artifact<span class="token punctuation">(</span>
+            <span class="token string">"trained-model"</span><span class="token punctuation">,</span> type<span class="token operator">=</span><span class="token string">"model"</span><span class="token punctuation">,</span>
+            description<span class="token operator">=</span><span class="token string">"Trained NN model"</span><span class="token punctuation">,</span>
+            metadata<span class="token operator">=</span>dict<span class="token punctuation">(</span>model_config<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        torch<span class="token punctuation">.</span>save<span class="token punctuation">(</span>model<span class="token punctuation">.</span>state_dict<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"trained_model.pth"</span><span class="token punctuation">)</span>
+        model_artifact<span class="token punctuation">.</span>add_file<span class="token punctuation">(</span><span class="token string">"trained_model.pth"</span><span class="token punctuation">)</span>
+        wandb<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token string">"trained_model.pth"</span><span class="token punctuation">)</span>
+
+        run<span class="token punctuation">.</span>log_artifact<span class="token punctuation">(</span>model_artifact<span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> model
+
+    
+<span class="token keyword">def</span> <span class="token function">evaluate_and_log</span><span class="token punctuation">(</span>config<span class="token operator">=</span>None<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    
+    <span class="token keyword">with</span> wandb<span class="token punctuation">.</span>init<span class="token punctuation">(</span>project<span class="token operator">=</span><span class="token string">"artifacts-example"</span><span class="token punctuation">,</span> job_type<span class="token operator">=</span><span class="token string">"report"</span><span class="token punctuation">,</span> config<span class="token operator">=</span>config<span class="token punctuation">)</span> <span class="token keyword">as</span> run<span class="token punctuation">:</span>
+        data <span class="token operator">=</span> run<span class="token punctuation">.</span>use_artifact<span class="token punctuation">(</span><span class="token string">'mnist-preprocess:latest'</span><span class="token punctuation">)</span>
+        data_dir <span class="token operator">=</span> data<span class="token punctuation">.</span>download<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        testing_set <span class="token operator">=</span> read<span class="token punctuation">(</span>data_dir<span class="token punctuation">,</span> <span class="token string">"test"</span><span class="token punctuation">)</span>
+
+        test_loader <span class="token operator">=</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data<span class="token punctuation">.</span>DataLoader<span class="token punctuation">(</span>testing_set<span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">128</span><span class="token punctuation">,</span> shuffle<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+
+        model_artifact <span class="token operator">=</span> run<span class="token punctuation">.</span>use_artifact<span class="token punctuation">(</span><span class="token string">"trained-model:latest"</span><span class="token punctuation">)</span>
+        model_dir <span class="token operator">=</span> model_artifact<span class="token punctuation">.</span>download<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        model_path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>model_dir<span class="token punctuation">,</span> <span class="token string">"trained_model.pth"</span><span class="token punctuation">)</span>
+        model_config <span class="token operator">=</span> model_artifact<span class="token punctuation">.</span>metadata
+
+        model <span class="token operator">=</span> ConvNet<span class="token punctuation">(</span><span class="token operator">**</span>model_config<span class="token punctuation">)</span>
+        model<span class="token punctuation">.</span>load_state_dict<span class="token punctuation">(</span>torch<span class="token punctuation">.</span>load<span class="token punctuation">(</span>model_path<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        model<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+
+        loss<span class="token punctuation">,</span> accuracy<span class="token punctuation">,</span> highest_losses<span class="token punctuation">,</span> hardest_examples<span class="token punctuation">,</span> true_labels<span class="token punctuation">,</span> preds <span class="token operator">=</span> evaluate<span class="token punctuation">(</span>model<span class="token punctuation">,</span> test_loader<span class="token punctuation">)</span>
+
+        run<span class="token punctuation">.</span>summary<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"loss"</span><span class="token punctuation">:</span> loss<span class="token punctuation">,</span> <span class="token string">"accuracy"</span><span class="token punctuation">:</span> accuracy<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+        wandb<span class="token punctuation">.</span>log<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">"high-loss-examples"</span><span class="token punctuation">:</span>
+            <span class="token punctuation">[</span>wandb<span class="token punctuation">.</span>Image<span class="token punctuation">(</span>hard_example<span class="token punctuation">,</span> caption<span class="token operator">=</span>str<span class="token punctuation">(</span>int<span class="token punctuation">(</span>pred<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">","</span> <span class="token operator">+</span>  str<span class="token punctuation">(</span>int<span class="token punctuation">(</span>label<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+             <span class="token keyword">for</span> hard_example<span class="token punctuation">,</span> pred<span class="token punctuation">,</span> label <span class="token keyword">in</span> zip<span class="token punctuation">(</span>hardest_examples<span class="token punctuation">,</span> preds<span class="token punctuation">,</span> true_labels<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-python"><code class="language-python">train_config <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"batch_size"</span><span class="token punctuation">:</span> <span class="token number">128</span><span class="token punctuation">,</span>
+                <span class="token string">"epochs"</span><span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+                <span class="token string">"batch_log_interval"</span><span class="token punctuation">:</span> <span class="token number">25</span><span class="token punctuation">,</span>
+                <span class="token string">"optimizer"</span><span class="token punctuation">:</span> <span class="token string">"Adam"</span><span class="token punctuation">}</span>
+
+model <span class="token operator">=</span> train_and_log<span class="token punctuation">(</span>train_config<span class="token punctuation">)</span>
+evaluate_and_log<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<h4 id="🔁-The-Graph-View"><a href="#🔁-The-Graph-View" class="headerlink" title="🔁 The Graph View"></a>🔁 The Graph View</h4><p>请注意，我们更改了 <code>Artifact</code> 的 <code>type</code>：这些 <code>Run</code>s 使用的是模型，而不是数据集。在 Artifacts 页面的图形视图中，生产模型的 <code>Run</code>s 将与生成 <code>dataset</code>s 的运行分开。</p>
+<p>去看看吧！和以前一样，您需要前往 Run 页面，从左侧栏中选择 “Artifacts” 选项卡，选择一个 <code>Artifact</code>，然后单击 “Graph View” 选项卡。</p>
+<h4 id="💣-Exploded-Graphs"><a href="#💣-Exploded-Graphs" class="headerlink" title="💣 Exploded Graphs"></a>💣 Exploded Graphs</h4><p>您可能已经注意到标有“爆炸”的按钮。不要点击它，因为它会在 W&amp;B 总部您不起眼的作者办公桌下引爆一枚小炸弹！</p>
+<p>只是在开玩笑。它以更温和的方式“分解”图表：<code>Artifact</code>s 和 <code>Run</code>s 在单个实例级别而不是类型级别分离：节点不是 <code>dataset</code> 和 <code>load-data</code>，而是 <code>dataset:mnist-raw:v1</code> 和 <code>load-data:sunny-smoke-1</code>，等等。</p>
+<p>这提供了对您的管道的全面洞察，记录的指标、元数据等都触手可及——您仅受限于您选择与我们一起记录的内容。</p>
+
                 
             </div>
             <hr/>
@@ -1222,15 +1713,15 @@ device <span class="token operator">=</span> torch<span class="token punctuation
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="WandB 学习日记（一）Doc">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="WandB 学习日记（一）Tutorials">
                         
-                        <span class="card-title">WandB 学习日记（一）Doc</span>
+                        <span class="card-title">WandB 学习日记（一）Tutorials</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            WandB 学习日记（一）Doc
+                            WandB 学习日记（一）Tutorials
                         
                     </div>
                     <div class="publish-info">
@@ -1496,7 +1987,7 @@ device <span class="token operator">=</span> torch<span class="token punctuation
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">15k</span>
+                        class="white-color">18.9k</span>
             
             
             
