@@ -54,9 +54,9 @@
     
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.2">
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="培根请加蛋" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="培根请加蛋" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
@@ -407,14 +407,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    5 分
                 </div>
                 
 
@@ -456,11 +456,11 @@
 <h3 id="集合聚合操作"><a href="#集合聚合操作" class="headerlink" title="集合聚合操作"></a>集合聚合操作</h3><p><strong>集合池化</strong></p>
 <p>一种定义聚合函数的原则是基于置换不变神经网络的理论，具有下式的聚合函数是通用的集合函数逼近器：<br>$$<br>m_{\mathcal{N}(u)} = MLP_{\theta} (\sum_{v \in \mathcal{N}(u)} MLP_{\phi}(h_v))<br>$$<br>依照惯例用 $MLP_{\theta}$ 表示可训练参数为 $\theta$ 的任一深度多层感知器。将一组嵌入映射到一个嵌入的任何置换不变函数都可以基于上式的模型逼近到任意精度。</p>
 <p><strong>Janossy 池化</strong></p>
-<p>不使用置换不变的压缩方法（如求和或取均值），而是采用置换敏感的函数并对多种可能的置换取均值。具体操作为：令 $\pi_i \in \Pi$ 表示将集合 ${h_v, \forall v \in \mathcal{N}(u)}$ 映射到特定序列 $((h_{v_1}, h_{v_2}, \cdots, h_{v_{| \mathcal{N}(u) |}})<em>{\pi_i})$ 的置换函数。即 $\pi_i$ 将无序的邻居嵌入集置于任意排列的序列中。然后通过 Janossy 池化实现邻域聚合，如下式所示：<br>$$<br>m</em>{\mathcal{N}(u)} = MLP_{\theta} (\frac{1}{|\Pi|} \sum_{\pi \in \Pi} \rho_{\phi} (h_{v_1}, h_{v_2}, \cdots, h_{v_{|\mathcal{N}(u)|}})_{\pi_i})<br>$$</p>
+<p>不使用置换不变的压缩方法（如求和或取均值），而是采用置换敏感的函数并对多种可能的置换取均值。具体操作为：令 $\pi_i \in \Pi$ 表示将集合 ${h_v, \forall v \in \mathcal{N}(u)}$ 映射到特定序列 $((h_{v_1}, h_{v_2}, \cdots, h_{v_{| \mathcal{N}(u) |}})_{\pi_i})$ 的置换函数。即 $\pi_i$ 将无序的邻居嵌入集置于任意排列的序列中。然后通过 Janossy 池化实现邻域聚合，如下式所示：</p>
 <p>$$<br>m_{\mathcal{N}(u)} = MLP_{\theta} (\frac{1}{|\Pi|} \sum_{\pi \in \Pi} \rho_{\phi} (h_{v_1}, h_{v_2}, \cdots, h_{v_{|\mathcal{N}(u)|}})_{\pi_i})<br>$$</p>
 <p>其中，$\Pi$ 表示一组置换函数， $\rho_{\phi}$ 是置换敏感的函数（如应用于序列数据集的神经网络）。在实践中，通常将 $\rho_{\phi}$ 定义为 LSTM。</p>
 <p>如果上式中的置换函数集合 $\Pi$ 包含所有可能的置换函数，则上式中的聚合函数也是通用集合函数逼近器。但是对所有可能的置换求和很困难，在实践中通常采用如下两种方法进行 Janossy 池化：</p>
-<p>1 在每次应用聚合函数时，<br>$$<br>m_{\mathcal{N}(u)} = MLP_{\theta} (\frac{1}{|\Pi|} \sum_{\pi \in \Pi} \rho_{\phi} (h_{v_1}, h_{v_2}, \cdots, h_{v_{|\mathcal{N}(u)|}})_{\pi_i})<br>$$</p>
+<p>1 在每次应用聚合函数时，</p>
 
                 
             </div>
@@ -882,7 +882,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">19k</span>
+                        class="white-color">18.9k</span>
             
             
             
