@@ -54,9 +54,9 @@
     
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="培根请加蛋" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.4.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="培根请加蛋" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
@@ -440,7 +440,7 @@
             <div id="articleContent">
                 <h2 id="Track-experiments"><a href="#Track-experiments" class="headerlink" title="Track experiments"></a>Track experiments</h2><p>快速实验是机器学习的基础。在本教程中，我们使用 W&amp;B 来跟踪和可视化实验，以便我们可以快速迭代和理解我们的结果。</p>
 <h3 id="A-shared-dashboard-for-your-experiments"><a href="#A-shared-dashboard-for-your-experiments" class="headerlink" title="A shared dashboard for your experiments"></a>A shared dashboard for your experiments</h3><p>只需几行代码，您就可以获得丰富的、交互式的、可共享的仪表板，您可以在这里看到<a target="_blank" rel="noopener" href="https://wandb.ai/wandb/wandb_example?_gl=1*1ycseye*_ga*MTUwMzMwNTA4NC4xNjg1MzI0NjI3*_ga_JH1SJHJQXJ*MTY4NjU0ODg1NC40LjEuMTY4NjU1MDE0OC41MC4wLjA.">自己的 dashboard </a>。</p>
-<p><img src="https://i.imgur.com/Pell4Oo.png" alt="img"></p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedPell4Oo.png" alt="dashboard"></p>
 <h3 id="Data-amp-Privacy"><a href="#Data-amp-Privacy" class="headerlink" title="Data &amp; Privacy"></a>Data &amp; Privacy</h3><p>我们非常重视安全性，我们的云托管 dashboard 使用行业标准最佳加密实践。如果您正在使用无法离开企业集群的数据集，我们可以提供<a target="_blank" rel="noopener" href="https://docs.wandb.com/self-hosted">本地安装</a>。</p>
 <p>下载所有数据并将其导出到其他工具也很容易——例如在 Jupyter 笔记本中进行自定义分析。下面是关于我们 <a target="_blank" rel="noopener" href="https://docs.wandb.com/library/api">API</a> 的更多信息。</p>
 <h3 id="Install-wandb-library-and-login"><a href="#Install-wandb-library-and-login" class="headerlink" title="Install wandb library and login"></a>Install <code>wandb</code> library and login</h3><p>首先安装库并登录到您的免费帐户。</p>
@@ -662,14 +662,14 @@ wandb<span class="token punctuation">.</span>finish<span class="token punctuatio
 <li>比较模型预测或结果：动态地跨越特定图像、超参数/模型版本或时间步长。</li>
 </ol>
 <h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><h4 id="Compare-predicted-scores-for-specific-images"><a href="#Compare-predicted-scores-for-specific-images" class="headerlink" title="Compare predicted scores for specific images"></a>Compare predicted scores for specific images</h4><p><a target="_blank" rel="noopener" href="https://wandb.ai/stacey/table-quickstart/reports/CNN-2-Progress-over-Training-Time--Vmlldzo3NDY5ODU?_gl=1*6z1980*_ga*MTUwMzMwNTA4NC4xNjg1MzI0NjI3*_ga_JH1SJHJQXJ*MTY4NjU0ODg1NC40LjEuMTY4NjU1MTg0Ni4zOC4wLjA.#compare-predictions-after-1-vs-5-epochs">实例：比较 1 和 5 个训练周期后的预测</a></p>
-<p><img src="https://i.imgur.com/NMme6Qj.png" alt="1 epoch vs 5 epochs of training"></p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedNMme6Qj.png" alt="1 epoch vs 5 epochs of training"></p>
 <p>直方图比较了两个模型之间的每类分数。每个直方图中顶部的绿色条代表模型“CNN-2, 1 epoch”（id 0），它只训练了 1 个 epoch。底部的紫色条代表模型“CNN-2, 5 epochs” (id 1)，它训练了 5 个 epochs。图像被过滤到模型不一致的情况。例如，在第一行中，“4”在 1 个时期后在所有可能的数字中获得高分，但在 5 个时期后，它在正确标签上得分最高，而在其余部分得分非常低。</p>
 <h4 id="Focus-on-top-errors-over-time"><a href="#Focus-on-top-errors-over-time" class="headerlink" title="Focus on top errors over time"></a>Focus on top errors over time</h4><p><a target="_blank" rel="noopener" href="https://wandb.ai/stacey/table-quickstart/reports/CNN-2-Progress-over-Training-Time--Vmlldzo3NDY5ODU?_gl=1*1nxbzl7*_ga*MTUwMzMwNTA4NC4xNjg1MzI0NjI3*_ga_JH1SJHJQXJ*MTY4NjU0ODg1NC40LjEuMTY4NjU1MTg0Ni4zOC4wLjA.#top-errors-over-time">实例 →</a></p>
 <p>查看完整测试数据的不正确预测（过滤 “guess” != “truth” 的行）。请注意，在 1 个训练时期后有 229 个错误猜测，但在 5 个时期后只有 98 个。</p>
-<p><img src="https://i.imgur.com/7g8nodn.png" alt="side by side, 1 vs 5 epochs of training"></p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefined7g8nodn.png" alt="side by side, 1 vs 5 epochs of training"></p>
 <h4 id="Compare-model-performance-and-find-patterns"><a href="#Compare-model-performance-and-find-patterns" class="headerlink" title="Compare model performance and find patterns"></a>Compare model performance and find patterns</h4><p><a target="_blank" rel="noopener" href="https://wandb.ai/stacey/table-quickstart/reports/CNN-2-Progress-over-Training-Time--Vmlldzo3NDY5ODU?_gl=1*8r828v*_ga*MTUwMzMwNTA4NC4xNjg1MzI0NjI3*_ga_JH1SJHJQXJ*MTY4NjU0ODg1NC40LjEuMTY4NjU1MTg0Ni4zOC4wLjA.#false-positives-grouped-by-guess">查看实例中的完整详细信息 →</a></p>
 <p>过滤出正确答案，然后按猜测分组，以查看错误分类图像的示例和真实标签的基本分布——并排显示两个模型。具有 2X layer sizes 和学习率的模型变体在左侧，基线在右侧。请注意，对于每个猜测的类，基线都会犯更多的错误。</p>
-<p><img src="https://i.imgur.com/i5PP9AE.png" alt="grouped errors for baseline vs double variant"></p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedi5PP9AE.png" alt="grouped errors for baseline vs double variant"></p>
 <h3 id="Sign-up-or-login"><a href="#Sign-up-or-login" class="headerlink" title="Sign up or login"></a>Sign up or login</h3><p><a target="_blank" rel="noopener" href="https://wandb.ai/login">Sign up or login</a> W&amp;B 以在浏览器中查看您的实验并与之互动。</p>
 <p>在此示例中，我们使用 Google Colab 作为方便的托管环境，但您可以从任何地方运行自己的训练脚本，并使用 W&amp;B 的实验跟踪工具可视化指标。</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token operator">!</span>pip <span class="token function">install</span> wandb -qqq
@@ -852,7 +852,7 @@ wandb<span class="token punctuation">.</span>finish<span class="token punctuatio
 <h2 id="Tune-hyperparameters"><a href="#Tune-hyperparameters" class="headerlink" title="Tune hyperparameters"></a>Tune hyperparameters</h2><p><a target="_blank" rel="noopener" href="https://colab.research.google.com/github/wandb/examples/blob/master/colabs/pytorch/Organizing_Hyperparameter_Sweeps_in_PyTorch_with_W&amp;B.ipynb">在此处试用 Colab Notebook →</a></p>
 <p>在高维超参数空间中搜索以找到性能最高的模型可能会很快变得笨拙。超参数扫描提供了一种有组织且高效的方式来进行模型大逃杀并选择最准确的模型。他们通过自动搜索超参数值的组合（例如 learning rate, batch size, number of hidden layers, optimizer type）来找到最佳值来实现这一点。</p>
 <p>在本教程中，我们将了解如何使用 Weights &amp; Biases 通过 3 个简单步骤运行复杂的超参数扫描。</p>
-<h3 id="Follow-along-with-a-video-tutorial"><a href="#Follow-along-with-a-video-tutorial" class="headerlink" title="Follow along with a video tutorial!"></a>Follow along with a <a target="_blank" rel="noopener" href="http://wandb.me/sweeps-video">video tutorial</a>!</h3><p><img src="https://i.imgur.com/WVKkMWw.png" alt="img"></p>
+<h3 id="Follow-along-with-a-video-tutorial"><a href="#Follow-along-with-a-video-tutorial" class="headerlink" title="Follow along with a video tutorial!"></a>Follow along with a <a target="_blank" rel="noopener" href="http://wandb.me/sweeps-video">video tutorial</a>!</h3><p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedWVKkMWw.png" alt="tune hyperparameters"></p>
 <h3 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h3><p>首先安装实验跟踪库并设置您的免费 W&amp;B 帐户：</p>
 <ol>
 <li>使用 <code>pip install</code> 安装</li>
@@ -946,7 +946,7 @@ pprint<span class="token punctuation">.</span>pprint<span class="token punctuati
 <h3 id="Step-2️⃣-Initialize-the-Sweep"><a href="#Step-2️⃣-Initialize-the-Sweep" class="headerlink" title="Step 2️⃣. Initialize the Sweep"></a>Step 2️⃣. Initialize the Sweep</h3><p>一旦您定义了搜索策略，就该设置一些东西来实现它了。</p>
 <p>负责我们 Sweep 的 clockwork taskmaster 被称为 <em>Sweep Controller</em>。每次运行完成时，它将发出一组新的指令来描述要执行的新运行。这些指令由实际执行运行的 <em>agents</em> 获取。</p>
 <p>在典型的 Sweep 中，Controller 位于我们的机器上，而完成运行的代理位于您的机器上，如下图所示。这种分工使得只需添加更多机器来运行代理就可以非常容易地扩展 Sweeps！</p>
-<p><img src="https://i.imgur.com/zlbw3vQ.png" alt="sweeps-diagram"></p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedzlbw3vQ.png" alt="sweeps-diagram"></p>
 <p>我们可以通过使用适当的 <code>sweep_config</code> 和 <code>project</code> 名称调用 <code>wandb.sweep</code> 来结束 Sweep Controller。</p>
 <p>此函数返回一个 <code>sweep_id</code>，我们稍后将使用它来将 agents 分配给此 Controller。</p>
 <p>旁注：在命令行上，此功能被替换为</p>
@@ -1059,9 +1059,9 @@ device <span class="token operator">=</span> torch<span class="token punctuation
 <pre class=" language-python"><code class="language-python">wandb<span class="token punctuation">.</span>agent<span class="token punctuation">(</span>sweep_id<span class="token punctuation">,</span> train<span class="token punctuation">,</span> count<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span>
 </code></pre>
 <h3 id="Visualize-Sweep-Results"><a href="#Visualize-Sweep-Results" class="headerlink" title="Visualize Sweep Results"></a>Visualize Sweep Results</h3><h4 id="Parallel-Coordinates-Plot"><a href="#Parallel-Coordinates-Plot" class="headerlink" title="Parallel Coordinates Plot"></a>Parallel Coordinates Plot</h4><p>此图将超参数值映射到模型指标。它对于磨练导致最佳模型性能的超参数组合很有用。</p>
-<p><img src="https://assets.website-files.com/5ac6b7f2924c652fd013a891/5e190366778ad831455f9af2_s_194708415DEC35F74A7691FF6810D3B14703D1EFE1672ED29000BA98171242A5_1578695138341_image.png" alt="img"></p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefined5e190366778ad831455f9af2_s_194708415DEC35F74A7691FF6810D3B14703D1EFE1672ED29000BA98171242A5_1578695138341_image.png" alt="hyperparameters map to metrics"></p>
 <h4 id="Hyperparameter-Importance-Plot"><a href="#Hyperparameter-Importance-Plot" class="headerlink" title="Hyperparameter Importance Plot"></a>Hyperparameter Importance Plot</h4><p>超参数重要性图表明哪些超参数是指标的最佳预测因子。我们报告特征重要性（来自随机森林模型）和相关性（隐式线性模型）。</p>
-<p><img src="https://assets.website-files.com/5ac6b7f2924c652fd013a891/5e190367778ad820b35f9af5_s_194708415DEC35F74A7691FF6810D3B14703D1EFE1672ED29000BA98171242A5_1578695757573_image.png" alt="img"></p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefined5e190367778ad820b35f9af5_s_194708415DEC35F74A7691FF6810D3B14703D1EFE1672ED29000BA98171242A5_1578695757573_image.png" alt="parameter importance"></p>
 <p>这些可视化可以通过磨练最重要的参数（和值范围）来帮助您节省运行昂贵的超参数优化的时间和资源，因此值得进一步探索。</p>
 <h3 id="Get-your-hands-dirty-with-sweeps"><a href="#Get-your-hands-dirty-with-sweeps" class="headerlink" title="Get your hands dirty with sweeps"></a>Get your hands dirty with sweeps</h3><p>我们创建了一个简单的训练脚本和一些 <a target="_blank" rel="noopener" href="https://github.com/wandb/examples/tree/master/examples/keras/keras-cnn-fashion">sweep configs</a> 风格供您使用。我们强烈建议您尝试一下。</p>
 <p>该存储库还提供了一些示例，可帮助您尝试更高级的 sweep 功能，例如 <a target="_blank" rel="noopener" href="https://app.wandb.ai/wandb/examples-keras-cnn-fashion/sweeps/us0ifmrf?workspace=user-lavanyashukla&amp;_gl=1*1h57q6p*_ga*MTUwMzMwNTA4NC4xNjg1MzI0NjI3*_ga_JH1SJHJQXJ*MTY4NjYyMjIyOS43LjAuMTY4NjYyMjIyOS42MC4wLjA.">Bayesian Hyperband</a> 和 <a target="_blank" rel="noopener" href="https://app.wandb.ai/wandb/examples-keras-cnn-fashion/sweeps/xbs2wm5e?workspace=user-lavanyashukla&amp;_gl=1*5hk37j*_ga*MTUwMzMwNTA4NC4xNjg1MzI0NjI3*_ga_JH1SJHJQXJ*MTY4NjYyMjIyOS43LjAuMTY4NjYyMjIyOS42MC4wLjA.">Hyperopt</a>。</p>
@@ -1070,7 +1070,7 @@ device <span class="token operator">=</span> torch<span class="token punctuation
 <h4 id="Follow-along-with-a-video-tutorial-1"><a href="#Follow-along-with-a-video-tutorial-1" class="headerlink" title="Follow along with a video tutorial!"></a>Follow along with a <a target="_blank" rel="noopener" href="http://tiny.cc/wb-artifacts-video">video tutorial</a>!</h4><h5 id="What-are-Artifacts-and-Why-Should-I-Care"><a href="#What-are-Artifacts-and-Why-Should-I-Care" class="headerlink" title="What are Artifacts and Why Should I Care?"></a>What are Artifacts and Why Should I Care?</h5><p>“artifact”，如希腊双耳瓶🏺，是一个生产的对象——一个过程的输出。在 ML 中，最重要的工件是 <em>datasets</em> 和 <em>models</em>。</p>
 <p>而且，就像 <a target="_blank" rel="noopener" href="https://indianajones.fandom.com/wiki/Cross_of_Coronado">Cross of Coronado</a> 一样，这些重要的文物属于博物馆！也就是说，应该对它们进行分类和组织，以便您、您的团队和整个 ML 社区可以向它们学习。毕竟，那些不跟踪训练的人注定要重蹈覆辙。</p>
 <p>使用我们的 Artifacts API，您可以将 <code>Artifacts</code> 记录为 W&amp;B <code>Runs</code> 的输出，或使用 <code>Artifacts</code> 作为 <code>Runs</code> 的输入，如此图所示，其中训练运行接受数据集并生成模型。</p>
-<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedsimple%20artifact%20diagram%202.png" alt="simple artifact diagram 2"></p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedsimple%20artifact%20diagram%202.png" alt="simple artifact diagram"></p>
 <p>由于一次运行可以使用另一次的输出作为输入，因此 Artifacts 和 Runs 一起形成了一个有向图——实际上是一个二分 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Directed_acyclic_graph">DAG</a>！ – 带有 <code>Artifact</code>s 和 <code>Run</code>s 的节点，以及将 <code>Run</code>s 连接到它们消耗或生产的 <code>Artifact</code>s 的箭头。</p>
 <h3 id="0️⃣-Install-and-Import"><a href="#0️⃣-Install-and-Import" class="headerlink" title="0️⃣ Install and Import"></a>0️⃣ Install and Import</h3><p>Artifacts 是我们 Python 库的一部分，从 <code>0.9.2</code> 版开始。</p>
 <p>与 ML Python 堆栈的大多数部分一样，它可以通过 <code>pip</code> 获得。</p>
