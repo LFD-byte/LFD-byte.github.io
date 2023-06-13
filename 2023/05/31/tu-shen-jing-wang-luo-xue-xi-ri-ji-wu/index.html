@@ -407,14 +407,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    7 分
                 </div>
                 
 
@@ -460,8 +460,13 @@
 <p>$$<br>m_{\mathcal{N}(u)} = MLP_{\theta} (\frac{1}{|\Pi|} \sum_{\pi \in \Pi} \rho_{\phi} (h_{v_1}, h_{v_2}, \cdots, h_{v_{|\mathcal{N}(u)|}})_{\pi_i})<br>$$</p>
 <p>其中，$\Pi$ 表示一组置换函数， $\rho_{\phi}$ 是置换敏感的函数（如应用于序列数据集的神经网络）。在实践中，通常将 $\rho_{\phi}$ 定义为 LSTM。</p>
 <p>如果上式中的置换函数集合 $\Pi$ 包含所有可能的置换函数，则上式中的聚合函数也是通用集合函数逼近器。但是对所有可能的置换求和很困难，在实践中通常采用如下两种方法进行 Janossy 池化：</p>
-<p>1 在每次应用聚合函数时，</p>
-
+<p>1 在每次应用聚合函数时，对所有可能的置换采样出一个随机子集，并且对该随机自己进行求和。</p>
+<p>2 对邻域中的节点进行规范化排序，例如，根据节点度对节点进行降序排序，并随机断开一些关联关系。</p>
+<h3 id="邻域注意力模型"><a href="#邻域注意力模型" class="headerlink" title="邻域注意力模型"></a>邻域注意力模型</h3><p>基本思想是为每个邻域中的节点分配注意力权重，该权重用于在聚合步骤中权衡该节点的影响力。第一个引入注意力机制的GNN模型是图注意力网络 GAT，该网络使用注意力权重来定义邻域的加权和，如下式所示：<br>$$<br>m_{\mathcal{N}(u)} = \sum_{v \in \mathcal{N}(u)} \alpha_{u,v}h_v<br>$$<br>其中，$\alpha_{u,v}$ 表示在节点 $u$ 处聚合信息时，其邻域中的节点 $v \in \mathcal{N}(u)$ 的注意力权重。GAT 中注意力权重的定义如下式所示：<br>$$<br>\alpha_{u,v} = \frac{exp([Wh_v \bigoplus Wh_v])}{\sum_{v’ \in \mathcal{N}(u)} exp(a^T[Wh_v \bigoplus Wh_{v’}])}<br>$$<br>其中，$a$ 是可训练的注意力向量，$W$ 是可训练的矩阵，$\bigoplus$ 表示拼接操作。</p>
+<p>注意力机制变体：<br>$$<br>\alpha_{u,v} = \frac{exp(h_u^TWh_v)}{\sum_{v’ \in \mathcal{N}(u)} exp(h_u^TWh_{v’})}<br>$$<br>MLP 注意力层的变体：<br>$$<br>\alpha_{u,v} = \frac{exp(MLP(h_u,h_v))}{\sum_{v’ \in \mathcal{N}(u)} exp(MLP(h_u,h_{v’}))}<br>$$<br>上式限定 MLP 输出为标量。</p>
+<p>添加多注意力头，使用彼此独立的 $K$ 个注意力层计算 $K$ 个不同的注意力权重 $\alpha_{u,v,k}$ ，然后使用不同的注意力权重聚合的消息会在聚合步骤中进行转换和合并，通常是先进性线性映射，再进行拼接操作，如下式所示：<br>$$<br>\begin{aligned}<br>m_{\mathcal{N}(u)} &amp;= [a_1 \bigoplus a_2 \bigoplus \cdots \bigoplus a_K] \\<br>a_k &amp;= W_i \sum_{v \in \mathcal{N}(u)} \alpha_{u,v,k}h_v<br>\end{aligned}<br>$$<br>其中，$K$ 个注意力头中的每一个注意力权重 $\alpha_{u,v,k}$ 可以使用上述任何一种注意力机制进行计算。</p>
+<h2 id="广义更新方法"><a href="#广义更新方法" class="headerlink" title="广义更新方法"></a>广义更新方法</h2><p><strong>过度平滑和邻域影响</strong></p>
+<h3 id="拼接和跳跃连接"><a href="#拼接和跳跃连接" class="headerlink" title="拼接和跳跃连接"></a>拼接和跳跃连接</h3>
                 
             </div>
             <hr/>
@@ -882,7 +887,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">18.9k</span>
+                        class="white-color">19.5k</span>
             
             
             
