@@ -400,21 +400,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-06-13
+                    2023-06-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    3.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    12 分
                 </div>
                 
 
@@ -466,7 +466,20 @@
 <p>注意力机制变体：<br>$$<br>\alpha_{u,v} = \frac{exp(h_u^TWh_v)}{\sum_{v’ \in \mathcal{N}(u)} exp(h_u^TWh_{v’})}<br>$$<br>MLP 注意力层的变体：<br>$$<br>\alpha_{u,v} = \frac{exp(MLP(h_u,h_v))}{\sum_{v’ \in \mathcal{N}(u)} exp(MLP(h_u,h_{v’}))}<br>$$<br>上式限定 MLP 输出为标量。</p>
 <p>添加多注意力头，使用彼此独立的 $K$ 个注意力层计算 $K$ 个不同的注意力权重 $\alpha_{u,v,k}$ ，然后使用不同的注意力权重聚合的消息会在聚合步骤中进行转换和合并，通常是先进性线性映射，再进行拼接操作，如下式所示：<br>$$<br>\begin{aligned}<br>m_{\mathcal{N}(u)} &amp;= [a_1 \bigoplus a_2 \bigoplus \cdots \bigoplus a_K] \\<br>a_k &amp;= W_i \sum_{v \in \mathcal{N}(u)} \alpha_{u,v,k}h_v<br>\end{aligned}<br>$$<br>其中，$K$ 个注意力头中的每一个注意力权重 $\alpha_{u,v,k}$ 可以使用上述任何一种注意力机制进行计算。</p>
 <h2 id="广义更新方法"><a href="#广义更新方法" class="headerlink" title="广义更新方法"></a>广义更新方法</h2><p><strong>过度平滑和邻域影响</strong></p>
-<h3 id="拼接和跳跃连接"><a href="#拼接和跳跃连接" class="headerlink" title="拼接和跳跃连接"></a>拼接和跳跃连接</h3>
+<p>GNN 的一个常见问题是过度平滑。过度平滑的基本原理是：经过多次 GNN 消息传递后，图中所有节点的表示可能变得非常相似。过度平滑导致无法建立更深的 GNN 模型以利用图上的长期依赖关系，因为这些深层的 GNN 模型往往会生成过度平滑的嵌入。</p>
+<p>可以通过定义每个节点的输入特征 $h_u^{(0)}=x_u$ 对图上其它节点的最终层输出的嵌入（$h_v^{(K)},\forall v \in \mathcal{V}$）的影响来形式化定义 GNN 中的过度平滑问题。对于任意一对节点 $u$ 和 $v$ ，可以通过检查相应的雅可比矩阵的大小来量化 GNN 中节点 $u$ 对节点 $v$ 的影响，如下式所示：<br>$$<br>I_{K(u,v)} = 1^T(\frac{\partial h_v^{(K)}}{\partial h_u^{(0)}})<br>$$<br>其中，$1$ 是元素全为 1 的向量。$I_{K(u,v)}$ 是雅可比矩阵 $\frac{\partial h_v^{(K)}}{\partial h_u^{(0)}}$ 中的元素之和。用来衡量 GNN 中节点 $u$ 的初始嵌入对节点 $v$ 的最终嵌入的影响程度。</p>
+<p>定理：对于任何使用自环更新方法和用下式表示聚合函数的 GNN 模型<br>$$<br>AGGRGATE({h_v, \forall v \in \mathcal{N}(u) \bigcup {u}}) = \frac{1}{f_n(|\mathcal{N}(u) \bigcup {u}|)} \sum_{v \in \mathcal{N}(u) \bigcup {u}} h_v<br>$$<br>其中，$f:\mathbb{R}^+ \rightarrow \mathbb{R}^+$ 是任意可微的归一化函数。</p>
+<p>可得出下式结论：<br>$$<br>I_K (u,v) \propto p_{\mathcal{G},K}(u|v)<br>$$<br>其中，$p_{\mathcal{G},K}(u|v)$ 表示从节点 $u$ 开始的 $K$ 步随机游走过程中访问节点 $v$ 的概率。</p>
+<p>当使用 $K$ 层 GCN 型魔性时，节点 $u$ 对节点 $v$ 的影响从节点 $u$ 开始经过 $K$ 步随机游走到达节点 $v$ 的概率成正比。但是，随着 $K \rightarrow \infty$，每个节点的影响都接近图上随机游走的平稳分布，这意味着本地邻域信息会丢失。</p>
+<p>上述定理直接适用于使用自环更新方法的模型，但是只要任意层 $k$ 满足 $| W_{self}^{(k)} | &lt; | W_{neigh}^{(k)} |$，其结果也可以渐近地扩展基本 GNN 的更新。因此当使用简单 GNN 模型时，构建更深的模型实际上会损害模型性能。随着更多层的加入，模型将丢失更多关于本地邻域结构的信息，并且学习的嵌入会变得过于平滑，接近几乎均匀的分布。</p>
+<h3 id="拼接和跳跃连接"><a href="#拼接和跳跃连接" class="headerlink" title="拼接和跳跃连接"></a>拼接和跳跃连接</h3><p>最简单更新跳跃连接的方式之一是使用拼接操作再消息传递期间保留更多节点级别信息，如下式所示：<br>$$<br>UPDATE_{concat}(h_u, m_{\mathcal{N}(u)}) = [UPDATE_{base}(h_u,m_{\mathcal{N}(u)}) \bigoplus h_u]<br>$$<br>其中，直接将基本更新函数的输出与节点的上一层表示拼接，鼓励模型再消息传递过程中解耦信息，将来自邻域的信息（$m_{\mathcal{N}(u)}$）与每个节点当前的表示（$h_u$）分开。</p>
+<p>线性插值法跳跃连接，如下式所示：<br>$$<br>UPDATE_{interpolate}(h_u,m_{\mathcal{N}(u)}) = \alpha_1 \circ UPDATE_{base}(h_u,m_{\mathcal{N}(u)}) + \alpha_2 \bigodot h_u<br>$$<br>其中，$\alpha_1,\alpha_2 \in [0,1]^d$ 是满足 $\alpha_2 = 1 - \alpha_1$ 的门控向量，$\circ$ 表示逐元素相乘。</p>
+<p>最终更新的表示是先前表示与基于邻域信息进行更新的表示之间的线性插值。</p>
+<p>在通常情况下，拼接和跳跃连接有助于缓解 GNN 中过渡平滑问题，同时可以提高优化数值的稳定性。</p>
+<h3 id="门控更新函数"><a href="#门控更新函数" class="headerlink" title="门控更新函数"></a>门控更新函数</h3><p>一种解读 GNN 消息传递算法的观点是：聚合函数从邻域接收观察结果，然后将其用于更新每个节点的隐状态。基于这一观点可以根据观察结果直接使用更新 RNN 框架的隐状态的方法，最早的 GNN 架构之一定义更新函数如下式所示：<br>$$<br>h_u^{(k)} = GRU(h_u^{(k-1)},m_{\mathcal{N}(u)}^{(k)})<br>$$<br>其中，GRU 表示 GRU 单元的更新函数。</p>
+<p>门控更新方法在提高 GNN 框架的模型深度（超过10层）和防止过度平滑问题方面非常有效。</p>
+<h3 id="跳跃知识连接"><a href="#跳跃知识连接" class="headerlink" title="跳跃知识连接"></a>跳跃知识连接</h3><p>提高最终的节点表示质量的一种补充策略是利用消息传递的每一层输出的表示，叫做加入跳跃知识，如下式所示：<br>$$<br>z_u = f_{JK}(h_u^{(0)} \bigoplus h_u^{(1)} \bigoplus \cdots \bigoplus h_u^{(K)})<br>$$<br> 其中，$f_{JK}$ 是任意微分函数。</p>
+<h2 id="边特征和多元关系-GNN"><a href="#边特征和多元关系-GNN" class="headerlink" title="边特征和多元关系 GNN"></a>边特征和多元关系 GNN</h2><h3 id="关系-GNN"><a href="#关系-GNN" class="headerlink" title="关系 GNN"></a>关系 GNN</h3><h3 id="注意力机制和特征拼接"><a href="#注意力机制和特征拼接" class="headerlink" title="注意力机制和特征拼接"></a>注意力机制和特征拼接</h3><h2 id="图池化"><a href="#图池化" class="headerlink" title="图池化"></a>图池化</h2><h2 id="通用消息传递方法"><a href="#通用消息传递方法" class="headerlink" title="通用消息传递方法"></a>通用消息传递方法</h2>
                 
             </div>
             <hr/>
@@ -887,7 +900,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">19.5k</span>
+                        class="white-color">20.6k</span>
             
             
             
