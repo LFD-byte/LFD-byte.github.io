@@ -438,7 +438,9 @@
 <p>以完全监督方式训练 GNN，使用 softmax 分类函数和负对数似然损失来定义损失函数，如下式：<br>$$<br>\mathcal{L} = \sum_{u \in \mathcal{V}<em>{train}} = -log(softmax(z_u,y_u))<br>$$<br>其中，假设 $y_u \in \mathbb{Z}^c$ 是一个独热向量，表示用于训练的节点 $u \in \mathcal{V}</em>{train}$ 的类。</p>
 <p>在引用网络中，$y_u$ 表示论文的主题，$Softmax(z_u,y_u)$ 表示通过 softmax 函数计算节点属于类 $y_u$ 的概率，如下式：<br>$$<br>softmax(z_u,y_u) = \sum_{i=1}^c y_u[i]\frac{e^{z_u^Tw_i}}{\sum_{j=1}^c e^{z_u^Tw_j}}<br>$$<br>其中，$w_i \in \mathbb{R}^d,i=1,\cdots,c$ 是可训练的参数。</p>
 <p><strong>用于图分类的 GNN</strong></p>
-<p>图分类的损失函数值是通过一组有标记的训练图 $\mathcal{T} = {\mathcal{G}<em>1,\cdots,\mathcal{G}<em>n}$ 上学习的图嵌入 $z</em>{\mathcal{G}<em>i}$ 计算，通常使用如下式定义的平方误差损失函数：<br>$$<br>\mathcal{L} = \sum</em>{\mathcal{G} \in \mathcal{T}}| MLP(z</em>{\mathcal{G}<em>i}) - y</em>{\mathcal{G}_i} |<em>2^2<br>$$<br>其中，MLP 是具有单一变量输出的密集连接的神经网络，$y</em>{\mathcal{G}_i} \in \mathbb{R}$ 是训练图 $\mathcal{G}_i$ 的标签值。</p>
+<p>图分类的损失函数值是通过一组有标记的训练图 $\mathcal{T} = {\mathcal{G}_1,\cdots,\mathcal{G}<em>n}$ 上学习的图嵌入 $z</em>{\mathcal{G}_i}$ 计算，通常使用如下式定义的平方误差损失函数：</p>
+<p>$$<br>\mathcal{L} = \sum_{\mathcal{G} \in \mathcal{T}}| MLP(z_{\mathcal{G}<em>i}) - y</em>{\mathcal{G}_i} |_2^2<br>$$</p>
+<p>其中，MLP 是具有单一变量输出的密集连接的神经网络，$y_{\mathcal{G}_i} \in \mathbb{R}$ 是训练图 $\mathcal{G}_i$ 的标签值。</p>
 <p><strong>用于关系预测的 GNN</strong></p>
 <p>深度图信息最大化（DGI）节点嵌入 $z_u$ 和图嵌入 $z_{\mathcal{G}}$ 之间的互信息，损失函数如下式：<br>$$<br>\mathcal{L} = -\sum_{u \in \mathcal{V}<em>{train}} \mathbb{E}</em>{\mathcal{G}} log(D(z_u,z_{\mathcal{G}})) + \gamma\mathbb{E}log(1-D(\tilde{z}<em>u,z</em>{\mathcal{G}}))<br>$$<br>其中，$z_u$ 表示 GNN 根据图 $\mathcal{G}$ 生成的节点 $u$ 的嵌入，而 $\tilde{z}<em>u$ 表示根据 $\mathcal{G}$ 的损坏版本 $\tilde{\mathcal{G}}$ 生成的节点 $u$ 的嵌入。这里用 $D$ 表示判别函数，它是一个被训练用以预测节点嵌入是基于真实的图 $\mathcal{G}$ 还是损坏版本的图 $\tilde{\mathcal{G}}$ 生成的。在通常情况下，通过一种随机的方式（如打乱特征矩阵中的元素）修改节点特征或邻接矩阵，抑或是同时修改两者来破坏图。上述损失函数背后的思想是：GNN 模型必须学会生成可以区分真是图和其损坏版本的节点嵌入。这一优化目标与最大化节点嵌入 $z_u$ 和图嵌入 $z</em>{\mathcal{G}}$ 之间的互信息密切相关。</p>
 <h2 id="节点采样"><a href="#节点采样" class="headerlink" title="节点采样"></a>节点采样</h2><p>基于节点级别消息传递的角度直接实现 GNN 可能存在计算效率低的问题。例如，当多个节点共享邻域时，如果图中所有节点独立执行消息传递操作，最终可能会执行大量冗余计算。</p>
