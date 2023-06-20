@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>图神经网络学习日记（六）图神经网络（GNN）的实现</title>
+      <link href="/2023/06/20/tu-shen-jing-wang-luo-xue-xi-ri-ji-liu-tu-shen-jing-wang-luo-gnn-de-shi-xian/"/>
+      <url>/2023/06/20/tu-shen-jing-wang-luo-xue-xi-ri-ji-liu-tu-shen-jing-wang-luo-gnn-de-shi-xian/</url>
+      
+        <content type="html"><![CDATA[<h2 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h2><p><strong>用于节点分类的 GNN</strong></p><p>以完全监督方式训练 GNN，使用 softmax 分类函数和负对数似然损失来定义损失函数，如下式：<br>$$<br>\mathcal{L} = \sum_{u \in \mathcal{V}<em>{train}} = -log(softmax(z_u,y_u))<br>$$<br>其中，假设 $y_u \in \mathbb{Z}^c$ 是一个独热向量，表示用于训练的节点 $u \in \mathcal{V}</em>{train}$ 的类。</p><p>在引用网络中，$y_u$ 表示论文的主题，$Softmax(z_u,y_u)$ 表示通过 softmax 函数计算节点属于类 $y_u$ 的概率，如下式：<br>$$<br>softmax(z_u,y_u) = \sum_{i=1}^c y_u[i]\frac{e^{z_u^Tw_i}}{\sum_{j=1}^c e^{z_u^Tw_j}}<br>$$<br>其中，$w_i \in \mathbb{R}^d,i=1,\cdots,c$ 是可训练的参数。</p><p><strong>用于图分类的 GNN</strong></p><p>图分类的损失函数值是通过一组有标记的训练图 $\mathcal{T} = {\mathcal{G}<em>1,\cdots,\mathcal{G}<em>n}$ 上学习的图嵌入 $z</em>{\mathcal{G}<em>i}$ 计算，通常使用如下式定义的平方误差损失函数：<br>$$<br>\mathcal{L} = \sum</em>{\mathcal{G} \in \mathcal{T}}| MLP(z</em>{\mathcal{G}<em>i}) - y</em>{\mathcal{G}_i} |<em>2^2<br>$$<br>其中，MLP 是具有单一变量输出的密集连接的神经网络，$y</em>{\mathcal{G}_i} \in \mathbb{R}$ 是训练图 $\mathcal{G}_i$ 的标签值。</p><p><strong>用于关系预测的 GNN</strong></p><p>深度图信息最大化（DGI）节点嵌入 $z_u$ 和图嵌入 $z_{\mathcal{G}}$ 之间的互信息，损失函数如下式：<br>$$<br>\mathcal{L} = -\sum_{u \in \mathcal{V}<em>{train}} \mathbb{E}</em>{\mathcal{G}} log(D(z_u,z_{\mathcal{G}})) + \gamma\mathbb{E}log(1-D(\tilde{z}<em>u,z</em>{\mathcal{G}}))<br>$$<br>其中，$z_u$ 表示 GNN 根据图 $\mathcal{G}$ 生成的节点 $u$ 的嵌入，而 $\tilde{z}<em>u$ 表示根据 $\mathcal{G}$ 的损坏版本 $\tilde{\mathcal{G}}$ 生成的节点 $u$ 的嵌入。这里用 $D$ 表示判别函数，它是一个被训练用以预测节点嵌入是基于真实的图 $\mathcal{G}$ 还是损坏版本的图 $\tilde{\mathcal{G}}$ 生成的。在通常情况下，通过一种随机的方式（如打乱特征矩阵中的元素）修改节点特征或邻接矩阵，抑或是同时修改两者来破坏图。上述损失函数背后的思想是：GNN 模型必须学会生成可以区分真是图和其损坏版本的节点嵌入。这一优化目标与最大化节点嵌入 $z_u$ 和图嵌入 $z</em>{\mathcal{G}}$ 之间的互信息密切相关。</p><h2 id="节点采样"><a href="#节点采样" class="headerlink" title="节点采样"></a>节点采样</h2><p>基于节点级别消息传递的角度直接实现 GNN 可能存在计算效率低的问题。例如，当多个节点共享邻域时，如果图中所有节点独立执行消息传递操作，最终可能会执行大量冗余计算。</p><p><strong>图级别的实现方法</strong></p><p><strong>子采样和小批量</strong></p><p>为了限制 GNN 的内存占用并促进小批量训练方式，可以在消息传递过程中使用节点集的子集。从数学角度，可以认为这是在每个批次中为图中节点的子集运行节点级的 GNN 公式。</p><p>挑战在于不能在不丢失信息的情况下简单地在图上的一部分节点中执行消息传递操作，每次删除节点时也会删除其关联的边，这无法保证选择的节点的随机子集会构成连接图，并且为每个小批次选择一个节点的随机自己会对模型性能产生严重的不利影响。</p><p>通过对节点邻域进行子采样的策略来克服此问题：首先为每个批次选择一组目标节点，然后递归采样这些节点的邻域以确保能够保持图的连通性。为了尽可能避免为一个批次采样过多节点的情况，建议使用固定容量对每个节点的邻域进行子采样以提高批量张量操作的效率。</p><h2 id="参数共享和正则化"><a href="#参数共享和正则化" class="headerlink" title="参数共享和正则化"></a>参数共享和正则化</h2><p><strong>层间参数共享</strong></p><p>在 GNN 的所有聚合和更新函数中使用相同的函数。通常情况下，在6层以上的 GNN 中最有效，并且通常与门控更新函数结合使用。</p><p><strong>边丢弃</strong></p><p>训练过程中随机删除（或屏蔽）邻接矩阵的边。直观来看，这将使 GNN 不太容易过拟合，并且对邻接矩阵中的噪声更具鲁棒性。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 图神经网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 图神经网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>概率论（一） 贝叶斯公式</title>
       <link href="/2023/06/16/gai-lu-lun-yi-bei-xie-si-ding-li/"/>
       <url>/2023/06/16/gai-lu-lun-yi-bei-xie-si-ding-li/</url>
