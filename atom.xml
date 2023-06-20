@@ -6,7 +6,7 @@
   <link href="https://blog.lfd-world.online/atom.xml" rel="self"/>
   
   <link href="https://blog.lfd-world.online/"/>
-  <updated>2023-06-13T12:47:31.714Z</updated>
+  <updated>2023-06-16T07:15:49.439Z</updated>
   <id>https://blog.lfd-world.online/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>概率论（一） 贝叶斯公式</title>
+    <link href="https://blog.lfd-world.online/2023/06/16/gai-lu-lun-yi-bei-xie-si-ding-li/"/>
+    <id>https://blog.lfd-world.online/2023/06/16/gai-lu-lun-yi-bei-xie-si-ding-li/</id>
+    <published>2023-06-16T06:40:00.000Z</published>
+    <updated>2023-06-16T07:15:49.439Z</updated>
+    
+    
+    
+    
+    <category term="概率" scheme="https://blog.lfd-world.online/categories/%E6%A6%82%E7%8E%87/"/>
+    
+    
+    <category term="概率" scheme="https://blog.lfd-world.online/tags/%E6%A6%82%E7%8E%87/"/>
+    
+  </entry>
   
   <entry>
     <title>WandB 学习日记（一）Tutorials</title>
@@ -195,7 +212,7 @@
     <link href="https://blog.lfd-world.online/2023/05/31/tu-shen-jing-wang-luo-xue-xi-ri-ji-wu/"/>
     <id>https://blog.lfd-world.online/2023/05/31/tu-shen-jing-wang-luo-xue-xi-ri-ji-wu/</id>
     <published>2023-05-31T02:07:00.000Z</published>
-    <updated>2023-06-16T02:57:29.564Z</updated>
+    <updated>2023-06-20T11:06:41.864Z</updated>
     
     
       

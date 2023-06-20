@@ -400,21 +400,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-06-16
+                    2023-06-20
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.1k
+                    4.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    12 分
+                    19 分
                 </div>
                 
 
@@ -479,7 +479,24 @@
 <h3 id="门控更新函数"><a href="#门控更新函数" class="headerlink" title="门控更新函数"></a>门控更新函数</h3><p>一种解读 GNN 消息传递算法的观点是：聚合函数从邻域接收观察结果，然后将其用于更新每个节点的隐状态。基于这一观点可以根据观察结果直接使用更新 RNN 框架的隐状态的方法，最早的 GNN 架构之一定义更新函数如下式所示：<br>$$<br>h_u^{(k)} = GRU(h_u^{(k-1)},m_{\mathcal{N}(u)}^{(k)})<br>$$<br>其中，GRU 表示 GRU 单元的更新函数。</p>
 <p>门控更新方法在提高 GNN 框架的模型深度（超过10层）和防止过度平滑问题方面非常有效。</p>
 <h3 id="跳跃知识连接"><a href="#跳跃知识连接" class="headerlink" title="跳跃知识连接"></a>跳跃知识连接</h3><p>提高最终的节点表示质量的一种补充策略是利用消息传递的每一层输出的表示，叫做加入跳跃知识，如下式所示：<br>$$<br>z_u = f_{JK}(h_u^{(0)} \bigoplus h_u^{(1)} \bigoplus \cdots \bigoplus h_u^{(K)})<br>$$<br> 其中，$f_{JK}$ 是任意微分函数。</p>
-<h2 id="边特征和多元关系-GNN"><a href="#边特征和多元关系-GNN" class="headerlink" title="边特征和多元关系 GNN"></a>边特征和多元关系 GNN</h2><h3 id="关系-GNN"><a href="#关系-GNN" class="headerlink" title="关系 GNN"></a>关系 GNN</h3><h3 id="注意力机制和特征拼接"><a href="#注意力机制和特征拼接" class="headerlink" title="注意力机制和特征拼接"></a>注意力机制和特征拼接</h3><h2 id="图池化"><a href="#图池化" class="headerlink" title="图池化"></a>图池化</h2><h2 id="通用消息传递方法"><a href="#通用消息传递方法" class="headerlink" title="通用消息传递方法"></a>通用消息传递方法</h2>
+<h2 id="边特征和多元关系-GNN"><a href="#边特征和多元关系-GNN" class="headerlink" title="边特征和多元关系 GNN"></a>边特征和多元关系 GNN</h2><p>下面介绍 GNN 在多元关系图或其它异构图中的应用。</p>
+<h3 id="关系-GNN"><a href="#关系-GNN" class="headerlink" title="关系 GNN"></a>关系 GNN</h3><p>关系图卷积网络（RGCN），通过为每种关系类型指定一个单独的变化矩阵来增强聚合函数处理多种关系的能力，如下式所示：<br>$$<br>m_{\mathcal{N}(u)} = \sum_{\tau \in \mathcal{R}} \sum_{v \in \mathcal{N}<em>{\tau}(u)} \frac{W</em>{\tau}h_v}{f_n(\mathcal{N}(u), \mathcal{N}(v))}<br>$$<br>其中， $f_n$ 是一个归一化函数，它的值取决于节点 $u$ 的邻域以及被聚合的节点 $v$ 的邻域。RGCN 中的多元关系聚合类似具有归一化函数的基本 GNN，但根据边的类型不同分别聚合信息。</p>
+<p><strong>参数共享</strong></p>
+<p>朴素 RGCN 方法的一个缺点是由于每一种关系类型都需要一个可训练的矩阵导致参数量急剧增加，这种参数量的激增可能导致过拟合和训练缓慢的问题。</p>
+<p>通过与基矩阵共享参数的方法来解决此问题，如下式：<br>$$<br>W_{\tau} = \sum_{i=1}^b \alpha_{i,\tau}B_i<br>$$<br>该方法中，所有关系矩阵都定义为 $b$ 个基矩阵（$B1,\cdots,B_b$）的线性组合；唯一的关于关系的参数是每种关系 $\tau$ 的 $b$ 个组合权重 $\alpha_{1,\tau}, \cdots, \alpha_{b,\tau}$。在这种基本共享方法中，看可以将完整聚合函数表示为下式：<br>$$<br>m_{\mathcal{N}(u)} = \sum_{\tau \in \mathcal{R}} \sum_{v \in \mathcal{N}<em>{\tau}(u)} \frac{\alpha</em>{\tau} \times_{1} B \times_{2} h_v}{f_n(\mathcal{N}(u), \mathcal{N}(v))}<br>$$<br>其中，$B = (B_1, \cdots, B_b)$ 是一个由基矩阵堆叠构成的张量， $\alpha_{\tau} = \alpha_{1,\tau}, \cdots, \alpha_{b,\tau}$ 是一个关于关系 $\tau$ 的包含基矩阵组合权重的向量，$\times_{i}$ 表示沿着模 $i$ 的张量积。另一种理解参数共享 RGCN 方法的过程是：学习每个关系的嵌入及所有关系之间共享的张量。</p>
+<h3 id="注意力机制和特征拼接"><a href="#注意力机制和特征拼接" class="headerlink" title="注意力机制和特征拼接"></a>注意力机制和特征拼接</h3><p>为适应更一般形式的边特征的情况，可以在消息传递过程中基于注意力机制或将这些信息与邻域嵌入拼接来充分利用这些特征。在给定任意基本聚合方法 $AGGREGATE_{base}$ 的情况下，利用边特征的一种简单策略是如下式定义新的聚合函数：<br>$$<br>m_{\mathcal{N}(u)} = AGGREGATE_{base}({h_v \bigoplus e_{(u,\tau,v)}, \forall v \in \mathcal{N}(u) })<br>$$<br>其中，$e_{(u,\tau,v)}$ 表示边 $(u,\tau,v)$ 的特征。</p>
+<h2 id="图池化"><a href="#图池化" class="headerlink" title="图池化"></a>图池化</h2><p><strong>集合池化方法</strong></p>
+<p>与 AGGREGATE 操作类似，图池化任务可以看作是解决集合上的问题。要设计一个池化函数 $f_p$ 将一组节点嵌入 ${ z_1, \cdots, z_{|V|} }$ 映射为表示整张图的嵌入 $z_{\mathcal{G}}$。</p>
+<p>第一种常用方法是对节点嵌入求和（或取均值），如下式所示：<br>$$<br>z_{\mathcal{G}} = \frac{\sum_{v \in \mathcal{V}} z_c}{f_n(|\mathcal{V}|)}<br>$$<br>其中，$f_n$ 是归一化函数（如恒等函数）。适用于小规模图。</p>
+<p>第二种常用方法基于集合的方法，结合了 LSTM 和注意力机制来池化节点嵌入。这种池化方法迭代 $t=1,\cdots,T$ 步基于注意力机制的聚合操作，如下式所示：<br>$$<br>\begin{aligned}<br>q_i &amp;= LSTM(o_{t-1}, q_{t-1}) \\<br>e_{v,t} &amp;= f_a(z_v,q_t),\forall v \in \mathcal{V} \\<br>a_{v,t} &amp;= \frac{exp(e_{v,i})}{\sum_{u \in \mathcal{V}} e_{u,t}}, \forall v \in \mathcal{V} \\<br>o_t &amp;= \sum_{v \in \mathcal{V}} a_{v,t} z_v<br>\end{aligned}<br>$$</p>
+<p>其中，$q_t$ 表示每次迭代 $t$ 次注意力机制中的查询向量。查询向量用于使用注意力函数 $f_a: \mathbb{R}^d \times \mathbb{R} \rightarrow \mathbb{R}$ （如点积）为每个节点计算注意力分数，然后将该注意力分数进行归一化，最后根据注意力权重计算节点嵌入的加权和，并基于该加权和采用 LSTM 更新来更新查询向量。通常情况下，用全零向量初始化 $q_0$ 和 $o_0$ ，进行了 $T$ 次迭代后计算整张图的嵌入如下式所示：<br>$$<br>z_{\mathcal{G}} = o_1 \bigoplus o_2 \bigoplus \cdots \bigoplus o_T<br>$$<br><strong>图粗糙化方法</strong></p>
+<p>集合池化方法的局限性在于不能利用图的结构信息。在池化阶段利用图的拓扑信息可以进一步提供增益，实现次目的的一种流形策略是用图聚类或粗糙化作为池化节点表示的一种方法。</p>
+<p>假设有聚类函数如下式所示：<br>$$<br>f_c \rightarrow \mathcal{G} \times \mathbb{R}^{|V| \times d} \rightarrow \mathbb{R}^{+|V| \times c}<br>$$<br>聚类函数将图上的所有节点分为 $c$ 个簇。假定该函数输出一个分配矩阵 $S = f_c(\mathcal{G}, Z)$，其中，$S[u,i] \in \mathbb{R}$ 表示节点 $u$ 和簇 $i$ 之间的关联强度。</p>
+<p>图粗糙化方法的关键思想是使用聚类分配矩阵来粗糙化图。这里使用分配矩阵 $S$ 来计算新的粗糙化邻接矩阵和一个新的节点特征集合，如下式所示：<br>$$<br>\begin{aligned}<br>A^{new} &amp;= S^TAS \in \mathbb{R}^{+c \times c} \\<br>X^{new} &amp;= S^TX \in \mathbb{R}^{c \times d}<br>\end{aligned}<br>$$<br>这一新的邻接矩阵表示图中的簇之间的关联强度（边），而新的特征矩阵表示聚合分配给每个簇的所有节点嵌入的结果。在该粗糙化的图上运行 GNN，并在每次迭代的过程中重复粗糙化过程，图在每一步都会减小，最后在足够粗糙化的图上对节点嵌入执行集合池化可以获得图的最终表示。</p>
+<h2 id="通用消息传递方法"><a href="#通用消息传递方法" class="headerlink" title="通用消息传递方法"></a>通用消息传递方法</h2><p>GNN 消息传递方法可以泛化为在消息传递的每个阶段利用边和图级别的信息。</p>
+<p>更为通用的消息传递方法如下式：<br>$$<br>\begin{aligned}<br>h_{(u,v)}^{(k)} &amp;= UPDATE_{edge}(h_{(u,v)}^{(k-1)}, h_u^{(k-1)}, h_v^{(k-1)}, h_{\mathcal{G}}^{(k-1)}) \\<br>m_{\mathcal{N}(u)} &amp;= AGGREGATE_{node}({ h_{(u,v)}^{(k-1)}, \forall v \in \mathcal{N}(u) }) \\<br>h_u^{(k)} &amp;= UPDATE_{node}(h_u^{(k-1)}, m_{\mathcal{N}(u)}, h_{\mathcal{G}}^{(k-1)}) \\<br>h_{\mathcal{G}}^{(k)} &amp;= UPDATE_{graph}(h_{\mathcal{G}}^{(k-1)}, { h_u^{(k-1)}, \forall u \in \mathcal{V}, { h_{(u,v)}^{(k)}, \forall (u,v) \in \varepsilon } })<br>\end{aligned}<br>$$<br>通用消息传递框架中，在消息传递过程中为图上的每条边生成嵌入 $h_(u,v)^{(k)}$，并为整张图生成相应的嵌入 $h_{\mathcal{G}}^{(k)}$，这使得消息传递模型可以聚合边和图级别的特征。</p>
+<p>在通用消息传递框架中进行消息传递时，首先根据便关联的节点的嵌入来更新边的嵌入。接下来，通过聚合节点关联所有边的嵌入来更新节点嵌入。图嵌入被用于节点和边表示的更新函数中，并且图级别的嵌入本身通过在每次迭代结束时对所有节点和边的嵌入进行聚合来更新。</p>
+
                 
             </div>
             <hr/>
@@ -900,7 +917,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">20.6k</span>
+                        class="white-color">22.3k</span>
             
             
             
