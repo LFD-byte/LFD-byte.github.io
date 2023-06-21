@@ -400,7 +400,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-06-20
+                    2023-06-21
                 </div>
                 
 
@@ -435,7 +435,9 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h2><p><strong>用于节点分类的 GNN</strong></p>
-<p>以完全监督方式训练 GNN，使用 softmax 分类函数和负对数似然损失来定义损失函数，如下式：<br>$$<br>\mathcal{L} = \sum_{u \in \mathcal{V}<em>{train}} = -log(softmax(z_u,y_u))<br>$$<br>其中，假设 $y_u \in \mathbb{Z}^c$ 是一个独热向量，表示用于训练的节点 $u \in \mathcal{V}</em>{train}$ 的类。</p>
+<p>以完全监督方式训练 GNN，使用 softmax 分类函数和负对数似然损失来定义损失函数，如下式：</p>
+<p>$$<br>\mathcal{L} = \sum_{u \in \mathcal{V}_{train}} = -log(softmax(z_u,y_u))<br>$$</p>
+<p>其中，假设 $y_u \in \mathbb{Z}^c$ 是一个独热向量，表示用于训练的节点 $u \in \mathcal{V}_{train}$ 的类。</p>
 <p>在引用网络中，$y_u$ 表示论文的主题，$Softmax(z_u,y_u)$ 表示通过 softmax 函数计算节点属于类 $y_u$ 的概率，如下式：<br>$$<br>softmax(z_u,y_u) = \sum_{i=1}^c y_u[i]\frac{e^{z_u^Tw_i}}{\sum_{j=1}^c e^{z_u^Tw_j}}<br>$$<br>其中，$w_i \in \mathbb{R}^d,i=1,\cdots,c$ 是可训练的参数。</p>
 <p><strong>用于图分类的 GNN</strong></p>
 <p>图分类的损失函数值是通过一组有标记的训练图 $\mathcal{T} = {\mathcal{G}_1,\cdots,\mathcal{G}<em>n}$ 上学习的图嵌入 $z</em>{\mathcal{G}_i}$ 计算，通常使用如下式定义的平方误差损失函数：</p>
