@@ -444,7 +444,9 @@
 <p>$$<br>\mathcal{L} = \sum_{\mathcal{G} \in \mathcal{T}}| MLP(z_{\mathcal{G}<em>i}) - y</em>{\mathcal{G}_i} |_2^2<br>$$</p>
 <p>其中，MLP 是具有单一变量输出的密集连接的神经网络，$y_{\mathcal{G}_i} \in \mathbb{R}$ 是训练图 $\mathcal{G}_i$ 的标签值。</p>
 <p><strong>用于关系预测的 GNN</strong></p>
-<p>深度图信息最大化（DGI）节点嵌入 $z_u$ 和图嵌入 $z_{\mathcal{G}}$ 之间的互信息，损失函数如下式：<br>$$<br>\mathcal{L} = -\sum_{u \in \mathcal{V}<em>{train}} \mathbb{E}</em>{\mathcal{G}} log(D(z_u,z_{\mathcal{G}})) + \gamma\mathbb{E}log(1-D(\tilde{z}<em>u,z</em>{\mathcal{G}}))<br>$$<br>其中，$z_u$ 表示 GNN 根据图 $\mathcal{G}$ 生成的节点 $u$ 的嵌入，而 $\tilde{z}<em>u$ 表示根据 $\mathcal{G}$ 的损坏版本 $\tilde{\mathcal{G}}$ 生成的节点 $u$ 的嵌入。这里用 $D$ 表示判别函数，它是一个被训练用以预测节点嵌入是基于真实的图 $\mathcal{G}$ 还是损坏版本的图 $\tilde{\mathcal{G}}$ 生成的。在通常情况下，通过一种随机的方式（如打乱特征矩阵中的元素）修改节点特征或邻接矩阵，抑或是同时修改两者来破坏图。上述损失函数背后的思想是：GNN 模型必须学会生成可以区分真是图和其损坏版本的节点嵌入。这一优化目标与最大化节点嵌入 $z_u$ 和图嵌入 $z</em>{\mathcal{G}}$ 之间的互信息密切相关。</p>
+<p>深度图信息最大化（DGI）节点嵌入 $z_u$ 和图嵌入 $z_{\mathcal{G}}$ 之间的互信息，损失函数如下式：</p>
+<p>$$<br>\mathcal{L} = -\sum_{u \in \mathcal{V}<em>{train}} \mathbb{E}</em>{\mathcal{G}} log(D(z_u,z_{\mathcal{G}})) + \gamma\mathbb{E}log(1-D(\tilde{z}<em>u,z</em>{\mathcal{G}}))<br>$$</p>
+<p>其中，$z_u$ 表示 GNN 根据图 $\mathcal{G}$ 生成的节点 $u$ 的嵌入，而 $\tilde{z}<em>u$ 表示根据 $\mathcal{G}$ 的损坏版本 $\tilde{\mathcal{G}}$ 生成的节点 $u$ 的嵌入。这里用 $D$ 表示判别函数，它是一个被训练用以预测节点嵌入是基于真实的图 $\mathcal{G}$ 还是损坏版本的图 $\tilde{\mathcal{G}}$ 生成的。在通常情况下，通过一种随机的方式（如打乱特征矩阵中的元素）修改节点特征或邻接矩阵，抑或是同时修改两者来破坏图。上述损失函数背后的思想是：GNN 模型必须学会生成可以区分真是图和其损坏版本的节点嵌入。这一优化目标与最大化节点嵌入 $z_u$ 和图嵌入 $z</em>{\mathcal{G}}$ 之间的互信息密切相关。</p>
 <h2 id="节点采样"><a href="#节点采样" class="headerlink" title="节点采样"></a>节点采样</h2><p>基于节点级别消息传递的角度直接实现 GNN 可能存在计算效率低的问题。例如，当多个节点共享邻域时，如果图中所有节点独立执行消息传递操作，最终可能会执行大量冗余计算。</p>
 <p><strong>图级别的实现方法</strong></p>
 <p><strong>子采样和小批量</strong></p>
