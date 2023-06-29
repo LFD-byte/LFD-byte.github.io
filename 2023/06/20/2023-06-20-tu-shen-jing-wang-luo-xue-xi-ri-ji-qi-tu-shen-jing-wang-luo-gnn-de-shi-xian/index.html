@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Github Pages + Hexo + Vercel 个人博客搭建（四）自定义域名及百度谷歌收录, 培根请加蛋">
-    <meta name="description" content="自定义域名及百度谷歌收录">
+    <meta name="keywords" content="图神经网络学习日记（七）图神经网络（GNN）的实现, 培根请加蛋">
+    <meta name="description" content="图神经网络学习日记（六）图神经网络（GNN）的实现">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Github Pages + Hexo + Vercel 个人博客搭建（四）自定义域名及百度谷歌收录 | 培根请加蛋</title>
+    <title>图神经网络学习日记（七）图神经网络（GNN）的实现 | 培根请加蛋</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -339,12 +339,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Github Pages + Hexo + Vercel 个人博客搭建（四）自定义域名及百度谷歌收录</h1>
+                    <h1 class="description center-align post-title">图神经网络学习日记（七）图神经网络（GNN）的实现</h1>
                 </div>
             </div>
         </div>
@@ -368,12 +368,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Blog/">
-                                <span class="chip bg-color">Blog</span>
-                            </a>
-                        
-                            <a href="/tags/Hexo/">
-                                <span class="chip bg-color">Hexo</span>
+                            <a href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
+                                <span class="chip bg-color">图神经网络</span>
                             </a>
                         
                     </div>
@@ -384,8 +380,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Blog/" class="post-category">
-                                Blog
+                            <a href="/categories/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="post-category">
+                                图神经网络
                             </a>
                         
                     </div>
@@ -397,28 +393,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-06-04
+                    2023-06-20
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-06-06
+                    2023-06-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -438,7 +434,32 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h2><p><strong>用于节点分类的 GNN</strong></p>
+<p>以完全监督方式训练 GNN，使用 softmax 分类函数和负对数似然损失来定义损失函数，如下式：</p>
+<p>$$<br>\mathcal{L} = \sum_{u \in \mathcal{V}_{train}} = -log(softmax(z_u,y_u))<br>$$</p>
+<p>其中，假设 $y_u \in \mathbb{Z}^c$ 是一个独热向量，表示用于训练的节点 $u \in \mathcal{V}_{train}$ 的类。</p>
+<p>在引用网络中，$y_u$ 表示论文的主题，$Softmax(z_u,y_u)$ 表示通过 softmax 函数计算节点属于类 $y_u$ 的概率，如下式：</p>
+<p>$$<br>softmax(z_u,y_u) = \sum_{i=1}^c y_u[i]\frac{e^{z_u^Tw_i}}{\sum_{j=1}^c e^{z_u^Tw_j}}<br>$$</p>
+<p>其中，$w_i \in \mathbb{R}^d,i=1,\cdots,c$ 是可训练的参数。</p>
+<p><strong>用于图分类的 GNN</strong></p>
+<p>图分类的损失函数值是通过一组有标记的训练图 $\mathcal{T} = {\mathcal{G}_1,\cdots,\mathcal{G}<em>n}$ 上学习的图嵌入 $z</em>{\mathcal{G}_i}$ 计算，通常使用如下式定义的平方误差损失函数：</p>
+<p>$$<br>\mathcal{L} = \sum_{\mathcal{G} \in \mathcal{T}}| MLP(z_{\mathcal{G}<em>i}) - y</em>{\mathcal{G}_i} |_2^2<br>$$</p>
+<p>其中，MLP 是具有单一变量输出的密集连接的神经网络，$y_{\mathcal{G}_i} \in \mathbb{R}$ 是训练图 $\mathcal{G}_i$ 的标签值。</p>
+<p><strong>用于关系预测的 GNN</strong></p>
+<p>深度图信息最大化（DGI）节点嵌入 $z_u$ 和图嵌入 $z_{\mathcal{G}}$ 之间的互信息，损失函数如下式：</p>
+<p>$$<br>\mathcal{L} = -\sum_{u \in \mathcal{V}<em>{train}} \mathbb{E}</em>{\mathcal{G}} log(D(z_u,z_{\mathcal{G}})) + \gamma\mathbb{E}log(1-D(\tilde{z}<em>u,z</em>{\mathcal{G}}))<br>$$</p>
+<p>其中，$z_u$ 表示 GNN 根据图 $\mathcal{G}$ 生成的节点 $u$ 的嵌入，而 $\tilde{z}<em>u$ 表示根据 $\mathcal{G}$ 的损坏版本 $\tilde{\mathcal{G}}$ 生成的节点 $u$ 的嵌入。这里用 $D$ 表示判别函数，它是一个被训练用以预测节点嵌入是基于真实的图 $\mathcal{G}$ 还是损坏版本的图 $\tilde{\mathcal{G}}$ 生成的。在通常情况下，通过一种随机的方式（如打乱特征矩阵中的元素）修改节点特征或邻接矩阵，抑或是同时修改两者来破坏图。上述损失函数背后的思想是：GNN 模型必须学会生成可以区分真是图和其损坏版本的节点嵌入。这一优化目标与最大化节点嵌入 $z_u$ 和图嵌入 $z</em>{\mathcal{G}}$ 之间的互信息密切相关。</p>
+<h2 id="节点采样"><a href="#节点采样" class="headerlink" title="节点采样"></a>节点采样</h2><p>基于节点级别消息传递的角度直接实现 GNN 可能存在计算效率低的问题。例如，当多个节点共享邻域时，如果图中所有节点独立执行消息传递操作，最终可能会执行大量冗余计算。</p>
+<p><strong>图级别的实现方法</strong></p>
+<p><strong>子采样和小批量</strong></p>
+<p>为了限制 GNN 的内存占用并促进小批量训练方式，可以在消息传递过程中使用节点集的子集。从数学角度，可以认为这是在每个批次中为图中节点的子集运行节点级的 GNN 公式。</p>
+<p>挑战在于不能在不丢失信息的情况下简单地在图上的一部分节点中执行消息传递操作，每次删除节点时也会删除其关联的边，这无法保证选择的节点的随机子集会构成连接图，并且为每个小批次选择一个节点的随机自己会对模型性能产生严重的不利影响。</p>
+<p>通过对节点邻域进行子采样的策略来克服此问题：首先为每个批次选择一组目标节点，然后递归采样这些节点的邻域以确保能够保持图的连通性。为了尽可能避免为一个批次采样过多节点的情况，建议使用固定容量对每个节点的邻域进行子采样以提高批量张量操作的效率。</p>
+<h2 id="参数共享和正则化"><a href="#参数共享和正则化" class="headerlink" title="参数共享和正则化"></a>参数共享和正则化</h2><p><strong>层间参数共享</strong></p>
+<p>在 GNN 的所有聚合和更新函数中使用相同的函数。通常情况下，在6层以上的 GNN 中最有效，并且通常与门控更新函数结合使用。</p>
+<p><strong>边丢弃</strong></p>
+<p>训练过程中随机删除（或屏蔽）邻接矩阵的边。直观来看，这将使 GNN 不太容易过拟合，并且对邻接矩阵中的噪声更具鲁棒性。</p>
+
                 
             </div>
             <hr/>
@@ -464,7 +485,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://blog.lfd-world.online/2023/06/04/2023-0github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/">https://blog.lfd-world.online/2023/06/04/2023-0github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/</a>
+                    <a href="https://blog.lfd-world.online/2023/06/20/2023-06-20-tu-shen-jing-wang-luo-xue-xi-ri-ji-qi-tu-shen-jing-wang-luo-gnn-de-shi-xian/">https://blog.lfd-world.online/2023/06/20/2023-06-20-tu-shen-jing-wang-luo-xue-xi-ri-ji-qi-tu-shen-jing-wang-luo-gnn-de-shi-xian/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -502,12 +523,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Blog/">
-                                    <span class="chip bg-color">Blog</span>
-                                </a>
-                            
-                                <a href="/tags/Hexo/">
-                                    <span class="chip bg-color">Hexo</span>
+                                <a href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
+                                    <span class="chip bg-color">图神经网络</span>
                                 </a>
                             
                         </div>
@@ -586,50 +603,48 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2023/06/12/wandb-xue-xi-ri-ji-yi-doc/">
+                <a href="/2023/06/20/2023-06-20-tu-shen-jing-wang-luo-xue-xi-ri-ji-qi-tu-shen-jing-wang-luo-gnn-de-shi-xian/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="WandB 学习日记（一）Tutorials">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="图神经网络学习日记（七）图神经网络（GNN）的实现">
                         
-                        <span class="card-title">WandB 学习日记（一）Tutorials</span>
+                        <span class="card-title">图神经网络学习日记（七）图神经网络（GNN）的实现</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            WandB 学习日记（一）Tutorials
+                            图神经网络学习日记（六）图神经网络（GNN）的实现
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-06-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/WandB/" class="post-category">
-                                    WandB
+                            <a href="/categories/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="post-category">
+                                    图神经网络
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/WandB/">
-                        <span class="chip bg-color">WandB</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
-                        <span class="chip bg-color">深度学习</span>
+                    <a href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
+                        <span class="chip bg-color">图神经网络</span>
                     </a>
                     
                 </div>
@@ -643,31 +658,31 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/">
+                <a href="/2023/06/20/tu-shen-jing-wang-luo-xue-xi-ri-ji-liu-tu-shen-jing-wang-luo-gnn-de-shi-xian/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Github Pages + Hexo + Vercel 个人博客搭建（三）Typora + PicGo+ 腾讯云图床">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="图神经网络学习日记（六）图神经网络（GNN）的实现">
                         
-                        <span class="card-title">Github Pages + Hexo + Vercel 个人博客搭建（三）Typora + PicGo+ 腾讯云图床</span>
+                        <span class="card-title">图神经网络学习日记（六）图神经网络（GNN）的实现</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Typora + PicGo + 腾讯云图床
+                            图神经网络学习日记（六）图神经网络（GNN）的实现
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-20
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Blog/" class="post-category">
-                                    Blog
+                            <a href="/categories/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="post-category">
+                                    图神经网络
                                 </a>
                             
                             
@@ -677,12 +692,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Blog/">
-                        <span class="chip bg-color">Blog</span>
-                    </a>
-                    
-                    <a href="/tags/Hexo/">
-                        <span class="chip bg-color">Hexo</span>
+                    <a href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
+                        <span class="chip bg-color">图神经网络</span>
                     </a>
                     
                 </div>
