@@ -54,10 +54,10 @@
     
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.2">
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="培根请加蛋" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="培根请加蛋" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -436,18 +436,42 @@
             <div id="articleContent">
                 <p><strong>标准机器学习范式</strong></p>
 <p>首先，基于启发式函数或领域知识提取一些统计特征；然后将其作为标准机器学习分类器（如逻辑回归）的输入。</p>
-<h2 id="图统计特征"><a href="#图统计特征" class="headerlink" title="图统计特征"></a>图统计特征</h2><h3 id="节点层面的统计特征"><a href="#节点层面的统计特征" class="headerlink" title="节点层面的统计特征"></a>节点层面的统计特征</h3><p><strong>节点的度</strong></p>
-<p>节点$u$的度反映与这个节点相连接的边的数目，可由下式表示<br>$$<br>d_u = \sum_{v \in \mathcal{V}} A[u,v]<br>$$<br>对于有向图和加权图，度分为入度和出度。对矩阵$A$中的节点$u$的行求和可以得到出度，对节点$u$的列求和可以得到入度。</p>
+<h2 id="图统计特征">图统计特征</h2>
+<h3 id="节点层面的统计特征">节点层面的统计特征</h3>
+<p><strong>节点的度</strong></p>
+<p>节点<span class="math inline">\(u\)</span>的度反映与这个节点相连接的边的数目，可由下式表示
+<span class="math display">\[
+d_u = \sum_{v \in \mathcal{V}} A[u,v]
+\]</span> 对于有向图和加权图，度分为入度和出度。对矩阵<span class="math inline">\(A\)</span>中的节点<span class="math inline">\(u\)</span>的行求和可以得到出度，对节点<span class="math inline">\(u\)</span>的列求和可以得到入度。</p>
 <p><strong>节点的中心性</strong></p>
-<p>角度一：特征向量中心性度量不仅考虑邻居节点个数的度，还考虑了邻居节点的重要性。<br>$$<br>e_u = \frac{1}{\lambda}\sum_{v\in \mathcal{V}}A[u,v]e_v, \forall u \in \mathcal{V}<br>$$<br>将向量表示$e$代入上述等式取代节点中心性向量可得到邻接矩阵的标准特征向量方程：<br>$$<br>\lambda e = Ae<br>$$<br>角度二：特征向量中心性衡量了一个节点在路径无限长的情况下在随机游走时被访问的概率。这种理解方式连接了节点重要性、随机游走和谱三个重要概念。$\lambda$是$A$的主要特征向量，可通过幂次迭代法则计算$e$如下所示：<br>$$<br>e^{(t+1)} = Ae^{(t)}<br>$$<br>从向量$e^{(0)}=(1,1,\cdots,1)^T$开始，依据幂次迭代法则，第一次迭代可以得到每个节点的度，在第$t$次迭代$(t \geq 1)$时，$e^{(t)}$包括了尝试到达每个节点且长度为$t$的路线的长度的数量，无限重复下去可得到路径无限长时每个节点被访问的次数。</p>
+<p>角度一：特征向量中心性度量不仅考虑邻居节点个数的度，还考虑了邻居节点的重要性。
+<span class="math display">\[
+e_u = \frac{1}{\lambda}\sum_{v\in \mathcal{V}}A[u,v]e_v, \forall u \in
+\mathcal{V}
+\]</span> 将向量表示<span class="math inline">\(e\)</span>代入上述等式取代节点中心性向量可得到邻接矩阵的标准特征向量方程：
+<span class="math display">\[
+\lambda e = Ae
+\]</span>
+角度二：特征向量中心性衡量了一个节点在路径无限长的情况下在随机游走时被访问的概率。这种理解方式连接了节点重要性、随机游走和谱三个重要概念。<span class="math inline">\(\lambda\)</span>是<span class="math inline">\(A\)</span>的主要特征向量，可通过幂次迭代法则计算<span class="math inline">\(e\)</span>如下所示： <span class="math display">\[
+e^{(t+1)} = Ae^{(t)}
+\]</span> 从向量<span class="math inline">\(e^{(0)}=(1,1,\cdots,1)^T\)</span>开始，依据幂次迭代法则，第一次迭代可以得到每个节点的度，在第<span class="math inline">\(t\)</span>次迭代<span class="math inline">\((t
+\geq 1)\)</span>时，<span class="math inline">\(e^{(t)}\)</span>包括了尝试到达每个节点且长度为<span class="math inline">\(t\)</span>的路线的长度的数量，无限重复下去可得到路径无限长时每个节点被访问的次数。</p>
 <p><strong>聚类系数</strong></p>
-<p>聚类系数通过一个节点的局部邻域中闭合三角形的比例度量节点的邻居节点聚类的紧密程度。聚类系数计算方法 Local Variant 方法如下式所示：<br>$$<br>c_u = \frac{|(v_1, v_2)\in \varepsilon: v_1, v_2 \in \mathcal{N}(u)|}{\binom{d_u}{2}}<br>$$<br>其中$\mathcal{N}(u)={v\in \mathcal{V}: (u,v)\in \varepsilon}$表示节点$u$的邻居节点。</p>
+<p>聚类系数通过一个节点的局部邻域中闭合三角形的比例度量节点的邻居节点聚类的紧密程度。聚类系数计算方法
+Local Variant 方法如下式所示： <span class="math display">\[
+c_u = \frac{|(v_1, v_2)\in \varepsilon: v_1, v_2 \in
+\mathcal{N}(u)|}{\binom{d_u}{2}}
+\]</span> 其中<span class="math inline">\(\mathcal{N}(u)=\{v\in
+\mathcal{V}: (u,v)\in \varepsilon\}\)</span>表示节点<span class="math inline">\(u\)</span>的邻居节点。</p>
 <p><strong>闭合三角形、自我中心图、Motifs</strong></p>
 <p><strong>闭合三角形</strong></p>
-<h3 id="图层面的统计特征"><a href="#图层面的统计特征" class="headerlink" title="图层面的统计特征"></a>图层面的统计特征</h3><p>节点袋</p>
+<h3 id="图层面的统计特征">图层面的统计特征</h3>
+<p>节点袋</p>
 <p>Weisfeiler-Lehman 核</p>
 <p>Graphlets 和基于路径的方法</p>
-<h2 id="邻域重叠检测"><a href="#邻域重叠检测" class="headerlink" title="邻域重叠检测"></a>邻域重叠检测</h2><h2 id="图的拉普拉斯矩阵和图的谱方法"><a href="#图的拉普拉斯矩阵和图的谱方法" class="headerlink" title="图的拉普拉斯矩阵和图的谱方法"></a>图的拉普拉斯矩阵和图的谱方法</h2>
+<h2 id="邻域重叠检测">邻域重叠检测</h2>
+<h2 id="图的拉普拉斯矩阵和图的谱方法">图的拉普拉斯矩阵和图的谱方法</h2>
+
                 
             </div>
             <hr/>
@@ -876,7 +900,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">24.5k</span>
+                        class="white-color">24.6k</span>
             
             
             

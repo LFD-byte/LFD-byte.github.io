@@ -54,10 +54,10 @@
     
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.2">
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="培根请加蛋" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="培根请加蛋" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -407,7 +407,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    186
+                    193
                 </div>
                 
 
@@ -434,34 +434,43 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><pre class=" language-bash"><code class="language-bash">kex_exchange_identification: Connection closed by remote host
-Connection closed by 20.205.243.166 port 22
-fatal: Could not <span class="token function">read</span> from remote repository.
-
-Please <span class="token function">make</span> sure you have the correct access rights
-and the repository exists.
-</code></pre>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p><strong>本地生成.pub文件</strong></p>
-<pre class=" language-bash"><code class="language-bash">ssh-keygen -t ed25519 -C <span class="token string">"your_mail@xxx.com"</span>
-ssh-agent <span class="token function">bash</span>
-</code></pre>
+                <h2 id="问题描述">问题描述</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">kex_exchange_identification:</span> Connection closed by remote host</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Connection</span> closed by 20.205.243.166 port 22</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">fatal:</span> Could not read from remote repository.</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Please</span> make sure you have the correct access rights</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">and</span> the repository exists.</span></code></pre></div>
+<h2 id="解决方法">解决方法</h2>
+<p><strong>本地生成.pub文件</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your_mail@xxx.com"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-agent</span> bash</span></code></pre></div>
 <p>会在<code>C:\Users\admin\.ssh</code>目录生成一个<code>id_ed25519.pub</code>文件，复制里面的内容。</p>
 <p><strong>Github 新建 SSH key</strong></p>
 <p>打开 Github，点击 Setting 如下图所示：</p>
-<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230531145549324.png" alt="Setting"></p>
+<figure>
+<img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230531145549324.png" alt="Setting">
+<figcaption aria-hidden="true">Setting</figcaption>
+</figure>
 <p>在 Setting 页面中找到 SSH and GPG keys 选项，新建 SSH key。</p>
-<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230531145936726.png" alt="SSH and GPG keys"></p>
-<p>Title 内容任意，Key 文本框内填入 <code>id_ed25519.pub</code> 内的内容。</p>
-<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230531150100824.png" alt="SSH keys"></p>
+<figure>
+<img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230531145936726.png" alt="SSH and GPG keys">
+<figcaption aria-hidden="true">SSH and GPG keys</figcaption>
+</figure>
+<p>Title 内容任意，Key 文本框内填入 <code>id_ed25519.pub</code>
+内的内容。</p>
+<figure>
+<img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230531150100824.png" alt="SSH keys">
+<figcaption aria-hidden="true">SSH keys</figcaption>
+</figure>
 <p>重新尝试上传。</p>
 <p>如果仍然有上述错误提示可进行以下操作：</p>
-<pre class=" language-shell"><code class="language-shell">git init
+<pre class="shell"><code>git init
 git add .
 git commit -m "init"
 git branch -M main
 git remote add origin git@github.com:xxx/xxx.git
-git push -f -u origin main
-</code></pre>
+git push -f -u origin main</code></pre>
 
                 
             </div>
@@ -887,7 +896,7 @@ git push -f -u origin main
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">24.5k</span>
+                        class="white-color">24.6k</span>
             
             
             

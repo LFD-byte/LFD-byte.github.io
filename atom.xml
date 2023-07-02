@@ -28,8 +28,11 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;损失函数&quot;&gt;&lt;a href=&quot;#损失函数&quot; class=&quot;headerlink&quot; title=&quot;损失函数&quot;&gt;&lt;/a&gt;损失函数&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;用于节点分类的 GNN&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;以完全监督方式训练 GNN，使用 softmax</summary>
+    <summary type="html">&lt;h2 id=&quot;损失函数&quot;&gt;损失函数&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;用于节点分类的 GNN&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;以完全监督方式训练 GNN，使用 softmax
+分类函数和负对数似然损失来定义损失函数，如下式：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math</summary>
         
       
     
@@ -54,8 +57,11 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;损失函数&quot;&gt;&lt;a href=&quot;#损失函数&quot; class=&quot;headerlink&quot; title=&quot;损失函数&quot;&gt;&lt;/a&gt;损失函数&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;用于节点分类的 GNN&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;以完全监督方式训练 GNN，使用 softmax</summary>
+    <summary type="html">&lt;h2 id=&quot;损失函数&quot;&gt;损失函数&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;用于节点分类的 GNN&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;以完全监督方式训练 GNN，使用 softmax
+分类函数和负对数似然损失来定义损失函数，如下式：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math</summary>
         
       
     
@@ -97,7 +103,10 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;Track-experiments&quot;&gt;&lt;a href=&quot;#Track-experiments&quot; class=&quot;headerlink&quot; title=&quot;Track experiments&quot;&gt;&lt;/a&gt;Track</summary>
+    <summary type="html">&lt;h2 id=&quot;track-experiments&quot;&gt;Track experiments&lt;/h2&gt;
+&lt;p&gt;快速实验是机器学习的基础。在本教程中，我们使用 W&amp;amp;B
+来跟踪和可视化实验，以便我们可以快速迭代和理解我们的结果。&lt;/p&gt;
+&lt;h3</summary>
         
       
     
@@ -109,25 +118,6 @@
     <category term="WandB" scheme="https://blog.lfd-world.online/tags/WandB/"/>
     
     <category term="深度学习" scheme="https://blog.lfd-world.online/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Github Pages + Hexo + Vercel 个人博客搭建（四）自定义域名及百度谷歌收录</title>
-    <link href="https://blog.lfd-world.online/2023/06/04/2023-0github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/"/>
-    <id>https://blog.lfd-world.online/2023/06/04/2023-0github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/</id>
-    <published>2023-06-04T07:31:00.000Z</published>
-    <updated>2023-06-06T13:03:15.146Z</updated>
-    
-    
-    
-    
-    <category term="Blog" scheme="https://blog.lfd-world.online/categories/Blog/"/>
-    
-    
-    <category term="Blog" scheme="https://blog.lfd-world.online/tags/Blog/"/>
-    
-    <category term="Hexo" scheme="https://blog.lfd-world.online/tags/Hexo/"/>
     
   </entry>
   
@@ -162,9 +152,30 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;下载&quot;&gt;&lt;a href=&quot;#下载&quot; class=&quot;headerlink&quot; title=&quot;下载&quot;&gt;&lt;/a&gt;下载&lt;/h2&gt;&lt;p&gt;本主题&lt;strong&gt;推荐你使用 Hexo 5.0.0 及以上的版本&lt;/strong&gt;。如果，你已经有一个自己的 &lt;a</summary>
+    <summary type="html">&lt;h2 id=&quot;下载&quot;&gt;下载&lt;/h2&gt;
+&lt;p&gt;本主题&lt;strong&gt;推荐你使用 Hexo 5.0.0
+及以上的版本&lt;/strong&gt;。如果，你已经有一个自己的 &lt;a href=&quot;https://hexo.io/zh-cn/&quot;&gt;Hexo&lt;/a&gt; 博客了，建议你将</summary>
         
       
+    
+    
+    
+    <category term="Blog" scheme="https://blog.lfd-world.online/categories/Blog/"/>
+    
+    
+    <category term="Blog" scheme="https://blog.lfd-world.online/tags/Blog/"/>
+    
+    <category term="Hexo" scheme="https://blog.lfd-world.online/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Github Pages + Hexo + Vercel 个人博客搭建（四）自定义域名及百度谷歌收录</title>
+    <link href="https://blog.lfd-world.online/2023/06/04/2023-0github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/"/>
+    <id>https://blog.lfd-world.online/2023/06/04/2023-0github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/</id>
+    <published>2023-06-04T07:31:00.000Z</published>
+    <updated>2023-06-06T13:03:15.146Z</updated>
+    
     
     
     
@@ -189,8 +200,9 @@
       
         
         
-    <summary type="html">&lt;p&gt;在 LaTeX 中，使用“align”环境可以方便地实现等号对齐。使用“&amp;amp;”符号可以在每行中分隔等号两边的内容，表示对齐位置，‘’&#92;&#92;‘’表示换行$&#92;lambda$：&lt;/p&gt;
-&lt;pre class=&quot; language-latex&quot;&gt;&lt;code</summary>
+    <summary type="html">&lt;p&gt;在 LaTeX
+中，使用“align”环境可以方便地实现等号对齐。使用“&amp;amp;”符号可以在每行中分隔等号两边的内容，表示对齐位置，‘’&#92;&#92;‘’表示换行&lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;lambda&#92;)&lt;/span&gt;：&lt;/p&gt;
+&lt;div</summary>
         
       
     
@@ -217,7 +229,8 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h2&gt;&lt;pre class=&quot; language-bash&quot;&gt;&lt;code</summary>
+    <summary type="html">&lt;h2 id=&quot;问题描述&quot;&gt;问题描述&lt;/h2&gt;
+&lt;div class=&quot;sourceCode&quot; id=&quot;cb1&quot;&gt;&lt;pre class=&quot;sourceCode bash&quot;&gt;&lt;code class=&quot;sourceCode bash&quot;&gt;&lt;span id=&quot;cb1-1&quot;&gt;&lt;a</summary>
         
       
     
@@ -242,9 +255,11 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;本地创建环境&quot;&gt;&lt;a href=&quot;#本地创建环境&quot; class=&quot;headerlink&quot; title=&quot;本地创建环境&quot;&gt;&lt;/a&gt;本地创建环境&lt;/h2&gt;&lt;p&gt;本人环境：&lt;/p&gt;
+    <summary type="html">&lt;h2 id=&quot;本地创建环境&quot;&gt;本地创建环境&lt;/h2&gt;
+&lt;p&gt;本人环境：&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;windows 10&lt;/code&gt;&lt;/p&gt;
-&lt;h3</summary>
+&lt;h3 id=&quot;安装-node.js&quot;&gt;安装 node.js&lt;/h3&gt;
+&lt;p&gt;建议使用 nvm （node version</summary>
         
       
     
@@ -272,7 +287,7 @@
         
         
     <summary type="html">&lt;p&gt;&lt;strong&gt;置换不变性和置换同变性&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;任何将邻接矩阵$A$作为输入的函数$f$在理想状态下，都应满足下面两个条件之一：&lt;br&gt;$$&lt;br&gt;f(PAP^T)=f(A)&#92;text{(置换不变)}</summary>
+&lt;p&gt;任何将邻接矩阵&lt;span class=&quot;math inline&quot;&gt;&#92;(A&#92;)&lt;/span&gt;作为输入的函数&lt;span class=&quot;math</summary>
         
       
     
@@ -298,9 +313,7 @@
         
         
     <summary type="html">&lt;p&gt;time包查看程序运行时间&lt;/p&gt;
-&lt;pre class=&quot; language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; time
-
-start_time</summary>
+&lt;div class=&quot;sourceCode&quot; id=&quot;cb1&quot;&gt;&lt;pre class=&quot;sourceCode python&quot;&gt;&lt;code class=&quot;sourceCode python&quot;&gt;&lt;span id=&quot;cb1-1&quot;&gt;&lt;a</summary>
         
       
     
@@ -342,9 +355,11 @@ start_time</summary>
       
         
         
-    <summary type="html">&lt;center&gt;蝶恋花&lt;/center&gt;
-
-&lt;center&gt;宋</summary>
+    <summary type="html">&lt;center&gt;
+蝶恋花
+&lt;/center&gt;
+&lt;center&gt;
+宋</summary>
         
       
     
@@ -373,7 +388,8 @@ start_time</summary>
       
         
         
-    <summary type="html">&lt;center&gt;木兰花</summary>
+    <summary type="html">&lt;center&gt;
+木兰花</summary>
         
       
     
@@ -404,7 +420,8 @@ start_time</summary>
         
     <summary type="html">&lt;p&gt;&lt;strong&gt;标准机器学习范式&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;首先，基于启发式函数或领域知识提取一些统计特征；然后将其作为标准机器学习分类器（如逻辑回归）的输入。&lt;/p&gt;
-&lt;h2 id=&quot;图统计特征&quot;&gt;&lt;a href=&quot;#图统计特征&quot;</summary>
+&lt;h2 id=&quot;图统计特征&quot;&gt;图统计特征&lt;/h2&gt;
+&lt;h3</summary>
         
       
     
@@ -429,8 +446,8 @@ start_time</summary>
       
         
         
-    <summary type="html">&lt;p&gt;Caligraphic letters: &lt;code&gt;$&#92;mathcal{A}$ &lt;/code&gt; etc.: $&#92;mathcal{A B C D E F G H I J K L M N O P Q I S T U V W X Y Z}$&lt;/p&gt;
-&lt;p&gt;Mathbb</summary>
+    <summary type="html">&lt;p&gt;Caligraphic letters: &lt;code&gt;$&#92;mathcal{A}$&lt;/code&gt; etc.: &lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;mathcal{A B C D E F G H I J K L M N O P Q I S T U
+V W</summary>
         
       
     
@@ -457,7 +474,8 @@ start_time</summary>
       
         
         
-    <summary type="html">&lt;h2 id=&quot;图的定义&quot;&gt;&lt;a href=&quot;#图的定义&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h2 id=&quot;图的定义&quot;&gt;图的定义&lt;/h2&gt;
+&lt;p&gt;图由节点集合&lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;mathcal{V}&#92;)&lt;/span&gt;和边集合&lt;span class=&quot;math</summary>
         
       
     

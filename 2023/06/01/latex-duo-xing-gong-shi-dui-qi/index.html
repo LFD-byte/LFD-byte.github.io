@@ -54,10 +54,10 @@
     
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.2">
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="培根请加蛋" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="培根请加蛋" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -438,13 +438,18 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>在 LaTeX 中，使用“align”环境可以方便地实现等号对齐。使用“&amp;”符号可以在每行中分隔等号两边的内容，表示对齐位置，‘’\\‘’表示换行$\lambda$：</p>
-<pre class=" language-latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">aligned</span><span class="token punctuation">}</span>
-  2x + 3y <span class="token punctuation">&amp;</span>= 7 <span class="token function selector">\\</span>
-  5x - 2y <span class="token punctuation">&amp;</span>= 1
-<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">aligned</span><span class="token punctuation">}</span>
-</code></pre>
-<p>该代码将产生以下等式：<br>$$<br>\begin{align}<br>  2x + 3y &amp;= 7 \\<br>  5x - 2y &amp;= 1<br>\end{align}<br>$$</p>
+                <p>在 LaTeX
+中，使用“align”环境可以方便地实现等号对齐。使用“&amp;”符号可以在每行中分隔等号两边的内容，表示对齐位置，‘’\\‘’表示换行<span class="math inline">\(\lambda\)</span>：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">aligned</span>}</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  2x + 3y &amp;= 7 <span class="fu">\\</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  5x - 2y &amp;= 1</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">aligned</span>}</span></code></pre></div>
+<p>该代码将产生以下等式： <span class="math display">\[
+\begin{align}
+  2x + 3y &amp;= 7 \\\\
+  5x - 2y &amp;= 1
+\end{align}
+\]</span></p>
 
                 
             </div>
@@ -597,19 +602,19 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-er-matery-zhu-ti/">
+                <a href="/2023/06/04/2023-0github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Github Pages + Hexo + Vercel 个人博客搭建（二）Matery 主题">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Github Pages + Hexo + Vercel 个人博客搭建（四）自定义域名及百度谷歌收录">
                         
-                        <span class="card-title">Github Pages + Hexo + Vercel 个人博客搭建（二）Matery 主题</span>
+                        <span class="card-title">Github Pages + Hexo + Vercel 个人博客搭建（四）自定义域名及百度谷歌收录</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Matery 主题
+                            自定义域名及百度谷歌收录
                         
                     </div>
                     <div class="publish-info">
@@ -870,7 +875,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">24.5k</span>
+                        class="white-color">24.6k</span>
             
             
             
