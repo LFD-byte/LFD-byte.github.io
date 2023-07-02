@@ -92,30 +92,39 @@
   </entry>
   
   <entry>
+    <title>WandB 学习日记（一）Tutorials</title>
+    <link href="https://blog.lfd-world.online/2023/06/12/wandb-xue-xi-ri-ji-yi-doc/"/>
+    <id>https://blog.lfd-world.online/2023/06/12/wandb-xue-xi-ri-ji-yi-doc/</id>
+    <published>2023-06-12T06:06:00.000Z</published>
+    <updated>2023-07-02T12:15:15.998Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;track-experiments&quot;&gt;Track experiments&lt;/h2&gt;
+&lt;p&gt;快速实验是机器学习的基础。在本教程中，我们使用 W&amp;amp;B
+来跟踪和可视化实验，以便我们可以快速迭代和理解我们的结果。&lt;/p&gt;
+&lt;h3</summary>
+        
+      
+    
+    
+    
+    
+    <category term="WandB" scheme="https://blog.lfd-world.online/tags/WandB/"/>
+    
+    <category term="深度学习" scheme="https://blog.lfd-world.online/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Github Pages + Hexo + Vercel 个人博客搭建（四）自定义域名及百度谷歌收录</title>
     <link href="https://blog.lfd-world.online/2023/06/04/2023-0github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/"/>
     <id>https://blog.lfd-world.online/2023/06/04/2023-0github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/</id>
     <published>2023-06-04T07:31:00.000Z</published>
     <updated>2023-06-06T13:03:15.146Z</updated>
-    
-    
-    
-    
-    <category term="Blog" scheme="https://blog.lfd-world.online/categories/Blog/"/>
-    
-    
-    <category term="Blog" scheme="https://blog.lfd-world.online/tags/Blog/"/>
-    
-    <category term="Hexo" scheme="https://blog.lfd-world.online/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Github Pages + Hexo + Vercel 个人博客搭建（三）Typora + PicGo+ 腾讯云图床</title>
-    <link href="https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/"/>
-    <id>https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/</id>
-    <published>2023-06-04T07:31:00.000Z</published>
-    <updated>2023-06-04T07:31:45.783Z</updated>
     
     
     
@@ -146,6 +155,25 @@
 及以上的版本&lt;/strong&gt;。如果，你已经有一个自己的 &lt;a href=&quot;https://hexo.io/zh-cn/&quot;&gt;Hexo&lt;/a&gt; 博客了，建议你将</summary>
         
       
+    
+    
+    
+    <category term="Blog" scheme="https://blog.lfd-world.online/categories/Blog/"/>
+    
+    
+    <category term="Blog" scheme="https://blog.lfd-world.online/tags/Blog/"/>
+    
+    <category term="Hexo" scheme="https://blog.lfd-world.online/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Github Pages + Hexo + Vercel 个人博客搭建（三）Typora + PicGo+ 腾讯云图床</title>
+    <link href="https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/"/>
+    <id>https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/</id>
+    <published>2023-06-04T07:31:00.000Z</published>
+    <updated>2023-06-04T07:31:45.783Z</updated>
+    
     
     
     
