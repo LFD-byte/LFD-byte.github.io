@@ -92,36 +92,6 @@
   </entry>
   
   <entry>
-    <title>WandB 学习日记（一）Tutorials</title>
-    <link href="https://blog.lfd-world.online/2023/06/12/wandb-xue-xi-ri-ji-yi-doc/"/>
-    <id>https://blog.lfd-world.online/2023/06/12/wandb-xue-xi-ri-ji-yi-doc/</id>
-    <published>2023-06-12T06:06:00.000Z</published>
-    <updated>2023-06-13T12:47:31.714Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;track-experiments&quot;&gt;Track experiments&lt;/h2&gt;
-&lt;p&gt;快速实验是机器学习的基础。在本教程中，我们使用 W&amp;amp;B
-来跟踪和可视化实验，以便我们可以快速迭代和理解我们的结果。&lt;/p&gt;
-&lt;h3</summary>
-        
-      
-    
-    
-    
-    <category term="WandB" scheme="https://blog.lfd-world.online/categories/WandB/"/>
-    
-    
-    <category term="WandB" scheme="https://blog.lfd-world.online/tags/WandB/"/>
-    
-    <category term="深度学习" scheme="https://blog.lfd-world.online/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Github Pages + Hexo + Vercel 个人博客搭建（四）自定义域名及百度谷歌收录</title>
     <link href="https://blog.lfd-world.online/2023/06/04/2023-0github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/"/>
     <id>https://blog.lfd-world.online/2023/06/04/2023-0github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/</id>
