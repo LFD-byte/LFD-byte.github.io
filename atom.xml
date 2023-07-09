@@ -200,7 +200,7 @@
         
     <summary type="html">&lt;p&gt;在 LaTeX
 中，使用“align”环境可以方便地实现等号对齐。使用“&amp;amp;”符号可以在每行中分隔等号两边的内容，表示对齐位置，‘’&#92;&#92;‘’表示换行&lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;lambda&#92;)&lt;/span&gt;：&lt;/p&gt;
-&lt;figure</summary>
+&lt;div</summary>
         
       
     
@@ -228,7 +228,7 @@
         
         
     <summary type="html">&lt;h2 id=&quot;问题描述&quot;&gt;问题描述&lt;/h2&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+&lt;div class=&quot;sourceCode&quot; id=&quot;cb1&quot;&gt;&lt;pre class=&quot;sourceCode bash&quot;&gt;&lt;code class=&quot;sourceCode bash&quot;&gt;&lt;span id=&quot;cb1-1&quot;&gt;&lt;a</summary>
         
       
     
@@ -311,7 +311,7 @@
         
         
     <summary type="html">&lt;p&gt;time包查看程序运行时间&lt;/p&gt;
-&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+&lt;div class=&quot;sourceCode&quot; id=&quot;cb1&quot;&gt;&lt;pre class=&quot;sourceCode python&quot;&gt;&lt;code class=&quot;sourceCode python&quot;&gt;&lt;span id=&quot;cb1-1&quot;&gt;&lt;a</summary>
         
       
     
