@@ -18,8 +18,8 @@
   
   <entry>
     <title>图神经网络学习日记（七）图神经网络（GNN）的实现</title>
-    <link href="https://blog.lfd-world.online/2023/06/20/2023-06-20-tu-shen-jing-wang-luo-xue-xi-ri-ji-qi-tu-shen-jing-wang-luo-gnn-de-shi-xian/"/>
-    <id>https://blog.lfd-world.online/2023/06/20/2023-06-20-tu-shen-jing-wang-luo-xue-xi-ri-ji-qi-tu-shen-jing-wang-luo-gnn-de-shi-xian/</id>
+    <link href="https://blog.lfd-world.online/2023/06/20/tu-shen-jing-wang-luo-xue-xi-ri-ji-qi-tu-shen-jing-wang-luo-gnn-de-shi-xian/"/>
+    <id>https://blog.lfd-world.online/2023/06/20/tu-shen-jing-wang-luo-xue-xi-ri-ji-qi-tu-shen-jing-wang-luo-gnn-de-shi-xian/</id>
     <published>2023-06-20T11:10:00.000Z</published>
     <updated>2023-06-29T02:25:10.293Z</updated>
     
@@ -96,7 +96,7 @@
     <link href="https://blog.lfd-world.online/2023/06/12/wandb-xue-xi-ri-ji-yi-doc/"/>
     <id>https://blog.lfd-world.online/2023/06/12/wandb-xue-xi-ri-ji-yi-doc/</id>
     <published>2023-06-12T06:06:00.000Z</published>
-    <updated>2023-07-02T12:15:15.998Z</updated>
+    <updated>2023-07-09T07:56:06.598Z</updated>
     
     
       
@@ -120,11 +120,11 @@
   </entry>
   
   <entry>
-    <title>Github Pages + Hexo + Vercel 个人博客搭建（四）自定义域名及百度谷歌收录</title>
-    <link href="https://blog.lfd-world.online/2023/06/04/2023-0github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/"/>
-    <id>https://blog.lfd-world.online/2023/06/04/2023-0github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/</id>
+    <title>Github Pages + Hexo + Vercel 个人博客搭建（三）Typora + PicGo+ 腾讯云图床</title>
+    <link href="https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/"/>
+    <id>https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/</id>
     <published>2023-06-04T07:31:00.000Z</published>
-    <updated>2023-06-06T13:03:15.146Z</updated>
+    <updated>2023-06-04T07:31:45.783Z</updated>
     
     
     
@@ -168,11 +168,11 @@
   </entry>
   
   <entry>
-    <title>Github Pages + Hexo + Vercel 个人博客搭建（三）Typora + PicGo+ 腾讯云图床</title>
-    <link href="https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/"/>
-    <id>https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/</id>
+    <title>Github Pages + Hexo + Vercel 个人博客搭建（四）自定义域名及百度谷歌收录</title>
+    <link href="https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/"/>
+    <id>https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/</id>
     <published>2023-06-04T07:31:00.000Z</published>
-    <updated>2023-06-04T07:31:45.783Z</updated>
+    <updated>2023-06-06T13:03:15.146Z</updated>
     
     
     
