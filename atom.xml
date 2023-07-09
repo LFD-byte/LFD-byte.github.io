@@ -96,7 +96,7 @@
     <link href="https://blog.lfd-world.online/2023/06/12/wandb-xue-xi-ri-ji-yi-doc/"/>
     <id>https://blog.lfd-world.online/2023/06/12/wandb-xue-xi-ri-ji-yi-doc/</id>
     <published>2023-06-12T06:06:00.000Z</published>
-    <updated>2023-07-09T07:56:06.598Z</updated>
+    <updated>2023-07-09T07:58:23.587Z</updated>
     
     
       
@@ -139,6 +139,25 @@
   </entry>
   
   <entry>
+    <title>Github Pages + Hexo + Vercel 个人博客搭建（四）自定义域名及百度谷歌收录</title>
+    <link href="https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/"/>
+    <id>https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/</id>
+    <published>2023-06-04T07:31:00.000Z</published>
+    <updated>2023-06-06T13:03:15.146Z</updated>
+    
+    
+    
+    
+    <category term="Blog" scheme="https://blog.lfd-world.online/categories/Blog/"/>
+    
+    
+    <category term="Blog" scheme="https://blog.lfd-world.online/tags/Blog/"/>
+    
+    <category term="Hexo" scheme="https://blog.lfd-world.online/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Github Pages + Hexo + Vercel 个人博客搭建（二）Matery 主题</title>
     <link href="https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-er-matery-zhu-ti/"/>
     <id>https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-er-matery-zhu-ti/</id>
@@ -155,25 +174,6 @@
 及以上的版本&lt;/strong&gt;。如果，你已经有一个自己的 &lt;a href=&quot;https://hexo.io/zh-cn/&quot;&gt;Hexo&lt;/a&gt; 博客了，建议你将</summary>
         
       
-    
-    
-    
-    <category term="Blog" scheme="https://blog.lfd-world.online/categories/Blog/"/>
-    
-    
-    <category term="Blog" scheme="https://blog.lfd-world.online/tags/Blog/"/>
-    
-    <category term="Hexo" scheme="https://blog.lfd-world.online/tags/Hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Github Pages + Hexo + Vercel 个人博客搭建（四）自定义域名及百度谷歌收录</title>
-    <link href="https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/"/>
-    <id>https://blog.lfd-world.online/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-si-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/</id>
-    <published>2023-06-04T07:31:00.000Z</published>
-    <updated>2023-06-06T13:03:15.146Z</updated>
-    
     
     
     
