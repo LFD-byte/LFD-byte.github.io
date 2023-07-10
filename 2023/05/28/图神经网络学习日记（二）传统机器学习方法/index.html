@@ -16,13 +16,15 @@
   <meta name="author" content="培根请加蛋">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="图神经网络学习日记（三）节点嵌入">
-<meta property="og:url" content="https://blog.lfd-world.online/2023/05/29/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/index.html">
+    <meta name="description" content="图的统计类特征">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图神经网络学习日记（二）传统机器学习方法">
+<meta property="og:url" content="https://blog.lfd-world.online/2023/05/28/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%E4%BC%A0%E7%BB%9F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="培根请加蛋">
+<meta property="og:description" content="图的统计类特征">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-05-29T07:29:00.000Z">
-<meta property="article:modified_time" content="2023-05-29T07:29:42.944Z">
+<meta property="article:published_time" content="2023-05-28T08:52:00.000Z">
+<meta property="article:modified_time" content="2023-07-10T07:05:43.816Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="图神经网络">
 <meta name="twitter:card" content="summary_large_image">
@@ -31,7 +33,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>图神经网络学习日记（三）节点嵌入 - 培根请加蛋</title>
+  <title>图神经网络学习日记（二）传统机器学习方法 - 培根请加蛋</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="图神经网络学习日记（三）节点嵌入"></span>
+            <span id="subtitle" data-typed-text="图神经网络学习日记（二）传统机器学习方法"></span>
           
         </div>
 
@@ -208,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-05-29 15:29" pubdate>
-          2023年5月29日 下午
+        <time datetime="2023-05-28 16:52" pubdate>
+          2023年5月28日 下午
         </time>
       </span>
     
@@ -220,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          995 字
         
       </span>
     
@@ -231,7 +233,7 @@
         
         
         
-          1 分钟
+          9 分钟
         
       </span>
     
@@ -276,12 +278,61 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">图神经网络学习日记（三）节点嵌入</h1>
+            <h1 id="seo-header">图神经网络学习日记（二）传统机器学习方法</h1>
             
             
               <div class="markdown-body">
                 
-                
+                <p><strong>标准机器学习范式</strong></p>
+<p>首先，基于启发式函数或领域知识提取一些统计特征；然后将其作为标准机器学习分类器（如逻辑回归）的输入。</p>
+<h2 id="图统计特征">图统计特征</h2>
+<h3 id="节点层面的统计特征">节点层面的统计特征</h3>
+<p><strong>节点的度</strong></p>
+<p>节点<span
+class="math inline">\(u\)</span>的度反映与这个节点相连接的边的数目，可由下式表示
+<span class="math display">\[
+d_u = \sum_{v \in \mathcal{V}} A[u,v]
+\]</span> 对于有向图和加权图，度分为入度和出度。对矩阵<span
+class="math inline">\(A\)</span>中的节点<span
+class="math inline">\(u\)</span>的行求和可以得到出度，对节点<span
+class="math inline">\(u\)</span>的列求和可以得到入度。</p>
+<p><strong>节点的中心性</strong></p>
+<p>角度一：特征向量中心性度量不仅考虑邻居节点个数的度，还考虑了邻居节点的重要性。
+<span class="math display">\[
+e_u = \frac{1}{\lambda}\sum_{v\in \mathcal{V}}A[u,v]e_v, \forall u \in
+\mathcal{V}
+\]</span> 将向量表示<span
+class="math inline">\(e\)</span>代入上述等式取代节点中心性向量可得到邻接矩阵的标准特征向量方程：
+<span class="math display">\[
+\lambda e = Ae
+\]</span>
+角度二：特征向量中心性衡量了一个节点在路径无限长的情况下在随机游走时被访问的概率。这种理解方式连接了节点重要性、随机游走和谱三个重要概念。<span
+class="math inline">\(\lambda\)</span>是<span
+class="math inline">\(A\)</span>的主要特征向量，可通过幂次迭代法则计算<span
+class="math inline">\(e\)</span>如下所示： <span class="math display">\[
+e^{(t+1)} = Ae^{(t)}
+\]</span> 从向量<span
+class="math inline">\(e^{(0)}=(1,1,\cdots,1)^T\)</span>开始，依据幂次迭代法则，第一次迭代可以得到每个节点的度，在第<span
+class="math inline">\(t\)</span>次迭代<span class="math inline">\((t
+\geq 1)\)</span>时，<span
+class="math inline">\(e^{(t)}\)</span>包括了尝试到达每个节点且长度为<span
+class="math inline">\(t\)</span>的路线的长度的数量，无限重复下去可得到路径无限长时每个节点被访问的次数。</p>
+<p><strong>聚类系数</strong></p>
+<p>聚类系数通过一个节点的局部邻域中闭合三角形的比例度量节点的邻居节点聚类的紧密程度。聚类系数计算方法
+Local Variant 方法如下式所示： <span class="math display">\[
+c_u = \frac{|(v_1, v_2)\in \varepsilon: v_1, v_2 \in
+\mathcal{N}(u)|}{\binom{d_u}{2}}
+\]</span> 其中<span class="math inline">\(\mathcal{N}(u)=\{v\in
+\mathcal{V}: (u,v)\in \varepsilon\}\)</span>表示节点<span
+class="math inline">\(u\)</span>的邻居节点。</p>
+<p><strong>闭合三角形、自我中心图、Motifs</strong></p>
+<p><strong>闭合三角形</strong></p>
+<h3 id="图层面的统计特征">图层面的统计特征</h3>
+<p>节点袋</p>
+<p>Weisfeiler-Lehman 核</p>
+<p>Graphlets 和基于路径的方法</p>
+<h2 id="邻域重叠检测">邻域重叠检测</h2>
+<h2 id="图的拉普拉斯矩阵和图的谱方法">图的拉普拉斯矩阵和图的谱方法</h2>
 
                 
               </div>
@@ -327,8 +378,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>图神经网络学习日记（三）节点嵌入</div>
-      <div>https://blog.lfd-world.online/2023/05/29/图神经网络学习日记（三）/</div>
+      <div>图神经网络学习日记（二）传统机器学习方法</div>
+      <div>https://blog.lfd-world.online/2023/05/28/图神经网络学习日记（二）传统机器学习方法/</div>
     </div>
     <div class="license-meta">
       
@@ -340,7 +391,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年5月29日</div>
+          <div>2023年5月28日</div>
         </div>
       
       
@@ -372,9 +423,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/05/30/Python%20%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4%E6%9F%A5%E7%9C%8B%E6%96%B9%E6%B3%95/" title="Python程序运行时间查看方法">
+                      <a href="/2023/05/28/%E5%AE%8B%E8%AF%8D%EF%BC%88%E4%B8%80%EF%BC%89/" title="宋词（一）">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Python程序运行时间查看方法</span>
+                        <span class="hidden-mobile">宋词（一）</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -382,8 +433,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/05/28/%E5%AE%8B%E8%AF%8D%EF%BC%88%E4%BA%8C%EF%BC%89/" title="宋词（二）">
-                        <span class="hidden-mobile">宋词（二）</span>
+                      <a href="/2023/05/24/Latex%20%E5%AD%97%E6%AF%8D%E7%B1%BB%E7%AC%A6%E5%8F%B7/" title="Latex 字母类符号">
+                        <span class="hidden-mobile">Latex 字母类符号</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
