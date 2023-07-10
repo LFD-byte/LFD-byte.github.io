@@ -1,0 +1,861 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="培根请加蛋">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本地创建环境 本人环境： windows 10 安装 node.js 建议使用 nvm （node version manager（node版本管理工具））安装 node.js， 下载地址：https:&#x2F;&#x2F;github.com&#x2F;coreybutler&#x2F;nvm-windows&#x2F;releases 安装 （1）双击解压后的文件nvm-setup.exe； （2）选择 nvm 安装路径（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Github Pages + Hexo + Vercel 个人博客搭建（一）基础部署">
+<meta property="og:url" content="https://blog.lfd-world.online/2023/05/31/Github%20Pages%20%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="培根请加蛋">
+<meta property="og:description" content="本地创建环境 本人环境： windows 10 安装 node.js 建议使用 nvm （node version manager（node版本管理工具））安装 node.js， 下载地址：https:&#x2F;&#x2F;github.com&#x2F;coreybutler&#x2F;nvm-windows&#x2F;releases 安装 （1）双击解压后的文件nvm-setup.exe； （2）选择 nvm 安装路径（">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-31T05:57:00.000Z">
+<meta property="article:modified_time" content="2023-06-06T13:01:32.449Z">
+<meta property="article:author" content="培根请加蛋">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Github Pages + Hexo + Vercel 个人博客搭建（一）基础部署 - 培根请加蛋</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.lfd-world.online","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>培根请加蛋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Github Pages + Hexo + Vercel 个人博客搭建（一）基础部署"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-31 13:57" pubdate>
+          2023年5月31日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Github Pages + Hexo + Vercel 个人博客搭建（一）基础部署</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="本地创建环境">本地创建环境</h2>
+<p>本人环境：</p>
+<p><code>windows 10</code></p>
+<h3 id="安装-node.js">安装 node.js</h3>
+<p>建议使用 nvm （node version manager（node版本管理工具））安装
+node.js，</p>
+<p><strong>下载地址</strong>：https://github.com/coreybutler/nvm-windows/releases</p>
+<p><strong>安装</strong></p>
+<p>（1）双击解压后的文件<code>nvm-setup.exe</code>； （2）选择 nvm
+安装路径（填坑警告：路径不能有空格！！！） （3）选择 node.js 路径；
+（4）确认安装； （5）检测：打开 cmd，输入<code>nvm</code>，显示当前 nvm
+版本以及 nvm 命令，成功！</p>
+<p><strong>使用 nvm</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1.nvm list 命令 - 显示版本列表</span><br>nvm list // 显示已安装的版本（同 nvm list installed）<br>nvm list installed // 显示已安装的版本<br>nvm list available // 显示所有可以下载的版本<br><br><span class="hljs-comment"># 2.nvm install 命令 - 安装指定版本nodejs</span><br>nvm install 16.15.1// 安装16.15.1版本node<br>nvm install latest // 安装最新版本node<br><br><span class="hljs-comment"># 3.nvm use 命令 - 使用指定版本node</span><br>nvm use 16.15.1 // 使用16.15.1版本node<br><br><span class="hljs-comment"># 4.nvm uninstall 命令 - 卸载指定版本 node</span><br>nvm uninstall 16.15.1 // 卸载16.15.1版本node<br></code></pre></td></tr></table></figure>
+<p>填坑警告：nvm install 的时候，出现无权安装，需
+<code>以管理员身份</code>运行 cmd。！！！</p>
+<p>本人目前安装 node.js 版本为16.15.1.</p>
+<p><strong>设置nodejs
+prefix（全局）和cache（缓存）路径（非必须操作）</strong></p>
+<p>在<code>nodejs</code>
+安装目录下新建两个文件夹，用于存放全局包和缓存，如下： 我的 node.js
+安装目录：<code>E:\Program\nvm</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm config <span class="hljs-built_in">set</span> prefix <span class="hljs-string">&quot;E:\Program\nvm\node_gobal&quot;</span> <br>npm config <span class="hljs-built_in">set</span> cache <span class="hljs-string">&quot;E:\Program\nvm\node_cache&quot;</span><br></code></pre></td></tr></table></figure>
+<h3 id="安装-hexo">安装 Hexo</h3>
+<p>命令行输入以下命令安装 Hexo：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install -g hexo-cli<br></code></pre></td></tr></table></figure>
+<p>输入以下命令验证是否安装成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo -v<br></code></pre></td></tr></table></figure>
+<h2 id="本地部署">本地部署</h2>
+<p>选择一个准备放置博客网站的目录，然后使用以下命令来初始化一个项目：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo init LFD-byte.github.io<br><span class="hljs-built_in">cd</span> LFD-byte.github.io<br>npm install<br></code></pre></td></tr></table></figure>
+<p>该命令将会在当前目录下，生成一个名为 <code>LFD-byte.github.io</code>
+的新目录，当然，你可以把这个名字换成任何你想要的名字，并将
+<code>hexo</code> 的初始化文件写入其中。</p>
+<p>新建完成后，<code>LFD-byte.github.io</code> 文件夹的目录如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">.<br>├── _config.yml <br>├── package.json <br>├── node_modules <br>├── scaffolds <br>├── <span class="hljs-built_in">source</span> <br>| ├── _drafts <br>| └── _posts <br>└── themes<br></code></pre></td></tr></table></figure>
+<p><code>_config.yml</code>
+是配置文件，里面有很多可以配置的数据，这里暂时不多介绍，后面的文章里会进行详细说明。</p>
+<p><code>package.json</code> 是应用程序信息，通常不需要关心。</p>
+<p><code>node_modules</code> 用来存放 <code>node</code>
+相关的模块，通常不需要关心。</p>
+<p><code>scaffolds</code>
+里面是模版文件，也就是每次新建文章时，都会根据模版文件来创建对应的
+<code>md</code> 文件，这一点也会在后续的文章里进行详细介绍。</p>
+<p><code>source</code> 是资源文件夹，用来存放用户资源的地方。除
+<code>_posts</code> 文件夹之外，开头命名为 _ (下划线)的文件 /
+文件夹和隐藏的文件将会被忽略。</p>
+<p><code>theme</code>
+是主题文件夹，每个主题的配置都会有些不一样，需要根据具体主题情况来定，后续介绍主题的文章里会有说明。</p>
+<p>在 <code>breeze-blog</code> 目录下使用以下命令来运行我们的博客：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo server<br></code></pre></td></tr></table></figure>
+<p>在默认情况下，服务会使用 <code>4000</code>
+端口，如果已经被占用，也可以添加 <code>-p</code>
+参数来换用其它端口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo server -p 8080<br></code></pre></td></tr></table></figure>
+<p>打开 <code>http://localhost:4000</code>
+即可访问我们生成的网站了。</p>
+<figure>
+<img
+src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedntX31VrhMTjFozQ.jpg" srcset="/img/loading.gif" lazyload
+alt="Hexo" />
+<figcaption aria-hidden="true">Hexo</figcaption>
+</figure>
+<p>这样，我们的博客就搭建起来了。</p>
+<h2 id="部署到-github-pages">部署到 Github Pages</h2>
+<p>在你的 Github 账号创建一个新的仓库，仓库命名规范为
+<code>账号名.github.io</code>，公开仓库。</p>
+<figure>
+<img
+src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230604151148301.png" srcset="/img/loading.gif" lazyload
+alt="create repository" />
+<figcaption aria-hidden="true">create repository</figcaption>
+</figure>
+<p>在 Git bash 或 CMD 中
+<code>LFD-byte.github.io</code>博客目录下执行以下命令连接到 Github：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">git init<br>git add .<br>git commit -m <span class="hljs-string">&quot;first commit&quot;</span><br>git branch -M main<br>git remote add origin git@github.com:xxx/xxx.git<br>git push -u origin main<br></code></pre></td></tr></table></figure>
+<p>在 <code>LFD-byte.github.io</code> 仓库下 Settings 中开启 Github
+Pages：</p>
+<figure>
+<img
+src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230604152021402.png" srcset="/img/loading.gif" lazyload
+alt="open github pages" />
+<figcaption aria-hidden="true">open github pages</figcaption>
+</figure>
+<p>然后我们修改一下本地的 <code>hexo</code>
+的配置文件(<code>_config.yml</code>)，我的在
+<code>LFD-byte.github.io</code>
+根目录下，找到对应的地方进行修改，指定我们的仓库信息，并修改
+<code>deploy</code> 信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">deploy:<br>	<span class="hljs-built_in">type</span>: git<br>	repo: git@github.com:xxx/blogxxx<br>	branch: main<br></code></pre></td></tr></table></figure>
+<p>把这里的 <code>repo</code> 地址修改为你的仓库地址即可。</p>
+<p>安装 <code>hexo-deployer-git</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> LFD-byte.github.io<br>npm install hexo-deployer-git --save<br></code></pre></td></tr></table></figure>
+<p>进行部署</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo clean &amp;&amp; hexo generate<br>hexo deploy<br></code></pre></td></tr></table></figure>
+<p>运行完成后，我们的博客文件就顺利部署到 <code>github pages</code>
+上了，现在我们打开下面网址来查看我们的博客效果： <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">https://用户名.github.io<br></code></pre></td></tr></table></figure></p>
+<p>之后每次我们添加或修改完本地文件后，使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo clean &amp;&amp; hexo g -d<br></code></pre></td></tr></table></figure>
+<p>即可重新生成项目文件。</p>
+<h2 id="部署到-vercel">部署到 Vercel</h2>
+<p>注册 <a target="_blank" rel="noopener" href="https://vercel.com/">Vercel</a>
+账号，建议谷歌邮箱注册。</p>
+<figure>
+<img
+src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedvercel-logo-freelogovectors.net.jpg" srcset="/img/loading.gif" lazyload
+alt="vercel" />
+<figcaption aria-hidden="true">vercel</figcaption>
+</figure>
+<p>使用 GitHub 账户登录 <a target="_blank" rel="noopener" href="https://vercel.com/">Vercel</a>，授予
+Vercel repo 的 read 权限。</p>
+<p>导入 GitHub 账户中的网站 repo，比如此处的 LFD-byte.github.io。</p>
+<figure>
+<img
+src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230606205007431.png" srcset="/img/loading.gif" lazyload
+alt="Project import" />
+<figcaption aria-hidden="true">Project import</figcaption>
+</figure>
+<p>在项目构建中，Framework Preset 选择 Other，其余不做改动。</p>
+<figure>
+<img
+src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230606205116417.png" srcset="/img/loading.gif" lazyload
+alt="Build" />
+<figcaption aria-hidden="true">Build</figcaption>
+</figure>
+<p>稍等片刻，部署成功，此时我们就可以直接通过部署完成后 Vercel
+提供的域名访问个人网站了，点击 Visit 进行访问。</p>
+<figure>
+<img
+src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230606205341204.png" srcset="/img/loading.gif" lazyload
+alt="Production Deployment" />
+<figcaption aria-hidden="true">Production Deployment</figcaption>
+</figure>
+<figure>
+<img
+src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230606205507057.png" srcset="/img/loading.gif" lazyload
+alt="Visit Blog" />
+<figcaption aria-hidden="true">Visit Blog</figcaption>
+</figure>
+<p>之后每次我们添加或修改完本地文件后，使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo clean &amp;&amp; hexo g -d<br></code></pre></td></tr></table></figure>
+<p>就可以生成静态文件同步部署到 Vercel 上了。</p>
+<h2 id="注意">注意</h2>
+<p>若 npm 不能下载包，可通过 nvm 更换 node.js 版本重新尝试下载。</p>
+<h2 id="参考">参考</h2>
+<p>[1] <a
+target="_blank" rel="noopener" href="https://mfrank2016.github.io/breeze-blog/2020/05/02/hexo/hexo-start/">【Hexo】使用Hexo+github
+pages+travis ci搭建好看的个人博客（一）</a></p>
+<p>[2] <a
+target="_blank" rel="noopener" href="https://blog.csdn.net/liangpingguo/article/details/125324362">Windows下使用nvm安装nodejs</a></p>
+<p>[3] <a
+target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_40026797/article/details/126919662">建站过程中的踩坑记录：自定义域名、百度收录与备案</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Blog/" class="category-chain-item">Blog</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Blog/" class="print-no-link">#Blog</a>
+      
+        <a href="/tags/Hexo/" class="print-no-link">#Hexo</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Github Pages + Hexo + Vercel 个人博客搭建（一）基础部署</div>
+      <div>https://blog.lfd-world.online/2023/05/31/Github Pages 个人博客搭建（一）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>培根请加蛋</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月31日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/05/31/Github%20kex_exchange/" title="Github kex_exchange_identification Connection closed by remote host">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Github kex_exchange_identification Connection closed by remote host</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/05/31/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/" title="图神经网络学习日记（五）图神经网络（GNN）">
+                        <span class="hidden-mobile">图神经网络学习日记（五）图神经网络（GNN）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
