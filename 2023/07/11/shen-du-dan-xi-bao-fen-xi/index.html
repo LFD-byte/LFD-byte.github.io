@@ -16,24 +16,25 @@
   <meta name="author" content="培根请加蛋">
   <meta name="keywords" content="">
   
-    <meta name="description" content="图神经网络学习日记（一）">
+    <meta name="description" content="深度学习在单细胞邻域的研究">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图神经网络学习日记（一）图基础知识">
-<meta property="og:url" content="https://blog.lfd-world.online/2023/05/24/tu-shen-jing-wang-luo-xue-xi-ri-ji-yi-tu-ji-chu-zhi-shi/index.html">
+<meta property="og:title" content="深度单细胞分析">
+<meta property="og:url" content="https://blog.lfd-world.online/2023/07/11/shen-du-dan-xi-bao-fen-xi/index.html">
 <meta property="og:site_name" content="培根请加蛋">
-<meta property="og:description" content="图神经网络学习日记（一）">
+<meta property="og:description" content="深度学习在单细胞邻域的研究">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-05-24T07:22:00.000Z">
-<meta property="article:modified_time" content="2023-07-10T09:37:45.110Z">
+<meta property="article:published_time" content="2023-07-11T12:11:00.000Z">
+<meta property="article:modified_time" content="2023-07-11T12:26:01.527Z">
 <meta property="article:author" content="培根请加蛋">
-<meta property="article:tag" content="图神经网络">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="生物，单细胞">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>图神经网络学习日记（一）图基础知识 - 培根请加蛋</title>
+  <title>深度单细胞分析 - 培根请加蛋</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="图神经网络学习日记（一）图基础知识"></span>
+            <span id="subtitle" data-typed-text="深度单细胞分析"></span>
           
         </div>
 
@@ -210,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-05-24 15:22" pubdate>
-          2023年5月24日 下午
+        <time datetime="2023-07-11 20:11" pubdate>
+          2023年7月11日 晚上
         </time>
       </span>
     
@@ -278,72 +279,109 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">图神经网络学习日记（一）图基础知识</h1>
+            <h1 id="seo-header">深度单细胞分析</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="图的定义">图的定义</h2>
-<p>图由节点集合<span
-class="math inline">\(\mathcal{V}\)</span>和边集合<span
-class="math inline">\(\varepsilon\)</span>组成，记作<span
-class="math inline">\(\mathcal{G}=(\mathcal{V},\varepsilon)\)</span>，节点<span
-class="math inline">\(u\in \mathcal{V}\)</span>到节点<span
-class="math inline">\(v\in \mathcal{V}\)</span>的边表示为<span
-class="math inline">\((u,v)\in\varepsilon\)</span>.</p>
-<h2 id="图的表示">图的表示</h2>
-<p>图可以由邻接矩阵<span class="math inline">\(A\in
-\mathbb{R}^{|\mathcal{V}|\times|\mathcal{V}|}\)</span>表示，矩阵的行和列代表节点索引，矩阵元素<span
-class="math inline">\(A[u,v]\)</span>表示节点<span
-class="math inline">\(u\)</span>和节点<span
-class="math inline">\(v\)</span>的连接情况，如果<span
-class="math inline">\((u,v)\in \varepsilon\)</span>，则<span
-class="math inline">\(A[u,v]=1\)</span>，否则<span
-class="math inline">\(A[u,v]=0\)</span>。</p>
-<h2 id="多关系图的分类">多关系图的分类</h2>
-<p><strong>异构图</strong></p>
-<p>异构图可以通过节点类型将节点划分为不相交的子集，即<span
-class="math inline">\(\mathcal{V} = \mathcal{V}_1 \bigcup \mathcal{V}_2
-\bigcup \cdots \bigcup \mathcal{V}_k\)</span>，其中<span
-class="math inline">\(\mathcal{V}_i \bigcap \mathcal{V}_j = \emptyset,
-\forall \neq j\)</span>。</p>
-<p><strong>多重图</strong></p>
-<p>多重图中的边只能连接不同类型的节点，即<span
-class="math inline">\((u,\tau_i,v)\in \varepsilon \rightarrow u \in
-\mathcal{V}_j,v \in \mathcal{V}_k \bigwedge j \neq
-k\)</span>。在多重图中，通常假设图可以被分解为<span
-class="math inline">\(k\)</span>个层级，每个节点可以属于一层或多层，每层代表唯一特定关系，表示本层内边的类型。</p>
-<h2 id="图机器学习任务">图机器学习任务</h2>
-<h3 id="节点预测">节点预测</h3>
-<p>提供训练集真实的标签<span class="math inline">\(\mathcal{V}_{train}
-\subset \mathcal{V}\)</span>时，通过所有的节点<span
-class="math inline">\(u \in \mathcal{V}\)</span>预测标签<span
-class="math inline">\(y_u\)</span>应该属于哪种类型、类别或属性。</p>
-<p>节点预测可通过显式利用节点之间的连接进行分类，如下几种节点之间的连接性质：</p>
-<p><strong>同质性</strong></p>
-<p>图中的节点与其邻居节点的属性相似，即节点有与邻居节点共享属性的趋势。</p>
-<p><strong>异质性</strong></p>
-<p>假定节点将优先连接到具有不同标签的节点。</p>
-<p><strong>结构等价性</strong></p>
-<p>具有相似局部结构的节点将具有相似的标签。</p>
-<p><strong>节点预测是有监督还是半监督任务？</strong></p>
-<p><strong>非标准的半监督任务。</strong></p>
-<p>在半监督学习中，模型训练过程同时使用有标签数据和无标签数据，标准的半监督学习以独立同分布假设为前提，标准的监督学习在训练过程中不使用所有无标签的测试数据。节点分类任务中，图中节点全部都被使用，包括无标签节点，故节点分类任务是半监督学习，同时节点分类任务对一组相互连接的节点进行建模，打破了独立同分布假设，故节点分类是非标准的半监督任务。</p>
-<h3 id="关系预测">关系预测</h3>
-<p>给定一组节点<span
-class="math inline">\(\mathcal{V}\)</span>和部分边的集合<span
-class="math inline">\(\varepsilon_{train}\)</span>（<span
-class="math inline">\(\varepsilon_{train} \subset \varepsilon,
-\varepsilon\)</span>表示全体边的集合），利用这些给定信息推断缺失边的集合<span
-class="math inline">\((\varepsilon\)</span>  $ _{train})$。</p>
-<h3 id="社区发现">社区发现</h3>
-<p>通过输入一张图<span
-class="math inline">\(\mathcal{G}=(\mathcal{V},\varepsilon)\)</span>推断出潜在的社区结构。</p>
-<p>社区发现常被类比为图领域的无监督学习中的聚类任务。</p>
-<h3 id="图预测">图预测</h3>
-<p>图预测包括对整张图进行分类、回归与聚类。</p>
-<p>图分类或图回归任务中，数据集由多张不同图构成，图机器学习算法针对每张图进行独立预测，而不是预测图的组成部分。在图聚类任务中，目标是学习一个无监督的测量图与图之间相似性的策略。</p>
-<p>图分类与图回归任务属于标准监督学习范畴。</p>
+                <h2 id="section">2023</h2>
+<table>
+
+<thead>
+<tr class="header">
+<th>Paper</th>
+<th style="text-align: left;">Function</th>
+<th>Underlying deep models</th>
+<th>Accesses</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ScCCL: Single-Cell Data Clustering Based on Self-Supervised
+Contrastive Learning</td>
+<td style="text-align: left;">Clustering</td>
+<td></td>
+<td>https://github.com/LuckyxiaoLin/ScCCL.git</td>
+</tr>
+<tr class="even">
+<td>Deep Multi-Constraint Soft Clustering Analysis for Single-Cell
+RNA-Seq Data via Zero-Inflated Autoencoder Embedding</td>
+<td style="text-align: left;"></td>
+<td></td>
+<td>https://github.com/leaf233/scMCKC</td>
+</tr>
+<tr class="odd">
+<td>CosTaL: an accurate and scalable graph-based clustering algorithm
+for high-dimensional single-cell data analysis</td>
+<td style="text-align: left;"></td>
+<td></td>
+<td>https://github.com/li000678/CosTaL</td>
+</tr>
+<tr class="even">
+<td>Deep generative modeling and clustering of single cell Hi-C
+data</td>
+<td style="text-align: left;"></td>
+<td></td>
+<td>https://github.com/zhoujt1994/scHiCluster</td>
+</tr>
+<tr class="odd">
+<td>IsoCell: An Approach to Enhance Single Cell Clustering by
+Integrating Isoform-Level Expression Through Orthogonal Projection</td>
+<td style="text-align: left;"></td>
+<td></td>
+<td>https://github.com/genemine/IsoCell</td>
+</tr>
+<tr class="even">
+<td>Clustering Single-Cell RNA Sequence Data Using Information Maximized
+and Noise-Invariant Representations</td>
+<td style="text-align: left;"></td>
+<td></td>
+<td>https://github.com/arnabkmondal/sc-INDC</td>
+</tr>
+<tr class="odd">
+<td>SSNMDI: a novel joint learning model of semi-supervised non-negative
+matrix factorization and data imputation for clustering of single-cell
+RNA-seq data</td>
+<td style="text-align: left;"></td>
+<td></td>
+<td>https://github.com/yushanqiu/SSNMDI</td>
+</tr>
+<tr class="even">
+<td>scENT for Revealing Gene Clusters From Single-Cell RNA-Seq Data</td>
+<td style="text-align: left;"></td>
+<td></td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td>Denoising adaptive deep clustering with self-attention mechanism on
+single-cell sequencing data</td>
+<td style="text-align: left;"></td>
+<td></td>
+<td>https://github.com/LRX2022/scDASFK</td>
+</tr>
+<tr class="even">
+<td>scDCCA: deep contrastive clustering for single-cell RNA-seq data
+based on auto-encoder network</td>
+<td style="text-align: left;"></td>
+<td></td>
+<td>https://github.com/WJ319/scDCCA</td>
+</tr>
+<tr class="odd">
+<td>scBKAP: A Clustering Model for Single-Cell RNA-Seq Data Based on
+Bisecting K-Means</td>
+<td style="text-align: left;"></td>
+<td></td>
+<td>https://github.com/YuBinLab-QUST/scBKAP/</td>
+</tr>
+<tr class="even">
+<td>scBGEDA: deep single-cell clustering analysis via a dual denoising
+autoencoder with bipartite graph ensemble clustering</td>
+<td style="text-align: left;"></td>
+<td></td>
+<td>https://github.com/wangyh082/scBGEDA</td>
+</tr>
+</tbody>
+</table>
 
                 
               </div>
@@ -362,7 +400,7 @@ class="math inline">\(\mathcal{G}=(\mathcal{V},\varepsilon)\)</span>推断出潜
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="category-chain-item">图神经网络</a>
+  <a href="/categories/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF/" class="category-chain-item">生物信息</a>
   
   
 
@@ -377,7 +415,9 @@ class="math inline">\(\mathcal{G}=(\mathcal{V},\varepsilon)\)</span>推断出潜
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%9B%BE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="print-no-link">#图神经网络</a>
+        <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="print-no-link">#深度学习</a>
+      
+        <a href="/tags/%E7%94%9F%E7%89%A9%EF%BC%8C%E5%8D%95%E7%BB%86%E8%83%9E/" class="print-no-link">#生物，单细胞</a>
       
     </div>
   
@@ -389,8 +429,8 @@ class="math inline">\(\mathcal{G}=(\mathcal{V},\varepsilon)\)</span>推断出潜
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>图神经网络学习日记（一）图基础知识</div>
-      <div>https://blog.lfd-world.online/2023/05/24/tu-shen-jing-wang-luo-xue-xi-ri-ji-yi-tu-ji-chu-zhi-shi/</div>
+      <div>深度单细胞分析</div>
+      <div>https://blog.lfd-world.online/2023/07/11/shen-du-dan-xi-bao-fen-xi/</div>
     </div>
     <div class="license-meta">
       
@@ -402,7 +442,7 @@ class="math inline">\(\mathcal{G}=(\mathcal{V},\varepsilon)\)</span>推断出潜
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年5月24日</div>
+          <div>2023年7月11日</div>
         </div>
       
       
@@ -434,15 +474,15 @@ class="math inline">\(\mathcal{G}=(\mathcal{V},\varepsilon)\)</span>推断出潜
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/05/24/latex-zi-mu-lei-fu-hao/" title="Latex 字母类符号">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Latex 字母类符号</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2023/07/11/github-pages-ge-ren-bo-ke-da-jian-san-fluid-zhu-ti/" title="Github Pages + Hexo + Vercel 个人博客搭建（三）Fluid 主题">
+                        <span class="hidden-mobile">Github Pages + Hexo + Vercel 个人博客搭建（三）Fluid 主题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
