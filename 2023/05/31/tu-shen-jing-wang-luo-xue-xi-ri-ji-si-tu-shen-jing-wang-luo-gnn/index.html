@@ -16,15 +16,15 @@
   <meta name="author" content="培根请加蛋">
   <meta name="keywords" content="">
   
-    <meta name="description" content="图神经网络学习日记（五）图神经网络（GNN）">
+    <meta name="description" content="图神经网络学习日记（四）图神经网络（GNN）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图神经网络学习日记（五）图神经网络（GNN）">
-<meta property="og:url" content="https://blog.lfd-world.online/2023/05/31/tu-shen-jing-wang-luo-xue-xi-ri-ji-wu-tu-shen-jing-wang-luo-gnn/index.html">
+<meta property="og:title" content="图神经网络学习日记（四）图神经网络（GNN）">
+<meta property="og:url" content="https://blog.lfd-world.online/2023/05/31/tu-shen-jing-wang-luo-xue-xi-ri-ji-si-tu-shen-jing-wang-luo-gnn/index.html">
 <meta property="og:site_name" content="培根请加蛋">
-<meta property="og:description" content="图神经网络学习日记（五）图神经网络（GNN）">
+<meta property="og:description" content="图神经网络学习日记（四）图神经网络（GNN）">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-05-31T02:07:00.000Z">
-<meta property="article:modified_time" content="2023-07-11T08:26:50.958Z">
+<meta property="article:modified_time" content="2023-07-13T01:37:01.314Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="图神经网络">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>图神经网络学习日记（五）图神经网络（GNN） - 培根请加蛋</title>
+  <title>图神经网络学习日记（四）图神经网络（GNN） - 培根请加蛋</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="图神经网络学习日记（五）图神经网络（GNN）"></span>
+            <span id="subtitle" data-typed-text="图神经网络学习日记（四）图神经网络（GNN）"></span>
           
         </div>
 
@@ -278,7 +278,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">图神经网络学习日记（五）图神经网络（GNN）</h1>
+            <h1 id="seo-header">图神经网络学习日记（四）图神经网络（GNN）</h1>
             
             
               <div class="markdown-body">
@@ -288,8 +288,10 @@
 class="math inline">\(A\)</span>作为输入的函数<span
 class="math inline">\(f\)</span>在理想状态下，都应满足下面两个条件之一：
 <span class="math display">\[
-f(PAP^T)=f(A)\text{(置换不变)} \\
-f(PAP^T)=Pf(A)\text{(置换同变)}
+\begin{align}
+f(PAP^T)&amp;=f(A)\text{(置换不变)} \\
+f(PAP^T)&amp;=Pf(A)\text{(置换同变)}
+\end{align}
 \]</span></p>
 <p>其中<span
 class="math inline">\(P\)</span>是置换矩阵。置换不变是指函数不依赖邻接矩阵中行/列的任意顺序，置换同变表示当置换邻接矩阵时<span
@@ -466,7 +468,7 @@ class="math inline">\(v\)</span>
 class="math inline">\(u\)</span> 对节点 <span
 class="math inline">\(v\)</span> 的影响，如下式所示： <span
 class="math display">\[
-I_{K(u,v)} = 1^T(\frac{\partial h_v^{(K)}}{\partial h_u^{(0)}})
+I_{K(u,v)} = 1^T(\frac{\partial h_v^{(K)}}{\partial h_u^{(0)}})1
 \]</span> 其中，<span class="math inline">\(1\)</span> 是元素全为 1
 的向量。<span class="math inline">\(I_{K(u,v)}\)</span> 是雅可比矩阵
 <span class="math inline">\(\frac{\partial h_v^{(K)}}{\partial
@@ -709,8 +711,8 @@ class="math inline">\(h_{\mathcal{G}}^{(k)}\)</span>，这使得消息传递模�
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>图神经网络学习日记（五）图神经网络（GNN）</div>
-      <div>https://blog.lfd-world.online/2023/05/31/tu-shen-jing-wang-luo-xue-xi-ri-ji-wu-tu-shen-jing-wang-luo-gnn/</div>
+      <div>图神经网络学习日记（四）图神经网络（GNN）</div>
+      <div>https://blog.lfd-world.online/2023/05/31/tu-shen-jing-wang-luo-xue-xi-ri-ji-si-tu-shen-jing-wang-luo-gnn/</div>
     </div>
     <div class="license-meta">
       
@@ -754,7 +756,7 @@ class="math inline">\(h_{\mathcal{G}}^{(k)}\)</span>，这使得消息传递模�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/05/31/github-pages-ge-ren-bo-ke-da-jian-yi/" title="Github Pages + Hexo + Vercel 个人博客搭建（一）基础部署">
+                      <a href="/2023/05/31/github-pages-ge-ren-bo-ke-da-jian-yi-ji-chu-bu-shu/" title="Github Pages + Hexo + Vercel 个人博客搭建（一）基础部署">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Github Pages + Hexo + Vercel 个人博客搭建（一）基础部署</span>
                         <span class="visible-mobile">上一篇</span>
