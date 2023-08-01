@@ -16,15 +16,15 @@
   <meta name="author" content="培根请加蛋">
   <meta name="keywords" content="">
   
-    <meta name="description" content="图神经网络学习日记（三）">
+    <meta name="description" content="节点嵌入目的是将节点编码为包含图位置和局部邻域结构信息的低维向量，其几何关系与原始图或网络中的关系相对应。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图神经网络学习日记（三）节点嵌入">
 <meta property="og:url" content="https://blog.lfd-world.online/2023/05/29/tu-shen-jing-wang-luo-xue-xi-ri-ji-san-jie-dian-qian-ru/index.html">
 <meta property="og:site_name" content="培根请加蛋">
-<meta property="og:description" content="图神经网络学习日记（三）">
+<meta property="og:description" content="节点嵌入目的是将节点编码为包含图位置和局部邻域结构信息的低维向量，其几何关系与原始图或网络中的关系相对应。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-05-29T07:29:00.000Z">
-<meta property="article:modified_time" content="2023-07-16T02:17:39.232Z">
+<meta property="article:modified_time" content="2023-08-01T02:57:06.981Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="图神经网络">
 <meta name="twitter:card" content="summary_large_image">
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          17 字
+          976 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          1 分钟
+          9 分钟
         
       </span>
     
@@ -283,7 +283,50 @@
             
               <div class="markdown-body">
                 
-                <h2 id="简单加权图节点嵌入">简单加权图节点嵌入</h2>
+                <p>节点嵌入目的是将节点编码为包含图位置和局部邻域结构信息的低维向量，其几何关系与原始图或网络中的关系相对应。</p>
+<h2 id="简单加权图节点嵌入">简单加权图节点嵌入</h2>
+<h3 id="基于编码-解码框架">基于编码-解码框架</h3>
+<p>编码器将图中每个节点映射为低维向量或低维嵌入，解码器将利用低维节点嵌入重构原始图中每一个节点的邻域信息。</p>
+<p><strong>编码器</strong></p>
+<p>编码器将节点 <span class="math inline">\(v \in \mathcal{V}\)</span>
+映射为向量嵌入 <span class="math inline">\(z_v \in \mathbb{R}^d\)</span>
+，其中，<span class="math inline">\(z_v\)</span> 为节点 <span
+class="math inline">\(v \in \mathcal{V}\)</span>
+对应的嵌入表示，可表示为下式： <span class="math display">\[
+ENC: \mathcal{V} \rightarrow \mathbb{R}^d
+\]</span> 编码器依赖 shallow embedding 方法，即根据节点的 ID
+进行简单地嵌入查找，如下式： <span class="math display">\[
+ENC(v) = Z[v]
+\]</span> 其中，<span class="math inline">\(Z \in
+\mathbb{R}^{|\mathcal{V}| \times d}\)</span>
+为包含所有节点嵌入向量的矩阵，<span class="math inline">\(Z[v]\)</span>
+表示节点 <span class="math inline">\(v\)</span> 对应 <span
+class="math inline">\(Z\)</span> 的某一行向量。</p>
+<p><strong>解码器</strong></p>
+<p>解码器的任务是根据解码器生成的节点嵌入重构某些确定的图形统计信息。</p>
+<p>标准形式为成对的解码器，如下式： <span class="math display">\[
+DEC:\mathbb{R}^d \times \mathbb{R}^d \rightarrow \mathbb{R}^+
+\]</span> 成对的解码器可以预测成对出现的节点的关系和相似性。</p>
+<p>在一对节点的嵌入表示 <span class="math inline">\((z_u,z_v)\)</span>
+中使用成对解码器，能重构节点 <span class="math inline">\(u\)</span> 和
+<span class="math inline">\(v\)</span>
+之间的关系。重构的目标在于通过最小化重构损失来优化编码器和解码器，如下式：
+<span class="math display">\[
+DEC(ENC(u),ENC(v)) = DEC(z_u,z_v) \approx S[u,v]
+\]</span> 其中，假定 <span class="math inline">\(S[u,v]\)</span>
+是基于图的节点间相似性的度量。</p>
+<p><strong>损失函数</strong></p>
+<p>实现重构目标函数的标准操作是在一组训练节点对 <span
+class="math inline">\(\mathcal{D}\)</span> 上最小化经验重构损失 <span
+class="math inline">\(\mathcal{L}\)</span> ，如下式： <span
+class="math display">\[
+\mathcal{L} = \sum_{(u,v)\in \mathcal{D}}
+\mathcal{l}(DEC(z_u,z_v),S[u,v])
+\]</span> 其中，<span class="math inline">\(\mathcal{l}: \mathbb{R}
+\times \mathbb{R}\)</span> 是衡量解码后的近似值 <span
+class="math inline">\(DEC(z_u,z_v)\)</span> 与真值 <span
+class="math inline">\(S[u,v]\)</span> 之间差异的函数。</p>
+<h3 id="基于因式分解的方法">基于因式分解的方法</h3>
 <h2 id="多关系图节点嵌入">多关系图节点嵌入</h2>
 
                 
