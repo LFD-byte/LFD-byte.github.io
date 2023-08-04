@@ -24,7 +24,7 @@
 <meta property="og:description" content="节点嵌入目的是将节点编码为包含图位置和局部邻域结构信息的低维向量，其几何关系与原始图或网络中的关系相对应。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-05-29T07:29:00.000Z">
-<meta property="article:modified_time" content="2023-08-03T13:59:04.217Z">
+<meta property="article:modified_time" content="2023-08-04T14:08:06.931Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="图神经网络">
 <meta name="twitter:card" content="summary_large_image">
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k 字
+          5.7k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          30 分钟
+          48 分钟
         
       </span>
     
@@ -427,11 +427,86 @@ class="math inline">\(DEC: \mathbb{R}^d \times \mathcal{R} \times
 \mathbb{R}^d \rightarrow \mathbb{R}+\)</span>），将解码器的输出（<span
 class="math inline">\(DEC(z_u,\tau,z_v)\)</span>）定义为边 <span
 class="math inline">\((u,\tau,v)\)</span> 存在于图谱的可能性。</p>
+<p>本节所有方法都是假定从低维向量中直接重构（多关系）邻居。</p>
 <h3 id="损失函数">损失函数</h3>
+<p><strong>负采样的交叉熵函数</strong> <span class="math display">\[
+\mathcal{L} = \sum_{(u,\tau,v) \in \varepsilon}
+-log(\sigma(DEC(z_u,\tau,z_v))) - \gamma\mathbb{E}_{v_n \sim
+P_{n,u}(\mathcal{V})}[log(\sigma(-DEC(z_u,\tau,z_{v_n})))])
+\]</span> 其中，<span class="math inline">\(\sigma\)</span>
+为对数函数，<span class="math inline">\(P_{n,u}(\mathcal{V})\)</span>
+为节点集 <span class="math inline">\(\mathcal{V}\)</span>
+的负采样分布，且超参数 <span class="math inline">\(\gamma &gt;
+0\)</span> 。</p>
+<p>实际存在于图谱中的、预测为 true 的边的对数似然如下式： <span
+class="math display">\[
+log(\sigma(DEC(z_u,\tau,z_v)))
+\]</span> 图中不存在的、预测为 false 的边的期望对数似然如下式： <span
+class="math display">\[
+\mathbb{E}_{v_n \sim
+P_{n,u}(\mathcal{V})}[log(\sigma(-DEC(z_u,\tau,z_{v_n})))]
+\]</span> 使用蒙特卡洛近似法可以对期望值进行评估，常见损失函数如下式：
+<span class="math display">\[
+\mathcal{L} = \sum_{(u,\tau,v)\in \varepsilon}
+-log(\sigma(DEC(z_u,\tau,z_v))) - \sum_{v_n \in \mathcal{P}_{n,u}}
+-[log(\sigma(-DEC(z_u,\tau,z_{v_n})))]
+\]</span> 其中，<span class="math inline">\(\mathcal{P}_{n,u}\)</span>
+为从 <span class="math inline">\(P_{n,u}(\mathcal{V})\)</span>
+采样得到的较小节点集。</p>
+<p><strong>最大间距损失</strong> <span class="math display">\[
+\mathcal{L} = \sum_{(u,\tau,v)\in \varepsilon} \sum_{v_n \in
+\mathcal{P}_{n,u}} max(0, -DEC(z_u,\tau,z_v) + DEC(z_u,\tau,z_{v_n}) +
+\Delta)
+\]</span>
+该损失函数采用对比估计策略，将真实节点解码后的得分与负样本进行对比。其中，<span
+class="math inline">\(\Delta\)</span>
+项为间隔项，如果所有样本的得分差距都很大，那损失将为 0，该损失函数称为
+hinge loss。</p>
 <h3 id="多关系解码器">多关系解码器</h3>
 <p><strong>RESCAL 方法</strong></p>
+<p>解码器定义为如下式： <span class="math display">\[
+DEC(u,\tau,v) = z_u^TR_{\tau}z_v
+\]</span> 其中，<span class="math inline">\(R_{\tau} \in \mathbb{E}^{d
+\times d}\)</span> 是基于特定关系 <span class="math inline">\(\tau \in
+\mathcal{R}\)</span> 的可学习矩阵。可借助基本的重构损失函数训练嵌入矩阵
+<span class="math inline">\(Z\)</span> 和关系矩阵 <span
+class="math inline">\(R_{\tau}, \forall \tau \in
+\mathcal{R}\)</span>，如下式： <span class="math display">\[
+\begin{aligned}
+  \mathcal{L} &amp;= \sum_{u\in \mathcal{V}} \sum_{v\in \mathcal{V}}
+\sum_{\tau\in \mathcal{R}} ||DEC(u,\tau,v)-\mathcal{A}[u,\tau,v||^2 \\
+  &amp;= \sum_{u\in \mathcal{V}} \sum_{v\in \mathcal{V}} \sum_{\tau\in
+\mathcal{R}} ||z_u^T\mathcal{R}_{\tau},z_v - \mathcal{A}[u,\tau,v]||
+\end{aligned}
+\]</span> 其中，<span class="math inline">\(\mathcal{A} \in
+\mathbb{R}^{|\mathcal{V}| \times |\mathcal{R}| \times
+|\mathcal{V}|}\)</span> 为多关系图的邻接张量。</p>
+<p>该方法进行关系表示时需要较高的计算量和统计成本，对于每种类型的关系，RESCAL
+模型具有 <span class="math inline">\(O(d^2)\)</span>
+的参数量，与节点表示相比，关系表示要求具有更大数量级的参数。</p>
 <p><strong>平移解码模型（Translational Decoders）</strong></p>
+<p>TransE 模型将关系作为嵌入空间中的平移向量，定义的解码器如下图所示：
+<span class="math display">\[
+DEC(z_u,\tau,z_v) = -|| z_u + r_{\tau} +z_v ||
+\]</span> 其中，使用 <span class="math inline">\(d\)</span>
+维嵌入向量来表示每种关系。在嵌入空间中，根据关系嵌入对头节点进行平移，边存在的可能性与头节点和尾节点嵌入间的距离成比例。</p>
+<p>改进模型 1 <span class="math display">\[
+DEC(z_u,\tau,z_v) = -|| g_{1,\tau}(z_u) + r_{\tau} - g_{2,\tau}(z_v)||
+\]</span> 其中，<span class="math inline">\(g_{i,\tau}\)</span>
+为一种基于关系 <span class="math inline">\(\tau\)</span>
+空间的可训练转换方式。</p>
+<p>改进模型 2 TransH <span class="math display">\[
+DEC(z_u,\tau,z_v) = -|| (z_u - w_r^Tz_uw_r) + r_{\tau} - (z_u -
+w_r^Tz_vw_r) ||
+\]</span> TransH
+模型可将实体嵌入映射到一个可学习的特定关系超平面上（在执行转换之前，由法线向量
+<span class="math inline">\(w_r\)</span> 定义）。</p>
 <p><strong>多段点积（Multi-Linear Dot Products）</strong></p>
+<p>多段点积方法通过从简单图中扩展点积解码器来研究多关系解码模型，解码器如下式所示：
+<span class="math display">\[
+DEC(z_u, \tau, z_v) = &lt;z_u,r_{\tau},z_v&gt; = \sum_{i=1}^d z_u[i]
+\times r_{\tau}[i] \times z_v[i]
+\]</span> 该方法直接计算解码器中三个向量表示的点积。</p>
 <p><strong>复解码器</strong></p>
 <h3 id="解码器的性能表征">解码器的性能表征</h3>
 <p><strong>对称性与非对称性</strong></p>
