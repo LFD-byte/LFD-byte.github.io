@@ -24,7 +24,7 @@
 <meta property="og:description" content="节点嵌入目的是将节点编码为包含图位置和局部邻域结构信息的低维向量，其几何关系与原始图或网络中的关系相对应。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-05-29T07:29:00.000Z">
-<meta property="article:modified_time" content="2023-08-05T03:10:43.204Z">
+<meta property="article:modified_time" content="2023-08-05T03:20:43.751Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="图神经网络">
 <meta name="twitter:card" content="summary_large_image">
@@ -535,22 +535,22 @@ DEC(z_u,\tau,z_v) = || Z_u \circ r_{\tau} - z_v ||
 class="math inline">\(|r_{\tau}[i]|=1,\forall i \in
 {1,\cdots,d}\)</span>，则关系嵌入的每一维向量能表示成 <span
 class="math inline">\(r_{\tau}[i]=e^{i\theta_{r,i}}\)</span>，其对应关系向量在复平面内的旋转。</p>
-<h3 id="解码器的性能表征">解码器的性能表征</h3>
+<h2 id="解码器的性能表征">解码器的性能表征</h2>
 <p><strong>对称性与非对称性</strong></p>
 <p>满足下式的关系具有对称性： <span class="math display">\[
 (u,\tau,v) \in \varepsilon \leftrightarrow (v,\tau,u) \in \varepsilon
 \]</span> 满足下式的关系具有非对称性： <span class="math display">\[
 (u,\tau,v) \in \varepsilon \leftrightarrow (v,\tau,u) \notin \varepsilon
 \]</span> DistMult 仅能建模对称关系。</p>
-TransE 解码器仅能建模非对称关系，如下式所示： $$
-<span class="math display">\[\begin{aligned}
+<p>TransE 解码器仅能建模非对称关系，如下式所示： <span
+class="math display">\[
+\begin{aligned}
 DEC(Z_u, \tau, z_v) &amp;= DEC(z_v,\tau,z_u) \\
 -|| z_u + r_{\tau} -z_v || &amp;= -|| z_v + r_{\tau} -z_u || \\
 \Longrightarrow -r_{\tau} &amp;= r_{\tau} \\
 \Longrightarrow r_{\tau} &amp;= 0
-
-\end{aligned}\]</span>
-<p>$$ <strong>互逆性</strong></p>
+\end{aligned}
+\]</span> <strong>互逆性</strong></p>
 <p>互逆性是指一种关系的存在暗含这另一种相反方向关系的存在，如下式：
 <span class="math display">\[
 (u,\tau_1,v) \leftrightarrow (v,\tau_2,u) \in \varepsilon
