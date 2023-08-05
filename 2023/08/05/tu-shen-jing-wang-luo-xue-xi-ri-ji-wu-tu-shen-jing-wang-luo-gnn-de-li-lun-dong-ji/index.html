@@ -16,15 +16,15 @@
   <meta name="author" content="培根请加蛋">
   <meta name="keywords" content="">
   
-    <meta name="description" content="图神经网络 GNN 的损失函数、采样、参数共享和正则化。">
+    <meta name="description" content="图神经网络 GNN 在图信号、概率图模型、图同构层面的理论动机。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图神经网络学习日记（五）图神经网络（GNN）的实现">
-<meta property="og:url" content="https://blog.lfd-world.online/2023/06/20/tu-shen-jing-wang-luo-xue-xi-ri-ji-wu-tu-shen-jing-wang-luo-gnn-de-shi-xian/index.html">
+<meta property="og:title" content="图神经网络学习日记（五）图神经网络（GNN）的理论动机">
+<meta property="og:url" content="https://blog.lfd-world.online/2023/08/05/tu-shen-jing-wang-luo-xue-xi-ri-ji-wu-tu-shen-jing-wang-luo-gnn-de-li-lun-dong-ji/index.html">
 <meta property="og:site_name" content="培根请加蛋">
-<meta property="og:description" content="图神经网络 GNN 的损失函数、采样、参数共享和正则化。">
+<meta property="og:description" content="图神经网络 GNN 在图信号、概率图模型、图同构层面的理论动机。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-06-20T11:10:00.000Z">
-<meta property="article:modified_time" content="2023-07-13T01:37:26.199Z">
+<meta property="article:published_time" content="2023-08-05T03:15:00.000Z">
+<meta property="article:modified_time" content="2023-08-05T03:18:22.372Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="图神经网络">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>图神经网络学习日记（五）图神经网络（GNN）的实现 - 培根请加蛋</title>
+  <title>图神经网络学习日记（五）图神经网络（GNN）的理论动机 - 培根请加蛋</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="图神经网络学习日记（五）图神经网络（GNN）的实现"></span>
+            <span id="subtitle" data-typed-text="图神经网络学习日记（五）图神经网络（GNN）的理论动机"></span>
           
         </div>
 
@@ -210,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-06-20 19:10" pubdate>
-          2023年6月20日 晚上
+        <time datetime="2023-08-05 11:15" pubdate>
+          2023年8月5日 上午
         </time>
       </span>
     
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          23 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          16 分钟
+          1 分钟
         
       </span>
     
@@ -278,87 +278,14 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">图神经网络学习日记（五）图神经网络（GNN）的实现</h1>
+            <h1 id="seo-header">图神经网络学习日记（五）图神经网络（GNN）的理论动机</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="损失函数">损失函数</h2>
-<p><strong>用于节点分类的 GNN</strong></p>
-<p>以完全监督方式训练 GNN，使用 softmax
-分类函数和负对数似然损失来定义损失函数，如下式：</p>
-<p><span class="math display">\[
-\mathcal{L} = \sum_{u \in \mathcal{V}_{train}} = -log(softmax(z_u,y_u))
-\]</span></p>
-<p>其中，假设 <span class="math inline">\(y_u \in \mathbb{Z}^c\)</span>
-是一个独热向量，表示用于训练的节点 <span class="math inline">\(u \in
-\mathcal{V}_{train}\)</span> 的类。</p>
-<p>在引用网络中，<span class="math inline">\(y_u\)</span>
-表示论文的主题，<span class="math inline">\(Softmax(z_u,y_u)\)</span>
-表示通过 softmax 函数计算节点属于类 <span
-class="math inline">\(y_u\)</span> 的概率，如下式：</p>
-<p><span class="math display">\[
-softmax(z_u,y_u) = \sum_{i=1}^c y_u[i]\frac{e^{z_u^Tw_i}}{\sum_{j=1}^c
-e^{z_u^Tw_j}}
-\]</span></p>
-<p>其中，<span class="math inline">\(w_i \in
-\mathbb{R}^d,i=1,\cdots,c\)</span> 是可训练的参数。</p>
-<p><strong>用于图分类的 GNN</strong></p>
-<p>图分类的损失函数值是通过一组有标记的训练图 <span
-class="math inline">\(\mathcal{T} =
-{\mathcal{G}_1,\cdots,\mathcal{G}_n}\)</span> 上学习的图嵌入 <span
-class="math inline">\(z_{\mathcal{G}_i}\)</span>
-计算，通常使用如下式定义的平方误差损失函数：</p>
-<p><span class="math display">\[
-\mathcal{L} = \sum_{\mathcal{G} \in \mathcal{T}}\|
-MLP(z_{\mathcal{G}_i}) - y_{\mathcal{G}_i} \|_2^2
-\]</span></p>
-<p>其中，MLP 是具有单一变量输出的密集连接的神经网络，<span
-class="math inline">\(y_{\mathcal{G}_i} \in \mathbb{R}\)</span> 是训练图
-<span class="math inline">\(\mathcal{G}_i\)</span> 的标签值。</p>
-<p><strong>用于关系预测的 GNN</strong></p>
-<p>深度图信息最大化（DGI）节点嵌入 <span
-class="math inline">\(z_u\)</span> 和图嵌入 <span
-class="math inline">\(z_{\mathcal{G}}\)</span>
-之间的互信息，损失函数如下式：</p>
-<p><span class="math display">\[
-\mathcal{L} = -\sum_{u \in \mathcal{V}_{train}} \mathbb{E}_{\mathcal{G}}
-log(D(z_u,z_{\mathcal{G}})) +
-\gamma\mathbb{E}log(1-D(\tilde{z}_u,z_{\mathcal{G}}))
-\]</span></p>
-<p>其中，<span class="math inline">\(z_u\)</span> 表示 GNN 根据图 <span
-class="math inline">\(\mathcal{G}\)</span> 生成的节点 <span
-class="math inline">\(u\)</span> 的嵌入，而 <span
-class="math inline">\(\tilde{z}_u\)</span> 表示根据 <span
-class="math inline">\(\mathcal{G}\)</span> 的损坏版本 <span
-class="math inline">\(\tilde{\mathcal{G}}\)</span> 生成的节点 <span
-class="math inline">\(u\)</span> 的嵌入。这里用 <span
-class="math inline">\(D\)</span>
-表示判别函数，它是一个被训练用以预测节点嵌入是基于真实的图 <span
-class="math inline">\(\mathcal{G}\)</span> 还是损坏版本的图 <span
-class="math inline">\(\tilde{\mathcal{G}}\)</span>
-生成的。在通常情况下，通过一种随机的方式（如打乱特征矩阵中的元素）修改节点特征或邻接矩阵，抑或是同时修改两者来破坏图。上述损失函数背后的思想是：GNN
-模型必须学会生成可以区分真是图和其损坏版本的节点嵌入。这一优化目标与最大化节点嵌入
-<span class="math inline">\(z_u\)</span> 和图嵌入 <span
-class="math inline">\(z_{\mathcal{G}}\)</span>
-之间的互信息密切相关。</p>
-<h2 id="节点采样">节点采样</h2>
-<p>基于节点级别消息传递的角度直接实现 GNN
-可能存在计算效率低的问题。例如，当多个节点共享邻域时，如果图中所有节点独立执行消息传递操作，最终可能会执行大量冗余计算。</p>
-<p><strong>图级别的实现方法</strong></p>
-<p><strong>子采样和小批量</strong></p>
-<p>为了限制 GNN
-的内存占用并促进小批量训练方式，可以在消息传递过程中使用节点集的子集。从数学角度，可以认为这是在每个批次中为图中节点的子集运行节点级的
-GNN 公式。</p>
-<p>挑战在于不能在不丢失信息的情况下简单地在图上的一部分节点中执行消息传递操作，每次删除节点时也会删除其关联的边，这无法保证选择的节点的随机子集会构成连接图，并且为每个小批次选择一个节点的随机自己会对模型性能产生严重的不利影响。</p>
-<p>通过对节点邻域进行子采样的策略来克服此问题：首先为每个批次选择一组目标节点，然后递归采样这些节点的邻域以确保能够保持图的连通性。为了尽可能避免为一个批次采样过多节点的情况，建议使用固定容量对每个节点的邻域进行子采样以提高批量张量操作的效率。</p>
-<h2 id="参数共享和正则化">参数共享和正则化</h2>
-<p><strong>层间参数共享</strong></p>
-<p>在 GNN 的所有聚合和更新函数中使用相同的函数。通常情况下，在6层以上的
-GNN 中最有效，并且通常与门控更新函数结合使用。</p>
-<p><strong>边丢弃</strong></p>
-<p>训练过程中随机删除（或屏蔽）邻接矩阵的边。直观来看，这将使 GNN
-不太容易过拟合，并且对邻接矩阵中的噪声更具鲁棒性。</p>
+                <h2 id="gnn-与图信号">GNN 与图信号</h2>
+<h2 id="gnn-与概率图模型">GNN 与概率图模型</h2>
+<h2 id="gnn-与图同构">GNN 与图同构</h2>
 
                 
               </div>
@@ -404,8 +331,8 @@ GNN 中最有效，并且通常与门控更新函数结合使用。</p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>图神经网络学习日记（五）图神经网络（GNN）的实现</div>
-      <div>https://blog.lfd-world.online/2023/06/20/tu-shen-jing-wang-luo-xue-xi-ri-ji-wu-tu-shen-jing-wang-luo-gnn-de-shi-xian/</div>
+      <div>图神经网络学习日记（五）图神经网络（GNN）的理论动机</div>
+      <div>https://blog.lfd-world.online/2023/08/05/tu-shen-jing-wang-luo-xue-xi-ri-ji-wu-tu-shen-jing-wang-luo-gnn-de-li-lun-dong-ji/</div>
     </div>
     <div class="license-meta">
       
@@ -417,7 +344,7 @@ GNN 中最有效，并且通常与门控更新函数结合使用。</p>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年6月20日</div>
+          <div>2023年8月5日</div>
         </div>
       
       
@@ -449,18 +376,12 @@ GNN 中最有效，并且通常与门控更新函数结合使用。</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/11/github-pages-ge-ren-bo-ke-da-jian-si-fluid-zhu-ti/" title="Github Pages + Hexo + Vercel 个人博客搭建（四）Fluid 主题">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Github Pages + Hexo + Vercel 个人博客搭建（四）Fluid 主题</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/06/16/gai-lu-lun-yi-bei-xie-si-ding-li/" title="概率论（一） 贝叶斯公式">
-                        <span class="hidden-mobile">概率论（一） 贝叶斯公式</span>
+                      <a href="/2023/07/25/lun-wen-yue-du-deep-learning-with-differential-privacy/" title="Deep Learning with Differential Privacy 论文阅读">
+                        <span class="hidden-mobile">Deep Learning with Differential Privacy 论文阅读</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
