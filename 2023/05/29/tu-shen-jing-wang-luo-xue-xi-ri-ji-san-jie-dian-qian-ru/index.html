@@ -24,7 +24,7 @@
 <meta property="og:description" content="节点嵌入目的是将节点编码为包含图位置和局部邻域结构信息的低维向量，其几何关系与原始图或网络中的关系相对应。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-05-29T07:29:00.000Z">
-<meta property="article:modified_time" content="2023-08-04T14:08:06.931Z">
+<meta property="article:modified_time" content="2023-08-05T03:10:43.204Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="图神经网络">
 <meta name="twitter:card" content="summary_large_image">
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.7k 字
+          7.2k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          48 分钟
+          61 分钟
         
       </span>
     
@@ -506,12 +506,64 @@ w_r^Tz_vw_r) ||
 <span class="math display">\[
 DEC(z_u, \tau, z_v) = &lt;z_u,r_{\tau},z_v&gt; = \sum_{i=1}^d z_u[i]
 \times r_{\tau}[i] \times z_v[i]
-\]</span> 该方法直接计算解码器中三个向量表示的点积。</p>
-<p><strong>复解码器</strong></p>
+\]</span>
+该方法直接计算解码器中三个向量表示的点积。该解码器只能编码对称的关系，满足下式：
+<span class="math display">\[
+\begin{aligned}
+DEC(z_u, \tau, z_v) &amp;= &lt;z_u,r_{\tau},z_v&gt; \\
+&amp;= \sum_{i=1}^d z_u[i] \times r_{\tau}[i] \times z_v[i] \\
+&amp;= &lt;z_v,r_{\tau},z_u&gt; \\
+&amp;= DEC(z_v, \tau, z_u)
+\end{aligned}
+\]</span> <strong>复解码器</strong></p>
+<p>复解码器能够编码有向且不对称的关系。</p>
+<p>ComplEx 通过引入复值嵌入表示来扩展 DistMult 解码器，定义为下式：
+<span class="math display">\[
+\begin{aligned}
+DEC(z_u,\tau,z_v) &amp;= Re&lt;z_u,r_{\tau},\bar{z}_v&gt; \\
+&amp;= Re(\sum_{i=1}^d z_u[i] \times r_{\tau}[i] \times z_v[i])
+\end{aligned}
+\]</span> 其中，<span class="math inline">\(z_u,z_v,r_{\tau} \in
+\mathbb{C}^d\)</span> 为复值嵌入，Re
+表示复值向量的实部。由于采用了尾部嵌入表示的复共轭 <span
+class="math inline">\(\bar{z}_v\)</span>，因此这种解码方法适用于非对称关系。</p>
+<p>RotateE 方法主要将解码过程定义为嵌入表示在复平面上的旋转，如下式：
+<span class="math display">\[
+DEC(z_u,\tau,z_v) = || Z_u \circ r_{\tau} - z_v ||
+\]</span> 其中，<span class="math inline">\(\circ\)</span>
+为哈达玛乘积。假设上式中所有嵌入表示都是复值，且使 <span
+class="math inline">\(|r_{\tau}[i]|=1,\forall i \in
+{1,\cdots,d}\)</span>，则关系嵌入的每一维向量能表示成 <span
+class="math inline">\(r_{\tau}[i]=e^{i\theta_{r,i}}\)</span>，其对应关系向量在复平面内的旋转。</p>
 <h3 id="解码器的性能表征">解码器的性能表征</h3>
 <p><strong>对称性与非对称性</strong></p>
-<p><strong>互逆性</strong></p>
+<p>满足下式的关系具有对称性： <span class="math display">\[
+(u,\tau,v) \in \varepsilon \leftrightarrow (v,\tau,u) \in \varepsilon
+\]</span> 满足下式的关系具有非对称性： <span class="math display">\[
+(u,\tau,v) \in \varepsilon \leftrightarrow (v,\tau,u) \notin \varepsilon
+\]</span> DistMult 仅能建模对称关系。</p>
+TransE 解码器仅能建模非对称关系，如下式所示： $$
+<span class="math display">\[\begin{aligned}
+DEC(Z_u, \tau, z_v) &amp;= DEC(z_v,\tau,z_u) \\
+-|| z_u + r_{\tau} -z_v || &amp;= -|| z_v + r_{\tau} -z_u || \\
+\Longrightarrow -r_{\tau} &amp;= r_{\tau} \\
+\Longrightarrow r_{\tau} &amp;= 0
+
+\end{aligned}\]</span>
+<p>$$ <strong>互逆性</strong></p>
+<p>互逆性是指一种关系的存在暗含这另一种相反方向关系的存在，如下式：
+<span class="math display">\[
+(u,\tau_1,v) \leftrightarrow (v,\tau_2,u) \in \varepsilon
+\]</span> DisMult
+解码器无法对这种关心模式建模，但大多数其它类型解码器都能够表示逆关系。</p>
 <p><strong>组合性</strong></p>
+<p>满足下式的关系具有组合性： <span class="math display">\[
+(u,\tau_1,v) \in \varepsilon \wedge (v,\tau_2,u) \in \varepsilon
+\rightarrow (u,\tau_3,v) \in \varepsilon
+\]</span> 在 TransE 模型中，当 <span class="math inline">\(r_{\tau_3} =
+r_{\tau_1} + r_{\tau_2}\)</span>，满足上述组合性。在 RESCAL
+中可以通过定义 <span class="math inline">\(R_{\tau_3} =
+R_{\tau_1}R_{\tau_2}\)</span> 满足上述组合性。</p>
 
                 
               </div>
