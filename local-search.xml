@@ -4,6 +4,56 @@
   
   
   <entry>
+    <title>Gene Ontology (Go) overview</title>
+    <link href="/2023/08/09/gene-ontology-go-overview/"/>
+    <url>/2023/08/09/gene-ontology-go-overview/</url>
+    
+    <content type="html"><![CDATA[<p>本体（Ontology）是给定领域内知识体系的形式表示。本体通常由一组类（或术语或概念）组成，这些类之间具有运作的关系。基因本体论（GeneOntology GO）从三个方面描述了我们对生物领域的知识：</p><table><thead><tr class="header"><th>术语</th><th>含义</th></tr></thead><tbody><tr class="odd"><td>分子功能（Molecular Function）</td><td>基因产物进行的分子水平活动。分子功能术语描述在分子水平上发生的活动，例如“催化”或“运输”。GO分子功能术语代表活动而不是执行动作的实体（分子或复合物），并且不指定动作发生的地点、时间或背景。分子功能通常对应于单个基因产物（即蛋白质或RNA）可以执行的活动，但某些活动是由多个基因产物组成的分子复合物执行的。广义功能术语的例子有催化活性和转运蛋白活性；较窄的功能术语的例子是腺苷酸环化酶活性或Toll样受体结合。为了避免基因产物名称与其分子功能之间的混淆，GO分子功能通常附加“活性”一词（蛋白激酶将具有GO 分子功能蛋白激酶活性）。</td></tr><tr class="even"><td>细胞成分（Cellular Component）</td><td>基因产物发挥功能的相对于细胞结构的位置，可以是细胞区室（例如线粒体），也可以是它们所属的稳定大分子复合物（例如核糖体）。与GO 的其他方面不同，细胞成分类别不是指过程，而是指细胞解剖结构。</td></tr><tr class="odd"><td>生物过程（Biological Process）</td><td>更大的过程，或由多种分子活动完成的“生物程序”。广泛的生物过程术语的例子有DNA修复或信号转导。更具体的术语的例子是嘧啶核碱基生物合成过程或葡萄糖跨膜转运。请注意，生物过程并不等同于pathway。目前，GO 并未尝试表示完整描述 pathway 所需的动态或依赖性。</td></tr></tbody></table><p>在GO注释的一个例子中，人类“细胞色素c”可以通过<strong>分子功能</strong>氧化还原酶活性、<strong>生物过程</strong>氧化磷酸化和<strong>细胞成分</strong>线粒体膜间隙来描述。</p><p>GO词汇表设计为与物种无关，包括适用于原核生物和真核生物以及单细胞和多细胞生物的术语。</p><p>GO 类由定义、标签、唯一标识符和其他几个元素组成。</p><p>GO的结构可以用图来描述，其中每个GO项是一个节点，项之间的关系是节点之间的边。GO的层次结构松散，“子”术语比“父”术语更专业，但与严格的层次结构不同，一个术语可能有多个父术语。例如，生物过程术语己糖生物合成过程有两个父体：己糖代谢过程和单糖生物合成过程。这反映了生物合成过程是代谢过程的亚型并且己糖是单糖的亚型这一事实。</p><figure><imgsrc="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedhexose-biosynthetic-process.png"alt="hexose-biosynthetic-process" /><figcaption aria-hidden="true">hexose-biosynthetic-process</figcaption></figure><p>如上图所示，三个 GO域（细胞成分、生物过程和分子功能）各自由一个单独的根本体术语表示。域中的所有术语都可以将其起源追溯到根术语，尽管可能存在通过不同数量的中间术语到达本体根的许多不同路径。三个根节点互不相关，没有共同的父节点，因此GO是三个本体。一些基于图形的软件可能需要单个根节点；在这些情况下，可以添加“假”术语作为三个现有根节点的父节点。</p><p>这三个 GO本体是不相交的，这意味着来自不同本体的术语之间没有关系。然而，其他关系（例如部分关系和规范关系）确实在GO本体之间运行。例如，分子功能术语“细胞周期蛋白依赖性蛋白激酶活性”是生物过程“细胞周期”的一部分。</p><p>GO旨在代表生物学知识的当前状态，因此随着生物学知识的积累而不断修订和扩展。每周都会进行更改（大多数相对较小）。本体的修订由在生物学和计算知识表示方面拥有丰富经验的本体编辑团队管理。这些更新是GOC 本体团队和请求更新的科学家之间合作完成的。大多数请求来自进行 GO注释的科学家（这些请求通常只影响几个术语），以及来自特定生物学领域的领域专家（这些专家通常会修改包含许多术语和关系的本体论的整个“分支”）。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>生物信息</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>生物信息</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>优化器指南</title>
+    <link href="/2023/08/08/you-hua-qi-zhi-nan/"/>
+    <url>/2023/08/08/you-hua-qi-zhi-nan/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>深度学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>深度学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>宋词（三）余篇</title>
     <link href="/2023/08/05/song-ci-san-yu-pian/"/>
     <url>/2023/08/05/song-ci-san-yu-pian/</url>
@@ -180,9 +230,9 @@
     
     <tags>
       
-      <tag>WandB</tag>
-      
       <tag>深度学习</tag>
+      
+      <tag>WandB</tag>
       
     </tags>
     
@@ -430,7 +480,7 @@
     <link href="/2023/05/28/song-ci-er-liu-yong-pian/"/>
     <url>/2023/05/28/song-ci-er-liu-yong-pian/</url>
     
-    <content type="html"><![CDATA[<center>曲玉管</center><center>柳永</center><center>陇首云飞，江边日晚，烟波满目凭栏久。一望关河萧索，千里清秋，忍凝眸。</center><center>杳杳神京，盈盈仙子，别来锦字终难偶。断雁无凭，冉冉飞下汀州，思悠悠。</center><center>暗想当初，有多少，幽欢佳会；岂知聚散难期，翻成雨恨云愁。</center><center>阻追游，每登山临水，惹起平生心事，一场消黯，永日无言，却下层楼。</center><p><br></p><center>雨霖铃</center><center>寒蝉凄切，对长亭晚，骤雨初歇。都门帐饮无绪，留恋处，兰舟催发。执手相看泪眼，竟无语凝噎。念去去，千里烟波，暮霭沉沉楚天阔。</center><center>多情自古伤离别，更那堪、冷落清秋节！今宵酒醒何处？杨柳岸、晓风残月。此去经年，应是良辰好景虚设。便纵有千种风情，更与何人说？</center><p><br></p><center>蝶恋花</center><center>宋 柳永</center><center>伫倚危楼风细细，望极春愁，黯黯生天际。草色烟光残照里，无言谁会凭栏意？</center><center>拟把疏狂图一醉，对酒当歌，强乐还无味。衣带渐宽终不悔，为伊消得人憔悴。</center><p><br></p>]]></content>
+    <content type="html"><![CDATA[<center>曲玉管</center><center>陇首云飞，江边日晚，烟波满目凭栏久。一望关河萧索，千里清秋，忍凝眸。</center><center>杳杳神京，盈盈仙子，别来锦字终难偶。断雁无凭，冉冉飞下汀州，思悠悠。</center><center>暗想当初，有多少，幽欢佳会；岂知聚散难期，翻成雨恨云愁。</center><center>阻追游，每登山临水，惹起平生心事，一场消黯，永日无言，却下层楼。</center><p><br></p><center>雨霖铃</center><center>寒蝉凄切，对长亭晚，骤雨初歇。都门帐饮无绪，留恋处，兰舟催发。执手相看泪眼，竟无语凝噎。念去去，千里烟波，暮</center><p>霭沉沉楚天阔。</p><center>多情自古伤离别，更那堪、冷落清秋节！今宵酒醒何处？杨柳岸、晓风残月。此去经年，应是良辰好景虚设。便纵有千种风</center><p>情，更与何人说？</p><p><br></p><center>蝶恋花</center><center>伫倚危楼风细细，望极春愁，黯黯生天际。草色烟光残照里，无言谁会凭栏意？</center><center>拟把疏狂图一醉，对酒当歌，强乐还无味。衣带渐宽终不悔，为伊消得人憔悴。</center><p><br></p><center>采莲令</center><center>月华收，云淡霜天曙。西征客、此时情苦。翠娥执手，送临歧、轧轧开朱户。千娇面、盈盈伫立，无言有泪，断肠争忍回顾？</center><center>一叶兰舟，便恁急桨凌波去。贪行色、岂知离绪，万般方寸，但饮恨、脉脉同谁语？更回首、重城不见，寒江天外，隐隐两三烟树。</center>]]></content>
     
     
     <categories>
