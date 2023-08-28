@@ -16,24 +16,24 @@
   <meta name="author" content="培根请加蛋">
   <meta name="keywords" content="">
   
-    <meta name="description" content="树与二叉树的创建与遍历">
+    <meta name="description" content="Gene Ontology (Go)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法笔记——树篇">
-<meta property="og:url" content="https://blog.lfd-world.online/2023/08/12/suan-fa-bi-ji-shu-pian/index.html">
+<meta property="og:title" content="线性代数学习日记（二）">
+<meta property="og:url" content="https://blog.lfd-world.online/2023/08/23/xian-xing-dai-shu-xue-xi-ri-ji-er/index.html">
 <meta property="og:site_name" content="培根请加蛋">
-<meta property="og:description" content="树与二叉树的创建与遍历">
+<meta property="og:description" content="Gene Ontology (Go)">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-08-12T08:12:00.000Z">
-<meta property="article:modified_time" content="2023-08-12T08:27:59.586Z">
+<meta property="article:published_time" content="2023-08-23T02:52:00.000Z">
+<meta property="article:modified_time" content="2023-08-27T03:03:58.946Z">
 <meta property="article:author" content="培根请加蛋">
-<meta property="article:tag" content="算法">
+<meta property="article:tag" content="线性代数">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>算法笔记——树篇 - 培根请加蛋</title>
+  <title>线性代数学习日记（二） - 培根请加蛋</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="算法笔记——树篇"></span>
+            <span id="subtitle" data-typed-text="线性代数学习日记（二）"></span>
           
         </div>
 
@@ -210,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-12 16:12" pubdate>
-          2023年8月12日 下午
+        <time datetime="2023-08-23 10:52" pubdate>
+          2023年8月23日 上午
         </time>
       </span>
     
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          3.7k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          9 分钟
+          32 分钟
         
       </span>
     
@@ -278,22 +278,258 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">算法笔记——树篇</h1>
+            <h1 id="seo-header">线性代数学习日记（二）</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="二叉树的存储结构与基本操作">二叉树的存储结构与基本操作</h2>
-<p>结点的存储结构</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">node</span>&#123;<br>	<span class="hljs-keyword">typename</span> data; <span class="hljs-comment">//数据域</span><br>    node* lchild; <span class="hljs-comment">//指向左子树根结点的指针</span><br>    node* rchild; <span class="hljs-comment">//指向右子树根结点的指针</span><br>&#125;<br><br>node* root = <span class="hljs-literal">NULL</span>; <span class="hljs-comment">//根结点的初始化</span><br></code></pre></td></tr></table></figure>
-<p>新建结点</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">node* <span class="hljs-title">newNode</span><span class="hljs-params">(<span class="hljs-type">int</span> v)</span></span>&#123;<br>    node* Node = <span class="hljs-keyword">new</span> node;<br>    Node-&gt;data = v;<br>    Node-&gt;lchild = Node-&gt;rchild = <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-keyword">return</span> Node; <span class="hljs-comment">//返回新建结点的地址</span><br>&#125;<br></code></pre></td></tr></table></figure>
-<p>二叉树结点的查找和修改</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">search</span><span class="hljs-params">(node* root, <span class="hljs-type">int</span> x, <span class="hljs-type">int</span> newdata)</span></span>&#123;<br>	<span class="hljs-keyword">if</span>(root == <span class="hljs-literal">NULL</span>)&#123;<br>        <span class="hljs-keyword">return</span>; <span class="hljs-comment">//空树，死胡同（递归边界）</span><br>    &#125;<br>    <span class="hljs-keyword">if</span>(root-&gt;data == x)&#123; <span class="hljs-comment">//找到数据域为 x 的结点，把它修改成 newdata</span><br>        root-&gt;data = newdata;<br>    &#125;<br>    <span class="hljs-built_in">search</span>(root-&gt;lchild, x, newdata); <span class="hljs-comment">//往左子树搜索 x (递归式)</span><br>    <span class="hljs-built_in">search</span>(root-&gt;rchild, x, newdata); <span class="hljs-comment">//往右子树搜索 x (递归式)</span><br>&#125;<br></code></pre></td></tr></table></figure>
-<p>二叉树结点的插入</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//insert 函数将在二叉树中插入一个数据域为 x 的新结点</span><br><span class="hljs-comment">//注意根结点指针 root 要使用引用，否则插入不会成功</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(node* &amp;root, <span class="hljs-type">int</span> x)</span></span>&#123;<br>	<span class="hljs-keyword">if</span>(root == <span class="hljs-literal">NULL</span>)&#123;<br>        root = <span class="hljs-built_in">newNode</span>(x); <span class="hljs-comment">//空树，说明查找失败，也即插入位置（递归边界）</span><br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(由二叉树的性质，x 应插在左子树)&#123;<br>        <span class="hljs-built_in">insert</span>(root-&gt;lchild, x); <span class="hljs-comment">//往左子树搜索(递归式)</span><br>    &#125; <span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-built_in">insert</span>(root-&gt;rchild, x); <span class="hljs-comment">//往右子树搜索(递归式)</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>二叉树的创建</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//二叉树的建立</span><br><span class="hljs-function">node* <span class="hljs-title">Create</span><span class="hljs-params">(<span class="hljs-type">int</span> data[], <span class="hljs-type">int</span> n)</span></span>&#123;<br>    node* root = <span class="hljs-literal">NULL</span>; <span class="hljs-comment">//新建空根结点 root</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)&#123;<br>        <span class="hljs-built_in">insert</span>(root, data[i]); <span class="hljs-comment">//将 data[0]~data[n-1]插入二叉树中</span><br>    &#125;<br>    <span class="hljs-keyword">return</span> root; <span class="hljs-comment">//返回根结点</span><br>&#125;<br></code></pre></td></tr></table></figure>
+                <h2 id="elimination-using-matrices">Elimination Using Matrices</h2>
+<p>通过与<strong>消元矩阵</strong> <span
+class="math inline">\(E\)</span> 相乘从第 2 行中减去第 1 行的 2 倍。
+<span class="math display">\[
+\left[\begin{array}{}
+   1 &amp; 0 &amp; 0 \\
+   \bold{-2} &amp; \bold{1} &amp; 0 \\
+   0 &amp; 0 &amp; 1
+\end{array}\right]
+\left[\begin{array}{}
+   \bold{2} \\
+   \bold{8} \\
+   10
+\end{array}\right]
+\left[\begin{array}{}
+   2 \\
+   \bold{4} \\
+   10
+\end{array}\right] \quad \quad
+\left[\begin{array}{}
+   1 &amp; 0 &amp; 0 \\
+   \bold{-2} &amp; \bold{1} &amp; 0 \\
+   0 &amp; 0 &amp; 1
+\end{array}\right]
+\left[\begin{array}{}
+   \bold{b_1} \\
+   \bold{b_2} \\
+   b_3
+\end{array}\right]
+\left[\begin{array}{}
+   b_1 \\
+   \bold{b_2-2b_1} \\
+   b_3
+\end{array}\right]
+\]</span> 通过与<strong>置换矩阵</strong>相乘交换矩阵中的行 <span
+class="math display">\[
+\left[\begin{array}{}
+   1 &amp; 0 &amp; 0 \\
+   0 &amp; 0 &amp; 1 \\
+   0 &amp; 2 &amp; 0
+\end{array}\right]
+\left[\begin{array}{}
+   2 &amp; 4 &amp; 1 \\
+   \bold{0} &amp; \bold{0} &amp; \bold{3} \\
+   0 &amp; 6 &amp; 5
+\end{array}\right] =
+\left[\begin{array}{}
+   2 &amp; 4 &amp; 1 \\
+   0 &amp; 6 &amp; 5 \\
+   \bold{0} &amp; \bold{0} &amp; \bold{3}
+\end{array}\right]
+\]</span> 除 A 矩阵外包含 b
+作为额外列的矩阵称作<strong>增广矩阵</strong> <span
+class="math display">\[
+\left[\begin{array}{}
+   A &amp; b
+\end{array}\right] =
+\left[\begin{array}{}
+   2 &amp; 4 &amp; -2 &amp; \bold{2}\\
+   4 &amp; 9 &amp; -3 &amp; \bold{8}\\
+   -2 &amp; -3 &amp; 7 &amp; \bold{10}
+\end{array}\right]
+\]</span> 在增广矩阵上进行消元操作 <span class="math display">\[
+\left[\begin{array}{}
+   1 &amp; 0 &amp; 0 \\
+   -2 &amp; 1 &amp; 0 \\
+   0 &amp; 0 &amp; 1
+\end{array}\right]
+\left[\begin{array}{}
+   2 &amp; 4 &amp; -2 &amp; \bold{2}\\
+   4 &amp; 9 &amp; -3 &amp; \bold{8}\\
+   -2 &amp; -3 &amp; 7 &amp; \bold{10}
+\end{array}\right] =
+\left[\begin{array}{}
+   2 &amp; 4 &amp; -2 &amp; \bold{2}\\
+   0 &amp; 1 &amp; 1 &amp; \bold{4}\\
+   -2 &amp; -3 &amp; 7 &amp; \bold{10}
+\end{array}\right]
+\]</span></p>
+<h2 id="rules-for-matrix-operations">Rules for Matrix Operations</h2>
+<h3 id="矩阵加法">矩阵加法</h3>
+<p>两个大小相同矩阵相加 <span class="math inline">\(A + B\)</span>
+为对应位置元素相加： <span class="math display">\[
+\left[
+\begin{matrix}
+   1 &amp; 2 \\
+   3 &amp; 4 \\
+   0 &amp; 0
+  \end{matrix}
+  \right] +
+  \left[
+  \begin{matrix}
+  2 &amp; 2 \\
+  4 &amp; 4 \\
+  9 &amp; 9
+  \end{matrix}
+  \right] =
+  \left[
+  \begin{matrix}
+  3 &amp; 4 \\
+  7 &amp; 8 \\
+  9 &amp; 9
+  \end{matrix}
+  \right]
+\]</span> 常数和矩阵相乘 <span class="math inline">\(cA\)</span>
+为矩阵每个元素乘常数： <span class="math display">\[
+2\left[
+\begin{matrix}
+   1 &amp; 2 \\
+   3 &amp; 4 \\
+   0 &amp; 0
+  \end{matrix}
+  \right] =
+  \left[
+\begin{matrix}
+   2 &amp; 4 \\
+   6 &amp; 8 \\
+   0 &amp; 0
+  \end{matrix}
+  \right]
+\]</span></p>
+<h3 id="矩阵乘法">矩阵乘法</h3>
+<h4 id="点积视角">点积视角</h4>
+<p><span class="math inline">\(m \times n\)</span> 的矩阵 A 和 <span
+class="math inline">\(n \times p\)</span> 的矩阵 B 相乘后维度为 <span
+class="math inline">\(m \times p\)</span> <span class="math display">\[
+(m \times n)(n \times p) = (m \times p) \
+\left[
+\begin{matrix}
+   m \ rows \\
+   n \ columns
+  \end{matrix}
+\right]
+\left[
+\begin{matrix}
+   n \ rows \\
+   p \ columns
+  \end{matrix}
+\right] =
+\left[
+\begin{matrix}
+   m \ rows \\
+   p \ columns
+  \end{matrix}
+\right]
+\]</span> 矩阵 AB 第 i 行 第 j 列元素为 A 的第 i 行和 B 的第 j
+列的点积。 <span class="math display">\[
+\left[
+\begin{matrix}
+   * \\
+   a_{i1} &amp; a_{i2} &amp; \cdots &amp; a_{i5} \\
+   * \\
+   *
+  \end{matrix}
+\right]
+\left[
+\begin{matrix}
+   * &amp; * &amp; b_{1j} &amp; * &amp; * &amp; *\\
+    &amp;  &amp; b_{2j} &amp;  &amp;  &amp; \\
+    &amp;  &amp; \vdots &amp;  &amp;  &amp; \\
+    &amp;  &amp; b_{5j} &amp;  &amp;  &amp;
+  \end{matrix}
+\right] =
+\left[
+\begin{matrix}
+     &amp;   &amp; * &amp;   &amp;   &amp;  \\
+   * &amp; * &amp; AB_{ij} &amp; * &amp; * &amp; *\\
+    &amp;  &amp; * &amp;  &amp;  &amp; \\
+    &amp;  &amp; * &amp;  &amp;  &amp;
+  \end{matrix}
+\right]
+\]</span>
+一行乘一列得到一个元素称作内积，也叫点积，一列乘一行得到一个矩阵称作外积。</p>
+<h4 id="列的组合">列的组合</h4>
+<p>矩阵 AB 的每一列是 A 的列的组合 <span class="math display">\[
+A[b_1, \cdots, b_p] = [Ab_1, \cdots, Ab_p]
+\]</span></p>
+<h4 id="行的组合">行的组合</h4>
+<p>矩阵 AB 的每一行是 B 的行的组合 <span class="math display">\[
+[row \ i \ of \ A] \
+\left[
+\begin{matrix}
+   1 &amp; 2 &amp; 3 \\
+   4 &amp; 5 &amp; 6\\
+   7 &amp; 8 &amp; 9
+  \end{matrix}
+\right] =
+[row \ i \ of \ AB]
+\]</span></p>
+<h4 id="列乘行">列乘行</h4>
+<p>矩阵 A 的列 i 与矩阵 B 的行 j 相乘之后相加 <span
+class="math display">\[
+\left[
+\begin{matrix}
+   col\ 1 &amp; col\ 2 &amp; col\ 3 \\
+   \cdot &amp; \cdot &amp; \cdot \\
+   \cdot &amp; \cdot &amp; \cdot
+  \end{matrix}
+\right]
+\left[
+\begin{matrix}
+   row\ 1 &amp; \cdot &amp; \cdot \\
+   row\ 2 &amp; \cdot &amp; \cdot \\
+   row\ 3 &amp; \cdot &amp; \cdot
+  \end{matrix}
+\right] =
+(col \ 1)(row \ 1) + (col \ 2)(row \ 2) + (col \ 3)(row \ 3)
+\]</span></p>
+<h3 id="矩阵乘法规则">矩阵乘法规则</h3>
+<p>矩阵相乘遵循的规则： <span class="math display">\[
+AB \neq BA \\
+A(B+C) = AB + AC \\
+(A+B)C = AC + BC \\
+(AB)C=A(BC) \\
+A_p = AAA\cdots A(p \ factors) \quad (A^p)(A^q) = A^{p+q} \quad (A^p)^q
+= A^{pq}
+\]</span></p>
+<h3 id="块矩阵及其乘法">块矩阵及其乘法</h3>
+<p><span class="math inline">\(4 \times 6\)</span> 的矩阵可以切割为6个
+<span class="math inline">\(2 \times 2\)</span> 的矩阵。 <span
+class="math display">\[
+\left[\begin{array}{cc|cc|cc}
+   1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+   0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 \\
+   \hline
+   1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+   0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 \\
+\end{array}\right] =
+\left[\begin{array}{}
+   I &amp; I &amp; I \\
+   I &amp; I &amp; I \\
+\end{array}\right]
+\]</span> 如果 A 的块和 B 的块能够相乘，那么 AB 成立。AB 为 A
+的列的切片乘 B 的行的切片。 <span class="math display">\[
+\left[\begin{array}{}
+   A_{11} &amp; A_{12} \\
+   A_{21} &amp; A_{22} \\
+\end{array}\right]
+\left[\begin{array}{}
+   B_{11} \\
+   B_{21} \\
+\end{array}\right] =
+\left[\begin{array}{}
+   A_{11}B_{11} &amp; A_{12}B_{21} \\
+   A_{21}B_{11} &amp; A_{22}B_{21} \\
+\end{array}\right]
+\]</span></p>
 
                 
               </div>
@@ -312,7 +548,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  <a href="/categories/%E6%95%B0%E5%AD%A6/" class="category-chain-item">数学</a>
   
   
 
@@ -327,7 +563,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+        <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" class="print-no-link">#线性代数</a>
       
     </div>
   
@@ -339,8 +575,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>算法笔记——树篇</div>
-      <div>https://blog.lfd-world.online/2023/08/12/suan-fa-bi-ji-shu-pian/</div>
+      <div>线性代数学习日记（二）</div>
+      <div>https://blog.lfd-world.online/2023/08/23/xian-xing-dai-shu-xue-xi-ri-ji-er/</div>
     </div>
     <div class="license-meta">
       
@@ -352,7 +588,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年8月12日</div>
+          <div>2023年8月23日</div>
         </div>
       
       
@@ -384,9 +620,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/23/xian-xing-dai-shu-xue-xi-ri-ji-er/" title="线性代数学习日记（二）">
+                      <a href="/2023/08/26/xian-xing-dai-shu-xue-xi-ri-ji-yi/" title="线性代数学习日记（一）">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">线性代数学习日记（二）</span>
+                        <span class="hidden-mobile">线性代数学习日记（一）</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -394,8 +630,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/12/suan-fa-bi-ji-sou-suo-pian/" title="算法笔记——搜索篇">
-                        <span class="hidden-mobile">算法笔记——搜索篇</span>
+                      <a href="/2023/08/12/suan-fa-bi-ji-shu-pian/" title="算法笔记——树篇">
+                        <span class="hidden-mobile">算法笔记——树篇</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
