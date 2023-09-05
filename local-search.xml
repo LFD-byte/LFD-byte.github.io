@@ -4,6 +4,60 @@
   
   
   <entry>
+    <title>Latex &amp; Markdown 字母符号篇</title>
+    <link href="/2023/09/05/latex-markdown-zi-mu-pian/"/>
+    <url>/2023/09/05/latex-markdown-zi-mu-pian/</url>
+    
+    <content type="html"><![CDATA[<h2 id="希腊字母">希腊字母</h2><table><thead><tr class="header"><th style="text-align: center;">名称</th><th style="text-align: center;">原符号</th><th style="text-align: center;">markdown</th><th style="text-align: center;">原符号</th><th style="text-align: center;">markdown</th><th style="text-align: center;">原符号</th><th style="text-align: center;">markdown</th></tr></thead><tbody><tr class="odd"><td style="text-align: center;">alpha</td><td style="text-align: center;"><spanclass="math inline">\(\alpha\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;">beta</td><td style="text-align: center;"><spanclass="math inline">\(\beta\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;">gamma</td><td style="text-align: center;"><spanclass="math inline">\(\gamma\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\Gamma\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;">delta</td><td style="text-align: center;"><spanclass="math inline">\(\delta\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\Delta\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;">epsilon</td><td style="text-align: center;"><spanclass="math inline">\(\epsilon\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\varepsilon\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;">zeta</td><td style="text-align: center;"><spanclass="math inline">\(\zeta\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;">eta</td><td style="text-align: center;"><spanclass="math inline">\(\eta\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;">theta</td><td style="text-align: center;"><spanclass="math inline">\(\theta\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\Theta\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\vartheta\)</span></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;">iota</td><td style="text-align: center;"><spanclass="math inline">\(\iota\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;">kappa</td><td style="text-align: center;"><spanclass="math inline">\(\kappa\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;">lambda</td><td style="text-align: center;"><spanclass="math inline">\(\lambda\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\Lambda\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;">mu</td><td style="text-align: center;"><spanclass="math inline">\(\mu\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;">nu</td><td style="text-align: center;"><spanclass="math inline">\(\nu\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;">xi</td><td style="text-align: center;"><spanclass="math inline">\(\xi\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\Xi\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;">pi</td><td style="text-align: center;"><spanclass="math inline">\(\pi\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\Pi\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\varpi\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;">rho</td><td style="text-align: center;"><spanclass="math inline">\(\rho\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\varrho\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;">sigma</td><td style="text-align: center;"><spanclass="math inline">\(\sigma\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\varsigma\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;">tau</td><td style="text-align: center;"><spanclass="math inline">\(\tau\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;">upsilon</td><td style="text-align: center;"><spanclass="math inline">\(\upsilon\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\Upsilon\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;">phi</td><td style="text-align: center;"><spanclass="math inline">\(\phi\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\Phi\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\varphi\)</span></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;">chi</td><td style="text-align: center;"><spanclass="math inline">\(\chi\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;">psi</td><td style="text-align: center;"><spanclass="math inline">\(\psi\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\Psi\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;">omega</td><td style="text-align: center;"><spanclass="math inline">\(\omega\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\Omega\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr></tbody></table><h2 id="戴帽符号">戴帽符号</h2><table><thead><tr class="header"><th style="text-align: center;">原符号</th><th style="text-align: center;">markdown</th><th style="text-align: center;">原符号</th><th style="text-align: center;">markdown</th></tr></thead><tbody><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\hat{y}\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\widetilde{A}\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\check{y}\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\vec{a}\)</span></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\breve{y}\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\dot{a}\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\bar{a}\)</span></td><td style="text-align: center;">{a}</td><td style="text-align: center;"><spanclass="math inline">\(\ddot{a}\)</span></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\tilde{a}\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr></tbody></table><h2 id="连线符号">连线符号</h2><table><thead><tr class="header"><th style="text-align: center;">原符号</th><th style="text-align: center;">markdown</th></tr></thead><tbody><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\overline{a+b+c+d}\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\underline{a+b+c+d}\)</span></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\overbrace{a+\underbrace{b+c}{1.0}+d}^{2.0}\)</span></td><td style="text-align: center;">^{2.0}</td></tr></tbody></table><h2 id="箭头符号">箭头符号</h2><table><thead><tr class="header"><th style="text-align: center;">原符号</th><th style="text-align: center;">markdown</th><th style="text-align: center;">原符号</th><th style="text-align: center;">markdown</th></tr></thead><tbody><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\uparrow\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\Rightarrow\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\downarrow\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\Leftarrow\)</span></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\Uparrow\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\longrightarrow\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\Downarrow\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\longleftarrow\)</span></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\rightarrow\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\Longrightarrow\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\leftarrow\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\Longleftarrow\)</span></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\leftrightarrow\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\Longleftrightarrow\)</span></td><td style="text-align: center;"></td></tr></tbody></table><h2 id="字母类符号">字母类符号</h2><p>Caligraphic letters: <code>$\mathcal&#123;A&#125;$</code> etc.: <spanclass="math inline">\(\mathcal{A B C D E F G H I J K L M N O P Q I S T UV W X Y Z}\)</span></p><p>Mathbb letters: <code>$\mathbb&#123;A&#125;$</code>etc.: <spanclass="math inline">\(\mathbb{A B C D E F G H I J K L M N O P Q I S T UV W X Y Z}\)</span></p><p>Mathfrak letters: <code>$\mathfrak&#123;A&#125;$</code>etc.: <spanclass="math inline">\(\mathfrak{A B C D E F G H I J K L M N O P Q I S TU V W X Y Z}\)</span></p><p>Math Sans serif letters: <code>$\mathsf&#123;A&#125;$</code>etc.: <spanclass="math inline">\(\mathsf{A B C D E F G H I J K L M N O P Q I S T UV W X Y Z}\)</span></p><p>Math bold letters: <code>$\mathbf&#123;A&#125;$</code>etc.: <spanclass="math inline">\(\mathbf{A B C D E F G H I J K L M N O P Q I S T UV W X Y Z}\)</span></p><p>Math bold italic letters: define<code>\def\mathbi#1&#123;\textbf&#123;\em #1&#125;&#125;</code> then use<code>$\mathbi&#123;A&#125;$</code></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Latex</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Latex</tag>
+      
+      <tag>Markdown</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Latex &amp; Markdown 运算符篇</title>
+    <link href="/2023/09/05/markdown-shu-xue-fu-hao-pian/"/>
+    <url>/2023/09/05/markdown-shu-xue-fu-hao-pian/</url>
+    
+    <content type="html"><![CDATA[<h2 id="关系运算符">关系运算符</h2><table><thead><tr class="header"><th style="text-align: center;">原符号</th><th style="text-align: center;">markdown</th><th style="text-align: center;">原符号</th><th style="text-align: center;">markdown</th></tr></thead><tbody><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\pm\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\bigoplus\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\times\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\leq\)</span></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\div\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\geq\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\mid\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\neq\)</span></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\nmid\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\approx\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\cdot\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\equiv\)</span></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\circ\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\sum\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\ast\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\prod\)</span></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\bigodot\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\coprod\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\bigotimes\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr></tbody></table><h2 id="集合运算符">集合运算符</h2><table><thead><tr class="header"><th style="text-align: center;">原符号</th><th style="text-align: center;">markdown</th><th style="text-align: center;">原符号</th><th style="text-align: center;">markdown</th></tr></thead><tbody><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\emptyset\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\bigcap\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\in\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\bigcup\)</span></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\notin\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\bigvee\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\subset\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\bigwedge\)</span></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\supset\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\biguplus\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\subseteq\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\bigsqcup\)</span></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\supseteq\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr></tbody></table><h2 id="对数运算符">对数运算符</h2><table><thead><tr class="header"><th style="text-align: center;">原符号</th><th style="text-align: center;">markdown</th></tr></thead><tbody><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\log\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\lg\)</span></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\ln\)</span></td><td style="text-align: center;"></td></tr></tbody></table><h2 id="三角运算符">三角运算符</h2><table><thead><tr class="header"><th style="text-align: center;">原符号</th><th style="text-align: center;">markdown</th><th style="text-align: center;">原符号</th><th style="text-align: center;">markdown</th></tr></thead><tbody><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\bot\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\tan\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\angle\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\cot\)</span></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(30^\circ\)</span></td><td style="text-align: center;">30^</td><td style="text-align: center;"><spanclass="math inline">\(\sec\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\sin\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\csc\)</span></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\cos\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr></tbody></table><h2 id="微积分运算符">微积分运算符</h2><table><thead><tr class="header"><th style="text-align: center;">原符号</th><th style="text-align: center;">markdown</th><th style="text-align: center;">原符号</th><th style="text-align: center;">markdown</th></tr></thead><tbody><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\prime\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\oint\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\int\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\lim\)</span></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\iint\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\infty\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\iiint\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\nabla\)</span></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\iiiint\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\partial\)</span></td><td style="text-align: center;"></td></tr></tbody></table><h2 id="逻辑运算符">逻辑运算符</h2><table><thead><tr class="header"><th style="text-align: center;">原符号</th><th style="text-align: center;">markdown</th><th style="text-align: center;">原符号</th><th style="text-align: center;">markdown</th></tr></thead><tbody><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\because\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\not=\)</span></td><td style="text-align: center;">=</td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\therefore\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\not&gt;\)</span></td><td style="text-align: center;">&gt;</td></tr><tr class="odd"><td style="text-align: center;"><spanclass="math inline">\(\forall\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"><spanclass="math inline">\(\not\subset\)</span></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"><spanclass="math inline">\(\exists\)</span></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr></tbody></table>]]></content>
+    
+    
+    <categories>
+      
+      <category>Latex</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Latex</tag>
+      
+      <tag>Markdown</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>线性代数学习日记（一）</title>
     <link href="/2023/08/26/xian-xing-dai-shu-xue-xi-ri-ji-yi/"/>
     <url>/2023/08/26/xian-xing-dai-shu-xue-xi-ri-ji-yi/</url>
@@ -21,6 +75,31 @@
     <tags>
       
       <tag>线性代数</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>高效能人士的七个习惯 学习日记（一）</title>
+    <link href="/2023/08/26/gao-xiao-neng-ren-shi-de-qi-ge-xi-guan-xue-xi-ri-ji-yi/"/>
+    <url>/2023/08/26/gao-xiao-neng-ren-shi-de-qi-ge-xi-guan-xue-xi-ri-ji-yi/</url>
+    
+    <content type="html"><![CDATA[<h2 id="section"></h2><p>习惯一：积极主动</p><p>习惯二：以终为始</p><p>习惯三：要事第一</p><p>习惯四：双赢思维</p><p>习惯五：知彼解己</p><p>习惯六：统合综效</p><p>习惯七：不断更新</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>心理学</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>心理学</tag>
       
     </tags>
     
@@ -330,9 +409,9 @@
     
     <tags>
       
-      <tag>WandB</tag>
-      
       <tag>深度学习</tag>
+      
+      <tag>WandB</tag>
       
     </tags>
     
@@ -651,33 +730,6 @@
     <tags>
       
       <tag>图神经网络</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>Latex 字母类符号</title>
-    <link href="/2023/05/24/latex-zi-mu-lei-fu-hao/"/>
-    <url>/2023/05/24/latex-zi-mu-lei-fu-hao/</url>
-    
-    <content type="html"><![CDATA[<p>Caligraphic letters: <code>$\mathcal&#123;A&#125;$</code> etc.: <spanclass="math inline">\(\mathcal{A B C D E F G H I J K L M N O P Q I S T UV W X Y Z}\)</span></p><p>Mathbb letters: <code>$\mathbb&#123;A&#125;$</code>etc.: <spanclass="math inline">\(\mathbb{A B C D E F G H I J K L M N O P Q I S T UV W X Y Z}\)</span></p><p>Mathfrak letters: <code>$\mathfrak&#123;A&#125;$</code>etc.: <spanclass="math inline">\(\mathfrak{A B C D E F G H I J K L M N O P Q I S TU V W X Y Z}\)</span></p><p>Math Sans serif letters: <code>$\mathsf&#123;A&#125;$</code>etc.: <spanclass="math inline">\(\mathsf{A B C D E F G H I J K L M N O P Q I S T UV W X Y Z}\)</span></p><p>Math bold letters: <code>$\mathbf&#123;A&#125;$</code>etc.: <spanclass="math inline">\(\mathbf{A B C D E F G H I J K L M N O P Q I S T UV W X Y Z}\)</span></p><p>Math bold italic letters: define<code>\def\mathbi#1&#123;\textbf&#123;\em #1&#125;&#125;</code> then use<code>$\mathbi&#123;A&#125;$</code></p>]]></content>
-    
-    
-    <categories>
-      
-      <category>Latex</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>Latex</tag>
-      
-      <tag>Markdown</tag>
       
     </tags>
     
