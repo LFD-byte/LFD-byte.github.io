@@ -4,6 +4,60 @@
   
   
   <entry>
+    <title>Latex &amp; Markdown 空格</title>
+    <link href="/2023/09/17/latex-markdown-kong-ge/"/>
+    <url>/2023/09/17/latex-markdown-kong-ge/</url>
+    
+    <content type="html"><![CDATA[<table><thead><tr class="header"><th>空格类型</th><th>示例</th><th>文章中空格绝对大小</th></tr></thead><tbody><tr class="odd"><td>两个 quad 空格</td><td>a b</td><td>两个 m 的宽度</td></tr><tr class="even"><td>quad 空格</td><td>a b</td><td>一个 m 的宽度</td></tr><tr class="odd"><td>大空格</td><td>a b</td><td>1/3 m 宽度</td></tr><tr class="even"><td>中等空格</td><td>a;b</td><td>2/7 m 宽度</td></tr><tr class="odd"><td>小空格</td><td>a,b</td><td>1/6 m 宽度</td></tr><tr class="even"><td>没有空格</td><td>ab</td><td></td></tr><tr class="odd"><td>紧贴</td><td>a!b</td><td>缩进 1/6 m 宽度</td></tr></tbody></table><h2 id="参考">参考</h2><p>[1] <ahref="https://blog.csdn.net/kangkanglhb88008/article/details/125547204">latex如何打空格</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Latex</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Latex</tag>
+      
+      <tag>Markdown</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Latex &amp; Markdown 论文写作篇</title>
+    <link href="/2023/09/17/latex-markdown-lun-wen-xie-zuo-pian/"/>
+    <url>/2023/09/17/latex-markdown-lun-wen-xie-zuo-pian/</url>
+    
+    <content type="html"><![CDATA[<h2 id="伪代码">伪代码</h2><p>在 latex 生成伪代码的方式有 algorithmic, algpseudocode, algorithm2e,algorithmicx 等几种方法，这里主要介绍前两种。</p><h3 id="algorithmic">algorithmic</h3><p>主要的命令有如下几个：</p><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\STATE</span> &lt;text&gt;<br> <span class="hljs-keyword">\IF</span>&#123;&lt;condition&gt;&#125; <span class="hljs-keyword">\STATE</span> &#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ELSE</span> <span class="hljs-keyword">\STATE</span>&#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDIF</span><br> <span class="hljs-keyword">\IF</span>&#123;&lt;condition&gt;&#125; <span class="hljs-keyword">\STATE</span> &#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ELSIF</span>&#123;&lt;condition&gt;&#125; <span class="hljs-keyword">\STATE</span>&#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDIF</span><br> <span class="hljs-keyword">\FOR</span>&#123;&lt;condition&gt;&#125; <span class="hljs-keyword">\STATE</span> &#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDFOR</span><br> <span class="hljs-keyword">\FOR</span>&#123;&lt;condition&gt; <span class="hljs-keyword">\TO</span> &lt;condition&gt; &#125; <span class="hljs-keyword">\STATE</span> &#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDFOR</span><br> <span class="hljs-keyword">\FORALL</span>&#123;&lt;condition&gt;&#125; <span class="hljs-keyword">\STATE</span>&#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDFOR</span><br> <span class="hljs-keyword">\WHILE</span>&#123;&lt;condition&gt;&#125; <span class="hljs-keyword">\STATE</span>&#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDWHILE</span><br> <span class="hljs-keyword">\REPEAT</span> <span class="hljs-keyword">\STATE</span>&#123;&lt;text&gt;&#125; <span class="hljs-keyword">\UNTIL</span>&#123;&lt;condition&gt;&#125;<br> <span class="hljs-keyword">\LOOP</span> <span class="hljs-keyword">\STATE</span>&#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDLOOP</span><br> <span class="hljs-keyword">\REQUIRE</span> &lt;text&gt;<br> <span class="hljs-keyword">\ENSURE</span> &lt;text&gt;<br> <span class="hljs-keyword">\RETURN</span> &lt;text&gt;<br> <span class="hljs-keyword">\PRINT</span> &lt;text&gt;<br> <span class="hljs-keyword">\COMMENT</span>&#123;&lt;text&gt;&#125;<br> <span class="hljs-keyword">\AND</span>, <span class="hljs-keyword">\OR</span>, <span class="hljs-keyword">\XOR</span>, <span class="hljs-keyword">\NOT</span>, <span class="hljs-keyword">\TO</span>, <span class="hljs-keyword">\TRUE</span>, <span class="hljs-keyword">\FALSE</span><br></code></pre></td></tr></table></figure><p>示例：</p><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\documentclass</span>&#123;article&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;algcompatible&#125;<br><span class="hljs-comment">% OR \usepackage&#123;algorithmic&#125;</span><br><span class="hljs-keyword">\begin</span>&#123;document&#125;<br><span class="hljs-keyword">\begin</span>&#123;algorithmic&#125;<br><span class="hljs-keyword">\STATE</span> <span class="hljs-built_in">$</span>i<span class="hljs-keyword">\gets</span> 10<span class="hljs-built_in">$</span><br><span class="hljs-keyword">\IF</span> &#123;<span class="hljs-built_in">$</span>i<span class="hljs-keyword">\geq</span> 5<span class="hljs-built_in">$</span>&#125; <br>  <span class="hljs-keyword">\STATE</span> <span class="hljs-built_in">$</span>i<span class="hljs-keyword">\gets</span> i-1<span class="hljs-built_in">$</span><br><span class="hljs-keyword">\ELSE</span><br>  <span class="hljs-keyword">\IF</span> &#123;<span class="hljs-built_in">$</span>i<span class="hljs-keyword">\leq</span> 3<span class="hljs-built_in">$</span>&#125;<br>    <span class="hljs-keyword">\STATE</span> <span class="hljs-built_in">$</span>i<span class="hljs-keyword">\gets</span> i+2<span class="hljs-built_in">$</span><br>  <span class="hljs-keyword">\ENDIF</span><br><span class="hljs-keyword">\ENDIF</span> <br><span class="hljs-keyword">\end</span>&#123;algorithmic&#125;<br><br><span class="hljs-keyword">\end</span>&#123;document&#125;<br></code></pre></td></tr></table></figure><h3 id="algpseudocode">algpseudocode</h3>]]></content>
+    
+    
+    <categories>
+      
+      <category>Latex</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Latex</tag>
+      
+      <tag>Markdown</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Latex &amp; Markdown 字母符号篇</title>
     <link href="/2023/09/05/latex-markdown-zi-mu-pian/"/>
     <url>/2023/09/05/latex-markdown-zi-mu-pian/</url>
@@ -409,9 +463,9 @@
     
     <tags>
       
-      <tag>WandB</tag>
-      
       <tag>深度学习</tag>
+      
+      <tag>WandB</tag>
       
     </tags>
     
@@ -688,7 +742,7 @@
     <link href="/2023/05/28/song-ci-yi-su-shi-pian/"/>
     <url>/2023/05/28/song-ci-yi-su-shi-pian/</url>
     
-    <content type="html"><![CDATA[<center>水调歌头</center><p>丙辰中秋，欢饮达旦，大醉，作此篇兼怀子由。</p><p>明月几时有，把酒问青天。不知天上宫阙，今夕是何年。我欲乘风归去，惟恐琼楼玉宇，高处不胜寒。起舞弄清影，何似在人间。</p><p>转朱阁，低绮户，照无眠。不应有恨，何事长向别时圆？人有悲欢离合，月有阴晴圆缺。此时古难全。但愿人长久，千里共婵娟。</p><p><br></p><center>水龙吟 次韵章质夫《杨花词》</center><p>似花还似非花，也无人惜从教坠。抛家傍路，思量却是，无情有思。萦损柔肠，困酣娇眼，欲开还闭。梦随风万里，寻郎去处，又还被莺呼起。</p><p>不恨此花飞尽，恨西园、落红难缀。晓来雨过，遗踪何在，一池萍碎。春色三分，二分尘土，一分流水。细看来不是杨花，点点是离人泪。</p><p><br></p><center>念奴娇 赤壁怀古</center><p>大江东去，浪淘尽、千古风流人物。故垒西边，人道是、三国周郎赤壁。乱石穿空，惊涛拍岸，卷起千堆雪。江山如画，一时多少豪杰。</p><p>遥想公瑾当年，小乔初嫁了，雄姿英发。羽扇纶巾，谈笑间、樯橹灰飞烟灭。故国神游，多情应笑我，早生华发。人生如梦，一樽还酹江月。</p><p><br></p><center>永遇乐</center><p>彭城夜宿燕子楼，梦盼盼，因作此词。</p><p>明月如霜，好风如水，清景无限。曲港跳鱼，圆荷泻露，寂寞无人见。紞如三鼓，铿然一叶，黯黯梦云惊断。夜茫茫、重寻无处，觉来小园行遍。</p><p>天涯倦客，山中归路，望断故园心眼。燕子楼空，佳人何在？空锁楼中燕。古今如梦，何曾梦觉，但有旧欢新怨。异时对、黄楼夜景，为余浩叹。</p><p><br></p><center>洞仙歌</center><p>余七岁时，见眉州老尼，姓朱，忘其名，年九十岁。自言尝随其师入蜀主孟昶宫中，一日大热，蜀主与花蕊夫人夜起纳凉摩诃池上，作一词，朱具能记之。今四十年，朱已死久矣，人无知此词者，但记其首两句，暇日寻味，岂“洞仙歌”令乎？乃为足之云。</p><p>冰肌玉骨，自清凉无汗。水殿风来暗香满。秀帘开、一点明月窥人，人未寝、欹枕钗横鬓乱。</p><p>起来携素手，庭户无声，时见疏星度河汉。试问夜如何？夜已三更，金波淡、玉绳低转。但屈指、西风几时来，又不道流年、暗中偷换。</p><p><br></p><center>卜算子</center><center>黄州定慧院寓居作。</center><center>缺月挂疏桐，漏断人初静。谁见幽人独往来，飘渺孤鸿影。</center><center>惊起却回头，有恨无人省。拣尽寒枝不肯栖，寂寞沙洲冷。</center><p><br></p><center>青玉案</center><center>和贺方回韵，送伯固归吴中故居。</center><center>三年枕上吴中路，遣黄犬、随君去。若到松江呼小渡，莫惊鸳鹭，四桥尽是、老子经行处。</center><center>《辋川图》上看春暮，常记高人右丞句。作个归期天定许，春衫犹是，小蛮针线，曾湿西湖雨。</center><p><br></p><center>临江仙 夜归临皋</center><center>夜饮东坡醒复醉，归来仿佛三更。家童鼻息已雷鸣，敲门都不应，倚杖听江声。</center><center>长恨此身非我有，何时忘却营营。夜阑风静縠纹平，小舟从此逝，江海寄余生。</center>]]></content>
+    <content type="html"><![CDATA[<center>水调歌头</center><p>丙辰中秋，欢饮达旦，大醉，作此篇兼怀子由。</p><p>明月几时有，把酒问青天。不知天上宫阙，今夕是何年。我欲乘风归去，惟恐琼楼玉宇，高处不胜寒。起舞弄清影，何似在人间。</p><p>转朱阁，低绮户，照无眠。不应有恨，何事长向别时圆？人有悲欢离合，月有阴晴圆缺。此时古难全。但愿人长久，千里共婵娟。</p><p><br></p><center>水龙吟 次韵章质夫《杨花词》</center><p>似花还似非花，也无人惜从教坠。抛家傍路，思量却是，无情有思。萦损柔肠，困酣娇眼，欲开还闭。梦随风万里，寻郎去处，又还被莺呼起。</p><p>不恨此花飞尽，恨西园、落红难缀。晓来雨过，遗踪何在，一池萍碎。春色三分，二分尘土，一分流水。细看来不是杨花，点点是离人泪。</p><p><br></p><center>念奴娇 赤壁怀古</center><p>大江东去，浪淘尽、千古风流人物。故垒西边，人道是、三国周郎赤壁。乱石穿空，惊涛拍岸，卷起千堆雪。江山如画，一时多少豪杰。</p><p>遥想公瑾当年，小乔初嫁了，雄姿英发。羽扇纶巾，谈笑间、樯橹灰飞烟灭。故国神游，多情应笑我，早生华发。人生如梦，一樽还酹江月。</p><p><br></p><center>永遇乐</center><p>彭城夜宿燕子楼，梦盼盼，因作此词。</p><p>明月如霜，好风如水，清景无限。曲港跳鱼，圆荷泻露，寂寞无人见。紞如三鼓，铿然一叶，黯黯梦云惊断。夜茫茫、重寻无处，觉来小园行遍。</p><p>天涯倦客，山中归路，望断故园心眼。燕子楼空，佳人何在？空锁楼中燕。古今如梦，何曾梦觉，但有旧欢新怨。异时对、黄楼夜景，为余浩叹。</p><p><br></p><center>洞仙歌</center><p>余七岁时，见眉州老尼，姓朱，忘其名，年九十岁。自言尝随其师入蜀主孟昶宫中，一日大热，蜀主与花蕊夫人夜起纳凉摩诃池上，作一词，朱具能记之。今四十年，朱已死久矣，人无知此词者，但记其首两句，暇日寻味，岂“洞仙歌”令乎？乃为足之云。</p><p>冰肌玉骨，自清凉无汗。水殿风来暗香满。秀帘开、一点明月窥人，人未寝、欹枕钗横鬓乱。</p><p>起来携素手，庭户无声，时见疏星度河汉。试问夜如何？夜已三更，金波淡、玉绳低转。但屈指、西风几时来，又不道流年、暗中偷换。</p><p><br></p><center>卜算子</center><center>黄州定慧院寓居作。</center><center>缺月挂疏桐，漏断人初静。谁见幽人独往来，飘渺孤鸿影。</center><center>惊起却回头，有恨无人省。拣尽寒枝不肯栖，寂寞沙洲冷。</center><p><br></p><center>青玉案</center><center>和贺方回韵，送伯固归吴中故居。</center><center>三年枕上吴中路，遣黄犬、随君去。若到松江呼小渡，莫惊鸳鹭，四桥尽是、老子经行处。</center><center>《辋川图》上看春暮，常记高人右丞句。作个归期天定许，春衫犹是，小蛮针线，曾湿西湖雨。</center><p><br></p><center>临江仙 夜归临皋</center><center>夜饮东坡醒复醉，归来仿佛三更。家童鼻息已雷鸣，敲门都不应，倚杖听江声。</center><center>长恨此身非我有，何时忘却营营。夜阑风静縠纹平，小舟从此逝，江海寄余生。</center><p><br></p><center><p>定风波</p><center>三月七日沙湖道中遇雨，雨具先去，同行皆狼狈，余独不觉。已而遂晴，故作此。</center><center>莫听穿林打叶声，何妨吟啸且徐行。竹杖芒鞋轻胜马。谁怕？一蓑烟雨任平生。</center><center>料峭春风吹酒醒，微冷，山头斜照却相迎。回首向来萧瑟处，归去，也无风雨也无晴。</center><p><br></p>]]></content>
     
     
     <categories>
