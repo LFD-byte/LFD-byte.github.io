@@ -23,12 +23,15 @@
 <meta property="og:site_name" content="培根请加蛋">
 <meta property="og:description" content="A Comprehensive Survey of Few-shot Learning Evolution, Applications, Challenges, and Opportunities">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20231110154140824.png">
+<meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20231110154237671.png">
 <meta property="article:published_time" content="2023-11-08T06:51:00.000Z">
-<meta property="article:modified_time" content="2023-11-10T02:04:35.382Z">
+<meta property="article:modified_time" content="2023-11-10T08:57:54.767Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Few-shot Learning">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20231110154140824.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -223,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k 字
+          12k 字
         
       </span>
     
@@ -234,7 +237,7 @@
         
         
         
-          93 分钟
+          98 分钟
         
       </span>
     
@@ -312,8 +315,27 @@ class="math inline">\(\mathcal{D}_{te}=\{(x,y)|x \in \mathcal{X}_{u}, y
 \in \mathcal{Y}_u \}\)</span> 中的样本，其中 <span
 class="math inline">\(\mathcal{X}_u \bigcap \mathcal{X}_{few} =
 \emptyset\)</span>。</p>
-<p>FSL 任务通常用 N-way-K-shot
-表示。每类的样本数量对模型性能有显着影响。</p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20231110154140824.png" alt="image-20231110154140824" style="zoom:30%;" /></p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20231110154237671.png" alt="image-20231110154237671" style="zoom:30%;" /></p>
+<p>FSL 任务通常用 N-way-K-shot 表示。分为 Meta-training 和 Meta-testing
+两个过程。每类的样本数量对模型性能有显着影响。</p>
+<figure>
+<img
+src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20231110160920290.png"
+alt="image-20231110160920290" />
+<figcaption aria-hidden="true">image-20231110160920290</figcaption>
+</figure>
+<p>先在 Testing data
+中选择几个类，每个类别都包括很多样本，然后从选择的每个类中选出 K+X
+个样本，其中 K 个样本用作 support set，X 个样本被用作 query
+set，这样就得到了 Meta-testing 过程中需要用到的两个数据集。N-way k-shot
+中的 N 和 k 是由 Testing data决定的，与 Training data 无关。同理，可得到
+Meta-training 过程中的两个数据集 S 和 Q，但从每个类中也不必非要选 k
+个样本作为 Support set，现在可以选任意个
+。接下来依据该数据集划分进行训练，计算损失，更新参数。在 Meta-training
+的过程中，Support set + Query set 就是一个 mini-batch。因此，一个
+episode 的训练过程实际上就是一个 batch 的训练过程。而这种基于 episode
+的训练方法即被称为 Episodic Training。</p>
 <h3 id="与-transfer-learning-的关系">与 Transfer Learning 的关系</h3>
 <p>与 Transfer Learning 相比，有限的训练数据、领域变化和任务修改使得 FSL
 更具挑战性。 FSL 有很多变体，包括 One-shot Learning（OSL）、Zero-shot
@@ -334,6 +356,11 @@ Learning。</p></li>
 的存在，源域和目标域中的类的交集为空。此外，目标域的样本数量极其稀缺。</p></li>
 </ul>
 <h3 id="与-meta-learning-的关系">与 Meta Learning 的关系</h3>
+<p>Few-shot learning 是 meta learning 的一种。</p>
+<p>Few-shot learning
+更加关注<strong>如何利用已有的信息</strong>来完成新任务的学习，而 Meta
+learning更加关注如何设计一种<strong>可以快速适应新任务</strong>的算法或模型。</p>
+<p>两者之间的关系十分混杂，暂时这样理解。</p>
 <p>Meta Learning 是提供 episodic training
 的通用范例。它的重点是在先验知识的帮助下提高未见过的任务的泛化能力。如果使用先验知识来辅助模型学习特定任务，那么元学习可以被视为
 FSL 的变体。Meta Learning 并不等同于 FSL。 FSL
@@ -388,7 +415,7 @@ Hausdorff
 距离度量。后来，使用自动编码器来捕获类属性的线性或非线性变化，例如空间和外观。就自然语言处理而言，数据扩展主要包括简单的回译、单词替换、释义和信念状态注释。无论图像还是文本，相应的标签都会分配原始标签。最近，反转标签也可以发现在特殊任务上的性能会得到提高。</p>
 <p>与在原始数据集上生成更多样的样本相比，更好的方向是引入大量未标记的数据集。在手势识别方面，在一个大型的未标记手势库中共同训练相似的手势。在许多其他情况下，模型无法立即完成对未标记数据的选择。整个过程需要不断的训练、推理、增加。然而，如果未标记数据和标记数据之间存在域转移，则生成的伪标签可能会带来来自目标类的噪声。许多工作被用来生成更好的伪标签，包括融合数据分布、对比学习和嵌入增强。</p>
 <p>除了未标记的数据集之外，query sets 也可以在 FSL
-中一起训练，这被称为转导式少样本学习（transductive few-shot
+中一起训练，这被称为直推式少样本学习（transductive few-shot
 learning）。通过在训练阶段添加测试数据，可以获得更具辨别力的全局表示特征。STARTUP
 提出在未标记的 query datasets
 上训练具有对比损失函数的模型，并将模型结果的聚类作为这些未标记的查询数据集的标签。如果域间差异很大，那么使用固定的预训练模型可能不是最佳选择。Islam
@@ -410,8 +437,8 @@ learning）和多任务学习（multitask learning）。</p>
 <p>从迁移学习的角度来看，FSL可以被视为跨领域的学习任务。FSL
 中的标准迁移学习也可以分为两个阶段：在源任务上学习和在目标任务上迁移。</p>
 <h4 id="pre-training">Pre-training</h4>
-<p>FSL
-利用预训练模型的特征表示能力来很大程度上减少类内变异，这使模型专注于更具辨别力的区域。实验证明，监督训练方法会扭曲不同类的实例并忽略语义信息。相反，无监督训练侧重于调整下游任务的特征。</p>
+<p>FSL 利用预训练模型的特征表示能力来很大程度上减少类内
+variation，这使模型专注于更具辨别力的区域。实验证明，监督训练方法会扭曲不同类的实例并忽略语义信息。相反，无监督训练侧重于调整下游任务的特征。</p>
 <h4 id="fine-tuning">Fine-tuning</h4>
 <p>经验表明，仅仅重新随机化顶层参数和相同架构知识的自蒸馏也对 FSL
 有利。最近，许多作品探索了有用的技巧，包括自监督学习、注意力模块和掩模生成模块。显然，P
@@ -573,7 +600,7 @@ id="从历史任务中更有效地学习元知识">从历史任务中更有效�
 FSL
 任务的性能。然而，元学习仅限于定义的网络结构下的特定任务空间。对于分类任务，目前只考虑相关的分类任务。是否存在一个同时考虑分类、检测、预测和生成的框架？这将使元学习在某种程度上与任务概念分离。最近的工作正在尝试对每个批次进行整体优化。在这种情况下，如何优化内循环将是一个重要的方向。未来，元学习和微调的结合将成为解决FSL的主流算法。</p>
 <p>请注意，元学习仍在探索任务之间的相关性。目前尚未出现相关理论来解释元学习背后的因果关系。未来，随着因果理论框架的发展，元学习可能会成为一个更通用的框架。</p>
-<h2 id="多模态信息全面融合">多模态信息全面融合</h2>
+<h3 id="多模态信息全面融合">多模态信息全面融合</h3>
 <p>多模态学习是目前解决FSL问题的新兴方法，它自动从没有监督标签的边缘场景中学习异构数据，并快速转移到不同的下游任务。多模态学习被广泛认为是从有限领域的弱人工智能到通用人工智能的探索。多模态FSL的出现，让FSL进入了预训练多模态模型+小样本微调的时代。从技术上讲，具有足够数量参数的预训练多模态模型可以解决促销方面的任何下游任务。现阶段，鼓励研究人员尝试更多模态融合学习，例如语音和视频。另一个方向是如何在多种信息融合的情况下量化每类信息的重要性，以便在训练阶段获得不同的权重。</p>
 
                 
@@ -666,6 +693,12 @@ FSL
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/11/10/lun-wen-yan-du-machine-learning-meets-omics-applications-and-perspectives/" title="论文研读-Machine learning meets omics applications and perspectives">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">论文研读-Machine learning meets omics applications and perspectives</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
