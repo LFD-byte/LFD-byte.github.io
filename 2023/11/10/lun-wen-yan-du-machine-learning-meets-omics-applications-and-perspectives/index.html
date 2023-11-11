@@ -24,10 +24,10 @@
 <meta property="og:description" content="Machine learning meets omics applications and perspectives">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-10T08:52:00.000Z">
-<meta property="article:modified_time" content="2023-11-10T08:57:43.692Z">
+<meta property="article:modified_time" content="2023-11-11T01:24:40.819Z">
 <meta property="article:author" content="培根请加蛋">
-<meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Bioinformatics">
+<meta property="article:tag" content="Deep Learning">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          239 字
+          4.1k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          2 分钟
+          35 分钟
         
       </span>
     
@@ -286,9 +286,113 @@
                 
                 <p>2022年的一篇生物信息和深度学习综述《Machine learning meets omics:
 applications and perspectives》，记录一下。</p>
+<p>本文描述了人工智能如何应用于组学研究，并回顾了机器学习和最广泛的组学之间接口的最新进展，包括基因组学、转录组学、蛋白质组学、代谢组学、放射组学以及单组学细胞分辨率。坐着还讨论并综合了组学中机器学习的想法、新见解、当前挑战和观点。</p>
 <h2 id="ml-in-genomics">ML in Genomics</h2>
+<p>基因组学是对生物体完整 DNA
+集的研究，重点关注基因组的结构、功能、进化、绘图和编辑。新一代基因组技术使生物医学研究人员能够获得大量基因组数据，原则上可以通过高通量测量获得数十亿个基因组坐标和其他相关数据信息[15]。然而，基因组数据通常是高维且稀疏的，这使得分析变得困难，从而为机器学习提供了捕获数据中的依赖关系，然后得出新的生物学假设的机会。随着硬件和算法的不断完善，加上大规模、多方面的生物医学数据，机器学习方法在广泛的基因组学研究中取得了显着的成功，包括但不限于
+3D 基因组的重建（reconstruction of 3D
+genome）、表观基因组和染色质状态的建模（modeling of epigenomic and
+chromatin states）、基因组注释和转录（genome annotation and
+transcription）以及基因组编辑（genome editing）。</p>
+<h3 id="d-基因组的重建">3D 基因组的重建</h3>
+<p>真核基因组的空间组织确保基因组 DNA
+折叠以适合细胞核内，但仍可用于许多遗传和生物功能，例如基因调节（gene
+regulation）、基因表达（gene expression）、转录调节（transcription
+regulation）、DNA 修复（DNA repair）和DNA复制（DNA
+replication）。了解真核基因组的 3 维 (3D)
+组织对于解释细胞内重要的染色体活动至关重要。在过去的十年中，实验和计算工作一直致力于揭示
+3D 基因组组织。各种基于染色体构象捕获 (3C) 的技术（例如
+3C、4C、5C、Hi-C、TCC、ChIA-PET 以及后来的单细胞 Hi-C）已被开发用于研究
+3D 分层结构，例如染色体区室、拓扑相关域 (TAD)
+和染色质环。尽管高通量实验技术已经证明了各种核和细胞过程中的基因组组织和功能相关性，但它们没有足够高的分辨率来解决调控元件之间的联系，研究
+base-level
+水平遗传变异对基因组结构或经济高效地应用于大规模样品。因此，已经开发了计算方法，特别是机器学习模型来补充和推进
+3D 基因组的实验研究。用于预测 3D
+基因组结构的计算方法在机器学习模型中有所不同，但可以根据其输入（训练）数据分为四类：(1)
+单独的基因组序列，(2) 基于 3C 的相互作用，(3)
+源自于的染色质状态表观遗传修饰和（4）上述数据的混合。这些方法的目标或输出也不同，包括
+3D 基因组重建、基因组区室化检测、拓扑关联域 (TAD)
+识别和染色质环（调控元件之间的相互作用）预测。我们根据训练数据类别对这些机器学习方法进行分组总结。</p>
+<p>使用基因组序列预测染色质相互作用不仅可以用最少的实验数据扩展对新细胞类型中基因组组织的理解，还可以使用
+CRISPR
+等基因组编辑技术预测非编码调控区域扰动的影响。因此，许多努力都集中在利用
+DNA 序列特征来预测染色质相互作用。Fudenberg 等人设计了一个基于 CNN
+的模型叫做 Akita，仅根据 DNA
+序列即可准确预测基因组折叠，可用于进行计算机模拟饱和诱变、解释
+eQTL、预测结构变异和探测物种特异性基因组折叠。Cao
+等开发了染色质相互作用神经网络 (ChINN)，仅使用相互作用的开放染色质区域的
+DNA 序列来预测开放染色质区域之间的染色质相互作用。更具体地说，Trieu
+等人开发了 DeepMILO，这是一种深度学习方法，用于预测非编码序列变异对 3D
+染色质结构的影响。</p>
+<p>表观基因组修饰和 3D
+基因组相互作用紧密相关，但目前，它们是通过不同的技术来测量的。已经开发出用于综合解释甚至从表观基因组和染色质状态重建
+3D 基因组的计算方法。 Zhu等人提出 EpiTensor
+可以根据组蛋白修饰、染色质可及性和 RNA-seq 的 1D
+表观基因组在拓扑关联域（TAD）内构建 3D 空间关联。Fortin
+等人使用来自几个不同平台的表观遗传数据的长期相关性来估计不同细胞类型中的
+A/B 区室，以及细胞类型之间的变化。Qi
+等人引入了一种计算模型，可通过染色质状态以五千碱基分辨率预测 3D
+基因组组织</p>
+<p>高通量、下一代基于 3C
+的技术的出现使我们能够确定一对（或多对）基因组区域（箱）是否在 3D
+物理位置上非常接近。空间邻近的基因组区域通常被称为“相互作用”。在过去的十年中，人们提出了许多计算方法和算法，用于根据
+3C 数据构建染色体和基因组 3D 结构。例如，Schwessinger
+等人基于迁移学习和DNN开发了
+DeepC，并使用组织特异性Hi-C数据训练模型。麦凯等人。Oluwadare
+等人全面回顾了从 3C 数据重建 3D 染色体和基因组结构的机器学习方法。</p>
+<p>基因组、表观基因组、转录组和染色体构象数据的积累催生了许多机器学习方法，这些方法整合了多个组学数据以进行
+3D 基因组预测。Bkhetan 等人开发了 3DEpiLoop
+算法来根据表观基因组数据和转录因子谱预测染色质循环相互作用。Whalen
+等人实施了一种名为 TargetFinder 的算法，该算法集成了
+TF、组蛋白标记、DNase-seq、表达和 DNA
+甲基化的数据，以预测整个基因组中各个启动子-增强子的相互作用
+[39]。最近，为了减少迄今为止仅在极少数人类细胞系中同时可用的表观基因组数据的数量，Li
+等人开发了
+DeepTACT，这是一种引导深度学习模型，利用序列特征和染色质可及性信息来预测单个调控元件水平的染色质接触。</p>
+<h3
+id="表观基因组和染色质状态的计算建模">表观基因组和染色质状态的计算建模</h3>
+<p>表观基因组由 DNA 和组蛋白的化学修饰记录组成，这些修饰独立于 DNA
+序列调节基因组活性。表观基因组的改变可能导致染色质结构的变化和基因组功能的变化。表观基因组技术的最新进展使得涉及高通量数据和基于机器学习的生物信息学的研究能够识别易受表观遗传修饰影响的基因组区域，包括
+DNA 甲基化变化（例如
+CpG）、组蛋白修饰或染色质结构变化（例如核小体定位）。人们已经开发了各种将表观遗传数据的特征生成、特征选择和机器学习相结合的计算方法，包括结合主动学习（ACL）来解决生成表观遗传数据的费用问题，不平衡类学习（ICL）来解决相对较低的发生率数据和深度学习
+(DL) 中的表观突变可解决手动定义相关基因组特征的困难。</p>
+<p>基因组特征可以包括 DNA
+序列和表观遗传成分。许多努力已将遗传特征（例如重复元件、CpG
+密度、响应元件或特定序列）和表观遗传特征（例如 DNA
+甲基化或组蛋白介导的核小体定位和染色质状态）融合到机器学习模型中，以进行功能解释和分析。基因组的预测。
+Whitaker 等人提出了 Epigram，用于根据 DNA 基序预测组蛋白修饰和 DNA
+甲基化模式。李等人建立了 gapped k-mer 支持向量机
+(gkm-SVM)，用于学习人类调控元件和调控变异的影响，这些调控变异是针对
+DNase I 超敏反应、独特的组蛋白修饰和转录因子结合而生成的。Zhou
+等开发了一种基于深度学习的算法框架
+DeepSEA，它直接从大规模染色质分析数据中学习调控序列代码，从而能够以单核苷酸敏感性预测序列改变的染色质影响。Alipanahi
+等人引入 DeepBind 通过深度学习预测 DNA 和 RNA
+结合蛋白的序列特异性。Kelley 等人开发了 Basset 深度卷积神经网络
+(CNN)，研究人员可以使用它对感兴趣的细胞类型进行单一测序分析，同时了解细胞的染色质可及性代码，并注释基因组中的每个突变及其对当前可及性和潜在的影响可访问性的潜力。Kelley
+等人开发了另一种基于 CNN 的机器学习系统，可以仅根据 DNA
+序列预测大型哺乳动物基因组中细胞类型特异性的表观遗传和转录谱。Hoffman
+等人开发了深度学习模型 DeepFIGV，仅使用 DNA
+序列作为输入即可准确预测遗传变异对染色质可及性和组蛋白修饰的影响。Zeng
+等人介绍了 CpGenie，这是一个基于序列的框架，它使用深度卷积神经网络 (CNN)
+学习 DNA 甲基化的调控代码，并使用该网络来预测序列变异对近端 CpG 位点 DNA
+甲基化的影响。机器学习模型也应用于单细胞表观基因组。例如，Angermueller
+等人开发了 DeepCpG，一种基于深度神经网络 (DNN)
+的计算方法，用于预测单细胞中的甲基化状态。</p>
 <h2 id="ml-for-genome-annotation-and-transcription-regulation">ML for
 Genome Annotation and Transcription Regulation</h2>
+<p>基因组注释是标记生物体 DNA
+序列并表征其生物学功能的过程。基因组学的第一步和早期工作自然集中于构建基因组注释，为此开发了机器学习方法来识别一些主要类别的基因组元素，例如蛋白质编码基因（proteincoding
+genes）、非编码RNA（ncRNA）、微小RNA（miRNA）、转录剪接异构体（transcript
+splicing isoforms）、调控元件（regulatory
+elements）、蛋白质结合位点/基序（protein-binding
+sites/motifs）和顺式调控结合模块（cis-regulatory binding
+modules）。基因组、转录组和表观基因组信息的快速积累为组学信息的整合创造了新的机遇，也带来了挑战，而不仅仅是依靠序列本身来注释基因组。同时，基因组注释的目标已经从识别不同的基因组部分（例如基因和非编码区）扩展到阐明它们的功能，包括调控元件及其相互作用。例如，Encyclopedia
+of DNA Elements (ENCODE) 项目代表了为此目的最集体的努力。</p>
+<h3 id="从基因组序列中查找基因">从基因组序列中查找基因</h3>
+<h3 id="识别顺式调控元件和反式作用-bandings">识别顺式调控元件和反式作用
+bandings</h3>
+<h3
+id="预测增强子-启动子相互作用和基因表达">预测增强子-启动子相互作用和基因表达</h3>
 <h2 id="ml-in-genome-editing">ML in Genome Editing</h2>
 <h2 id="ml-in-transcriptomics">ML in Transcriptomics</h2>
 <h2 id="ml-in-metabolomics">ML in Metabolomics</h2>
@@ -328,9 +432,9 @@ Genome Annotation and Transcription Regulation</h2>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Deep-Learning/" class="print-no-link">#Deep Learning</a>
-      
         <a href="/tags/Bioinformatics/" class="print-no-link">#Bioinformatics</a>
+      
+        <a href="/tags/Deep-Learning/" class="print-no-link">#Deep Learning</a>
       
     </div>
   

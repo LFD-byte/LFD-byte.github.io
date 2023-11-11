@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20231110154140824.png">
 <meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20231110154237671.png">
 <meta property="article:published_time" content="2023-11-08T06:51:00.000Z">
-<meta property="article:modified_time" content="2023-11-10T08:57:54.767Z">
+<meta property="article:modified_time" content="2023-11-11T06:24:10.682Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Few-shot Learning">
@@ -237,7 +237,7 @@
         
         
         
-          98 分钟
+          99 分钟
         
       </span>
     
@@ -288,7 +288,8 @@
               <div class="markdown-body">
                 
                 <p>这周主要是看的有关 Few-shot learning 和 Meta-Learning
-有关的文章，做一下总结。</p>
+有关的文章，对《A Comprehensive Survey of Few-shot Learning: Evolution,
+Applications, Challenges, and Opportunities》做一下总结。</p>
 <h2 id="few-shot-learning">Few-shot Learning</h2>
 <p>把包括大量样本的类别称作 seen classes，记作 <span
 class="math inline">\(\mathcal{Y}_s\)</span>，把仅包括少量 few-shot
@@ -463,7 +464,7 @@ AutoPrompt
 ，它屏蔽模板中的单词，自动用其他合适的单词替换它们，以最大化标记的概率。Gao
 等人使用 T5
 模型进行训练和比较，生成空白的每个位置。整个过程的计算量相对较大。</p>
-<p>更进一步来说，一种更抽象的提示类型是提示隐藏空间。输入可以是嵌入向量，输出不再是具体的单词。最有代表性的方法是
+<p>更进一步，一种更抽象的提示类型是提示隐藏空间。输入可以是嵌入向量，输出不再是具体的单词。最有代表性的方法是
 PT，它在正常输入的前面添加了几个前缀
 ID。除初始化参数外，其他参数只有在调整前缀时才会被冻结和更新。受这个想法的启发，CP-Tuning
 使用连续的提示嵌入来代替提示模板的端到端手动设计。随后，一些作品开始探索如何在隐藏空间中初始化提示。
@@ -490,8 +491,8 @@ Fisher 判别式。大量实验表明，预测图像块的旋转角度和相对�
 memory、度量学习、图神经网络和其他基于相似性的算法。</p>
 <h3 id="learning-optimization-meta-learned-parameters">Learning
 Optimization Meta-learned Parameters</h3>
-<p>学习元学习参数的关键思想是搜索对未见过的任务通用的全局初始化状态。传统的初始化方法，如均匀分布、正态分布等，很容易陷入局部最优。考虑到FSL的特殊性，MAML（模型无关元学习）提出了一种基于情景训练的新方法。
-MAML
+<p>学习元学习参数的关键思想是搜索对未见过的任务通用的全局初始化状态。传统的初始化方法，如均匀分布、正态分布等，很容易陷入局部最优。考虑到FSL的特殊性，MAML（模型无关元学习）提出了一种基于
+episodic training 的新方法。 MAML
 是典型的两阶段参数模型。第一阶段是更新每个任务，即本地更新。第二次更新是每批次任务查询损失的平均值，即全局更新。计算量是最大的问题。为此，大量工作旨在改进
 MAML，包括
 simplifying、动量更新，甚至忽略二阶导数，使用进化算法来避免反向传播以在
