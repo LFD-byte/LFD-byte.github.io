@@ -1,0 +1,1222 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="培根请加蛋">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="2023年度的 AI 顶会和顶刊已经出炉，在此把关于 Meta-Learning 的部分筛选出来，以供后续学习。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2023 AI CCF-A Meta-Learning 一窥（持续更新中）">
+<meta property="og:url" content="https://blog.lfd-world.online/2023/11/29/2023-ai-ccf-a-meta-learning-yi-kui/index.html">
+<meta property="og:site_name" content="培根请加蛋">
+<meta property="og:description" content="2023年度的 AI 顶会和顶刊已经出炉，在此把关于 Meta-Learning 的部分筛选出来，以供后续学习。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-29T02:01:00.000Z">
+<meta property="article:modified_time" content="2023-12-05T13:34:09.075Z">
+<meta property="article:author" content="培根请加蛋">
+<meta property="article:tag" content="Deep Learning">
+<meta property="article:tag" content="Meta-Learning">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>2023 AI CCF-A Meta-Learning 一窥（持续更新中） - 培根请加蛋</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.lfd-world.online","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>培根请加蛋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2023 AI CCF-A Meta-Learning 一窥（持续更新中）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-29 10:01" pubdate>
+          2023年11月29日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          45 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">2023 AI CCF-A Meta-Learning 一窥（持续更新中）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>2023年度的 AI 顶会和顶刊已经出炉，在此把关于 Meta-Learning
+的部分筛选出来，以供后续学习。</p>
+<h2 id="人工智能">人工智能</h2>
+<h3 id="aaai">AAAI</h3>
+<table>
+
+<thead>
+<tr class="header">
+<th>paper</th>
+<th>authors</th>
+<th>code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://ojs.aaai.org/index.php/AAAI/article/view/25498">SRoUDA:
+Meta Self-Training for Robust Unsupervised Domain Adaptation</a></td>
+<td>Wanqing Zhu</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<h3 id="neurlps">NeurlPS</h3>
+<p>官方暂未发布。</p>
+<h3 id="acl">ACL</h3>
+<table>
+
+<thead>
+<tr class="header">
+<th>paper</th>
+<th>authors</th>
+<th>code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.12692">MetaAdapt: Domain
+Adaptive Few-Shot Misinformation Detection via Meta Learning</a></td>
+<td>Zhenrui Yue</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Yueeeeeeee/MetaAdapt">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.17373">Zero- and Few-Shot Event
+Detection via Prompt-Based Meta Learning</a></td>
+<td>Zhenrui Yue</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Yueeeeeeee/MetaEvent">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2212.10559">Why Can GPT Learn
+In-Context? Language Models Implicitly Perform Gradient Descent as
+Meta-Optimizers</a></td>
+<td>Damai Dai</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/microsoft/LMOps/tree/main/understand_icl">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2306.10444">Universal Information
+Extraction with Meta-Pretrained Self-Retrieval</a></td>
+<td>Xin Cong. Bowen Yu</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/AlibabaResearch/DAMO-ConvAI">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2205.12453">Know Where You're Going:
+Meta-Learning for Parameter-Efficient Fine-Tuning</a></td>
+<td>Mozhdeh Gheini</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://aclanthology.org/2023.findings-acl.727/">Generating
+Labeled Data for Relation Extraction: A Meta Learning Approach with
+Joint GPT-2 Training</a></td>
+<td>Amir Pouran Ben Veyseh</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://aclanthology.org/2023.findings-acl.699/">Contrastive
+Token-Wise Meta-Learning for Unseen Performer Visual Temporal-Aligned
+Translation</a></td>
+<td>Linjun Li</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2307.00119">Meta-training with
+Demonstration Retrieval for Efficient Few-shot Learning</a></td>
+<td>Aaron Mueller</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2306.01311">MetaVL: Transferring
+In-Context Learning Ability From Language Models to Vision-Language
+Models</a></td>
+<td>Masoud Monajatipoor</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2302.08143">Learning to Initialize:
+Can Meta Learning Improve Cross-task Generalization in Prompt
+Tuning?</a></td>
+<td>Chengwei Qin</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2308.02753">DaMSTF: Domain
+Adversarial Learning Enhanced Meta Self-Training for Domain
+Adaptation</a></td>
+<td>Menglong Lu</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cvpr">CVPR</h3>
+<table>
+
+<thead>
+<tr class="header">
+<th>paper</th>
+<th>authors</th>
+<th>code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Zheng_EXIF_As_Language_Learning_Cross-Modal_Associations_Between_Images_and_Camera_CVPR_2023_paper.html">EXIF
+as Language: Learning Cross-Modal Associations between Images and Camera
+Metadata</a></td>
+<td>Chenhao Zheng</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/hellomuffin/exif-as-language">url</a></td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Han_Noisy_Correspondence_Learning_With_Meta_Similarity_Correction_CVPR_2023_paper.html">Noisy
+Correspondence Learning with Meta Similarity Correction</a></td>
+<td>Haochen Han</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/hhc1997/MSCN">url</a></td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Bohdal_Meta_Omnium_A_Benchmark_for_General-Purpose_Learning-To-Learn_CVPR_2023_paper.html">Meta
+Omnium: A Benchmark for General-Purpose Learning-to-Learn</a></td>
+<td>Ondrej Bohdal</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/edi-meta-learning/meta-omnium">url</a></td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Huang_Diversity-Aware_Meta_Visual_Prompting_CVPR_2023_paper.html">Diversity-Aware
+Meta Visual Prompting</a></td>
+<td>Qidong Huang</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/shikiw/DAM-VP">url</a></td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Wang_MetaViewer_Towards_a_Unified_Multi-View_Representation_CVPR_2023_paper.html">MetaViewer:
+Towards A Unified Multi-View Representation</a></td>
+<td>Ren Wang</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/xxLifeLover/MetaViewer">url</a></td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Zhao_MetaFusion_Infrared_and_Visible_Image_Fusion_via_Meta-Feature_Embedding_From_CVPR_2023_paper.html">MetaFusion:
+Infrared and Visible Image Fusion via Meta-Feature Embedding From Object
+Detection</a></td>
+<td>Wenda Zhao</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/wdzhao123/MetaFusion">url</a></td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Kang_Meta-Learning_With_a_Geometry-Adaptive_Preconditioner_CVPR_2023_paper.html">Meta-Learning
+with a Geometry-Adaptive Preconditioner</a></td>
+<td>Suhyun Kang</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Suhyun777/CVPR23-GAP">url</a></td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Yeh_Meta-Personalizing_Vision-Language_Models_To_Find_Named_Instances_in_Video_CVPR_2023_paper.html">Meta-Personalizing
+Vision-Language Models to Find Named Instances in Video</a></td>
+<td>Chun-Hsiao Yeh</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/danielchyeh/this-is-my">url</a></td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Tu_Learning_From_Noisy_Labels_With_Decoupled_Meta_Label_Purifier_CVPR_2023_paper.html">Learning
+from Noisy Labels with Decoupled Meta Label Purifier</a></td>
+<td>Yuanpeng Tu</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/yuanpengtu/DMLP">url</a></td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Ko_MELTR_Meta_Loss_Transformer_for_Learning_To_Fine-Tune_Video_Foundation_CVPR_2023_paper.html">MELTR:
+Meta Loss Transformer for Learning to Fine-tune Video Foundation
+Models</a></td>
+<td>Dohwan Ko</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/mlvlab/MELTR">url</a></td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Zhang_MetaPortrait_Identity-Preserving_Talking_Head_Generation_With_Fast_Personalized_Adaptation_CVPR_2023_paper.html">MetaPortrait:
+Identity-Preserving Talking Head Generation with Fast Personalized
+Adaptation</a></td>
+<td>Bowen Zhang</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Meta-Portrait/MetaPortrait">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2302.09309">StyleAdv: Meta Style
+Adversarial Training for Cross-Domain Few-Shot Learning</a></td>
+<td>Yuqian Fu</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/lovelyqian/StyleAdv-CDFSL">url</a></td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023W/VISION/html/Lee_XDNet_A_Few-Shot_Meta-Learning_Approach_for_Cross-Domain_Visual_Inspection_CVPRW_2023_paper.html">XDNet:
+A Few-Shot Meta-Learning Approach for Cross-Domain Visual
+Inspection</a></td>
+<td>Xian Yeow Lee</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/xylhal/XDNet-Dataset">url</a></td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023W/ABAW/html/Li_Compound_Expression_Recognition_In-the-Wild_With_AU-Assisted_Meta_Multi-Task_Learning_CVPRW_2023_paper.html">Compound
+Expression Recognition In-the-wild with AU-assisted Meta Multi-task
+Learning</a></td>
+<td>Ximan Li</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023W/PBVS/html/Kamenou_A_Meta-Learning_Approach_for_Domain_Generalisation_Across_Visual_Modalities_in_CVPRW_2023_paper.html">A
+Meta-learning Approach for Domain Generalisation across Visual
+Modalities in Vehicle Re-identification</a></td>
+<td>Eleni Kamenou</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023W/TCV/html/Ragonesi_Learning_Unbiased_Classifiers_From_Biased_Data_With_Meta-Learning_CVPRW_2023_paper.html">Learning
+unbiased classifiers from biased data with meta-learning</a></td>
+<td>Ruggero Ragonesi</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Wang_MetaMix_Towards_Corruption-Robust_Continual_Learning_With_Temporally_Self-Adaptive_Data_Transformation_CVPR_2023_paper.html">MetaMix:
+Towards Corruption-Robust Continual Learning With Temporally
+Self-Adaptive Data Transformation</a></td>
+<td>Zhenyi Wang</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Che_Image_Quality-Aware_Diagnosis_via_Meta-Knowledge_Co-Embedding_CVPR_2023_paper.html">Image
+Quality-aware Diagnosis via Meta-knowledge Co-embedding</a></td>
+<td>Haoxuan Che</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Xu_Meta_Compositional_Referring_Expression_Segmentation_CVPR_2023_paper.html">Meta
+Compositional Referring Expression Segmentation</a></td>
+<td>Li Xu</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Tang_Master_Meta_Style_Transformer_for_Controllable_Zero-Shot_and_Few-Shot_Artistic_CVPR_2023_paper.html">Master:
+Meta Style Transformer for Controllable Zero-Shot and Few-Shot Artistic
+Style Transfer</a></td>
+<td>Hao Tang</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Qin_Bi-Level_Meta-Learning_for_Few-Shot_Domain_Generalization_CVPR_2023_paper.html">Bi-Level
+Meta-Learning for Few-Shot Domain Generalization</a></td>
+<td>Xiaorong Qin</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Qin_Ground-Truth_Free_Meta-Learning_for_Deep_Compressive_Sampling_CVPR_2023_paper.html">Ground-Truth
+Free Meta-Learning for Deep Compressive Sampling</a></td>
+<td>Xinran Qin</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Wang_Improving_Generalization_of_Meta-Learning_With_Inverted_Regularization_at_Inner-Level_CVPR_2023_paper.html">Improving
+Generalization of Meta-Learning with Inverted Regularization at
+Inner-Level</a></td>
+<td>Lianzhe Wang</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Hu_Architecture_Dataset_and_Model-Scale_Agnostic_Data-Free_Meta-Learning_CVPR_2023_paper.html">Architecture,
+Dataset and Model-Scale Agnostic Data-free Meta-Learning</a></td>
+<td>Zixuan Hu</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Chen_Meta-Causal_Learning_for_Single_Domain_Generalization_CVPR_2023_paper.html">Meta-Causal
+Learning for Single Domain Generalization</a></td>
+<td>Jin Chen</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Demirel_Meta-Tuning_Loss_Functions_and_Data_Augmentation_for_Few-Shot_Object_Detection_CVPR_2023_paper.html">Meta-Tuning
+Loss Functions and Data Augmentation for Few-Shot Object
+Detection</a></td>
+<td>Berkan Demirel</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Hwang_Meta-Explore_Exploratory_Hierarchical_Vision-and-Language_Navigation_Using_Scene_Object_Spectrum_Grounding_CVPR_2023_paper.html">Meta-Explore:
+Exploratory Hierarchical Vision-and-Language Navigation Using Scene
+Object Spectrum Grounding</a></td>
+<td>Minyoung Hwang</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Chen_Movies2Scenes_Using_Movie_Metadata_To_Learn_Scene_Representation_CVPR_2023_paper.html">Movies2Scenes:
+Using Movie Metadata to Learn Scene Representation</a></td>
+<td>Shixing Chen</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Jain_A_Meta-Learning_Approach_to_Predicting_Performance_and_Data_Requirements_CVPR_2023_paper.html">A
+Meta-Learning Approach to Predicting Performance and Data
+Requirements</a></td>
+<td>Achin Jain</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<h3 id="icml">ICML</h3>
+<table>
+
+<thead>
+<tr class="header">
+<th>paper</th>
+<th>authors</th>
+<th>code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/acharki23a">Comparison
+of meta-learners for estimating multi-valued treatment heterogeneous
+effects</a></td>
+<td>Naoufal Acharki</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/nacharki/multipleT-MetaLearners">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2206.05262">Meta Optimal
+Transport</a></td>
+<td>Brandon Amos</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/facebookresearch/meta-ot">url</a></td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/dorrell23a.html">Meta-Learning
+the Inductive Bias of Simple Neural Circuits</a></td>
+<td>Will Dorrell</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/WilburDoz/Meta_Learning_Inductive_Bias">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://openreview.net/forum?id=Rg5CRU2M4Z">Meta-learning
+Parameterized Skills</a></td>
+<td>Haotian Fu</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/Minusadd/Meta-learning-parameterized-skills">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2302.03067">Memory-Based
+Meta-Learning on Non-Stationary Distributions</a></td>
+<td>Tim Genewein</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/google-deepmind/nonstationary_mbml">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/miconi23a.html">Learning
+to acquire novel cognitive tasks with evolution, plasticity and
+meta-meta-learning</a></td>
+<td>Thomas Miconi</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/ThomasMiconi/LearningToLearnCogTasks">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.19923">MetaDiffuser: Diffusion
+Model as Conditional Planner for Offline Meta-RL</a></td>
+<td>Fei Ni</td>
+<td><a target="_blank" rel="noopener" href="https://metadiffuser.github.io/">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2306.02688">Meta-SAGE: Scale
+Meta-Learning Scheduled Adaptation with Guided Exploration for
+Mitigating Scale Shift on Combinatorial Optimization</a></td>
+<td>Jiwoo Son</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/kaist-silab/meta-sage">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.10309">MetaModulation: Learning
+Variational Feature Hierarchies for Few-Shot Learning with Fewer
+Tasks</a></td>
+<td>Wenfang Sun</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/lmsdss/MetaModulation">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.19529">Offline Meta
+Reinforcement Learning with In-Distribution Online Adaptation</a></td>
+<td>Jianhao Wang</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/NagisaZj/IDAQ_Public">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/wu23d.html">Adaptive
+Compositional Continual Meta-Learning</a></td>
+<td>Bin Wu</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/BinWu-Cs/AC-CML">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.18444">Continual Task Allocation
+in Meta-Policy Network via Sparse Prompting</a></td>
+<td>Yijun Yang</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/stevenyangyj/CoTASP">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.06886">A Category-theoretical
+Meta-analysis of Definitions of Disentanglement</a></td>
+<td>Yivan Zhang</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2306.08400">Simple Embodied Language
+Learning as a Byproduct of Meta-Reinforcement Learning</a></td>
+<td>Evan Zheran Liu</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2210.12669">Meta Learning of
+Interface Conditions for Multi-Domain Physics-Informed Neural
+Networks</a></td>
+<td>Shibo Li</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/jiang23k.html">Effective
+Structured Prompting by Meta-Learning and Representative
+Verbalizer</a></td>
+<td>Weisen Jiang</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.18413">Learning to Learn from
+APIs: Black-Box Data-Free Meta-Learning</a></td>
+<td>Zixuan Hu</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2302.01520">Multiple Thinking
+Achieving Meta-Ability Decoupling for Object Navigation</a></td>
+<td>Ronghao Dang</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ijcai">IJCAI</h3>
+<table>
+
+<thead>
+<tr class="header">
+<th>paper</th>
+<th>authors</th>
+<th>code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2212.06751">Speeding Up
+Multi-Objective Hyperparameter Optimization by Task Similarity-Based
+Meta-Learning for the Tree-Structured Parzen Estimator</a></td>
+<td>Shuhei Watanabe</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/nabenabe0928/meta-learn-tpe">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2306.16780">Graph Sampling-based
+Meta-Learning for Molecular Property Prediction</a></td>
+<td>Xiang Zhuang</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/HICAI-ZJU/GS-Meta">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://www.ijcai.org/proceedings/2023/0602.pdf">Can I
+Really Do That? Verification of Meta-Operators via Stackelberg
+Planning</a></td>
+<td>Florian Pham</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2308.02746">Meta-Tsallis-Entropy
+Minimization: A New Self-Training Approach for Domain Adaptation on Text
+Classification</a></td>
+<td>Menglong Lu</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Deep-Learning/" class="category-chain-item">Deep Learning</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Deep-Learning/" class="print-no-link">#Deep Learning</a>
+      
+        <a href="/tags/Meta-Learning/" class="print-no-link">#Meta-Learning</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2023 AI CCF-A Meta-Learning 一窥（持续更新中）</div>
+      <div>https://blog.lfd-world.online/2023/11/29/2023-ai-ccf-a-meta-learning-yi-kui/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>培根请加蛋</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年11月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/11/29/2023-ai-ccf-a-drug-yi-kui/" title="2023 AI CCF-A Drug 一窥（持续更新中）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">2023 AI CCF-A Drug 一窥（持续更新中）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/29/2023-ai-ccf-a-few-shot-yi-kui/" title="2023 AI CCF-A Few-Shot 一窥（持续更新中）">
+                        <span class="hidden-mobile">2023 AI CCF-A Few-Shot 一窥（持续更新中）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
