@@ -16,25 +16,25 @@
   <meta name="author" content="培根请加蛋">
   <meta name="keywords" content="">
   
-    <meta name="description" content="2023年度的 AI 顶会和顶刊已经出炉，在此把关于 Differential Privacy 的部分筛选出来，以供后续学习。">
+    <meta name="description" content="Prototypical Networks for Few shot Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2023 AI CCF-A Differential Privacy 一窥（持续更新中）">
-<meta property="og:url" content="https://blog.lfd-world.online/2023/12/07/2023-ai-ccf-a-differential-privacy-yi-kui-chi-xu-geng-xin-zhong/index.html">
+<meta property="og:title" content="2023 论文砖 Prototypical Networks for Few shot Learning">
+<meta property="og:url" content="https://blog.lfd-world.online/2023/12/13/2023-lun-wen-zhuan-prototypical-networks-for-few-shot-learning/index.html">
 <meta property="og:site_name" content="培根请加蛋">
-<meta property="og:description" content="2023年度的 AI 顶会和顶刊已经出炉，在此把关于 Differential Privacy 的部分筛选出来，以供后续学习。">
+<meta property="og:description" content="Prototypical Networks for Few shot Learning">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-07T06:27:00.000Z">
-<meta property="article:modified_time" content="2023-12-09T02:32:27.776Z">
+<meta property="article:published_time" content="2023-12-13T13:05:00.000Z">
+<meta property="article:modified_time" content="2023-12-15T02:53:15.479Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="Deep Learning">
-<meta property="article:tag" content="Differential Privacy">
+<meta property="article:tag" content="Few-shot Learning">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>2023 AI CCF-A Differential Privacy 一窥（持续更新中） - 培根请加蛋</title>
+  <title>2023 论文砖 Prototypical Networks for Few shot Learning - 培根请加蛋</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="2023 AI CCF-A Differential Privacy 一窥（持续更新中）"></span>
+            <span id="subtitle" data-typed-text="2023 论文砖 Prototypical Networks for Few shot Learning"></span>
           
         </div>
 
@@ -211,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-07 14:27" pubdate>
-          2023年12月7日 下午
+        <time datetime="2023-12-13 21:05" pubdate>
+          2023年12月13日 晚上
         </time>
       </span>
     
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k 字
+          1.6k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          30 分钟
+          14 分钟
         
       </span>
     
@@ -279,393 +279,47 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">2023 AI CCF-A Differential Privacy 一窥（持续更新中）</h1>
+            <h1 id="seo-header">2023 论文砖 Prototypical Networks for Few shot Learning</h1>
             
             
               <div class="markdown-body">
                 
-                <p>2023年度的 AI 顶会和顶刊已经出炉，在此把关于 Differential Privacy
-的部分筛选出来，以供后续学习，整理内容已同步在 <a
-target="_blank" rel="noopener" href="https://github.com/LFD-byte/awesome-differential-privacy-papers/blob/main/2023_CCF-A_top_differential-privacy.md">Github</a>。</p>
-<h2 id="人工智能">人工智能</h2>
-<h3 id="aaai">AAAI</h3>
-<table>
-
-<thead>
-<tr class="header">
-<th>paper</th>
-<th>authors</th>
-<th>code</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a
-target="_blank" rel="noopener" href="https://ojs.aaai.org/index.php/AAAI/article/view/26452">Differentially
-Private Nonlinear Causal Discovery from Numerical Data</a></td>
-<td>Hao Zhang</td>
-<td><a target="_blank" rel="noopener" href="https://github.com/Causality-Inference/PCD">url</a></td>
-</tr>
-<tr class="even">
-<td><a
-target="_blank" rel="noopener" href="https://ojs.aaai.org/index.php/AAAI/article/view/26770">DPAUC:
-Differentially Private AUC Computation in Federated Learning</a></td>
-<td>Jiankai Sun</td>
-<td><a
-target="_blank" rel="noopener" href="https://github.com/bytedance/fedlearner/tree/master/example/privacy/DPAUC">url</a></td>
-</tr>
-<tr class="odd">
-<td><a
-target="_blank" rel="noopener" href="https://ojs.aaai.org/index.php/AAAI/article/view/26401">XRand:
-Differentially Private Defense against Explanation-Guided
-Attacks</a></td>
-<td>Truc Nguyen</td>
-<td>none</td>
-</tr>
-<tr class="even">
-<td><a
-target="_blank" rel="noopener" href="https://ojs.aaai.org/index.php/AAAI/article/view/26242">Differentially
-Private Learning with Per-Sample Adaptive Clipping</a></td>
-<td>Tianyu Xia</td>
-<td>none</td>
-</tr>
-<tr class="odd">
-<td><a
-target="_blank" rel="noopener" href="https://ojs.aaai.org/index.php/AAAI/article/view/25933">Differentially
-Private Heatmaps</a></td>
-<td>Badih Ghazi</td>
-<td>none</td>
-</tr>
-<tr class="even">
-<td><a
-target="_blank" rel="noopener" href="https://ojs.aaai.org/index.php/AAAI/article/view/25895">Integer
-Subspace Differential Privacy</a></td>
-<td>Prathamesh Dharangutte</td>
-<td>none</td>
-</tr>
-<tr class="odd">
-<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.00228">Two Views of Constrained
-Differential Privacy: Belief Revision and Update</a></td>
-<td>Likang Liu</td>
-<td>none</td>
-</tr>
-<tr class="even">
-<td><a
-target="_blank" rel="noopener" href="https://ojs.aaai.org/index.php/AAAI/article/view/25721">Differentially
-Private Fair Division</a></td>
-<td>Pasin Manurangsi</td>
-<td>none</td>
-</tr>
-<tr class="odd">
-<td><a
-target="_blank" rel="noopener" href="https://ojs.aaai.org/index.php/AAAI/article/view/25714">Differentially
-Private Condorcet Voting</a></td>
-<td>Zhechen Li</td>
-<td>none</td>
-</tr>
-</tbody>
-</table>
-<h3 id="neurlps">NeurlPS</h3>
-<p>官方暂未发布。</p>
-<h3 id="acl">ACL</h3>
-<table>
-
-<thead>
-<tr class="header">
-<th>paper</th>
-<th>authors</th>
-<th>code</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2210.14348">Synthetic Text Generation
-with Differential Privacy: A Simple and Practical Recipe</a></td>
-<td>Xiang Yue</td>
-<td><a target="_blank" rel="noopener" href="https://github.com/microsoft/dp-transformers">url</a></td>
-</tr>
-<tr class="even">
-<td><a target="_blank" rel="noopener" href="https://aclanthology.org/2023.findings-acl.355/">A
-Customized Text Sanitization Mechanism with Differential
-Privacy</a></td>
-<td>Sai Chen</td>
-<td><a target="_blank" rel="noopener" href="https://github.com/sai4july/CusText">url</a></td>
-</tr>
-<tr class="odd">
-<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2302.07636">DP-BART for Privatized
-Text Rewriting under Local Differential Privacy</a></td>
-<td>Timour Igamberdiev</td>
-<td><a
-target="_blank" rel="noopener" href="https://github.com/trusthlt/dp-bart-private-rewriting">url</a></td>
-</tr>
-<tr class="even">
-<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.18465">Federated Learning of
-Gboard Language Models with Differential Privacy</a></td>
-<td>Zheng Xu</td>
-<td>none</td>
-</tr>
-</tbody>
-</table>
-<h3 id="cvpr">CVPR</h3>
-<table>
-
-<thead>
-<tr class="header">
-<th>paper</th>
-<th>authors</th>
-<th>code</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a
-target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Xu_Learning_To_Generate_Image_Embeddings_With_User-Level_Differential_Privacy_CVPR_2023_paper.html">Learning
-to Generate Image Embeddings with User-Level Differential
-Privacy</a></td>
-<td>Zheng Xu</td>
-<td><a
-target="_blank" rel="noopener" href="https://github.com/google-research/federated/tree/master/dp_visual_embeddings">url</a></td>
-</tr>
-<tr class="even">
-<td><a
-target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023W/FedVision/html/Chen_Federated_Learning_in_Non-IID_Settings_Aided_by_Differentially_Private_Synthetic_CVPRW_2023_paper.html">Federated
-Learning in Non-IID Settings Aided by Differentially Private Synthetic
-Data</a></td>
-<td>Huancheng Chen</td>
-<td>none</td>
-</tr>
-<tr class="odd">
-<td><a
-target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/CVPR2023/html/Shi_Make_Landscape_Flatter_in_Differentially_Private_Federated_Learning_CVPR_2023_paper.html">Make
-Landscape Flatter in Differentially Private Federated Learning</a></td>
-<td>Yifan Shi</td>
-<td>none</td>
-</tr>
-</tbody>
-</table>
-<h3 id="icml">ICML</h3>
-<table>
-
-<thead>
-<tr class="header">
-<th>paper</th>
-<th>authors</th>
-<th>code</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/alghamdi23a.html">The
-Saddle-Point Method in Differential Privacy</a></td>
-<td>Wael Alghamdi</td>
-<td><a
-target="_blank" rel="noopener" href="https://github.com/Felipe-Gomez/saddlepoint_accountant">url</a></td>
-</tr>
-<tr class="even">
-<td><a
-target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/alparslan23a.html">Differentially
-Private Distributed Bayesian Linear Regression with MCMC</a></td>
-<td>Baris Alparslan</td>
-<td><a
-target="_blank" rel="noopener" href="https://github.com/sinanyildirim/Bayesian_DP_dist_LR">url</a></td>
-</tr>
-<tr class="odd">
-<td><a
-target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/bu23a.html">Differentially
-Private Optimization on Large Model at Small Cost</a></td>
-<td>Zhiqi Bu</td>
-<td><a
-target="_blank" rel="noopener" href="https://github.com/awslabs/fast-differential-privacy">url</a></td>
-</tr>
-<tr class="even">
-<td><a
-target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/chaturvedi23a.html">Streaming
-Submodular Maximization with Differential Privacy</a></td>
-<td>Anamay Chaturvedi</td>
-<td><a
-target="_blank" rel="noopener" href="https://github.com/thydnguyen/PrivSubmodularOpt">url</a></td>
-</tr>
-<tr class="odd">
-<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2302.00037">Differentially Private
-Hierarchical Clustering with Provable Approximation Guarantees</a></td>
-<td>Jacob Imola</td>
-<td><a
-target="_blank" rel="noopener" href="https://bitbucket.org/jjimola/dphc/src/master/">url</a></td>
-</tr>
-<tr class="even">
-<td><a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/kazan23a.html">The Test
-of Tests: A Framework for Differentially Private Hypothesis
-Testing</a></td>
-<td>Zeki Kazan</td>
-<td><a target="_blank" rel="noopener" href="https://github.com/diff-priv-ht/test-of-tests">url</a></td>
-</tr>
-<tr class="odd">
-<td><a
-target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/krichene23a.html">Multi-Task
-Differential Privacy Under Distribution Skew</a></td>
-<td>Walid Krichene</td>
-<td><a
-target="_blank" rel="noopener" href="https://github.com/google-research/google-research/tree/master/">url</a></td>
-</tr>
-<tr class="even">
-<td><a
-target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/mangold23a.html">Differential
-Privacy has Bounded Impact on Fairness in Classification</a></td>
-<td>Paul Mangold</td>
-<td><a target="_blank" rel="noopener" href="https://github.com/pmangold/fairness-privacy">url</a></td>
-</tr>
-<tr class="odd">
-<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2306.05651">Differentially Private
-Sharpness-Aware Training</a></td>
-<td>Jinseong Park</td>
-<td><a target="_blank" rel="noopener" href="https://github.com/jinseongP/DPSAT">url</a></td>
-</tr>
-<tr class="even">
-<td><a
-target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/rust23a.html">Differential
-Privacy, Linguistic Fairness, and Training Data Influence: Impossibility
-and Possibility Theorems for Multilingual Language Models</a></td>
-<td>Phillip Rust</td>
-<td><a
-target="_blank" rel="noopener" href="https://github.com/xplip/multilingual-lm-objectives">url</a></td>
-</tr>
-<tr class="odd">
-<td><a
-target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/zanella-beguelin23a.html">Bayesian
-Estimation of Differential Privacy</a></td>
-<td>Santiago Zanella-Beguelin</td>
-<td><a
-target="_blank" rel="noopener" href="https://github.com/microsoft/responsible-ai-toolbox-privacy">url</a></td>
-</tr>
-<tr class="even">
-<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2306.01121">Differentially Private
-Episodic Reinforcement Learning with Heavy-tailed Rewards</a></td>
-<td>Yulian Wu</td>
-<td>none</td>
-</tr>
-<tr class="odd">
-<td><a
-target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/whitehouse23a.html">Fully-Adaptive
-Composition in Differential Privacy</a></td>
-<td>Justin Whitehouse</td>
-<td>none</td>
-</tr>
-<tr class="even">
-<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2301.12535">Concurrent Shuffle
-Differential Privacy Under Continual Observation</a></td>
-<td>Jay Tenenbaum</td>
-<td>none</td>
-</tr>
-<tr class="odd">
-<td><a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/song23i.html">Sketching
-Meets Differential Privacy: Fast Algorithm for Dynamic Kronecker
-Projection Maintenance</a></td>
-<td>Zhao Song</td>
-<td>none</td>
-</tr>
-<tr class="even">
-<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2302.03884">DIFF2: Differential
-Private Optimization via Gradient Differences for Nonconvex Distributed
-Learning</a></td>
-<td>Tomoya Murata</td>
-<td>none</td>
-</tr>
-<tr class="odd">
-<td><a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/liu23q.html">Online
-Local Differential Private Quantile Inference via
-Self-normalization</a></td>
-<td>Yi Liu</td>
-<td>none</td>
-</tr>
-<tr class="even">
-<td><a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/jain23b.html">The Price
-of Differential Privacy under Continual Observation</a></td>
-<td>Palak Jain</td>
-<td>none</td>
-</tr>
-<tr class="odd">
-<td><a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/huang23q.html">Federated
-Linear Contextual Bandits with User-level Differential Privacy</a></td>
-<td>Ruiquan Huang</td>
-<td>none</td>
-</tr>
-<tr class="even">
-<td><a
-target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/fichtenberger23a.html">Constant
-Matters: Fine-grained Error Bound on Differentially Private Continual
-Observation</a></td>
-<td>Hendrik Fichtenberger</td>
-<td>none</td>
-</tr>
-<tr class="odd">
-<td><a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/das23c.html">Beyond
-Uniform Lipschitz Condition in Differentially Private
-Optimization</a></td>
-<td>Rudrajit Das</td>
-<td>none</td>
-</tr>
-<tr class="even">
-<td><a
-target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/chen23d.html">Differentially
-Private Stochastic Convex Optimization under a Quantile Loss
-Function</a></td>
-<td>Du Chen</td>
-<td>none</td>
-</tr>
-<tr class="odd">
-<td><a
-target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/busa-fekete23a.html">Label
-differential privacy and private training data release</a></td>
-<td>Robert Istvan Busa-Fekete</td>
-<td>none</td>
-</tr>
-<tr class="even">
-<td><a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v202/arora23a.html">Faster
-Rates of Convergence to Stationary Points in Differentially Private
-Optimization</a></td>
-<td>Raman Arora</td>
-<td>none</td>
-</tr>
-</tbody>
-</table>
-<h3 id="ijcai">IJCAI</h3>
-<table>
-
-<thead>
-<tr class="header">
-<th>paper</th>
-<th>authors</th>
-<th>code</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a target="_blank" rel="noopener" href="https://www.ijcai.org/proceedings/2023/656">Fast and
-Differentially Private Fair Clustering</a></td>
-<td>Junyoung Byun</td>
-<td>none</td>
-</tr>
-<tr class="even">
-<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2207.10240">Differentially Private
-Partial Set Cover with Applications to Facility Location</a></td>
-<td>George Z. Li</td>
-<td>none</td>
-</tr>
-<tr class="odd">
-<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2308.09902">DPMAC: Differentially
-Private Communication for Cooperative Multi-Agent Reinforcement
-Learning</a></td>
-<td>Canzhe Zhao</td>
-<td>none</td>
-</tr>
-<tr class="even">
-<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2304.12528">Model Conversion via
-Differentially Private Data-Free Distillation</a></td>
-<td>Bochao Liu</td>
-<td>none</td>
-</tr>
-</tbody>
-</table>
+                <h2 id="摘要">摘要</h2>
+<p>我们针对小样本分类问题提出了原型网络（Prototypical
+Networks），其中分类器必须泛化到训练集中未见过的新类，每个新类的仅有少量样本。原型网络学习一个度量空间，在该空间中可以通过计算到每个类的原型表示的距离来执行分类。与最近的小样本学习方法相比，它们反映了更简单的归纳偏差，这在这种有限数据的情况下是有益的，并取得了优异的结果。我们提供的分析表明，一些简单的设计决策可以比涉及复杂架构选择和元学习的最新方法产生重大改进。我们进一步将原型网络扩展到零样本学习，并在
+CU-Birds 数据集上取得了最先进的结果。</p>
+<h2 id="介绍">介绍</h2>
+<p>小样本分类是一项任务，其中分类器必须适应训练中未见过的新类别，每个类别仅给出几个样本。简单的方法，例如根据新数据重新训练模型，会严重过度拟合。虽然这个问题相当困难，但事实证明，人类甚至有能力执行一次性分类，即仅给出每个新类别的一个样本，并且具有很高的准确度。</p>
+<p>最近的两种方法在小样本学习方面取得了重大进展。Vinyals 等人提出了
+Matching Networks，它在标记样本集（support
+set）的学习嵌入上使用注意机制来预测未标记点（query set）的类别。Matching
+Networks
+可以解释为在嵌入空间中应用的加权最近邻分类器。值得注意的是，该模型在训练期间使用称为
+“episode” 的采样小批量，其中每个 episode
+都旨在通过对类和数据点进行二次采样来模拟小样本任务。episode
+的使用使训练问题更加忠实于测试环境，从而提高泛化能力。 Ravi 和
+Larochelle 进一步采用 episode
+训练思想，提出了一种用于小样本学习的元学习方法。他们的方法涉及训练
+LSTM，以在给定的情况下生成分类器的更新，以便它能够很好地推广到测试集。在这里，LSTM
+元学习器不是在多个 episode 上训练单个模型，而是学习为每个 episode
+训练一个自定义模型。</p>
+<p>我们通过解决过度拟合的关键问题来解决小样本学习的问题。由于数据严重有限，我们假设分类器应该具有非常简单的归纳偏差。我们的方法“原型网络”基于这样的想法：存在一种嵌入，其中点聚集在每个类的单个原型表示周围。为了做到这一点，我们使用神经网络学习输入到嵌入空间的非线性映射，并将类的原型作为其在嵌入空间中支持集的平均值。然后通过简单地查找最近的类原型来对嵌入查询点执行分类。我们遵循相同的方法来解决零样本学习，这里，每个类都带有元数据（meta-data），提供类的高级描述，而不是少量标记的示例。因此，我们学习将元数据嵌入到共享空间中，作为每个类的原型。与在少数场景中一样，通过查找嵌入查询点的最近的类原型来执行分类。</p>
+<p>在本文中，我们为小样本和零样本设置制定了原型网络。我们在 one-shot
+设置中建立与 Matching Networks
+的连接，并分析模型中使用的基础距离函数。特别是，我们将原型网络与聚类联系起来，以便在使用
+Bregman
+散度（例如平方欧几里得距离）计算距离时证明使用类均值作为原型的合理性。我们根据经验发现距离的选择至关重要，因为欧几里得距离远远优于更常用的余弦相似度。在多项基准测试任务中，我们实现了最先进的性能。原型网络比最近的元学习算法更简单、更高效，这使得它们成为小样本和零样本学习的一种有吸引力的方法。</p>
+<h2 id="原型网络">原型网络</h2>
+<h3 id="notion">Notion</h3>
+<p>在小样本分类中，我们得到了一个由 N 个标记样本组成的小 support set
+<span class="math inline">\(S={(x_i,y_i), \dots,
+(x_N,y_N)}\)</span>，其中每个 <span class="math inline">\(x_i \in
+\mathbb{R}^D\)</span> 是一个样本的 D 维向量特征，<span
+class="math inline">\(y_i \in {1,\dots,K}\)</span> 是相应的标签。<span
+class="math inline">\(S_k\)</span> 表示被标记为类 k 的样本集合。</p>
+<h3 id="模型">模型</h3>
+<p>原型网络通过一个可学习参数 $$ 计算一个 M 维表示 <span
+class="math inline">\(c_k \in \mathbb{R}^M\)</span>，</p>
 
                 
               </div>
@@ -701,7 +355,7 @@ Differentially Private Data-Free Distillation</a></td>
       
         <a href="/tags/Deep-Learning/" class="print-no-link">#Deep Learning</a>
       
-        <a href="/tags/Differential-Privacy/" class="print-no-link">#Differential Privacy</a>
+        <a href="/tags/Few-shot-Learning/" class="print-no-link">#Few-shot Learning</a>
       
     </div>
   
@@ -713,8 +367,8 @@ Differentially Private Data-Free Distillation</a></td>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>2023 AI CCF-A Differential Privacy 一窥（持续更新中）</div>
-      <div>https://blog.lfd-world.online/2023/12/07/2023-ai-ccf-a-differential-privacy-yi-kui-chi-xu-geng-xin-zhong/</div>
+      <div>2023 论文砖 Prototypical Networks for Few shot Learning</div>
+      <div>https://blog.lfd-world.online/2023/12/13/2023-lun-wen-zhuan-prototypical-networks-for-few-shot-learning/</div>
     </div>
     <div class="license-meta">
       
@@ -726,7 +380,7 @@ Differentially Private Data-Free Distillation</a></td>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年12月7日</div>
+          <div>2023年12月13日</div>
         </div>
       
       
@@ -758,18 +412,12 @@ Differentially Private Data-Free Distillation</a></td>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/13/2023-lun-wen-zhuan-prototypical-networks-for-few-shot-learning/" title="2023 论文砖 Prototypical Networks for Few shot Learning">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">2023 论文砖 Prototypical Networks for Few shot Learning</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/12/06/2023-ai-ccf-a-federated-learning-yi-kui-chi-xu-geng-xin-zhong/" title="2023 AI CCF-A Federated Learning 一窥（持续更新中）">
-                        <span class="hidden-mobile">2023 AI CCF-A Federated Learning 一窥（持续更新中）</span>
+                      <a href="/2023/12/07/2023-ai-ccf-a-differential-privacy-yi-kui-chi-xu-geng-xin-zhong/" title="2023 AI CCF-A Differential Privacy 一窥（持续更新中）">
+                        <span class="hidden-mobile">2023 AI CCF-A Differential Privacy 一窥（持续更新中）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
