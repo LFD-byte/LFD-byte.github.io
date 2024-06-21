@@ -18,13 +18,13 @@
   
     <meta name="description" content="2023年度的 AI 顶会和顶刊已经出炉，在此把关于 Differential Privacy 的部分筛选出来，以供后续学习。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2023 AI CCF-A Differential Privacy 一窥（持续更新中）">
-<meta property="og:url" content="https://blog.lfd-world.online/2023/12/07/2023-ai-ccf-a-differential-privacy-yi-kui-chi-xu-geng-xin-zhong/index.html">
+<meta property="og:title" content="2023 AI CCF-A Differential Privacy 一窥">
+<meta property="og:url" content="https://blog.lfd.world/2023/12/07/2023-ai-ccf-a-differential-privacy-yi-kui-chi-xu-geng-xin-zhong/index.html">
 <meta property="og:site_name" content="培根请加蛋">
 <meta property="og:description" content="2023年度的 AI 顶会和顶刊已经出炉，在此把关于 Differential Privacy 的部分筛选出来，以供后续学习。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-12-07T06:27:00.000Z">
-<meta property="article:modified_time" content="2024-05-04T13:48:37.782Z">
+<meta property="article:modified_time" content="2024-05-05T12:57:31.665Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Differential Privacy">
@@ -34,7 +34,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>2023 AI CCF-A Differential Privacy 一窥（持续更新中） - 培根请加蛋</title>
+  <title>2023 AI CCF-A Differential Privacy 一窥 - 培根请加蛋</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"blog.lfd-world.online","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"blog.lfd.world","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="2023 AI CCF-A Differential Privacy 一窥（持续更新中）"></span>
+            <span id="subtitle" data-typed-text="2023 AI CCF-A Differential Privacy 一窥"></span>
           
         </div>
 
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.8k 字
+          9k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          32 分钟
+          76 分钟
         
       </span>
     
@@ -279,7 +279,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">2023 AI CCF-A Differential Privacy 一窥（持续更新中）</h1>
+            <h1 id="seo-header">2023 AI CCF-A Differential Privacy 一窥</h1>
             
             
               <div class="markdown-body">
@@ -368,6 +368,7 @@ Private Condorcet Voting</a></td>
 </table>
 <h4 id="neurlps">NeurlPS</h4>
 <table>
+
 <thead>
 <tr class="header">
 <th>paper</th>
@@ -377,19 +378,277 @@ Private Condorcet Voting</a></td>
 </thead>
 <tbody>
 <tr class="odd">
-<td></td>
-<td></td>
-<td></td>
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/28484cee66f27fa070796b631cc5242d-Abstract-Conference.html">DP-Mix:
+Mixup-based Data Augmentation for Differentially Private
+Learning</a></td>
+<td>Wenxuan Bao</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/wenxuan-Bao/DP-Mix">url</a></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td></td>
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/2f27964513a28d034530bfdd117ea31d-Abstract-Conference.html">Gaussian
+Differential Privacy on Riemannian Manifolds</a></td>
+<td>Yangdi Jiang</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/Lei-Ding07/Gaussian-Differential-Privacy-on-Riemannian-Manifolds">url</a></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td></td>
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/2f9ee101e35b890d9eae79ee27bcd69a-Abstract-Conference.html">Functional
+Renyi Differential Privacy for Generative Modeling</a></td>
+<td>Dihong Jiang</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/dihjiang/DP-kernel">url</a></td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/7058bc192a37f5e5a57398887b05f6f6-Abstract-Conference.html">Differentially
+Private Image Classification by Learning Priors from Random
+Processes</a></td>
+<td>Xinyu Tang</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/inspire-group/DP-RandP">url</a></td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/8249b30d877c91611fd8c7aa6ac2b5fe-Abstract-Conference.html">Automatic
+Clipping: Differentially Private Deep Learning Made Easier and
+Stronger</a></td>
+<td>Zhiqi Bu</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/awslabs/fast-differential-privacy">url</a></td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/8e3db2040672d85fd12e6313945594fe-Abstract-Conference.html">Differentially
+Private Decoupled Graph Convolutions for Multigranular Topology
+Protection</a></td>
+<td>Eli Chien</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/thupchnsky/dp-gnn">url</a></td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/d09ef5264966e17adffd3157265c9946-Abstract-Conference.html">Unleashing
+the Power of Randomization in Auditing Differentially Private
+ML</a></td>
+<td>Krishna Pillutla</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/google-research/federated/tree/master/lidp_auditing">url</a></td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/e4724af0e2a0d52ce5a0a4e084b87f59-Abstract-Conference.html">Dynamic
+Personalized Federated Learning with Adaptive Differential
+Privacy</a></td>
+<td>Xiyuan Yang</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/xiyuanyang45/DynamicPFL">url</a></td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/f3024ea88cec9f45a411cf4d51ab649c-Abstract-Conference.html">Differentially
+Private Statistical Inference through <span
+class="math inline">\(\beta\)</span>-Divergence One Posterior
+Sampling</a></td>
+<td>Jack E. Jewson</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/sghalebikesabi/beta-bayes-ops">url</a></td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/fb1d9c3fc2161e12aa71cdcab74b9d2c-Abstract-Conference.html">Faster
+Differentially Private Convex Optimization via Second-Order
+Methods</a></td>
+<td>Arun Ganesh</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/f4eaa4b8f2d08edb3f0af990d56134ea-Abstract-Conference.html">On
+Differentially Private Sampling from Gaussian and Product
+Distributions</a></td>
+<td>Badih Ghazi</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/f418594e90047a10f4c158f70d6701cc-Abstract-Conference.html">Black-Box
+Differential Privacy for Interactive ML</a></td>
+<td>Haim Kaplan</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/f26119b4ffe38c24d97e4c49d334b99e-Abstract-Conference.html">Flocks
+of Stochastic Parrots: Differentially Private Prompt Learning for Large
+Language Models</a></td>
+<td>Haonan Duan</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/f0722b58f02d7793acf7d328928f933a-Abstract-Conference.html">Adversarially
+Robust Distributed Count Tracking via Partial Differential
+Privacy</a></td>
+<td>Zhongzheng Xiong</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/ead13878cd158f013becb6a559a60364-Abstract-Conference.html">Breaking
+the Communication-Privacy-Accuracy Tradeoff with f-Differential
+Privacy</a></td>
+<td>Richeng Jin</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/e9a612969b4df241ff0d8273656bd5a4-Abstract-Conference.html">k-Median
+Clustering via Metric Embedding: Towards Better Initialization with
+Differential Privacy</a></td>
+<td>Chenglin Fan</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/e14de1a0ebc31d9b989f5f5528c125bb-Abstract-Conference.html">On
+the Complexity of Differentially Private Best-Arm Identification with
+Fixed Confidence</a></td>
+<td>Achraf Azize</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/c1aaf7c3f306fe94f77236dc0756d771-Abstract-Conference.html">Offline
+Reinforcement Learning with Differential Privacy</a></td>
+<td>Dan Qiao</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/bd5d436621dd3ee728b11c067d32d488-Abstract-Conference.html">Optimal
+Unbiased Randomizers for Regression with Label Differential
+Privacy</a></td>
+<td>Ashwinkumar Badanidiyuru Varadaraja</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/b4dde7f1bc45bf9c0fda8db8f272b758-Abstract-Conference.html">Minimax
+Risks and Optimal Procedures for Estimation under Functional Local
+Differential Privacy</a></td>
+<td>Bonwoo Lee</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/aea831d6c7af37fd4230937225be3414-Abstract-Conference.html">Optimal
+privacy guarantees for a relaxed threat model: Addressing sub-optimal
+adversaries in differentially private machine learning</a></td>
+<td>Georgios Kaissis</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/87571720167f7e88827c40e468e3101f-Abstract-Conference.html">Differentially
+Private Approximate Near Neighbor Counting in High Dimensions</a></td>
+<td>Alexandr Andoni</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/72235260ae8d57ac42638a26d3b7d089-Abstract-Conference.html">Scaling
+Up Differentially Private LASSO Regularized Logistic Regression via
+Faster Frank-Wolfe Iterations</a></td>
+<td>Edward Raff</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/70255afc962aca0930327c090eb7d8c5-Abstract-Conference.html">Gradient
+Descent with Linearly Correlated Noise: Theory and Applications to
+Differential Privacy</a></td>
+<td>Anastasiia Koloskova</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/6e32c247076c2c0fb381e022c02d2c78-Abstract-Conference.html">Counting
+Distinct Elements Under Person-Level Differential Privacy</a></td>
+<td>Thomas Steinke</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/59b9582cd35f555ea8415030073e7b22-Abstract-Conference.html">Practical
+Differentially Private Hyperparameter Tuning with Subsampling</a></td>
+<td>Antti Koskela</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/5642b9811a9ac5281be1cc84c275f251-Abstract-Conference.html">On
+Computing Pairwise Statistics with Local Differential Privacy</a></td>
+<td>Badih Ghazi</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/4e8f257e054abd24c550d55e57cec274-Abstract-Conference.html">Nearly
+Tight Bounds For Differentially Private Multiway Cut</a></td>
+<td>Mina Dalirrooyfard</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/47e74fca60b4af4846b7abab188b85f2-Abstract-Conference.html">Label
+Robust and Differentially Private Linear Regression: Computational and
+Statistical Efficiency</a></td>
+<td>Xiyang Liu</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/3d57795f0e263aa69577f1bbceade46b-Abstract-Conference.html">User-Level
+Differential Privacy With Few Examples Per User</a></td>
+<td>Badih Ghazi</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/2ceda49041816da6d5a34eb3b612607f-Abstract-Conference.html">Improving
+the Privacy and Practicality of Objective Perturbation for
+Differentially Private Linear Learners</a></td>
+<td>Rachel Redberg</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/2a128987fe57b27fa0c7a0b748b0fa1e-Abstract-Conference.html">Smooth
+Flipping Probability for Differential Private Sign Random Projection
+Methods</a></td>
+<td>Ping Li</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/23ff02034404b65776080cbf7148addd-Abstract-Conference.html">Sparsity-Preserving
+Differentially Private Training of Large Embedding Models</a></td>
+<td>Badih Ghazi</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/0ef1afa0daa888d695dcd5e9513bafa3-Abstract-Conference.html">Counting
+Distinct Elements in the Turnstile Model with Differential Privacy under
+Continual Observation</a></td>
+<td>Palak Jain</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://papers.nips.cc/paper_files/paper/2023/hash/0ab51646ca369140c3c3ece011b66587-Abstract-Conference.html">GlucoSynth:
+Generating Differentially-Private Synthetic Glucose Traces</a></td>
+<td>Josephine Lamp</td>
+<td>none</td>
 </tr>
 </tbody>
 </table>
@@ -737,6 +996,245 @@ Data</a></td>
 </tr>
 </tbody>
 </table>
+<h2 id="数据库数据挖掘内容检索">数据库／数据挖掘／内容检索</h2>
+<h3 id="会议-1">会议</h3>
+<h4 id="sigmod">SIGMOD</h4>
+<table>
+
+<thead>
+<tr class="header">
+<th>paper</th>
+<th>authors</th>
+<th>code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2309.03190">Blink: Link Local
+Differential Privacy in Graph Neural Networks via Bayesian
+Estimation</a></td>
+<td>Xiaochen Zhu</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/zhxchd/blink_gnn">url</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="sigkdd">SIGKDD</h4>
+<table>
+
+<thead>
+<tr class="header">
+<th>paper</th>
+<th>authors</th>
+<th>code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3580305.3599561">How to
+DP-fy ML: A Practical Tutorial to Machine Learning with Differential
+Privacy</a></td>
+<td>Natalia Ponomareva</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3580305.3599889">PrivateRec:
+Differentially Private Model Training and Online Serving for Federated
+News Recommendation</a></td>
+<td>Ruixuan Liu</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3580305.3599279">Communication
+Efficient and Differentially Private Logistic Regression under the
+Distributed Setting</a></td>
+<td>Ergute Bao</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<h4 id="icde">ICDE</h4>
+<table>
+
+<thead>
+<tr class="header">
+<th>paper</th>
+<th>authors</th>
+<th>code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10184690">Dynamic
+Private Task Assignment under Differential Privacy</a></td>
+<td>Leilei Du</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10184834">PrivNUD:
+Effective Range Query Processing under Local Differential
+Privacy</a></td>
+<td>Ning Wang</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10148219">Differential
+Privacy for Protecting Private Patterns in Data Streams</a></td>
+<td>He Gu</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sigir">SIGIR</h4>
+<p>无相关文献。</p>
+<h4 id="vldb">VLDB</h4>
+<p>无相关文献。</p>
+<h3 id="期刊-1">期刊</h3>
+<h4 id="tods">TODS</h4>
+<table>
+
+<thead>
+<tr class="header">
+<th>paper</th>
+<th>authors</th>
+<th>code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3597021">Efficient
+Bi-objective SQL Optimization for Enclaved Cloud Databases with
+Differentially Private Padding</a></td>
+<td>Yaxing Chen</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="tois">TOIS</h4>
+<p>无相关文献。</p>
+<h4 id="tkde">TKDE</h4>
+<table>
+
+<thead>
+<tr class="header">
+<th>paper</th>
+<th>authors</th>
+<th>code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9792226">Collecting
+Geospatial Data Under Local Differential Privacy With Improving
+Frequency Estimation</a></td>
+<td>Daeyoung Hong</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/daeyounghong/square-mechanism">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10018869">Global
+Combination and Clustering Based Differential Privacy Mixed Data
+Publishing</a></td>
+<td>Lanxiang Chen</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10097536">DP2-Pub:
+Differentially Private High-Dimensional Data Publication With Invariant
+Post Randomization</a></td>
+<td>Honglu Jiang</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10035304">Multi-Party
+Sequential Data Publishing Under Differential Privacy</a></td>
+<td>Peng Tang</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9855874">Local
+Differentially Private Fuzzy Counting in Stream Data Using Probabilistic
+Data Structures</a></td>
+<td>Dinusha Vatsalan</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9782510">DDRM: A
+Continual Frequency Estimation Mechanism With Local Differential
+Privacy</a></td>
+<td>Qiao Xue</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9813492">Collecting
+Preference Rankings Under Local Differential Privacy</a></td>
+<td>Xiang Cheng</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9740467">Differentially
+Private Demand Side Management for Incentivized Dynamic Pricing in Smart
+Grid</a></td>
+<td>Muneeb Ul Hassan</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9619911">Publishing
+Graphs Under Node Differential Privacy</a></td>
+<td>Xun Jian</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9609550">Private and
+Utility Enhanced Recommendations With Local Differential Privacy and
+Gaussian Mixture Model</a></td>
+<td>Jeyamohan Neera</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9658125">Data Level
+Privacy Preserving: A Stochastic Perturbation Approach Based on
+Differential Privacy</a></td>
+<td>Chuan Ma</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9669031">A Robust
+Game-Theoretical Federated Learning Framework With Joint Differential
+Privacy</a></td>
+<td>Lefeng Zhang</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9403974">Applications
+of Differential Privacy in Social Network Analysis: A Survey</a></td>
+<td>Honglu Jiang</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<h4 id="vldbj">VLDBJ</h4>
+<table>
+
+<thead>
+<tr class="header">
+<th>paper</th>
+<th>authors</th>
+<th>code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://link.springer.com/article/10.1007/s00778-022-00774-w">Local
+dampening: differential privacy for non-numeric queries via local
+sensitivity</a></td>
+<td>Victor A. E. Farias</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
 
                 
               </div>
@@ -784,8 +1282,8 @@ Data</a></td>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>2023 AI CCF-A Differential Privacy 一窥（持续更新中）</div>
-      <div>https://blog.lfd-world.online/2023/12/07/2023-ai-ccf-a-differential-privacy-yi-kui-chi-xu-geng-xin-zhong/</div>
+      <div>2023 AI CCF-A Differential Privacy 一窥</div>
+      <div>https://blog.lfd.world/2023/12/07/2023-ai-ccf-a-differential-privacy-yi-kui-chi-xu-geng-xin-zhong/</div>
     </div>
     <div class="license-meta">
       
@@ -829,9 +1327,9 @@ Data</a></td>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/13/2023-lun-wen-zhuan-prototypical-networks-for-few-shot-learning/" title="2023 论文砖 Prototypical Networks for Few shot Learning">
+                      <a href="/2023/12/13/lun-wen-ri-ji-2023-graph-neural-network-with-curriculum-learning-for-imbalanced-node-classification/" title="2023 论文砖 Graph Neural Network with Curriculum Learning for Imbalanced Node Classification">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">2023 论文砖 Prototypical Networks for Few shot Learning</span>
+                        <span class="hidden-mobile">2023 论文砖 Graph Neural Network with Curriculum Learning for Imbalanced Node Classification</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
