@@ -1,0 +1,1008 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="培根请加蛋">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="A continual learning survey-Defying forgetting in classification tasks">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文日记 2024 A continual learning survey-Defying forgetting in classification tasks (2021)">
+<meta property="og:url" content="https://blog.lfd.world/2024/06/28/lun-wen-ri-ji-2024-a-continual-learning-survey-defying-forgetting-in-classification-tasks-2021/index.html">
+<meta property="og:site_name" content="培根请加蛋">
+<meta property="og:description" content="A continual learning survey-Defying forgetting in classification tasks">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240630201609705.png">
+<meta property="article:published_time" content="2024-06-28T13:26:00.000Z">
+<meta property="article:modified_time" content="2024-06-30T13:28:46.864Z">
+<meta property="article:author" content="培根请加蛋">
+<meta property="article:tag" content="Deep Learning">
+<meta property="article:tag" content="Continual Learning">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240630201609705.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>论文日记 2024 A continual learning survey-Defying forgetting in classification tasks (2021) - 培根请加蛋</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.lfd.world","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>培根请加蛋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="论文日记 2024 A continual learning survey-Defying forgetting in classification tasks (2021)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-28 21:26" pubdate>
+          2024年6月28日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          94 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">论文日记 2024 A continual learning survey-Defying forgetting in classification tasks (2021)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="abstract">Abstract</h2>
+<p>人工神经网络在解决特定严格任务的分类问题方面蓬勃发展，通过从不同训练阶段的广义学习行为获取知识。由此产生的网络类似于一个静态的知识实体，在不针对原始任务的情况下努力扩展这些知识，从而导致灾难性的遗忘。持续学习将这种范式转变为可以不断积累不同任务知识的网络，而无需从头开始重新训练。我们专注于任务增量分类，其中任务按顺序到达并由清晰的边界划分。我们的主要贡献涉及（1）对最新技术的分类和广泛概述；
+（2）一个新颖的框架来持续确定持续学习者的稳定性与可塑性权衡； (3) 对 11
+种最先进的持续学习方法和 4
+种基线进行全面的实验比较。我们在三个基准上凭经验审查方法的优点和缺点，考虑
+Tiny Imagenet 和大规模不平衡 iNaturalist
+以及一系列识别数据集。我们研究了模型容量、权重衰减和 dropout
+正则化的影响，以及任务呈现的顺序，并在所需内存、计算时间和存储方面对方法进行了定性比较。</p>
+<p><strong>Index Terms</strong>: Continual Learning, lifelong learning,
+task incremental learning, catastrophic forgetting, classification,
+neural networks</p>
+<h2 id="introduction">Introduction</h2>
+<p>近年来，据报道，机器学习模型在个别任务（例如 Atari 游戏 [1]
+或对象识别
+[2]）上表现出甚至超越了人类水平。虽然这些结果令人印象深刻，但它们是通过静态模型获得的，无法随着时间的推移调整其行为。因此，这需要每次有新数据可用时重新启动训练过程。在我们动态的世界中，这种做法很快就会变得难以处理数据流，或者由于存储限制或隐私问题可能只能暂时使用。这就需要系统不断适应并随着时间的推移不断学习。</p>
+<p>人类认知就是此类系统的例证，倾向于按顺序学习概念。通过观察例子来重新审视旧概念可能会发生，但这对于保存这些知识来说并不是必需的，虽然人类可能会逐渐忘记旧信息，但很少证明以前的知识完全丢失[3]。</p>
+<p>相比之下，人工神经网络无法以这种方式学习：当学习新概念时，它们会灾难性地忘记旧概念[3]。为了解决这个问题，人工神经网络的研究主要集中在静态任务上，通常会打乱数据以确保独立同分布。通过重新访问多个时期的训练数据，可以显着提高性能。</p>
+<p><strong>持续学习</strong>
+研究从无限数据流中学习的问题，其目标是逐步扩展所获得的知识并将其用于未来的学习[4]。数据可以源于不断变化的输入域（例如不同的成像条件），也可以与不同的任务相关联（例如细粒度的分类问题）。持续学习也称为终身学习
+[4]、[5]、[6]、[7]、[8]、[9]、顺序学习 [10]、[11]、[12] 或增量学习
+[13]、[14]、[15]、[16]、[17]、[18]、[19]。<strong>主要标准是学习过程的顺序性质，一次只能使用来自一个或几个任务的一小部分输入数据。主要挑战是学习时不会发生灾难性遗忘：随着新任务或领域的添加，先前学习的任务或领域的表现不应随着时间的推移而显着下降。</strong>这是神经网络中一个更普遍的问题的直接结果，即<strong>稳定性-可塑性（stability-plasticity）困境
+[20]，可塑性是指整合新知识的能力，而稳定性是指在编码时保留先前知识的能力。</strong>尽管这是一个具有挑战性的问题，但持续学习的进步已经导致现实世界的应用开始出现
+[21]、[22]、[23]。</p>
+<p><strong>范围</strong>
+为了保持专注，我们通过两种方式限制我们的研究范围。首先，我们只考虑任务增量设置，其中数据按批次顺序到达，一个批次对应一个任务，例如要学习一组新的类别。换句话说，我们假设对于给定的任务，所有数据都可同时用于离线训练。这使得能够在所有训练数据上进行多个时期的学习，并反复
+shuffle
+以确保独立同分布情况。重要的是，无法访问之前或未来任务的数据。在这种情况下优化新任务将导致灾难性的遗忘，旧任务的性能会显着下降，除非采取特殊措施。这些措施在不同情况下的有效性正是本文的主题。此外，任务增量学习将范围限制为多头配置，每个任务都有一个专有的输出层或头。这与更具挑战性的类增量设置形成鲜明对比，所有任务共享一个头。这在学习中引入了额外的干扰，并增加了可供选择的输出节点的数量。相反，我们假设已知给定样本属于哪个任务。</p>
+<p>其次，我们只关注分类问题，因为分类可以说是人工神经网络最成熟的任务之一，使用相对简单、标准和易于理解的网络架构具有良好的性能。第
+2 节更详细地描述了该设置，第 7 节讨论了解决更一般设置的未决问题。</p>
+<p><strong>动机</strong>
+文献中关于要使用的实验设置和数据集的共识有限。尽管论文提供了模型架构、任务和超参数的组合的至少一种特定设置的证据，在这些设置下，所提出的方法减少了遗忘并优于其他方法，但迄今为止还没有进行全面的实验比较。</p>
+<p><strong>发现</strong>
+为了建立公平的比较，需要考虑以下问题：“如何仅使用当前任务的数据，以一致的方式设置稳定性和可塑性之间的权衡？”为此，我们提出了一个通用框架，可以动态确定持续学习方法的稳定性和可塑性。在此原则框架内，我们仔细研究了持续学习方法中的
+11
+种代表性方法，并找到了有关模型容量的配置的特定方法偏好以及与典型正则化方案（例如权重衰减或
+dropout）的组合。所有代表性方法都可以很好地推广到平衡良好的小规模 Tiny
+Imagenet 设置。然而，当转移到大规模现实世界数据集（例如严重不平衡的
+iNaturalist）时，尤其是在具有高度不同的识别任务的不均匀分布的 RecogSeq
+序列中，这种情况不再成立。然而，基于参数隔离的严格方法似乎可以推广到这些具有挑战性的设置。此外，我们发现任务呈现的顺序对性能影响不大。我们的主要发现的总结可以在第
+6.8 节中找到。</p>
+<p><strong>相关工作</strong>
+持续学习一直是最近几项调查的主题[7]、[24]、[25]、[26]。Parisi 等人 [7]
+描述了广泛的方法和途径，但没有进行实证评估或比较。同样，Lesort 等人 [24]
+描述性地调查和形式化持续学习，但重点是机器人的动态环境。 Pf̈ulb 和
+Gepperth [25]
+对灾难性遗忘进行了实证研究，并开发了一个用于设置超参数和方法评估的协议。然而，他们只考虑两种方法，即弹性权重合并（EWC）[27]
+和增量力矩匹配（IMM）[28]。此外，他们的评估仅限于小型数据集。同样，Kemker
+等人 [29] 仅比较了三种方法：EWC [27]、PathNet [30] 和 GeppNet
+[15]。实验在一个简单的全连接网络上进行，仅包括 3 个数据集：MNIST、CUB200
+和 AudioSet。 Farquhar 和 Gal [26]
+调查了持续学习评估策略，并强调了使用具有不同像素排列（通常是排列的 MNIST
+[31]）的一个数据集的常见做法的缺点。此外，他们强调多头设置下的任务增量学习隐藏了问题的真正难度。虽然我们同意这一说法，但我们仍然选择了基于多头的调查，因为它允许比较现有方法而无需进行重大修改。他们还提出了一些评估持续学习方法的必要条件。然而，他们的研究仅限于相当简单的
+MNIST 和 Fashion-MNIST
+数据集，与实际应用中遇到的真实数据相去甚远。这些著作都没有系统地解决上述问题。</p>
+<p><strong>论文概述</strong> 首先，我们在第 2
+节中描述了本文广泛采用的任务增量设置。接下来，第 3
+节调查了持续学习的不同方法，将它们分为三个主要组：重播方法（replay
+method）、基于正则化的方法 （regularization-based
+method）和参数隔离方法（parameter isolation
+method）。以公平的方法比较为目标时的一个重要问题是超参数的选择，特别是学习率和稳定性-可塑性的权衡。因此，第
+4
+节介绍了一种新颖的框架来解决这个问题，而无需访问之前或未来任务的数据。我们在第
+5 节中提供了为实验评估选择的方法的详细信息，并在第 6
+节中描述了实际实验、主要发现和定性比较。我们在第 7
+节中进一步展望，强调了该领域的其他挑战，超越了任务渐进式设置，实现真正的持续学习。然后，我们在第
+8 节中强调与其他领域的关系，并在第 9
+节中进行总结。最后，补充材料中提供了实现细节和进一步的实验结果。<a
+href="HTTPS://GITHUB.COM/MATTDL/CLSURVEY">代码</a>可公开获取以实现重现性.</p>
+<h2 id="the-task-incremental-learning-setting">The Task Incremental
+Learning Setting</h2>
+<p>由于持续学习中普遍存在的困难和各种挑战，许多方法将一般设置放宽为更容易的增量任务。任务增量设置考虑一系列任务，一次仅接收一个任务的训练数据来进行训练直至收敛。数据
+是从分布 <span class="math inline">\(D^{(t)}\)</span> 中随机抽取的，其中
+<span class="math inline">\(\mathcal{X}^{(t)}\)</span>
+是任务t的一组数据样本，<span
+class="math inline">\(\mathcal{Y}^{(t)}\)</span>
+是相应的真实标签。目标是控制所有已看到任务的统计风险，这些任务对先前任务
+<span class="math inline">\(t &lt; \mathcal{T}\)</span> 中的数据 <span
+class="math inline">\((\mathcal{X}(t)，\mathcal{Y}(t))\)</span>
+的访问受到限制或无法访问： <span class="math display">\[
+\sum_{t=1}^T\mathbb{E}_{(\mathcal{X}^{(t)},\mathcal{Y}^{(t)})}[\ell(f_t(\mathcal{X}^{(t)};\theta),\mathcal{Y}^{(t)})]
+\tag{1}
+\]</span> 损失函数 <span class="math inline">\(\ell\)</span>，参数 <span
+class="math inline">\(\theta\)</span>，<span
+class="math inline">\(\mathcal{T}\)</span>
+是迄今为止看到的任务数量，<span class="math inline">\(f(t)\)</span>
+代表任务 <span class="math inline">\(t\)</span>
+的网络函数。该定义可以扩展到 <span class="math inline">\(t &gt;
+\mathcal{T}\)</span> 的零样本学习，但这是该领域的未来工作，如第 7
+节中讨论的那样。对于当前任务 <span
+class="math inline">\(\mathcal{T}\)</span>
+，统计风险可以通过经验风险来近似 <span class="math display">\[
+\frac1{N_\mathcal{T}}\sum_{i=1}^{N_\mathcal{T}}\ell(f(x_i^{(\mathcal{T})};\theta),y_i^{(\mathcal{T})})
+. \tag{2}
+\]</span> 任务增量学习的主要研究重点旨在通过优化 (1) 来确定最优参数
+<span
+class="math inline">\(\theta^*\)</span>。然而，旧任务的数据不再可用，这阻碍了对新参数值的统计风险的评估。</p>
+<p>“任务”的概念是指具有一批新数据的孤立训练阶段，属于一组新的类、新的域或不同的输出空间。与
+[32] 类似，根据任务 <span class="math inline">\(t\)</span>
+的边际输出和输入分布 <span
+class="math inline">\(P(\mathcal{Y}(t))\)</span> 和 <span
+class="math inline">\(P (\mathcal{X}(t))\)</span>
+更精细地细分为三个类别，其中 <span
+class="math inline">\(P(\mathcal{X}(t)) \neq
+P(\mathcal{X}(t+1))\)</span>。首先，类增量学习为所有观察到的类标签 <span
+class="math inline">\(\{\mathcal{Y}(t)\} \in
+\{\mathcal{Y}(t+1)\}\)</span> 定义一个输出空间，其中 <span
+class="math inline">\(P(\mathcal{Y}(t)) \neq
+P(\mathcal{Y}(t+1))\)</span>。任务增量学习定义了 <span
+class="math inline">\(\{\mathcal{Y}(t)\} \neq
+\{\mathcal{Y}(t+1)\}\)</span>，这还需要任务标签 <span
+class="math inline">\(t\)</span> 来指示当前任务t的孤立输出节点 <span
+class="math inline">\(\mathcal{Y}(t)\)</span>。增量域学习定义了 <span
+class="math inline">\(\{\mathcal{Y}(t)\} = \{\mathcal{Y}(t+1)\}\)</span>
+和 <span class="math inline">\(P(\mathcal{Y}(t)) \neq
+P(\mathcal{Y}(t+1))\)</span>。此外，数据增量学习 [33]
+为任何数据流定义了更通用的持续学习设置，没有任务、类或域的概念。我们的实验侧重于一系列分类任务的任务增量学习设置。</p>
+<h2 id="continual-learning-approaches">Continual Learning
+Approaches</h2>
+<p>早期的作品在顺序学习不同输入模式的示例时观察到了灾难性干扰问题。已经探索了几个方向，例如减少表示重叠
+[34]、[35]、[36]、[37]、[38]、重放过去的样本或虚拟样本
+[8]、[39]或引入双架构
+[40]、[41]、[42]。然而，由于当时的资源限制，这些工作主要考虑了少数示例（数十个数量级）并且基于特定的浅层架构。</p>
+<p>随着最近人们对神经网络的兴趣日益浓厚，持续学习和灾难性遗忘也受到了更多关注。已经针对两个连续任务
+[31] 实证研究了 dropout [43]
+和不同激活函数对遗忘的影响，并且有一些工作从理论角度研究了任务增量学习
+[44]、[45]、[46]、[47] ]。</p>
+<p>最近的作品通过更长的任务序列和更多的示例解决了持续学习问题。接下来，我们将回顾最重要的作品。根据任务特定信息在整个顺序学习过程中的存储和使用方式，我们区分了三个系列：</p>
+<ul>
+<li>重放方法</li>
+<li>基于正则化的方法</li>
+<li>参数隔离方法</li>
+</ul>
+<p>请注意，我们的分类在某种程度上与之前的工作 [26]、[48]
+中介绍的分类重叠。然而，我们相信它提供了更全面的概述并涵盖了大多数现有作品。总结如图
+1 所示。</p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240630201609705.png" alt="Fig 1" style="zoom: 67%;" /></p>
+<h3 id="replay-methods">Replay methods</h3>
+<p>这一系列工作以原始格式存储样本或使用生成模型生成伪样本。在学习新任务时重放这些先前的任务样本以减轻遗忘。它们要么被重新用作排练的模型输入，要么限制新任务损失的优化以防止先前的任务干扰。</p>
+<h4 id="rehearsal-methods">Rehearsal methods</h4>
+<p>重排方法 [16]、[49]、[50]、[51]
+在训练新任务时显式地对存储样本的有限子集进行重新训练。这些方法的性能上限取决于先前和当前任务的联合训练。最值得注意的是类增量学习器
+iCaRL
+[16]，它存储每个类的样本子集，选择最接近学习特征空间中的类均值。在测试时，根据所有样本计算类平均值以进行最近均值分类。在数据增量学习中，Rolnick
+等人 [49]
+在假设独立同分布的数据流情况下建议水库采样将存储样本的数量限制在固定预算内。持续原型进化（CoPE）[33]
+将最近均值分类器方法与高效的基于水库的采样方案相结合。 [66]
+中提供了关于课堂增量学习排练的附加实验。</p>
+<h4 id="constrained-optimization-methods">Constrained optimization
+methods</h4>
+<p>重排可能容易过度拟合存储样本的子集，并且似乎受到联合训练的限制，但约束优化是一种替代解决方案，为向后/向前传输留下更多余地。正如
+GEM [55]
+中在任务增量设置下提出的，关键思想是仅约束新任务更新而不干扰之前的任务。这是通过一阶泰勒级数近似将估计的梯度方向投影到先前任务梯度所勾画的可行区域上来实现的。
+A-GEM [6]
+放宽了问题，将其投影到由前一任务数据缓冲区中随机选择的样本估计的一个方向上。Aljundi
+等人 [48]
+将该解决方案扩展到没有任务边界的纯在线连续学习设置，建议选择最大程度地逼近历史数据的可行区域的样本子集。</p>
+<h4 id="pseudo-rehearsal-methods">Pseudo rehearsal methods</h4>
+<p>在没有先前样本的情况下，伪重排是早期浅层神经网络工作中使用的替代策略。给定随机输入的先前模型的输出用于近似先前的任务样本
+[39]。对于深度网络和大输入向量（例如全分辨率图像），随机输入无法覆盖输入空间
+[52]。最近，生成模型已经显示出生成高质量图像的能力
+[67]、[68]，为数据生成分布建模和对生成的示例进行重新训练提供了可能性
+[12]。然而，这也增加了持续训练生成模型的复杂性，需要特别注意平衡检索到的示例并避免模式崩溃。</p>
+<h3 id="regularization-based-methods">Regularization-based methods</h3>
+<p>这一系列工作避免了存储原始输入、优先考虑隐私并减轻了内存需求。相反，在损失函数中引入了额外的正则化项，在学习新数据时巩固以前的知识。我们可以将这些方法进一步分为以数据为中心的方法和以先验为中心的方法。</p>
+<h4 id="data-focused-methods">Data-focused methods</h4>
+<p>以数据为中心的方法的基本构建块是从先前模型（在先前任务中训练）到正在新数据上训练的模型的知识蒸馏。Silver
+等人 [8]
+首先提出使用先前的任务模型输出给定新的任务输入图像，主要是为了提高新任务的性能。
+LwF [58]
+重新引入了它，以减少遗忘和转移知识，使用先前的模型输出作为先前任务的软标签。其他工作
+[59]、[60]
+已经介绍了相关的想法，然而，已经表明这种策略很容易受到任务之间的域转移的影响
+[5]。为了解决这个问题，Triki 等人 [9]
+促进浅层自动编码器的增量集成，以将任务特征限制在其相应的学习低维空间中。</p>
+<h4 id="prior-focused-methods">Prior-focused methods</h4>
+<p>为了减少遗忘，先验聚焦方法会估计模型参数的分布，在从新数据中学习时用作先验。通常，估计所有神经网络参数的重要性，并假设参数独立以确保可行性。在后续任务的训练过程中，重要参数的更改会受到惩罚。弹性权重固结（EWC）[27]
+是第一个建立这种方法的人。变分持续学习（VCL）为这个家族引入了一个变分框架
+[69]，催生了一系列基于贝叶斯的作品 [70]、[71]。Zenke 等人 [56]
+在任务训练期间在线估计重要性权重。Aljundi 等人 [13]
+建议无监督的重要性估计，允许增加灵活性和在线用户适应，如 [21]
+中所示。进一步的工作将其扩展到无任务设置 [72]。</p>
+<h3 id="parameter-isolation-methods">Parameter isolation methods</h3>
+<p>该系列为每个任务指定了不同的模型参数，以防止任何可能的遗忘。当架构大小没有限制时，可以为新任务增长新分支，同时冻结先前的任务参数[64]、[65]，或为每个任务指定一个模型副本
+[5]。或者，架构保持静态，为每个任务分配固定部分。在新任务训练期间，先前的任务部分被屏蔽，无论是在参数级别
+[30]、[61] 或单元级别 [63]
+上施加。这些工作通常需要任务预言机，在预测期间激活相应的掩码或任务分支。因此，它们受到多头设置的限制，无法应对任务之间的共享头。专家门
+[5] 通过学习自动编码器门避免了这个问题。</p>
+<h2 id="continual-hyperparameter-framework">Continual Hyperparameter
+framework</h2>
+<h2 id="compared-methods">Compared Methods</h2>
+<p>在第 6 节中，我们对第 3
+节中介绍的三个持续学习方法系列中的每一个的代表性方法进行了全面比较。为了清楚起见，我们首先对所选方法进行简要描述，强调它们的主要特征。</p>
+<h3 id="replay-methods-1">Replay methods</h3>
+<p><strong>iCaRL</strong> [16]
+是第一个重放方法，专注于以类增量方式学习。假设固定分配的内存，它选择并存储最接近每个类的特征平均值的样本（范例）。在训练过程中，新类别的估计损失以及从先前模型预测获得的目标与先前学习类别的当前模型预测之间的蒸馏损失都被最小化。由于蒸馏损失强度与先前知识的保存相关，因此该超参数在我们提出的框架中进行了优化。在我们的研究中，我们考虑任务增量设置，因此也以多头方式实现
+iCarl，以便与其他方法进行公平的比较。</p>
+<p><strong>GEM</strong> [55]
+利用样本来解决约束优化问题，将当前任务梯度投影到由先前任务梯度概述的可行区域中。作者通过用一个小常数
+<span class="math inline">\(\gamma \geq 0\)</span>（在我们的框架中构成
+<span
+class="math inline">\(\mathcal{H}\)</span>）改变梯度投影来观察到向后传输的增加。</p>
+<p>重放方法的主要缺点是类数量的可扩展性有限，需要额外的计算和原始输入样本的存储。虽然固定内存限制了内存消耗，但这也降低了样本集表示原始分布的能力。此外，存储这些原始输入样本还可能导致隐私问题。</p>
+<h3 id="regularization-based-methods-1">Regularization-based
+methods</h3>
+<p>这项调查重点关注基于正则化的方法，比较了该系列中的七种方法。正则化强度与知识保留量相关，因此在我们的超参数框架中构成
+<span class="math inline">\(\mathcal{H}\)</span>。</p>
+<p><strong>Learning without Forgetting</strong>（LwF）[58] 通过知识蒸馏
+[73]
+的方式保留先前任务的知识。在训练新任务之前，记录新任务数据的网络输出，并在随后的训练过程中使用以提取先前的任务知识。然而，这种方法的成功在很大程度上取决于新的任务数据以及它与先前任务的相关程度。随着添加更多不同的任务，相对于先前学习的任务的分布变化可能会导致先前任务的误差逐渐累积
+[5]、[58]。这种错误累积也适用于类增量设置，如 [16]
+所示。另一个缺点在于转发所有新任务数据和存储输出的额外开销。 LwF
+是专门为分类而设计的，但也已应用于其他问题，例如对象检测 [18]。</p>
+<p><strong>Encoder Based Lifelong Learning</strong>（EBLL）[9]
+通过保留先前任务的重要低维特征表示来扩展
+LwF。对于每个任务，不完整的自动编码器都经过端到端优化，将特征投影到较低维的流形上。在训练过程中，额外的正则化项会阻止当前的特征预测偏离之前的任务最优预测。尽管所需的内存随着任务数量线性增长，但自动编码器的大小仅占主干网络的一小部分。主要的计算开销发生在自动编码器训练以及在每个优化步骤中收集样本的特征投影。</p>
+<p><strong>Elastic Weight Consolidation</strong>（EWC）[27] 在贝叶斯框架
+[74] 中引入了网络参数不确定性。在顺序贝叶斯估计之后，先前任务 <span
+class="math inline">\(t &lt; \mathcal{T}\)</span> 的旧后验构成新任务
+<span class="math inline">\(\mathcal{T}\)</span>
+的先验，从而建立了传播旧任务重要性权重的机制。真实后验是难以处理的，因此使用拉普拉斯近似进行估计，其精度由费希尔信息矩阵
+(FIM) 确定。在接近最小值时，该 FIM 显示与损失的正半定二阶导数等价
+[75]，并且在实践中通常由经验 FIM 近似以避免额外的向后传递 [76]： <span
+class="math display">\[
+\Omega_k^T=\mathbb{E}_{(x,y)\sim
+D^T}\left[\left(\frac{\delta\mathcal{L}}{\delta\theta_k^T}\right)^2\right]
+, \tag{3}
+\]</span> 训练任务 <span class="math inline">\(\mathcal{T}\)</span>
+后计算重要性权重 <span
+class="math inline">\(\Omega_k^{\mathcal{T}}\)</span>
+。尽管最初每个任务需要一个 FIM，但这可以通过传播单个惩罚来解决
+[77]。此外，FIM
+在优化任务后进行近似，导致梯度接近于零，因此正则化很少。这在我们的框架中本质上得到了解决，因为正则化强度最初非常高，并且仅降低到衰减稳定性。
+[78]、[57] 和 [14] 中提出了 EWC 的变体来解决这些问题。</p>
+<p><strong>Synaptic Intelligence</strong>（SI）[56] 打破了 EWC
+在训练后的单独阶段确定新任务重要性权重 <span
+class="math inline">\(\Omega_k^{\mathcal{T}}\)</span>
+的范式。相反，他们在训练期间维持在线估计 <span
+class="math inline">\(\omega_k^t\)</span>，以最终达到 <span
+class="math display">\[
+\Omega_k^T=\sum_{t=1}^T\frac{\omega_k^t}{(\Delta\theta_k^t)^2+\xi} ,
+\tag{4}
+\]</span> 其中 <span class="math inline">\(\Delta \theta_k^t =
+\theta_k^t - \theta_k^{t-1}\)</span> 是特定于任务的参数距离，阻尼参数
+<span class="math inline">\(\xi\)</span>
+避免被零除。请注意，累积重要性权重 <span
+class="math inline">\(\Omega_k^{\mathcal{T}}\)</span> 仍然仅在训练任务
+<span class="math inline">\(\mathcal{T}\)</span> 之后更新，如 EWC
+中那样。此外，刀子可以双向切割，以实现高效的在线计算。首先，随机梯度下降在训练过程中会在近似梯度中产生噪声，因此作者指出重要性权重往往被高估。其次，预训练网络中的灾难性遗忘变得不可避免，因为重要性权重无法检索。在另一项工作中，Riemannian
+Walk [14] 将 SI 路径积分与 EWC 的在线版本相结合来测量参数重要性。</p>
+<p><strong>Memory Aware Synapses</strong>（MAS）[13]
+将参数重要性度量重新定义为无监督设置。作者没有像 (3) 那样计算损失函数
+<span class="math inline">\(\mathcal{L}\)</span>
+的梯度，而是获得学习网络输出函数 <span
+class="math inline">\(f_{\mathcal{T}}\)</span> 的 <span
+class="math inline">\(L_2-norm\)</span> 的平方的梯度： <span
+class="math display">\[
+\Omega_k^T=\mathbb{E}_{x\sim
+D^T}[\frac{\delta\left\|f_{\mathcal{T}}(x;\theta)\right\|_2^2}{\delta\theta_k^T}]
+. \tag{5}
+\]</span>
+先前讨论的方法需要监督数据来进行基于损失的重要性权重估计，因此仅限于可用的训练数据。相比之下，MAS
+可以对无监督的保留数据集进行重要性权重估计，因此能够进行特定于用户的数据适应。</p>
+<p><strong>Incremental Moment Matching</strong> (IMM) [28]
+估计任务参数的高斯后验，与 EWC
+的思路相同，但在模型合并的使用上存在本质上的不同。在合并步骤中，高斯后验的混合通过单个高斯分布来近似，即一组新的合并参数
+<span class="math inline">\(\theta^{1:\mathcal{T}}\)</span>
+和相应的协方差 <span class="math inline">\(\sum^{1:\mathcal{T}}\)</span>
+。尽管合并策略意味着部署单个合并模型，但它需要在每个学习任务的训练期间存储模型。在他们的工作中，提出了两种合并步骤的方法：mean-IMM
+和 mode-IMM。在前者中，特定任务网络的权重 <span
+class="math inline">\(\theta_k\)</span> 根据加权和进行平均： <span
+class="math display">\[
+\theta_k^{1:\mathcal{T}}=\sum_t^T\alpha_k^t\theta_k^t , \tag{6}
+\]</span> 其中 <span class="math inline">\(\alpha_k^t\)</span> 为任务
+<span class="math inline">\(t\)</span> 的混合比例，满足 <span
+class="math inline">\(\sum_t^{\mathcal{T}}
+\alpha_k^t=1.\)</span>。或者，第二种合并方法 mode-IMM
+目标为高斯混合模式，重要性权重由（3）获得： <span
+class="math display">\[
+\theta_k^{1:\mathcal{T}}=\frac1{\Omega_k^{1:\mathcal{T}}}\sum_t^{\mathcal{T}}\alpha_k^t\Omega_k^t\theta_k^t,\quad\Omega_k^{1:\mathcal{T}}=\sum_t^{\mathcal{T}}\alpha_k^t\Omega_k^t.
+\tag{7}
+\]</span>
+当两个模型由于独立初始化而收敛到不同的局部最小值时，简单地对模型进行平均可能会导致损失增加，因为不能保证参数空间中两点之间的平坦或凸损失表面[79]。因此，IMM
+提出了三种传输技术，旨在在特定任务模型的插值中获得最佳解决方案： i)
+Weight-Transfer 使用先前的任务参数初始化新的任务网络； ii) Drop-Transfer
+是 dropout [80] 的一种变体，之前的任务参数为零点； iii) <span
+class="math inline">\(L2-transfer\)</span> 是 <span
+class="math inline">\(L2\)</span>
+正则化的变体，同样使用先前的任务参数重新定义零点。在本研究中，我们将平均
+IMM 和模式 IMM 与 Weight-Transfer和 <span
+class="math inline">\(L2-transfer\)</span> 进行比较。由于平均 IMM
+始终优于模式 IMM，因此我们将其完整结果参见附录。</p>
+<h3 id="parameter-isolation-methods-1">Parameter isolation methods</h3>
+<p>这一系列方法隔离了特定任务的参数，并可以通过修复先前任务的参数子集来保证最大的稳定性。虽然这避免了稳定性衰减，但可以最小化用于新任务的容量，以避免容量饱和并确保未来任务的稳定学习。</p>
+<p><strong>PackNet</strong> [61]
+通过构建二进制掩码迭代地将参数子集分配给连续的任务。为此，新任务建立了两个训练阶段。首先，在不改变先前任务参数子集的情况下训练网络。随后，修剪掉一部分不重要的自由参数，并通过最低量值进行测量。然后，第二轮训练重新训练剩余的重要参数子集。剪枝掩码保留了任务性能，因为它确保修复未来任务的任务参数子集。
+PackNet 允许为每个任务显式分配网络容量，因此本质上限制了任务总数。 <span
+class="math inline">\(\mathcal{H}\)</span> 包含每层修剪分数。</p>
+<p><strong>HAT</strong> [63]
+只需要一个训练阶段，结合特定于任务的嵌入来进行注意力掩蔽。每层嵌入通过
+Sigmoid 进行门控，以在前向传递中获得基于单元的注意力掩码。 Sigmoid
+斜率通过每个 epoch
+的训练进行校正，最初允许掩码修改，最终形成接近二进制的掩码。为了促进进一步任务的能力，正则化项对新的任务注意力掩模施加了稀疏性。该方法的核心是根据注意力掩码限制对先前任务很重要的两个单元之间的参数更新。
+<span class="math inline">\(\mathcal{H}\)</span> 中考虑了正则化强度和
+Sigmoid 斜率。我们仅在 Tiny Imagenet
+上报告结果，因为有关不对称容量和超参数敏感性的困难阻止使用 HAT
+进行更困难的设置 [81]。我们参考附录 B.5 和 B.6
+对参数隔离方法的容量使用进行详细分析。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Deep-Learning/" class="category-chain-item">Deep Learning</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Deep-Learning/" class="print-no-link">#Deep Learning</a>
+      
+        <a href="/tags/Continual-Learning/" class="print-no-link">#Continual Learning</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>论文日记 2024 A continual learning survey-Defying forgetting in classification tasks (2021)</div>
+      <div>https://blog.lfd.world/2024/06/28/lun-wen-ri-ji-2024-a-continual-learning-survey-defying-forgetting-in-classification-tasks-2021/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>培根请加蛋</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/20/2024-science-research-writing-a-guide-for-non-native-speakers-of-english-introduction/" title="Science Research Writing A Guide for Non-Native Speakers of English--Introduction">
+                        <span class="hidden-mobile">Science Research Writing A Guide for Non-Native Speakers of English--Introduction</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
