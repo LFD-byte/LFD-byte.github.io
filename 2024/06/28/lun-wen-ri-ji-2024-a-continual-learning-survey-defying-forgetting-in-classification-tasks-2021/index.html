@@ -24,8 +24,9 @@
 <meta property="og:description" content="A continual learning survey-Defying forgetting in classification tasks">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240630201609705.png">
+<meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240630215449611.png">
 <meta property="article:published_time" content="2024-06-28T13:26:00.000Z">
-<meta property="article:modified_time" content="2024-06-30T13:28:46.864Z">
+<meta property="article:modified_time" content="2024-07-01T09:44:09.683Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Continual Learning">
@@ -225,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k 字
+          12k 字
         
       </span>
     
@@ -236,7 +237,7 @@
         
         
         
-          94 分钟
+          102 分钟
         
       </span>
     
@@ -411,7 +412,7 @@ Approaches</h2>
 <p>随着最近人们对神经网络的兴趣日益浓厚，持续学习和灾难性遗忘也受到了更多关注。已经针对两个连续任务
 [31] 实证研究了 dropout [43]
 和不同激活函数对遗忘的影响，并且有一些工作从理论角度研究了任务增量学习
-[44]、[45]、[46]、[47] ]。</p>
+[44]、[45]、[46]、[47] 。</p>
 <p>最近的作品通过更长的任务序列和更多的示例解决了持续学习问题。接下来，我们将回顾最重要的作品。根据任务特定信息在整个顺序学习过程中的存储和使用方式，我们区分了三个系列：</p>
 <ul>
 <li>重放方法</li>
@@ -422,9 +423,9 @@ Approaches</h2>
 中介绍的分类重叠。然而，我们相信它提供了更全面的概述并涵盖了大多数现有作品。总结如图
 1 所示。</p>
 <p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240630201609705.png" alt="Fig 1" style="zoom: 67%;" /></p>
-<h3 id="replay-methods">Replay methods</h3>
+<h3 id="replay-methods">Replay Methods</h3>
 <p>这一系列工作以原始格式存储样本或使用生成模型生成伪样本。在学习新任务时重放这些先前的任务样本以减轻遗忘。它们要么被重新用作排练的模型输入，要么限制新任务损失的优化以防止先前的任务干扰。</p>
-<h4 id="rehearsal-methods">Rehearsal methods</h4>
+<h4 id="rehearsal-methods">Rehearsal Methods</h4>
 <p>重排方法 [16]、[49]、[50]、[51]
 在训练新任务时显式地对存储样本的有限子集进行重新训练。这些方法的性能上限取决于先前和当前任务的联合训练。最值得注意的是类增量学习器
 iCaRL
@@ -433,8 +434,8 @@ iCaRL
 在假设独立同分布的数据流情况下建议水库采样将存储样本的数量限制在固定预算内。持续原型进化（CoPE）[33]
 将最近均值分类器方法与高效的基于水库的采样方案相结合。 [66]
 中提供了关于课堂增量学习排练的附加实验。</p>
-<h4 id="constrained-optimization-methods">Constrained optimization
-methods</h4>
+<h4 id="constrained-optimization-methods">Constrained Optimization
+Methods</h4>
 <p>重排可能容易过度拟合存储样本的子集，并且似乎受到联合训练的限制，但约束优化是一种替代解决方案，为向后/向前传输留下更多余地。正如
 GEM [55]
 中在任务增量设置下提出的，关键思想是仅约束新任务更新而不干扰之前的任务。这是通过一阶泰勒级数近似将估计的梯度方向投影到先前任务梯度所勾画的可行区域上来实现的。
@@ -442,15 +443,15 @@ A-GEM [6]
 放宽了问题，将其投影到由前一任务数据缓冲区中随机选择的样本估计的一个方向上。Aljundi
 等人 [48]
 将该解决方案扩展到没有任务边界的纯在线连续学习设置，建议选择最大程度地逼近历史数据的可行区域的样本子集。</p>
-<h4 id="pseudo-rehearsal-methods">Pseudo rehearsal methods</h4>
+<h4 id="pseudo-rehearsal-methods">Pseudo Rehearsal Methods</h4>
 <p>在没有先前样本的情况下，伪重排是早期浅层神经网络工作中使用的替代策略。给定随机输入的先前模型的输出用于近似先前的任务样本
 [39]。对于深度网络和大输入向量（例如全分辨率图像），随机输入无法覆盖输入空间
 [52]。最近，生成模型已经显示出生成高质量图像的能力
 [67]、[68]，为数据生成分布建模和对生成的示例进行重新训练提供了可能性
 [12]。然而，这也增加了持续训练生成模型的复杂性，需要特别注意平衡检索到的示例并避免模式崩溃。</p>
-<h3 id="regularization-based-methods">Regularization-based methods</h3>
+<h3 id="regularization-based-methods">Regularization-based Methods</h3>
 <p>这一系列工作避免了存储原始输入、优先考虑隐私并减轻了内存需求。相反，在损失函数中引入了额外的正则化项，在学习新数据时巩固以前的知识。我们可以将这些方法进一步分为以数据为中心的方法和以先验为中心的方法。</p>
-<h4 id="data-focused-methods">Data-focused methods</h4>
+<h4 id="data-focused-methods">Data-focused Methods</h4>
 <p>以数据为中心的方法的基本构建块是从先前模型（在先前任务中训练）到正在新数据上训练的模型的知识蒸馏。Silver
 等人 [8]
 首先提出使用先前的任务模型输出给定新的任务输入图像，主要是为了提高新任务的性能。
@@ -460,14 +461,14 @@ LwF [58]
 已经介绍了相关的想法，然而，已经表明这种策略很容易受到任务之间的域转移的影响
 [5]。为了解决这个问题，Triki 等人 [9]
 促进浅层自动编码器的增量集成，以将任务特征限制在其相应的学习低维空间中。</p>
-<h4 id="prior-focused-methods">Prior-focused methods</h4>
+<h4 id="prior-focused-methods">Prior-focused Methods</h4>
 <p>为了减少遗忘，先验聚焦方法会估计模型参数的分布，在从新数据中学习时用作先验。通常，估计所有神经网络参数的重要性，并假设参数独立以确保可行性。在后续任务的训练过程中，重要参数的更改会受到惩罚。弹性权重固结（EWC）[27]
 是第一个建立这种方法的人。变分持续学习（VCL）为这个家族引入了一个变分框架
 [69]，催生了一系列基于贝叶斯的作品 [70]、[71]。Zenke 等人 [56]
 在任务训练期间在线估计重要性权重。Aljundi 等人 [13]
 建议无监督的重要性估计，允许增加灵活性和在线用户适应，如 [21]
 中所示。进一步的工作将其扩展到无任务设置 [72]。</p>
-<h3 id="parameter-isolation-methods">Parameter isolation methods</h3>
+<h3 id="parameter-isolation-methods">Parameter Isolation Methods</h3>
 <p>该系列为每个任务指定了不同的模型参数，以防止任何可能的遗忘。当架构大小没有限制时，可以为新任务增长新分支，同时冻结先前的任务参数[64]、[65]，或为每个任务指定一个模型副本
 [5]。或者，架构保持静态，为每个任务分配固定部分。在新任务训练期间，先前的任务部分被屏蔽，无论是在参数级别
 [30]、[61] 或单元级别 [63]
@@ -478,7 +479,7 @@ framework</h2>
 <h2 id="compared-methods">Compared Methods</h2>
 <p>在第 6 节中，我们对第 3
 节中介绍的三个持续学习方法系列中的每一个的代表性方法进行了全面比较。为了清楚起见，我们首先对所选方法进行简要描述，强调它们的主要特征。</p>
-<h3 id="replay-methods-1">Replay methods</h3>
+<h3 id="replay-methods-1">Replay Methods</h3>
 <p><strong>iCaRL</strong> [16]
 是第一个重放方法，专注于以类增量方式学习。假设固定分配的内存，它选择并存储最接近每个类的特征平均值的样本（范例）。在训练过程中，新类别的估计损失以及从先前模型预测获得的目标与先前学习类别的当前模型预测之间的蒸馏损失都被最小化。由于蒸馏损失强度与先前知识的保存相关，因此该超参数在我们提出的框架中进行了优化。在我们的研究中，我们考虑任务增量设置，因此也以多头方式实现
 iCarl，以便与其他方法进行公平的比较。</p>
@@ -489,7 +490,7 @@ iCarl，以便与其他方法进行公平的比较。</p>
 class="math inline">\(\mathcal{H}\)</span>）改变梯度投影来观察到向后传输的增加。</p>
 <p>重放方法的主要缺点是类数量的可扩展性有限，需要额外的计算和原始输入样本的存储。虽然固定内存限制了内存消耗，但这也降低了样本集表示原始分布的能力。此外，存储这些原始输入样本还可能导致隐私问题。</p>
 <h3 id="regularization-based-methods-1">Regularization-based
-methods</h3>
+Methods</h3>
 <p>这项调查重点关注基于正则化的方法，比较了该系列中的七种方法。正则化强度与知识保留量相关，因此在我们的超参数框架中构成
 <span class="math inline">\(\mathcal{H}\)</span>。</p>
 <p><strong>Learning without Forgetting</strong>（LwF）[58] 通过知识蒸馏
@@ -577,7 +578,7 @@ class="math inline">\(L2\)</span>
 IMM 和模式 IMM 与 Weight-Transfer和 <span
 class="math inline">\(L2-transfer\)</span> 进行比较。由于平均 IMM
 始终优于模式 IMM，因此我们将其完整结果参见附录。</p>
-<h3 id="parameter-isolation-methods-1">Parameter isolation methods</h3>
+<h3 id="parameter-isolation-methods-1">Parameter Isolation Methods</h3>
 <p>这一系列方法隔离了特定任务的参数，并可以通过修复先前任务的参数子集来保证最大的稳定性。虽然这避免了稳定性衰减，但可以最小化用于新任务的容量，以避免容量饱和并确保未来任务的稳定学习。</p>
 <p><strong>PackNet</strong> [61]
 通过构建二进制掩码迭代地将参数子集分配给连续的任务。为此，新任务建立了两个训练阶段。首先，在不改变先前任务参数子集的情况下训练网络。随后，修剪掉一部分不重要的自由参数，并通过最低量值进行测量。然后，第二轮训练重新训练剩余的重要参数子集。剪枝掩码保留了任务性能，因为它确保修复未来任务的任务参数子集。
@@ -593,6 +594,38 @@ Sigmoid 斜率。我们仅在 Tiny Imagenet
 上报告结果，因为有关不对称容量和超参数敏感性的困难阻止使用 HAT
 进行更困难的设置 [81]。我们参考附录 B.5 和 B.6
 对参数隔离方法的容量使用进行详细分析。</p>
+<h2 id="experiments">Experiments</h2>
+<p>在本节中，我们首先讨论第 6.1 节中的实验设置，然后在第 6.2 节中对通用
+BASE 模型上的所有方法进行比较。改变该模型容量的影响将在 6.3
+节中讨论。接下来，在 6.4
+节中，我们将研究两种流行的正则化方法的效果。我们在第 6.5
+节中继续，仔细研究现实世界设置中持续学习方法的行为，放弃人为强加的任务之间的平衡。此外，我们在第
+6.6 节中研究了任务排序在平衡和不平衡设置中的影响，并在第 6.7 节的表 9
+中阐明了定性比较。最后，第 6.8 节总结了表 10 中我们的主要发现。</p>
+<h3 id="experimental-setup">Experimental Setup</h3>
+<p><strong>Datasets.</strong>
+我们在三个数据集上进行图像分类实验，其主要特征总结在表1中。首先，我们使用
+Tiny Imagenet 数据集 [82]。这是 ImageNet [83] 中 200
+个类别的子集，重新调整为图像大小 64 × 64。每个类别包含 500
+个样本，细分为训练 (80%) 和验证 (20%)，以及 50
+个用于评估的样本。为了构建平衡的数据集，我们为 10
+个连续任务序列中的每个任务分配等量的 20
+个随机选择的类。此任务增量设置允许在测试时使用预言机对每个任务进行评估，确保所有任务在难度、大小和分布方面大致相似，从而更容易解释结果。</p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240630215449611.png" alt="image-20240630215449611" style="zoom:67%;" /></p>
+<p>第二个数据集基于 iNaturalist
+[84]，其目标是具有大量细粒度类别和高度不平衡类别的更真实的环境。最重要的是，我们通过将
+10
+个物种超级类别分配为单独的任务来施加任务不平衡和任务之间的领域转移。我们从总共14个超级类别中选择了最平衡的10个超级类别，并且只保留至少有100个样本的类别。有关每个任务的统计数据的更多详细信息，请参见表
+8。我们仅使用训练数据，细分为训练 (70%)、验证 (20%) 和评估 (10%)
+集，所有图像的尺寸为 800 × 600。</p>
+<p>第三，我们采用了[5]和[13]中的8个高度多样化的识别任务（RecogSeq）序列，其目标也是分布不平衡数量的类别，并超越了场景和动作识别的对象识别。该序列由
+8
+个连续的数据集组成，对物体、动作和场景进行从细粒度到粗分类，从花、场景、鸟和汽车，到飞机、动作、字母和数字。表
+2 提供了详细信息，验证和评估划分如下 [5]。</p>
+<p>在这项调查中，我们在第 6.6 节中仔细研究了 Tiny Imagenet 和
+iNaturalist
+的不同任务顺序的影响。除了该部分之外，两个数据集的讨论结果都是在任务的随机排序和
+RecogSeq 的固定数据集排序上执行的。</p>
 
                 
               </div>
