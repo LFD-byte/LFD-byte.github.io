@@ -1,0 +1,1014 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="培根请加蛋">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Graph Self-Supervised Learning- A Survey">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文日记 2024 Graph Self-Supervised Learning- A Survey (2021)">
+<meta property="og:url" content="https://blog.lfd.world/2024/07/02/lun-wen-ri-ji-2024-graph-self-supervised-learning-a-survey-2021/index.html">
+<meta property="og:site_name" content="培根请加蛋">
+<meta property="og:description" content="Graph Self-Supervised Learning- A Survey">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702161643736.png">
+<meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702201602188.png">
+<meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702201756321.png">
+<meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702201823164.png">
+<meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702201849595.png">
+<meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702203539859.png">
+<meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702203610823.png">
+<meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702203631682.png">
+<meta property="article:published_time" content="2024-07-02T08:09:00.000Z">
+<meta property="article:modified_time" content="2024-07-02T12:40:27.751Z">
+<meta property="article:author" content="培根请加蛋">
+<meta property="article:tag" content="Deep Learning">
+<meta property="article:tag" content="Graph">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702161643736.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>论文日记 2024 Graph Self-Supervised Learning- A Survey (2021) - 培根请加蛋</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.lfd.world","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>培根请加蛋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="论文日记 2024 Graph Self-Supervised Learning- A Survey (2021)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-02 16:09" pubdate>
+          2024年7月2日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          69 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">论文日记 2024 Graph Self-Supervised Learning- A Survey (2021)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="abstract">Abstract</h2>
+<p>图的深度学习最近引起了人们的极大兴趣。然而，大多数工作都集中在（半）监督学习上，导致标签依赖重、泛化性差、鲁棒性弱等缺点。为了解决这些问题，自我监督学习（self-supervised
+learning, SSL）通过精心设计的 pretext tasks
+提取信息知识，而不依赖于手动标签，已成为图数据的一种有前景和趋势的学习范式。与计算机视觉和自然语言处理等其他领域的
+SSL 不同，图上的 SSL
+具有独特的背景、设计思想和分类法。在图自监督学习的框架下，我们对使用 SSL
+技术处理图数据的现有方法进行了及时、全面的回顾。我们构建了一个统一的框架，以数学方式形式化图
+SSL 的范式。根据 pretext tasks
+的目标，我们将这些方法分为四类：基于生成的方法
+(generation-based)、基于辅助属性的方法 (auxiliary
+property-based)、基于对比的方法 (contrast-based) 和混合方法 (hybrid
+approaches)。我们进一步描述了图 SSL 在各个研究领域的应用，并总结了图 SSL
+的常用数据集、评估基准、性能比较和开源代码。最后，我们讨论了该研究领域剩余的挑战和潜在的未来方向。</p>
+<p><strong>Index Terms</strong>: Self-supervised learning, graph
+analytics, deep learning, graph representation learning, graph neural
+networks.</p>
+<h2 id="introductioin">Introductioin</h2>
+<p>近年来，图的深度学习 [1]、[2]、[3]、[4]
+在人工智能研究社区中变得越来越流行，因为图结构数据在包括电子商务在内的许多领域中无处不在
+[5]、交通 [6]、化学 [7] 和知识库
+[8]。大多数关于图的深度学习研究都集中在（半）监督学习场景，其中利用特定的下游任务（例如节点分类）来训练具有注释良好的手动标签的模型。尽管这些研究取得了成功，但对标签的严重依赖带来了一些缺点。首先，手动标签的收集和注释成本高昂，特别是对于拥有大规模数据集（例如引文和社交网络
+[9]）或对领域知识有需求（例如化学和医学 [10]
+的研究领域）。其次，由于过度拟合问题，纯粹的监督学习场景通常泛化性较差，特别是在训练数据稀缺的情况下
+[11]。第三，有监督图深度学习模型容易受到与标签相关的对抗性攻击，导致图监督学习的鲁棒性较弱
+[12]。</p>
+<p>为了解决（半）监督学习的缺点，自监督学习（SSL）提供了一种有前途的学习范式，可以减少对手动标签的依赖。在
+SSL 中，模型是通过解决一系列手工辅助任务（所谓的 pretext
+tasks）来学习的，其中监督信号是从数据本身自动获取的，而不需要手动注释。借助精心设计的
+pretext tasks，SSL
+使模型能够从未标记的数据中学习更多信息表示，以实现更好的性能
+[13]、[14]、泛化 [9]、[15]、[16] 和鲁棒性 [17] ，[18]
+关于各种下游任务。</p>
+<p>SSL 被图灵奖获得者 Yoshua Bengio 和 Yann LeCun
+描述为“人类水平智能的关键”，最近在计算机视觉 (CV) 和自然语言处理 (NLP)
+领域取得了巨大成功。 CV 领域的早期SSL方法为视觉表示学习 [19]
+设计了各种语义相关的 pretext tasks，例如图像修复 [20]、图像着色 [21]
+和拼图游戏 [22] 等。最近，自监督对比学习框架（例如，MoCo [23]、SimCLR
+[24] 和 BYOL [25]）利用图像变换下语义的不变性来学习视觉特征。在 NLP
+领域，早期的词嵌入方法 [26]、[27] 与 SSL
+具有相同的想法，即从数据本身学习。通过语言 pretext tasks
+进行预训练，最近的大规模语言模型（例如 BERT [28] 和 XLNet [29]）在多个
+NLP 任务上实现了最先进的性能。</p>
+<p>继 SSL 在 CV 和 NLP 上取得巨大成功之后，最近，人们对将 SSL
+应用于图结构数据越来越感兴趣。然而，将 CV/NLP 设计的 pretext tasks
+转移到图数据分析并非易事。主要挑战是图处于不规则的非欧几里得数据空间中。与图像/语言数据所在的
+2D/1D
+规则网格欧几里德空间相比，非欧几里德空间更通用，但也更复杂。因此，一些针对网格结构数据的
+pretext tasks
+无法直接映射到图数据。此外，图数据中的数据示例（节点）与拓扑结构自然相关，而
+CV（图像）和 NLP（文本）中的示例通常是独立的。因此，如何处理图 SSL
+中的这种依赖关系成为 pretext tasks 设计的一个挑战。图 1
+通过一些玩具示例说明了这种差异。考虑到图分析中的 SSL
+与其他研究领域的显着差异，图 SSL 需要专有的定义和分类法。</p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702161643736.png" alt="Fig. 1" style="zoom:67%;" /></p>
+<p>Fig. 1: Toy examples of different SSL pretext tasks in CV, NLP and
+graph analytics. In generative tasks, graph SSL should consider the
+topological structure in an irregular grid as well as node features,
+while SSL in CV/NLP just needs to recover the information in 2D/1D grid
+space. In contrastive tasks, the dependency between nodes is
+non-negligible in graph SSL, while the samples in CV/NLP are
+independent.</p>
+<p>图 SSL 的历史至少可以追溯到无监督图嵌入的早期研究
+[30]、[31]。这些方法通过最大化截断随机游走中上下文节点之间的一致性来学习节点表示。经典的无监督学习模型图自动编码器（GAE）[32]也可以被视为学习重建图结构的图SSL方法。自2019年以来，最近的图SSL浪潮带来了各种
+pretext tasks
+的设计，从对比学习[13]、[33]到图属性挖掘[10]、[17]。考虑到图 SSL
+研究的不断增长趋势以及相关 pretext tasks
+的多样性，迫切需要构建统一的框架和系统分类来总结图 SSL
+的方法和应用。</p>
+<p>为了填补这一空白，本文对图 SSL
+快速发展的领域进行了全面且最新的概述，并提供了相关应用的丰富资源和讨论。本文的目标受众是想要了解图数据自监督学习的一般机器学习研究人员、想要跟踪图神经网络
+(GNN) 最新进展的图学习研究人员以及需要了解图数据的领域专家。希望将图 SSL
+方法推广到新应用程序或其他领域。本次调查的核心贡献总结如下：</p>
+<ul>
+<li><strong>统一的框架和系统的分类。</strong>我们提出了一个统一的框架，以数学形式化图
+SSL
+方法。基于我们的框架，我们将现有的工作系统地分为四组：基于生成的方法、基于辅助属性的方法、基于对比的方法和混合方法。我们还构建了下游任务的分类法和
+SSL 学习方案。</li>
+<li><strong>全面且最新的审查。</strong>我们对经典和最新的图 SSL
+方法进行了全面、及时的审查。对于每种类型的图 SSL
+方法，我们提供细粒度的分类、数学描述、详细的比较和高级摘要。</li>
+<li><strong>丰富的资源和应用。</strong>我们收集了丰富的图 SSL
+资源，包括数据集、评估基准、性能比较和开源代码。我们还总结了图 SSL
+在各个研究领域的实际应用。</li>
+<li><strong>展望未来方向</strong>。我们指出当前研究的技术局限性。我们进一步从不同角度提出了未来工作的六个有前景的方向。</li>
+</ul>
+<p><em>与相关调查文章的比较。</em> 一些现有的调查主要从一般 SSL [34]、CV
+SSL [19] 或自监督对比学习 [35]
+的角度进行综述，而本文纯粹关注图结构数据的
+SSL。与最近关于图自监督学习的调查 [36]、[37]
+相比，我们的调查对该主题有了更全面的概述，并提供了以下差异：（1）统一的编码器-解码器框架来定义图SSL；
+（2）从数学角度进行系统化、更细粒度的分类； （3）更及时的审查； (4)
+更详细的资源总结，包括性能比较、数据集、实现和实际应用；
+(5)对挑战和未来方向进行更具前瞻性的讨论。</p>
+<p>本文的其余部分组织如下。第 2
+节定义了相关概念并提供了其余各节中使用的符号。第3节描述了图 SSL
+的框架，并从多个角度进行了分类。第 4-7 节分别回顾了四类图 SSL 方法。第 8
+节总结了图 SSL 实证研究的有用资源，包括性能比较、数据集和开源实现。第 9
+节调查了各个领域的实际应用。第 10 节分析了剩余的挑战和未来可能的方向。第
+11 节最后总结了本文。</p>
+<h2 id="definition-and-notation">Definition and Notation</h2>
+<p>在本节中，我们概述了图 SSL
+的相关术语定义，列出了常用的符号，并定义了与图相关的概念。</p>
+<h3 id="term-definitions">Term Definitions</h3>
+<p>在图 SSL 中，我们提供了以下相关基本概念的定义。</p>
+<p><strong>手动标签与伪标签(Manual Labels Versus Pseudo Labels)</strong>
+手动标签，在一些论文 [19]
+中也称为人工注释标签，是指由人类专家或工作人员手动注释的标签。相反，伪标签表示机器可以在没有任何人类知识的情况下从数据中自动获取的标签。一般来说，伪标签比手动标签需要更低的获取成本，因此在手动标签难以获取或数据量巨大时，伪标签具有优势。在自监督学习环境中，可以设计特定的方法来生成伪标签，从而增强表示学习。</p>
+<p><strong>下游任务与前置任务 (Downstream Tasks Versus Pretext
+Tasks)</strong>
+下游任务是用于评估不同模型学习的特征表示的质量或性能的图分析任务。典型应用包括节点分类和图分类。pretext
+tasks
+是指模型要解决的预先设计的任务（例如图重建），它有助于模型从未标记的数据中学习更通用的表示，从而通过提供更好的初始化或更有效的正则化来使下游任务受益。一般来说，解决下游任务需要手动标签，而
+pretext tasks 通常通过伪标签来学习。</p>
+<p><strong>监督学习、无监督学习和自我监督学习 (Supervised Learning,
+Unsupervised Learning and Self-Supervised Learning)</strong>
+监督学习是指利用明确定义的手动标签来训练机器学习模型的学习范式。相反，无监督学习是指不使用任何手动标签的学习范式。作为无监督学习的一个子集，自监督学习表示监督信号从数据本身生成的学习范式。在自监督学习方法中，模型通过
+pretext tasks 进行训练，以获得更好的性能和下游任务的泛化能力。</p>
+<h3 id="notations">Notations</h3>
+<p>我们在本小节中提供了本文中使用的重要符号（在附录 B.1
+中进行了总结）以及不同类型图和 GNN 的定义。</p>
+<p><strong><em>Definition 1 (Plain Graph)</em></strong> 一个 plain graph
+被表示为 <span
+class="math inline">\(\mathcal{G}=(\mathcal{V},\mathcal{E})\)</span>，其中
+<span class="math inline">\(\mathcal{V}=\{v_1,\dots,v_n\}\
+(|\mathcal{V}|=n)\)</span> 是点集，<span
+class="math inline">\(\mathcal{E}(|\mathcal{E}|=m)\)</span>
+是边集，我们自然有 <span class="math inline">\(\mathcal{E} \subseteq
+\mathcal{V} \times \mathcal{V}\)</span>。点 <span
+class="math inline">\(v_i\)</span> 的邻居表示为 <span
+class="math inline">\(\mathcal{N}(v_i) = \{v_j \in \mathcal{V}|e_{i,j}
+\in \mathcal{E}\}\)</span>。图的拓扑表示为邻接矩阵 <span
+class="math inline">\(A \in \mathbb{R}^{n \times n}\)</span>，其中 <span
+class="math inline">\(A_{i,j}=1\)</span> 表示 <span
+class="math inline">\(e_{i.j}\in \mathcal{E}\)</span>，<span
+class="math inline">\(A_{i,j}=0\)</span> 表示 <span
+class="math inline">\(e_{i,j} \notin \mathcal{E}\)</span>。</p>
+<p><strong><em>Definition 2 (Attributed Graph)</em></strong>
+属性图是指节点和/或边与其自身特征（也称为属性）相关联的图。节点和边的特征矩阵分别表示为
+<span class="math inline">\(X_{node} \in \mathbb{R}^{n \times
+d_{node}}\)</span> 和 <span class="math inline">\(X_{edge} \in
+\mathbb{R}^{m \times
+d_{edge}}\)</span>。在更常见的只有节点具有特征的场景中，我们用 X ∈ Rn×d
+简称为节点特征矩阵，并将属性图表示为 <span
+class="math inline">\(\mathcal{G} = (\mathcal{V}, \mathcal{E},
+\bf{X})\)</span>。</p>
+<p>还有一些动态图和异构图，其定义在附录B.2中给出。</p>
+<p>大多数审查的方法利用 GNN
+作为骨干编码器，通过利用丰富的底层节点连接（即邻接矩阵 <span
+class="math inline">\(\bf{A}\)</span> 和可学习参数），将输入原始节点特征
+<span class="math inline">\(\bf{X}\)</span> 转换为紧凑节点表示 <span
+class="math inline">\(\bf{H}\)</span>。此外，读出函数 <span
+class="math inline">\(R(\cdot)\)</span> 通常用于从节点级表示 <span
+class="math inline">\(\bf{H}\)</span> 生成图级表示 <span
+class="math inline">\(h_{\mathcal{G}}\)</span>。GNN
+和读出函数的公式在附录 B.3 中介绍。此外，在附录 B.4
+中，我们制定了本次调查中常用的损失函数。</p>
+<h2 id="framework-and-categorization">Framework and Categorization</h2>
+<p>在本节中，我们提供了图 SSL
+的统一框架，并从不同角度对其进行了进一步分类，包括 pretext
+tasks、下游任务以及两者的组合（即自监督训练方案）。</p>
+<h3
+id="unified-framework-and-mathematical-formulation-of-graph-self-supervised-learning">Unified
+Framework and Mathematical Formulation of Graph Self-Supervised
+Learning</h3>
+<p>我们构建了一个编码器-解码器框架来形式化图 SSL。编码器 <span
+class="math inline">\(f_{\theta}\)</span>（由 <span
+class="math inline">\(\theta\)</span> 参数化）旨在为图 <span
+class="math inline">\(\mathcal{G}\)</span> 中的每个节点 <span
+class="math inline">\(v_i\)</span> 学习低维表示（又名嵌入）<span
+class="math inline">\(h_i \in \bf{H}\)</span>。一般来说，编码器 <span
+class="math inline">\(f_{\theta}\)</span> 可以是 GNN [13]、[33]、[38]
+或其他类型的用于图学习的神经网络 [30]、[31]、[39]。pretext 解码器 <span
+class="math inline">\(p_{\phi}\)</span>（由 <span
+class="math inline">\(\phi\)</span> 参数化）将 <span
+class="math inline">\(\bf{H}\)</span> 作为 pretext tasks 的输入。 <span
+class="math inline">\(p_{\phi}\)</span> 的架构取决于特定的下游任务。</p>
+<p>在此框架下，图 SSL 可以表述为： <span class="math display">\[
+\theta^*,\phi^*=\arg\min_{\theta,\phi}\mathcal{L}_{ssl}\left(f_\theta,p_\phi,\mathcal{D}\right),
+\tag{1}
+\]</span> 其中 <span class="math inline">\(\mathcal{D}\)</span>
+表示在未标记的图 <span class="math inline">\(\mathcal{G}\)</span> 中满足
+<span
+class="math inline">\((\mathcal{V},\mathcal{E})\sim\mathcal{D}\)</span>
+的图数据分布，<span class="math inline">\(\mathcal{L}_{ssl}\)</span> 是
+SSL 损失函数，它根据特定的精心设计的 pretext tasks 对 pretext
+解码器的输出进行正则化。</p>
+<p>通过利用经过训练的图编码器 <span
+class="math inline">\(f_{\theta^*}\)</span>，生成的表示可以用于各种下游任务。这里我们引入下游解码器
+<span class="math inline">\(q_{\psi}\)</span>（由 <span
+class="math inline">\(\psi\)</span>
+参数化），并将下游任务表示为图监督学习任务： <span
+class="math display">\[
+\theta^{**},\psi^*=\arg\min_{\theta^*,\psi}\mathcal{L}_{sup}\left(f_{\theta^*},q_\psi,\mathcal{G},y\right),
+\tag{2}
+\]</span> 其中 <span class="math inline">\(y\)</span>
+表示下游任务标签，<span class="math inline">\(L_{sup}\)</span>
+是训练下游任务模型的监督损失。</p>
+<p>在下面的小节中，我们根据 3.2 节中的方程（1）指定了四种图 SSL
+变体，通过不同地组合方程（1）和（2）在 3.3
+节中指定了三种图自监督训练方案，以及基于三种类型的下游任务3.4
+节中的方程（2）。</p>
+<table>
+<tr>
+<td>
+<center>
+<img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702201602188.png">
+</center>
+</td>
+<td>
+<center>
+<img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702201756321.png">
+</center>
+</td>
+<td>
+<center>
+<img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702201823164.png">
+</center>
+</td>
+<td>
+<center>
+<img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702201849595.png">
+</center>
+</td>
+</tr>
+</table>
+<h3 id="taxonomy-of-graph-self-supervised-learning">Taxonomy of Graph
+Self-supervised Learning</h3>
+<p>通过利用 pretext 解码器和目标函数的不同设计，图 SSL
+从概念上可以分为四种类型，包括基于生成的方法、基于辅助属性的方法、基于对比的方法和混合方法。下面简要讨论这些方法的分类，如图
+2 所示，每种方法的概念图如图 3 所示。</p>
+<p><strong>基于生成的方法</strong> 从特征和结构两个角度形成图数据重构的
+pretext
+tasks。具体来说，他们专注于节点/边缘特征或/和图邻接重建。在这种情况下，式(1)可以进一步推导为：
+<span class="math display">\[
+\theta^*,\phi^*=\arg\min_{\theta,\phi}\mathcal{L}_{ssl}\Big(p_\phi(f_\theta(\tilde{\mathcal{G}})),\mathcal{G}\Big),
+\tag{3}
+\]</span> 其中 <span class="math inline">\(f_{\theta}\)</span> 和 <span
+class="math inline">\(p_{\phi}\)</span> 是图编码器和 pretext
+解码器。<span class="math inline">\(\tilde{\mathcal{G}}\)</span>
+表示具有扰动的节点/边特征或/和邻接矩阵的图数据。对于大多数基于生成的方法，通常定义自监督目标函数
+<span class="math inline">\(L_{ssl}\)</span>
+来测量重建图数据与原始图数据之间的差异。代表性方法之一是 GAE
+[32]，它通过重建图邻接矩阵来学习嵌入。</p>
+<p><strong>基于属性的辅助方法</strong>
+通过利用更大的属性集和拓扑图属性来丰富监督信号。特别是，对于不同的精心设计的辅助属性，我们进一步将这些方法分为两种类型：基于回归和基于分类。形式上，它们可以表述为：
+<span class="math display">\[
+\theta^*,\phi^*=\arg\min_{\theta,\phi}\mathcal{L}_{ssl}\Big(p_\phi\big(f_\theta(\mathcal{G})\big),c\Big),
+\tag{4}
+\]</span> 其中 <span class="math inline">\(c\)</span>
+表示特定的精心设计的辅助属性。对于基于回归的方法，<span
+class="math inline">\(c\)</span> 可以是局部或全局图属性，例如 <span
+class="math inline">\(\mathcal{G}\)</span>
+内的节点度或到聚类的距离。另一方面，对于基于分类的方法，辅助属性通常被构造为伪标签，例如图分区或聚类索引。关于目标函数，对于基于回归的方法，<span
+class="math inline">\(L_{ssl}\)</span> 可以是均方误差
+(MSE)；对于基于分类的方法，<span class="math inline">\(L_{ssl}\)</span>
+可以是交叉熵 (CE) 损失。作为一项开创性工作，M3S
+[40]使用节点聚类来构造提供监督信号的伪标签。</p>
+<p><strong>基于对比的方法</strong>
+通常是基于互信息（MI）最大化的概念开发的，其中同一对象（例如节点、子图和图）的增强实例之间的估计
+MI 被最大化。对于基于对比的图 SSL，方程 (1) 重新表述为： <span
+class="math display">\[
+\theta^*,\phi^*=\arg\min_{\theta,\phi}\mathcal{L}_{ssl}\bigg(p_\phi\bigg(f_\theta(\tilde{\mathcal{G}}^{(1)}),f_\theta(\tilde{\mathcal{G}}^{(2)})\bigg)\bigg),
+\tag{5}
+\]</span> 其中 <span
+class="math inline">\(\tilde{\mathcal{G}}^{(1)}\)</span> 和 <span
+class="math inline">\(\tilde{\mathcal{G}}^{(2)}\)</span> 是 <span
+class="math inline">\(\mathcal{G}\)</span>
+的两个不同的增强实例。在这些方法中，pretext 解码器 <span
+class="math inline">\(p_{\phi}\)</span>
+表示估计两个实例之间一致性的鉴别器（例如，双线性函数或点积）， <span
+class="math inline">\(L_{ssl}\)</span>
+表示对比损失。通过将它们结合起来并优化 <span
+class="math inline">\(L_{ssl}\)</span>，pretext
+任务旨在估计和最大化正样本对（例如，同一对象的增强实例）之间的 MI
+并最小化负样本（例如，从不同对象派生的实例）之间的 MI，这隐式地包含在
+<span class="math inline">\(L_{ssl}\)</span>
+中。代表性工作包括跨尺度方法（例如，DGI
+[13]）和同尺度方法（例如，GraphCL [38] 和 GCC [15]）。</p>
+<p><strong>混合方法</strong> 利用以前的类别，并由多个 pretext
+解码器和/或训练目标组成。我们根据等式（3）至（5）的公式将这一方法分支表述为两个或多个图
+SSL 方案的加权或未加权组合。 GMI [41]
+联合考虑边缘级重建和节点级对比度，是一种典型的混合方法。</p>
+<p><strong>讨论。</strong>不同的图 SSL
+方法具有不同的属性。基于生成的方法很容易实现，因为重建任务很容易构建，但有时对于大规模图来说，恢复输入数据非常消耗内存。基于属性的辅助方法具有简单的解码器和损失函数设计；然而，选择有用的辅助属性通常需要领域知识。与其他类别相比，基于对比的方法具有更灵活的设计和更广泛的应用。然而，对比框架、增强策略和损失函数的设计通常依赖于耗时的实证实验。混合方法受益于多个
+pretext tasks，但主要挑战是如何设计联合学习框架来平衡每个组件。</p>
+<h3 id="taxonomy-of-self-supervised-training-schemes">Taxonomy of
+Self-Supervised Training Schemes</h3>
+<table>
+<tr>
+<td>
+<center>
+<img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702203539859.png">
+</center>
+</td>
+<td>
+<center>
+<img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702203610823.png">
+</center>
+</td>
+<td>
+<center>
+<img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702203631682.png">
+</center>
+</td>
+</tr>
+</table>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Deep-Learning/" class="category-chain-item">Deep Learning</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Deep-Learning/" class="print-no-link">#Deep Learning</a>
+      
+        <a href="/tags/Graph/" class="print-no-link">#Graph</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>论文日记 2024 Graph Self-Supervised Learning- A Survey (2021)</div>
+      <div>https://blog.lfd.world/2024/07/02/lun-wen-ri-ji-2024-graph-self-supervised-learning-a-survey-2021/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>培根请加蛋</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/28/lun-wen-ri-ji-2024-a-continual-learning-survey-defying-forgetting-in-classification-tasks-2021/" title="论文日记 2024 A continual learning survey-Defying forgetting in classification tasks (2021)">
+                        <span class="hidden-mobile">论文日记 2024 A continual learning survey-Defying forgetting in classification tasks (2021)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
