@@ -24,6 +24,7 @@
 <meta property="og:description" content="Graph Self-Supervised Learning- A Survey">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702161643736.png">
+<meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702204633170.png">
 <meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702201602188.png">
 <meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702201756321.png">
 <meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702201823164.png">
@@ -31,8 +32,10 @@
 <meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702203539859.png">
 <meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702203610823.png">
 <meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702203631682.png">
+<meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702205636812.png">
+<meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702205700737.png">
 <meta property="article:published_time" content="2024-07-02T08:09:00.000Z">
-<meta property="article:modified_time" content="2024-07-02T12:40:27.751Z">
+<meta property="article:modified_time" content="2024-07-03T13:32:26.957Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Graph">
@@ -232,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.2k 字
+          13k 字
         
       </span>
     
@@ -243,7 +246,7 @@
         
         
         
-          69 分钟
+          111 分钟
         
       </span>
     
@@ -494,6 +497,12 @@ class="math display">\[
 变体，通过不同地组合方程（1）和（2）在 3.3
 节中指定了三种图自监督训练方案，以及基于三种类型的下游任务3.4
 节中的方程（2）。</p>
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702204633170.png" alt="Fig. 2" style="zoom:67%;" /></p>
+<h3 id="taxonomy-of-graph-self-supervised-learning">Taxonomy of Graph
+Self-supervised Learning</h3>
+<p>通过利用 pretext 解码器和目标函数的不同设计，图 SSL
+从概念上可以分为四种类型，包括基于生成的方法、基于辅助属性的方法、基于对比的方法和混合方法。下面简要讨论这些方法的分类，如图
+2 所示，每种方法的概念图如图 3 所示。</p>
 <table>
 <tr>
 <td>
@@ -503,7 +512,8 @@ class="math display">\[
 </td>
 <td>
 <center>
-<img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702201756321.png">
+<img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702201756321.png">Fig.
+3
 </center>
 </td>
 <td>
@@ -518,11 +528,6 @@ class="math display">\[
 </td>
 </tr>
 </table>
-<h3 id="taxonomy-of-graph-self-supervised-learning">Taxonomy of Graph
-Self-supervised Learning</h3>
-<p>通过利用 pretext 解码器和目标函数的不同设计，图 SSL
-从概念上可以分为四种类型，包括基于生成的方法、基于辅助属性的方法、基于对比的方法和混合方法。下面简要讨论这些方法的分类，如图
-2 所示，每种方法的概念图如图 3 所示。</p>
 <p><strong>基于生成的方法</strong> 从特征和结构两个角度形成图数据重构的
 pretext
 tasks。具体来说，他们专注于节点/边缘特征或/和图邻接重建。在这种情况下，式(1)可以进一步推导为：
@@ -589,7 +594,8 @@ Self-Supervised Training Schemes</h3>
 </td>
 <td>
 <center>
-<img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702203610823.png">
+<img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702203610823.png">Fig.
+4
 </center>
 </td>
 <td>
@@ -599,6 +605,180 @@ Self-Supervised Training Schemes</h3>
 </td>
 </tr>
 </table>
+<p>根据图编码器、自监督借口任务和下游任务之间的关系，我们研究了三种类型的图自监督训练方案：预训练和微调（Pre-training
+and Fine-tuning, PF）、联合学习（Joint Learning,
+JL）和无监督表示学习（Unsupervised Representation Learning,
+URL）。它们的简要流程如图 4 所示。</p>
+<p><strong>预训练和微调（PF）。</strong> 在 PF 方案中，编码器 <span
+class="math inline">\(f_{\theta}\)</span> 首先在预训练数据集上使用
+pretext tasks
+进行预训练，这可以看作是编码器参数的初始化。之后，预训练的编码器 <span
+class="math inline">\(f_{\theta_{init}}\)</span>
+在微调数据集（带有标签）上与下游解码器 <span
+class="math inline">\(q_{\psi}\)</span>
+在特定下游任务的监督下一起进行微调。请注意，预训练和微调的数据集可以相同或不同。
+PF 方案的制定定义如下： <span class="math display">\[
+\begin{aligned}
+\theta^{*},\phi^{*}&amp;
+=\arg\min_{\theta,\phi}\mathcal{L}_{ssl}\left(f_\theta,p_\phi,\mathcal{D}\right),
+\\
+&amp;&amp;\text{(6)} \\
+\theta^{**},\phi^{*}&amp;
+=\arg\min_{\theta^*,\psi}\mathcal{L}_{sup}\left(p_{\theta^*},q_\psi,\mathcal{G},y\right).
+\end{aligned}
+\]</span> <strong>联合学习（JL）。</strong> 在 JL 方案中，编码器与
+pretext
+和下游任务联合训练。损失函数由自监督损失函数和下游任务损失函数组成，其中权衡超参数
+<span class="math inline">\(\alpha\)</span>
+控制自监督项的贡献。这可以被视为一种多任务学习，其中 pretext tasks
+充当下游任务的正则化： <span class="math display">\[
+\theta^{*},\phi^{*},\psi^{*}=\arg\min_{\theta,\phi,\psi}\left[\alpha\mathcal{L}_{ssl}\left(f_{\theta},p_{\phi},\mathcal{D}\right)+\mathcal{L}_{sup}\left(f_{\theta},q_{\psi},\mathcal{G},y\right)\right].
+\tag{7}
+\]</span> <strong>无监督表示学习（URL）。</strong> URL 方案的第一阶段与
+PF
+相似。区别在于：（1）在第二阶段，当使用下游任务训练模型时，编码器的参数被冻结（即<span
+class="math inline">\(\theta^*\)</span>）；
+(2)两个阶段的训练在同一数据集上进行。 URL的表述定义为： <span
+class="math display">\[
+\begin{aligned}
+\theta^{*},\phi^{*}&amp;
+=\arg\min_{\theta,\phi}\mathcal{L}_{ssl}\left(f_\theta,p_\phi,\mathcal{D}\right),
+\\
+&amp;&amp;\text{(8)} \\
+\psi^{*}&amp;
+=\arg\min_\psi\mathcal{L}_{sup}\left(f_{\theta^*},q_\psi,\mathcal{G},y\right).
+\end{aligned}
+\]</span> 与其他方案相比，URL
+更具挑战性，因为编码器训练期间没有监督。</p>
+<h3 id="taxonomy-of-downstream-tasks">Taxonomy of Downstream Tasks</h3>
+<p>根据预测目标的规模，我们将下游任务分为节点级、链路级和图级任务。具体来说，节点级任务旨在根据节点表示来预测图中节点的属性。链路级任务推断边或节点对的属性，其中下游解码器将两个节点的嵌入映射到链路级预测中。此外，图级任务从具有多个图的数据集中学习并预测每个图的属性。基于式（2），我们给出了三类任务的下游解码器qψ、下游目标Lsup和下游任务标签y的具体定义，详见附录C。</p>
+<table>
+<tr>
+<td>
+<center>
+<img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702205636812.png">
+</center>
+</td>
+<td>
+<center>
+<img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702205700737.png">
+</center>
+</td>
+</tr>
+</table>
+<p>Fig. 5: Examples of two categories of generation-based methods: Graph
+Completion and Denoising Link Reconstruction.</p>
+<h2 id="generation-based-methods">Generation-based Methods</h2>
+<p>基于生成的方法旨在重建输入数据并将输入数据用作监督信号。这类方法的起源可以追溯到自动编码器
+[42]，它学习使用编码器网络将数据向量压缩为低维表示，然后尝试使用解码器网络重建输入向量。与以矢量格式表示的通用输入数据不同，图数据是互连的。因此，基于生成的图
+SSL
+方法通常将完整图或子图作为模型输入，并单独重建其中一个组件，即特征或结构。根据重建的对象，我们将这些工作分为两个子类：（1）学习重建图的特征信息的特征生成，以及（2）学习重建图的拓扑结构信息的结构生成。图
+5 给出了两种示例方法的流程，表 1 说明了基于生成的工作的摘要。</p>
+<p>TABLE 1: Main characteristics of generation-based graph SSL
+approaches. “FG” and “SG” mean “Feature Generation” and “Structure
+Generation”, respectively. Missing values (“-”) in Input Data
+Perturbation indicate that the method takes the original graph data as
+input.</p>
+<figure>
+<img
+src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240703210113081.png"
+alt="image-20240703210113081" />
+<figcaption aria-hidden="true">image-20240703210113081</figcaption>
+</figure>
+<h3 id="feature-generation">Feature Generation</h3>
+<p>特征生成方法通过从扰动的或原始的图中恢复特征信息来学习。基于方程（3），特征生成方法可以进一步形式化为：
+<span class="math display">\[
+\theta^*,\phi^*=\arg\min_{\theta,\phi}\mathcal{L}_{mse}\left(p_\phi\left(f_\theta\left(\tilde{\mathcal{G}}\right)\right),\hat{\mathbf{X}}\right),
+\tag{9}
+\]</span> 其中 <span class="math inline">\(p_{\phi}(\cdot)\)</span>
+是特征回归的解码器（例如，将表示映射到重构特征的全连接网络），<span
+class="math inline">\(L_{mse}\)</span> 是均方误差（MSE）损失函数，<span
+class="math inline">\(\hat{\bf{X}}\)</span>
+是各种类型的通用表达式特征矩阵，例如节点特征矩阵、边缘特征矩阵或低维特征矩阵。</p>
+<p>为了利用节点之间的依赖关系，特征生成方法的一个代表性分支遵循
+<em>masked 特征回归策略</em>，该策略的动机是 CV 域中的图像修复
+[20]。具体来说，在预处理阶段，某些节点/边的特征被零个或特定标记屏蔽。然后，模型尝试根据未屏蔽的信息恢复屏蔽的特征。图补全
+[17]
+是一种代表性方法。它首先通过删除输入图的某些节点的特征来掩盖它们。然后，学习目标是使用
+GCN [1]
+编码器根据相邻节点的特征来预测屏蔽节点特征。我们可以将图补全视为方程（9）的实现，其中
+<span class="math inline">\(\hat{\bf{X}}=\bf{X}\)</span> 且 <span
+class="math inline">\(\tilde{\mathcal{G}}=(\bf{A},\tilde{\bf{X}})\)</span>。类似地，由于重建高维和稀疏特征的困难，AttributeMask
+[43] 旨在重建经过主成分分析（PCA）[52]（<span
+class="math inline">\(\hat{\bf{X}}=PCA(\bf{X})\)</span>）处理的密集特征矩阵，而不是原始特征。
+AttrMasking [16] 不仅重建节点属性，还重建边属性，可以写成 <span
+class="math inline">\(\hat{\bf{X}} = [\bf{X},
+\bf{X}_{edge}]\)</span>。</p>
+<p>方法的另一个分支旨在从噪声特征生成特征。受去噪自动编码器 [53]
+的启发，MGAE [44] 从每个 GNN
+层的噪声输入特征中恢复原始特征。这里我们也表示 <span
+class="math inline">\(\tilde{\mathcal{G}}=(\bf{A},\tilde{\bf{X}})\)</span>
+但这里 <span class="math inline">\(\tilde{\bf{X}}\)</span>
+被随机噪声破坏了。 [45]
+中提出，损坏的特征重建和损坏的嵌入重建旨在从损坏的特征重建原始特征和隐藏嵌入。</p>
+<p>此外，直接从干净的数据中重建特征也是一种可用的解决方案。 GALA [46]
+训练拉普拉斯平滑锐化图自动编码器模型，其目标是根据干净的输入图重建原始特征矩阵。类似地，自动编码
+[45] 从干净的输入中重建原始特征。对于这两种方法，我们可以将 <span
+class="math inline">\(\tilde{\mathcal{G}}=(\bf{A},\bf{X})\)</span> 和
+<span class="math inline">\(\hat{\bf{X}}=\bf{X}\)</span> 形式化。</p>
+<h3 id="structure-generation">Structure Generation</h3>
+<p>与重建特征信息的特征生成方法不同，结构生成方法通过恢复结构信息来学习。在大多数情况下，目标是重建邻接矩阵，因为邻接矩阵可以简单地表示图的拓扑结构。基于方程（3），结构生成方法可以形式化如下：
+<span class="math display">\[
+\theta^*,\phi^*=\arg\min_{\theta,\phi}\mathcal{L}_{ssl}\Big(p_\phi\left(f_\theta\left(\tilde{\mathcal{G}}\right)\right),\mathbf{A}\Big),
+\tag{10}
+\]</span> 其中 <span class="math inline">\(p_{\phi}(\cdot)\)</span>
+是用于结构重建的解码器，<span class="math inline">\(\bf{A}\)</span>
+是（完整或部分）邻接矩阵。</p>
+<p>GAE [32] 是结构生成方法最简单的实例。在 GAE 中，基于 GCN
+的编码器首先从原始图 (<span
+class="math inline">\(\tilde{\mathcal{G}}=\mathcal{G}\)</span>)
+生成节点嵌入 <span class="math inline">\(\bf{H}\)</span>。然后，具有
+sigmoid 激活的内积函数作为其解码器，从 <span
+class="math inline">\(\bf{H}\)</span> 中恢复邻接矩阵。由于邻接矩阵 A
+通常是二元且稀疏的，因此采用 BCE
+损失函数来最大化恢复的邻接矩阵与原始邻接矩阵之间的相似性，其中正样本和负样本分别是存在的边
+(<span class="math inline">\(\bf{A}_{i,j}=1\)</span>) 和未连接的节点对
+(<span
+class="math inline">\(A_{i,j}=0\)</span>)。为了避免由于邻接极度稀疏而导致的训练样本不平衡问题，可以使用两种策略来防止平凡解决：（1）用
+<span class="math inline">\(A_{i,j} = 1\)</span> 重新加权项；或 (2)
+子采样项，其中 <span class="math inline">\(A_{i,j} = 0\)</span>。</p>
+<p>作为经典的学习范式，GAE 有一系列的衍生作品。 VGAE [32]
+进一步将变分自动编码器 [54] 的思想集成到 GAE
+中。它采用基于推理模型的编码器，通过两个并行输出层估计平均值和偏差，并使用先验分布和估计分布之间的
+Kullback-Leibler 散度。继 VGAE 之后，SIG-VAE [47]
+考虑分层变分推理来学习图数据的更多生成表示。 ARGA/ARVGA [48]
+使用生成对抗网络（GAN）[55] 规范 GAE/VGAE
+模型。具体来说，训练鉴别器来区分假数据和真实数据，这迫使潜在嵌入的分布更接近高斯先验。
+SuperGAT [49]
+进一步将这个想法扩展到编码器中的每一层。具体来说，它根据编码器中每一层的潜在表示重建邻接矩阵。</p>
+<p>另一种解决方案是重建被屏蔽的边，而不是重建完整的图。去噪链接重建 [50]
+随机丢弃现有边缘以获得扰动图 <span
+class="math inline">\(\tilde{\mathcal{G}}\)</span>。然后，该模型旨在使用经过
+BCE 损失训练的基于成对相似性的解码器来恢复丢弃的连接。 EdgeMask [43]
+也有类似的扰动策略，其中非参数 MAE
+函数最小化两个连接节点的嵌入之间的差异。Zhu 等人 [51] 对输入图 (<span
+class="math inline">\(\tilde{\mathcal{G}}=(\tilde{\bf{A}},\tilde{\bf{X}})\)</span>)
+应用两种扰动策略，即随机删除链接和随机覆盖特征，其目标是通过解码器恢复屏蔽链接。</p>
+<p><strong>讨论。</strong>由于学习目标不同，基于生成的方法的两个分支具有不同的解码器和损失函数设计。由于结构生成侧重于边缘重建，因此通过结构生成学习到的表示通常包含更多的节点对级信息；相反，特征生成方法通常捕获节点级知识。</p>
+<h2 id="auxiliary-propert-based-methods">Auxiliary Propert-based
+Methods</h2>
+<p>基于辅助属性的方法从节点、链路和图级属性获取监督信号，这些属性可以从图数据中自由获得。这些方法与监督学习具有相似的训练范式，因为它们都通过“样本-标签”对进行学习。它们的区别在于标签的获取方式：在监督学习中，人工标注的标签往往需要昂贵的成本；在基于辅助属性的
+SSL 中，伪标签是自动生成的，无需任何成本。</p>
+<p>按照监督学习的一般分类法，我们将基于辅助属性的方法分为两个子类别：（1）辅助属性分类，利用基于分类的借口任务来训练编码器；（2）辅助属性回归，通过基于回归的方法执行
+SSL借口任务。图 6 提供了它们的流程，表 2
+总结了辅助的基于属性的方法。</p>
+<figure>
+<img
+src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240703213157158.png"
+alt="image-20240703213157158" />
+<figcaption aria-hidden="true">image-20240703213157158</figcaption>
+</figure>
+<figure>
+<img
+src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240703213218557.png"
+alt="image-20240703213218557" />
+<figcaption aria-hidden="true">image-20240703213218557</figcaption>
+</figure>
 
                 
               </div>
