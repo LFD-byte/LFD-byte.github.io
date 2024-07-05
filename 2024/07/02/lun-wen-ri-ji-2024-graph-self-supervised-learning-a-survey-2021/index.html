@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702205636812.png">
 <meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702205700737.png">
 <meta property="article:published_time" content="2024-07-02T08:09:00.000Z">
-<meta property="article:modified_time" content="2024-07-03T13:32:26.957Z">
+<meta property="article:modified_time" content="2024-07-05T13:47:57.775Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Graph">
@@ -235,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          13k 字
+          22k 字
         
       </span>
     
@@ -246,7 +246,7 @@
         
         
         
-          111 分钟
+          188 分钟
         
       </span>
     
@@ -605,7 +605,8 @@ Self-Supervised Training Schemes</h3>
 </td>
 </tr>
 </table>
-<p>根据图编码器、自监督借口任务和下游任务之间的关系，我们研究了三种类型的图自监督训练方案：预训练和微调（Pre-training
+<p>根据图编码器、自监督 pretext tasks
+和下游任务之间的关系，我们研究了三种类型的图自监督训练方案：预训练和微调（Pre-training
 and Fine-tuning, PF）、联合学习（Joint Learning,
 JL）和无监督表示学习（Unsupervised Representation Learning,
 URL）。它们的简要流程如图 4 所示。</p>
@@ -764,8 +765,9 @@ class="math inline">\(\tilde{\mathcal{G}}=(\tilde{\bf{A}},\tilde{\bf{X}})\)</spa
 Methods</h2>
 <p>基于辅助属性的方法从节点、链路和图级属性获取监督信号，这些属性可以从图数据中自由获得。这些方法与监督学习具有相似的训练范式，因为它们都通过“样本-标签”对进行学习。它们的区别在于标签的获取方式：在监督学习中，人工标注的标签往往需要昂贵的成本；在基于辅助属性的
 SSL 中，伪标签是自动生成的，无需任何成本。</p>
-<p>按照监督学习的一般分类法，我们将基于辅助属性的方法分为两个子类别：（1）辅助属性分类，利用基于分类的借口任务来训练编码器；（2）辅助属性回归，通过基于回归的方法执行
-SSL借口任务。图 6 提供了它们的流程，表 2
+<p>按照监督学习的一般分类法，我们将基于辅助属性的方法分为两个子类别：（1）辅助属性分类，利用基于分类的
+pretext tasks 来训练编码器；（2）辅助属性回归，通过基于回归的方法执行
+SSL pretext tasks。图 6 提供了它们的流程，表 2
 总结了辅助的基于属性的方法。</p>
 <figure>
 <img
@@ -779,6 +781,303 @@ src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-202
 alt="image-20240703213218557" />
 <figcaption aria-hidden="true">image-20240703213218557</figcaption>
 </figure>
+<h3 id="auxiliary-property-classification">Auxiliary Property
+Classification</h3>
+<p>辅助属性分类方法借鉴监督分类任务的训练范式，自动创建离散伪标签，构建分类器作为
+pretext 解码器，并使用交叉熵（CE）损失 <span
+class="math inline">\(L_{ce}\)</span>
+来训练模型。源自方程（4），我们将该方法分支的形式化为： <span
+class="math display">\[
+\theta^*,\phi^*=\arg\min_{\theta,\phi}\mathcal{L}_{ce}\Big(p_\phi(f_\theta(\mathcal{G})),c\Big),
+\tag{11}
+\]</span> 其中 <span class="math inline">\(p_{\phi}\)</span>
+是基于神经网络分类器的解码器，输出 <span
+class="math inline">\(k\)</span> 维概率向量（<span
+class="math inline">\(k\)</span> 是类的数量），<span
+class="math inline">\(c \in \mathcal{C} = {c_1, \cdots, c_k}\)</span>
+是属于离散和有限标签集 <span class="math inline">\(\mathcal{C}\)</span>
+相应伪标签，根据伪标签集 <span
+class="math inline">\(\mathcal{C}\)</span>
+的定义，我们进一步构造了辅助属性分类下的两个子类别，即基于聚类的方法和基于配对关系的方法。</p>
+<h4 id="clustering-based-methods">Clustering-based Methods</h4>
+<p>构造伪标签的一种有前途的方法是根据节点的属性或结构特征将节点划分为不同的簇。为了实现这一点，引入了映射函数
+<span class="math inline">\(\Omega : \mathcal{V} \rightarrow
+\mathcal{C}\)</span>
+来获取每个节点的伪标签，该函数建立在特定的无监督聚类/分区算法
+[59]、[60]、[61]、[62]
+的基础上。然后，学习目标是将每个节点分类到其相应的簇中。根据式（11），学习目标细化为：
+<span class="math display">\[
+\theta^*,\phi^*=\arg\min_{\theta,\phi}\frac{1}{|\mathcal{V}|}\sum_{v_i\in\mathcal{V}}\mathcal{L}_{ce}\Big(p_\phi\big([f_\theta(\mathcal{G})]_{v_i}\big),\Omega(v_i)\Big),
+\tag{12}
+\]</span> 其中 <span class="math inline">\([\cdot]_{v_i}\)</span> 是提取
+<span class="math inline">\(v_i\)</span> 表示的选取函数。</p>
+<p>节点聚类 [17]
+是一种利用属性信息生成伪标签的代表性方法。具体来说，它利用基于特征的聚类算法（<span
+class="math inline">\(\Omega\)</span> 的实例）以 <span
+class="math inline">\(\bf{X}\)</span> 为输入将节点集划分为 <span
+class="math inline">\(k\)</span>
+个簇，每个簇指示一个用于分类的伪标签。节点聚类背后的直觉是具有相似特征的节点往往具有一致的语义属性。
+M3S [40] 使用 DeepCluster [61] 算法引入了 SSL
+的多阶段自训练机制。在每个阶段，它首先在嵌入 <span
+class="math inline">\(\bf{H}\)</span> 的节点上运行 K
+均值聚类。之后，执行对齐以将每个聚类映射到类标签。最后，具有高置信度的未标记节点被赋予相应的（伪）标签并用于训练模型。在
+M3S 中，<span class="math inline">\(\mathcal{C}\)</span>
+借用自手动标签集 <span class="math inline">\(\mathcal{Y}\)</span>，<span
+class="math inline">\(\Omega\)</span> 由 Kmeans 和对齐算法组成。</p>
+<p>除了基于特征的聚类之外，图划分 [17]
+还根据节点的结构特征来划分节点。具体来说，它通过最小化子集之间的连接将节点分组为多个子集
+[59]，并将 <span class="math inline">\(\Omega\)</span>
+定义为图划分算法。聚类保留 [50] 首先利用图聚类算法 [63]
+来获取不重叠的聚类，然后通过基于注意力的聚合器计算每个聚类的表示。之后，表示每个节点与聚类表示之间相似性的向量被分配为每个节点的软伪标签。此外，CAGNN
+[56]
+首先运行基于特征的聚类来生成伪标签，然后通过最小化聚类间边缘来细化聚类，这吸收了属性聚类算法和结构聚类算法的优点。</p>
+<h4 id="pair-relation-based-methods">Pair Relation-based Methods</h4>
+<p>除了聚类和图属性之外，另一种监督信号是图中每对节点之间的关系。在这些方法中，解码器的输入不是单个节点或图，而是一对节点。映射函数
+<span class="math inline">\(\Omega: \mathcal{V} \times \mathcal{V}
+\rightarrow \mathcal{C}\)</span>
+用于根据成对上下文关系定义伪标签。我们将目标函数写为： <span
+class="math display">\[
+\theta^*,\phi^*=\arg\min_{\theta,\phi}\frac1{|\mathcal{P}|}\sum_{v_i,v_j\in\mathcal{P}}\mathcal{L}_{ce}\Big(p_\phi\big([f_\theta(\mathcal{G})]_{v_i,v_j}\big),\Omega(v_i,v_j)\Big),
+\tag{13}
+\]</span> 其中 <span class="math inline">\(\mathcal{P} \subseteq
+\mathcal{V} \times \mathcal{V}\)</span> 是特定 pretext tasks
+定义的节点对集合，<span class="math inline">\([\cdot]_{v_i,v_j}\)</span>
+是提取并连接 <span class="math inline">\(v_i\)</span> 和 <span
+class="math inline">\(v_j\)</span> 的节点表示的选取函数。</p>
+<p>一些方法将两个节点之间的距离作为辅助属性。例如，S2GRL [57]
+通过预测两个节点之间的最短路径来学习。具体来说，一对节点的标签被定义为它们之间的最短距离。形式上，我们可以将映射函数写为
+<span
+class="math inline">\(\Omega(v_i,v_j)=dist(v_i,v_j)\)</span>。解码器的构建是为了测量节点对之间的交互，其定义为两个嵌入向量之间的元素距离。节点对集合
+<span class="math inline">\(\mathcal{P}\)</span>
+收集所有可能的节点对，包括所有节点与其 1 到 <span
+class="math inline">\(K\)</span> 跳邻域的组合。 PairwiseDistance [43]
+具有与 <span class="math inline">\(\text{S}^2\)</span>GRL
+非常相似的学习目标和解码器，但引入了距离上限，可以表示为 <span
+class="math inline">\(\Omega(v_i,v_j)=\text{max}(dist(v_i,v_j),4)\)</span>。</p>
+<p>中心性得分排名 [50] 提出了一个 pretext
+tasks，预测一对节点之间中心性得分的相对顺序。对于每个节点对（<span
+class="math inline">\(v_i，v_j\)</span>），它首先计算四种类型的中心性分数<span
+class="math inline">\(s_i，s_j\)</span>（特征中心性，中介性，接近性和子图中心性），然后通过比较
+<span class="math inline">\(s_i\)</span> 和 <span
+class="math inline">\(s_j\)</span>
+的值来创建其伪标签。我们将映射函数形式化为：<span
+class="math inline">\(\Omega(v_i,v_j)=\mathbb{I}(s_i&gt;s_j)\)</span>，其中
+<span class="math inline">\(\mathbb{I}(\cdot)\)</span> 是恒等函数。</p>
+<h3 id="auxiliary-property-regression">Auxiliary Property
+Regression</h3>
+<p>辅助属性回归方法构建了预测图的广泛数值属性的 pretext
+tasks。与辅助属性分类相比，最显着的区别是辅助属性是一定范围内的连续值，而不是有限集合中的离散伪标签。我们将方程（4）细化为回归版本：
+<span class="math display">\[
+\theta^*,\phi^*=\arg\min_{\theta,\phi}\mathcal{L}_{mse}\left(p_\phi(f_\theta(\mathcal{G})),c\right),
+\tag{14}
+\]</span> 其中 <span class="math inline">\(L_{mse}\)</span> 是回归的 MSE
+损失函数，<span class="math inline">\(c \in \mathbb{R}\)</span>
+是连续属性值。</p>
+<p>NodeProperty [43] 是一个节点级 pretext
+task，用于预测每个节点的属性。节点属性的可用选择包括其度数、局部节点重要性和局部聚类系数。以节点度为例，目标函数如下：
+<span class="math display">\[
+\theta^*,\phi^*=\arg\min_{\theta,\phi}\frac{1}{|\mathcal{V}|}\sum_{v_i\in\mathcal{V}}\mathcal{L}_{mse}\left(p_\phi\big([f_\theta(\mathcal{G})\big)]_{v_i},\Omega(v_i)\big),\right.
+\tag{15}
+\]</span> 其中 <span class="math inline">\(\Omega(v_i)=\sum_{j=1}^n
+\bf{A}_{ij}\)</span> 是计算节点 <span class="math inline">\(v_i\)</span>
+度数的映射函数。 Distance2Cluster [43]
+旨在回归每个节点到预定义图簇的距离。具体来说，它首先使用METIS算法
+[64]将图划分为多个簇，并将每个簇内度数最高的节点定义为簇中心。然后，目标是预测每个节点到所有聚类中心之间的距离。</p>
+<p>另一种方法将成对属性作为回归目标。例如，PairwiseAttrSim [43]
+的目标是根据两个节点的嵌入来预测两个节点的特征相似度。我们将其目标函数形式化如下：
+<span class="math display">\[
+\theta^*,\phi^*=\arg\min_{\theta,\phi}\frac{1}{|\mathcal{P}|}\sum_{v_i,v_j\in\mathcal{P}}\mathcal{L}_{mse}\left(p_\phi\big([f_\theta(\mathcal{G})]_{v_i,v_j}\big),\Omega(v_i,v_j)\big),\right.
+\tag{16}
+\]</span> 其中映射函数 <span
+class="math inline">\(\Omega(v_i,v_j)=\text{cosine}(x_i,x_j)\)</span>
+是原始特征的余弦相似度。在 PairwiseAttrSim
+中，选择相似度和相异度最高的节点对构成节点对集合 <span
+class="math inline">\(\mathcal{P}{}\)</span>。与PairwiseAttrSim
+类似，SimP-GCN [58]
+也考虑将预测原始特征的余弦相似度作为下游任务的自监督正则化。</p>
+<p><strong>讨论。</strong>正如我们所观察到的，辅助属性分类方法比回归方法更加多样化，因为离散伪标签可以通过各种算法获取。在未来的工作中，回归方法预计将利用更多的连续属性。</p>
+<h2 id="contrast-based-methods">Contrast-based Methods</h2>
+<p>基于对比的方法建立在互信息（MI）最大化的思想之上
+[65]，它通过预测两个增强实例之间的一致性来学习。具体来说，具有相似语义信息的图实例（即正样本）之间的
+MI 被最大化，而具有不相关信息的图实例（即负样本）之间的 MI
+被最小化。与视觉领域 [24]、[66] 类似，存在多种多粒度的图形增强和对比
+pretext tasks 来丰富监督信号。</p>
+<p>遵循第 3.2.3 节中定义的基于对比的图 SSL
+的分类法，我们从三个角度研究该方法分支：（1）生成各种图实例的图增强；
+（2）图对比学习，在非欧空间上形成各种对比 pretext tasks；
+(3)互信息估计，测量实例之间的 MI，并与特定 pretext tasks
+一起形成对比学习目标。</p>
+<h3 id="graph-augmentations">Graph Augmentations</h3>
+<p>最近视觉领域对比学习的成功在很大程度上依赖于精心设计的图像增强，这表明数据增强使借口任务更具挑战性，从而有利于模型探索更丰富的底层语义信息[67]。然而，由于图结构数据的性质，很难将欧几里德空间的增强直接应用到非欧几里德空间。受图像增强（例如图像剪切和裁剪
+[24]）的推动，现有的图增强可以分为三种类型：基于属性的、基于拓扑的以及两者的组合（即混合增强）。图
+7 展示了五种代表性增强策略的示例。正式地，给定图 G，我们将第 <span
+class="math inline">\(i\)</span> 个增强图实例定义为 <span
+class="math inline">\(\tilde{\mathcal{G}}^{(i)}=t_i(\mathcal{G})\)</span>，其中
+<span class="math inline">\(t_i \sim \tau\)</span> 是选定的图增强和
+<span class="math inline">\(\tau\)</span> 是一组可用的增强。</p>
+<h4 id="attributive-augmentations">Attributive augmentations</h4>
+<p>此类增强通常放置在节点属性上。给定 <span
+class="math inline">\(\mathcal{G} = (\bf{A},
+\bf{X})\)</span>，增强图表示为： <span class="math display">\[
+\tilde{\mathcal{G}}^{(i)}=(\mathbf{A},\tilde{\mathbf{X}}^{(i)})=(\mathbf{A},t_i(\mathbf{X})),
+\tag{17}
+\]</span> 其中 <span class="math inline">\(t_i(\cdot)\)</span>
+仅放置在节点特征矩阵上 <span
+class="math inline">\(\tilde{\bf{X}}^{(i)}\)</span>
+表示增强的节点特征。具体来说，属性增强有两种变体。第一种类型是节点特征屏蔽（NFM）[16]、[33]、[38]、[43]、[68]，它随机屏蔽给定图中部分节点的特征。特别是，我们可以完全（即按行）用零
+[16]、[43] 屏蔽选定的特征向量，或部分（即按列）用零 [33]、[68]
+屏蔽多个选定的特征通道。我们将节点特征屏蔽操作表述为： <span
+class="math display">\[
+t_i(\mathbf{X})=\mathrm{M}\circ\mathrm{X}, \tag{18}
+\]</span> 其中，<span class="math inline">\(\bf{M}\)</span> 是与 <span
+class="math inline">\(\bf{X}\)</span> 形状相同的掩蔽矩阵，<span
+class="math inline">\(\circ\)</span> 表示 Hadamard
+乘积。对于给定的掩码矩阵，其元素已初始化为
+1，掩码条目被分配为零。除了随机采样掩蔽矩阵 <span
+class="math inline">\(\bf{M}\)</span> 之外，我们还可以自适应地计算它
+[69]、[70]。例如，GCA [69]
+保持重要节点特征未被屏蔽，同时为那些不重要节点分配更高的屏蔽概率，其中重要性通过节点中心性来衡量。</p>
+<p>另一方面，节点特征 shuffle（NFS）[13]、[71]、[72]
+不是屏蔽特征矩阵的一部分，而是部分地、按行地扰动节点特征矩阵。换句话说，与输入图相比，增强图中的几个节点被放置到其他位置，如下所示：
+<span class="math display">\[
+t_i(\mathbf{X})=[\mathbf{X}]_{\widetilde{\mathcal{V}}}, \tag{19}
+\]</span> 其中 <span class="math inline">\([\cdot]_{v_i}\)</span>
+是一个挑选函数，它从节点特征矩阵中索引 <span
+class="math inline">\(v_i\)</span> 的特征向量 <span
+class="math inline">\(\tilde{\mathcal{V}}\)</span>
+表示部分打乱的节点集。</p>
+<h4 id="topological-augmentations">Topological augmentations</h4>
+<p>从结构角度来看图增强主要作用于图邻接矩阵，其公式如下： <span
+class="math display">\[
+\tilde{\mathcal{G}}^{(i)}=(\tilde{\mathcal{A}}^{(i)},\mathbf{X})=(t_i(\mathbf{A}),\mathbf{X}),
+\tag{20}
+\]</span> 其中 <span class="math inline">\(t_i(\cdot)\)</span>
+通常放置在图邻接矩阵上。对于这个方法分支，边缘修改（EM）[9]、[38]、[51]、[68]、[73]、[74]
+是最常见的方法之一，它通过以下方式部分扰乱给定的图邻接关系：随机删除和插入一部分边。我们将这个过程定义如下：
+<span class="math display">\[
+t_i(\mathbf{A})=\mathbf{M_1}\circ\mathbf{A}+\mathbf{M_2}\circ(1-\mathbf{A}),
+\tag{21}
+\]</span> 其中 <span class="math inline">\(\bf{M}_1\)</span> 和 <span
+class="math inline">\(\bf{M}_2\)</span>
+是边丢弃和插入矩阵。具体地，<span
+class="math inline">\(\bf{M}_1\)</span> 和 <span
+class="math inline">\(\bf{M}_2\)</span> 是通过随机屏蔽 <span
+class="math inline">\(\bf{A}\)</span> 和 <span
+class="math inline">\((1-\bf{A})\)</span> 中值为 1
+的部分元素生成的。与节点特征掩蔽类似，<span
+class="math inline">\(\bf{M}_1\)</span> 和 <span
+class="math inline">\(\bf{M}_2\)</span> 也可以自适应计算
+[69]。此外，可以基于对抗性学习生成边缘修改矩阵
+[18]、[75]，这增加了学习表示的鲁棒性。</p>
+<p>与边修改不同，图扩散（GD）[76] 是另一种类型的结构增强
+[14]、[68]，它通过计算权重将节点与其间接连接的邻居连接起来，将全局拓扑信息注入给定的图邻接中:
+<span class="math display">\[
+t_i(\mathbf{A})=\sum_{k=0}^\infty\Theta_k\mathbf{T}^k, \tag{22}
+\]</span> 其中 <span class="math inline">\(\Theta\)</span> 和 <span
+class="math inline">\(\bf{T}\)</span>
+分别是加权系数和转移矩阵。具体来说，上述扩散公式有两个实例化 [14]。令
+<span class="math inline">\(\Theta_k = \frac{e^{-\iota}t^k}{k!}\)</span>
+且 <span class="math inline">\(\bf{T} =
+\bf{AD}−1\)</span>，我们有基于热核的图扩散： <span
+class="math display">\[
+t_i(\mathbf{A})=\exp{(\iota\mathbf{AD}^{-1}-\iota)}, \tag{23}
+\]</span> 其中 <span class="math inline">\(\iota\)</span>
+表示扩散时间。类似地，基于个性化 PageRank 的图扩散定义如下：<span
+class="math inline">\(\Theta_k=\beta(1-\beta)^k\)</span> 且 <span
+class="math inline">\(\bf{T}=\bf{D}^{-\frac{1}{2}}\bf{A}\bf{D}^{-\frac{1}{2}}\)</span>：
+<span class="math display">\[
+t_i(\mathbf{A})=\beta\big(\mathbf{I}-(1-\beta)\mathbf{D}^{-\frac12}\mathbf{A}\mathbf{D}^{-\frac12}\big),
+\tag{24}
+\]</span> 其中 <span class="math inline">\(\beta\)</span>
+表示可调传送概率。</p>
+<h4 id="hybrid-augmentations">Hybrid augmentations</h4>
+<p>值得注意的是，给定的图增强可能不仅涉及属性增强，还同时涉及拓扑增强，我们将其定义为混合增强并表示为：
+<span class="math display">\[
+\tilde{\mathcal{G}}^{(i)}=(\tilde{\mathbf{A}}^{(i)},\tilde{\mathbf{X}}^{(i)})=(t_i(\mathbf{A},\mathbf{X})).
+\tag{25}
+\]</span> 在这种情况下，增强 <span
+class="math inline">\(t_i(\cdot)\)</span>
+被放置在节点特征和图邻接矩阵上。子图采样（SS）[14]、[16]、[74]、[77]
+是一种典型的混合图增强，类似于图像裁剪。具体来说，它将一部分节点及其底层链接采样为增强图实例：
+<span class="math display">\[
+t_i(\mathbf{A},\mathbf{X})=[(\mathbf{A},\mathbf{X})]_{\mathcal{V}^{\prime}\in\mathcal{V}},
+\tag{26}
+\]</span> 其中 <span class="math inline">\(\mathcal{V}&#39;\)</span>
+表示 <span class="math inline">\(\mathcal{V}\)</span> 的子集，<span
+class="math inline">\([\cdot]_{\mathcal{V}&#39;}\)</span>
+是一个拾取函数，用于索引具有节点集V'的子图的节点特征和邻接矩阵。关于
+<span class="math inline">\(\mathcal{V}&#39;\)</span>
+的生成，已经提出了几种方法，例如均匀采样 [74]、基于随机游走的采样 [15]
+和基于 top-k 重要性的采样 [77]。</p>
+<p>除了子图采样之外，大多数图对比方法都严重依赖于结合上述策略的混合增强。例如，GRACE
+[33] 应用边缘丢弃和节点特征掩蔽，而 MVGRL [14]
+采用图扩散和子图采样来生成不同的对比视图。</p>
+<h3 id="graph-contrastive-learning">Graph Contrastive Learning</h3>
+<p>由于对比学习的目的是最大化具有相似语义信息的实例之间的
+MI，因此可以构造各种借口任务来丰富这些信息的监督信号。关于等式（5）中借口解码器pφ（·）的表述，我们将现有工作分为两个主流：同尺度对比学习和跨尺度对比学习。方法的前一个分支以相同的尺度（例如，节点与节点）区分图实例，而第二种类型的方法则跨多个粒度（例如，节点与图）进行对比。图
+8 和表 3 分别提供了基于对比度的方法的流程和摘要。</p>
+<figure>
+<img
+src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240705213824252.png"
+alt="Fig. 8" />
+<figcaption aria-hidden="true">Fig. 8</figcaption>
+</figure>
+<figure>
+<img
+src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240705213919882.png"
+alt="Table 3" />
+<figcaption aria-hidden="true">Table 3</figcaption>
+</figure>
+<h4 id="same-scale-contrast">Same-Scale Contrast</h4>
+<p>根据对比的尺度，我们进一步将相同尺度的对比学习方法分为两个子类型：节点级和图级。</p>
+<h5 id="node-level-same-scale-contrast">Node-Level Same-Scale
+Contrast</h5>
+<p>该类别下的早期方法 [30]、[31]、[78]、[79]
+主要是学习节点级表示，并建立在具有相似上下文信息的节点应该共享节点级表示的思想之上。类似的表述。换句话说，这些方法试图将节点的表示拉近其上下文邻域，而不依赖于复杂的图增强。我们将它们表述如下：
+<span class="math display">\[
+\theta^*=\arg\min_\theta\frac1{|\mathcal{V}|}\sum_{v_i\in\mathcal{V}}\mathcal{L}_{con}\big(p\big([f_\theta(\mathbf{A},\mathbf{X})]_{v_i},[f_\theta(\mathbf{A},\mathbf{X})]_{v_c}\big)\big),
+\tag{27}
+\]</span> 其中 <span class="math inline">\(v_c\)</span> 表示 <span
+class="math inline">\(v_i\)</span> 的上下文节点，例如，从 <span
+class="math inline">\(v_i\)</span>
+开始的随机游走中的相邻节点。在这些方法中，pretext
+鉴别器（即解码器）通常是点积，因此我们在方程中省略其参数。具体来说，DeepWalk
+[30] 引入了一种基于随机游走 (RW)
+的方法来提取无属性图中选定节点周围的上下文信息。它最大化了 Skip-Gram
+模型 [26]、[27] 中同一路径内节点的共现（即，由二元分类器测量的
+MI）。类似地，node2vec [31] 采用偏置 RW
+来探索更丰富的节点上下文信息并产生更好的性能。另一方面，GraphSAGE [78]
+将上述两种方法扩展到属性图，并提出了一种新颖的 GNN
+以归纳方式计算节点嵌入，它也应用 RW
+作为其内部采样策略。在异构图上，SELAR [80]
+对元路径进行采样以捕获上下文信息。它由一个主链接预测任务和几个元路径预测辅助任务组成，以强制同一元路径内的节点共享更紧密的语义信息。</p>
+<p>与上述方法不同，现代节点级同尺度对比方法正在通过各种图增强来探索更丰富的底层语义信息，而不是限制在子图采样：
+<span class="math display">\[
+\theta^*,\phi^*=\arg\min_{\theta,\phi}\mathcal{L}_{con}\Big(p_\phi(f_\theta(\tilde{\mathbf{A}}^{(1)},\tilde{\mathbf{X}}^{(1)}),f_\theta(\tilde{\mathbf{A}}^{(2)},\tilde{\mathbf{X}}^{(2)}))\Big),
+\tag{28}
+\]</span> 其中 <span class="math inline">\(\tilde{\bf{A}}^{(1)}\)</span>
+和 <span class="math inline">\(\tilde{\bf{A}}^{(2)}\)</span>
+是两个增强图邻接矩阵。类似地 <span
+class="math inline">\(\tilde{\bf{X}}^{(1)}\)</span> 和 <span
+class="math inline">\(\tilde{\bf{X}}^{(2)}\)</span>
+是不同增强下的两个节点特征矩阵。上式中的判别器 <span
+class="math inline">\(p_{\phi}(\cdot)\)</span> 可以是 <span
+class="math inline">\(\phi\)</span>
+的参数（例如，双线性变换），也可以不是（例如，余弦相似度，其中 <span
+class="math inline">\(\Phi
+=\emptyset\)</span>）。在这些方法中，大多数都处理属性图：GRACE [33]
+采用两种图增强策略，即节点特征掩蔽和边缘丢弃，来生成两个对比视图，然后将两个图视图之间相同节点的表示拉得更近同时将其余节点推开（即视图内和视图间负片）。基于该框架，GCA
+[69]
+进一步引入了基于底层图属性的图结构数据的自适应增强，从而获得更具竞争力的性能。不同的是，GROC
+[18] 提出了图链接的对抗性增强，以提高学习节点表示的鲁棒性。由于 SimCLR
+[24] 在视觉领域的成功，GraphCL(N) [81]
+进一步将这一思想扩展到图结构数据，它依靠节点特征掩蔽和边缘修改来生成两个对比视图，然后不同视图内的两个目标节点之间的
+MI 最大化。 CGPN [82]
+将泊松学习引入节点级对比学习，这有利于极其有限的标记数据下的节点分类任务。在普通图上，GCC
+[15] 利用 RW 作为增强来提取节点的上下文信息，然后利用 MoCo [23]
+的对比框架将节点的表示与其对应的表示进行对比。另一方面，HeCo [83]
+在异构图上进行对比，其中从网络模式和元路径两个角度生成两个对比视图，而编码器通过最大化同一节点的嵌入之间的
+MI 来训练两种观点。</p>
 
                 
               </div>
