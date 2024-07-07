@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702205636812.png">
 <meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702205700737.png">
 <meta property="article:published_time" content="2024-07-02T08:09:00.000Z">
-<meta property="article:modified_time" content="2024-07-06T07:31:29.764Z">
+<meta property="article:modified_time" content="2024-07-07T11:38:54.279Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Graph">
@@ -652,7 +652,10 @@ class="math display">\[
 \]</span> 与其他方案相比，URL
 更具挑战性，因为编码器训练期间没有监督。</p>
 <h3 id="taxonomy-of-downstream-tasks">Taxonomy of Downstream Tasks</h3>
-<p>根据预测目标的规模，我们将下游任务分为节点级、链路级和图级任务。具体来说，节点级任务旨在根据节点表示来预测图中节点的属性。链路级任务推断边或节点对的属性，其中下游解码器将两个节点的嵌入映射到链路级预测中。此外，图级任务从具有多个图的数据集中学习并预测每个图的属性。基于式（2），我们给出了三类任务的下游解码器qψ、下游目标Lsup和下游任务标签y的具体定义，详见附录C。</p>
+<p>根据预测目标的规模，我们将下游任务分为节点级、链路级和图级任务。具体来说，节点级任务旨在根据节点表示来预测图中节点的属性。链路级任务推断边或节点对的属性，其中下游解码器将两个节点的嵌入映射到链路级预测中。此外，图级任务从具有多个图的数据集中学习并预测每个图的属性。基于式（2），我们给出了三类任务的下游解码器
+<span class="math inline">\(q_{\psi}\)</span>、下游目标 <span
+class="math inline">\(L_{sup}\)</span> 和下游任务标签 <span
+class="math inline">\(y\)</span> 的具体定义，详见附录 C。</p>
 <table>
 <tr>
 <td>
@@ -695,10 +698,11 @@ alt="image-20240703210113081" />
 是特征回归的解码器（例如，将表示映射到重构特征的全连接网络），<span
 class="math inline">\(L_{mse}\)</span> 是均方误差（MSE）损失函数，<span
 class="math inline">\(\hat{\bf{X}}\)</span>
-是各种类型的通用表达式特征矩阵，例如节点特征矩阵、边缘特征矩阵或低维特征矩阵。</p>
+是各种类型的通用表达式特征矩阵，例如节点特征矩阵、边特征矩阵或低维特征矩阵。</p>
 <p>为了利用节点之间的依赖关系，特征生成方法的一个代表性分支遵循
 <em>masked 特征回归策略</em>，该策略的动机是 CV 域中的图像修复
-[20]。具体来说，在预处理阶段，某些节点/边的特征被零个或特定标记屏蔽。然后，模型尝试根据未屏蔽的信息恢复屏蔽的特征。图补全
+[20]。具体来说，在预处理阶段，某些节点/边的特征被 0
+或特定标记屏蔽。然后，模型尝试根据未屏蔽的信息恢复屏蔽的特征。图补全
 [17]
 是一种代表性方法。它首先通过删除输入图的某些节点的特征来掩盖它们。然后，学习目标是使用
 GCN [1]
@@ -738,11 +742,12 @@ sigmoid 激活的内积函数作为其解码器，从 <span
 class="math inline">\(\bf{H}\)</span> 中恢复邻接矩阵。由于邻接矩阵 A
 通常是二元且稀疏的，因此采用 BCE
 损失函数来最大化恢复的邻接矩阵与原始邻接矩阵之间的相似性，其中正样本和负样本分别是存在的边
-(<span class="math inline">\(\bf{A}_{i,j}=1\)</span>) 和未连接的节点对
-(<span
-class="math inline">\(A_{i,j}=0\)</span>)。为了避免由于邻接极度稀疏而导致的训练样本不平衡问题，可以使用两种策略来防止平凡解决：（1）用
-<span class="math inline">\(A_{i,j} = 1\)</span> 重新加权项；或 (2)
-子采样项，其中 <span class="math inline">\(A_{i,j} = 0\)</span>。</p>
+(<span class="math inline">\(\mathbf{A}_{i,j}=1\)</span>)
+和未连接的节点对 (<span
+class="math inline">\(\mathbf{A}_{i,j}=0\)</span>)。为了避免由于邻接极度稀疏而导致的训练样本不平衡问题，可以使用两种策略来防止平凡解决：（1）用
+<span class="math inline">\(\mathbf{A}_{i,j} = 1\)</span> 重新加权项；或
+(2) 子采样项，其中 <span class="math inline">\(\mathbf{A}_{i,j} =
+0\)</span>。</p>
 <p>作为经典的学习范式，GAE 有一系列的衍生作品。 VGAE [32]
 进一步将变分自动编码器 [54] 的思想集成到 GAE
 中。它采用基于推理模型的编码器，通过两个并行输出层估计平均值和偏差，并使用先验分布和估计分布之间的
@@ -1122,7 +1127,7 @@ GCC [15] 类似，CSSL [74] 是基于 MoCo [23]
 [25]的概念，类似于 MERIT [68]。</p>
 <h4 id="cross-scale-contrast">Cross-Scale Contrast</h4>
 <p>与同等规模的对比图实例不同，该方法分支将区分置于各种图拓扑（例如，节点与图）之间。我们在此类别下进一步构建两个子类，即
-patch-global 对比和 context-global 对比。</p>
+c 对比和 context-global 对比。</p>
 <h5 id="patch-global-cross-scale-contrast">Patch-Global Cross-Scale
 Contrast</h5>
 <p>对于节点级表示学习，我们将这种对比定义如下： <span
@@ -1167,8 +1172,9 @@ MI 来丰富局部和全局监督信号。另一方面，SUBG-CON [77] 继承了
 的难度。在异构图上，SLiCE [96]
 将节点拉近最接近的上下文图，而不是明确地将节点与整个图进行对比。此外，SLiCE
 通过上下文翻译机制丰富了节点嵌入的本地化信息。</p>
-<p>对于基于补丁全局对比度的图级表示学习，我们可以使用方程（30）来表示。
-InfoGraph [97] 与 DGI [13]
+<p>对于基于 patch-global
+对比的图级表示学习，我们可以使用等式（30）来表示。 InfoGraph [97] 与 DGI
+[13]
 共享相似的模式。它将图表示直接与节点嵌入进行对比，以区分节点是否属于给定图。为了进一步推动
 InfoGraph、Robinson 等人的对比方法。
 [98]提出了一种通用而有效的硬负采样策略，使底层 pretext tasks
@@ -1247,7 +1253,7 @@ InfoGraph [97] 中的另一种形式表示。</p>
 估计，它自然由一个正例对和 <span class="math inline">\(N\)</span>
 个负例对组成 [36]。基于 InfoNCE 的对比损失定义如下： <span
 class="math display">\[
-\begin{aligned}\mathcal{L}_{con}\Big(p_{\phi}(\mathbf{h}_{i},\mathbf{h}_{j})\Big)=-\mathcal{MI}_{NCE}(\mathbf{h}_{i},\mathbf{h}_{j})=-\mathbb{E}_{\mathcal{P}\times\widetilde{\mathcal{P}}N}\Big[\log\frac{e^{p_{\phi}(\mathbf{h}_{i},\mathbf{h}_{j})}}{e^{p_{\phi}(\mathbf{h}_{i},\mathbf{h}_{j})}+\sum_{n\in
+\begin{aligned}\mathcal{L}_{con}\Big(p_{\phi}(\mathbf{h}_{i},\mathbf{h}_{j})\Big)=-\mathcal{MI}_{NCE}(\mathbf{h}_{i},\mathbf{h}_{j})=-\mathbb{E}_{\mathcal{P}\times\widetilde{\mathcal{P}}^N}\Big[\log\frac{e^{p_{\phi}(\mathbf{h}_{i},\mathbf{h}_{j})}}{e^{p_{\phi}(\mathbf{h}_{i},\mathbf{h}_{j})}+\sum_{n\in
 N}e^{p_{\phi}(\mathbf{h}_{i},\mathbf{h}_{n}^{\prime})}}\Big],\end{aligned}
 \tag{35}
 \]</span> 其中判别器 <span
@@ -1269,7 +1275,7 @@ class="math display">\[
 e^{(-h_i^Th_j)}\)</span>。</p>
 <h4 id="byol-loss">BYOL Loss</h4>
 <p>对于受 BYOL [25] 启发且不依赖负样本的方法，例如 BGRL
-[25]，它们的目标函数也可以解释为非绑定 MI 估计器。</p>
+[25]，它们的目标函数也可以解释为 non-bound MI 估计器。</p>
 <p>给定 <span class="math inline">\(h_i, h_j \sim
 \mathcal{P}\)</span>，我们将损失定义如下： <span class="math display">\[
 \mathcal{L}_{con}\Big(p(\mathbf{h}_i,\mathbf{h}_j)\Big)=\mathbb{E}_{\mathcal{P}\times\mathcal{P}}\Big[2-2\cdot\frac{\left[p_\psi(\mathbf{h}_i)\right]^T\mathbf{h}_j}{\left\|p_\psi(\mathbf{h}_i)\right\|\left\|\mathbf{h}_j\right\|}\Big],
