@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefined20241005221540.png">
 <meta property="article:published_time" content="2024-10-07T14:24:00.000Z">
-<meta property="article:modified_time" content="2024-10-07T16:08:52.973Z">
+<meta property="article:modified_time" content="2024-10-07T16:12:43.540Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="Deep Learning">
 <meta name="twitter:card" content="summary_large_image">
@@ -578,8 +578,10 @@ CGE 和面向 ZO-GraSP
 的动态稀疏模式在统一的框架中得到了清晰的描述。我们还建议读者参考附录 E
 提供更多解释以及与 <span class="math inline">\(\mathcal{M}_1\)</span> 和
 <span class="math inline">\(\mathcal{M}_2\)</span> 的比较。我们在附录 A
-中提供收敛率分析。 ## Improving Scalability: Feature Reuse &amp; Forward
-Parallel 我们研究了 ZO
+中提供收敛率分析。</p>
+<h2 id="improving-scalability-feature-reuse-forward-parallel">Improving
+Scalability: Feature Reuse &amp; Forward Parallel</h2>
+<p>我们研究了 ZO
 训练的两个特征，可以进一步增强实现的可扩展性：特征重用和前向并行化。前者将中间特征与权重扰动分开，而后者则利用
 CGE 中的有限差分性质来实现可扩展的分布式实现。</p>
 
