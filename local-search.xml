@@ -8,7 +8,7 @@
     <link href="/2024/10/07/optimizer/"/>
     <url>/2024/10/07/optimizer/</url>
     
-    <content type="html"><![CDATA[<p>本文主要介绍了深度学习模型中主要使用的几个 optimizer (优化器)。</p><h2 id="sgd">SGD</h2><hr /><p>Algorithm Stochastic gradient descent (SGD) update at trainingiteration k <strong><em> <strong>Require</strong>: Learning rate <spanclass="math inline">\(\epsilon_k\)</span> <strong>Require</strong>:Intial parameter <span class="math inline">\(\pmb{\theta}\)</span><strong>while</strong> stopping criterion not met <strong>do</strong>Sample a minibatch of <span class="math inline">\(m\)</span> examplesfrom the training set <spanclass="math inline">\(\{x^{(1)},\dots,x^{(m)} \}\)</span> withcorresponding targets <span class="math inline">\(y^{(i)}\)</span>Compute gradient estimate: <span class="math inline">\(\hat{\pmb{g}}\leftarrow +\frac{1}{m} \nabla_{\pmb{\theta}}\sum_iL(f(x^{(i)};\pmb{\theta}),y^{(i)})\)</span> Apply update: <spanclass="math inline">\(\pmb{\theta} \leftarrow \pmb{\theta} - \epsilon\hat{\pmb{g}}\)</span> <strong>end while</strong><br /></em></strong></p><h2 id="adagrad">Adagrad</h2><hr /><p>Algorithm The AdaGrad algorithm <strong><em><strong>Require</strong>: Global learning rate <spanclass="math inline">\(\epsilon\)</span> <strong>Require</strong>:Initial parameter <span class="math inline">\(\pmb{\theta}\)</span><strong>Require</strong>: Small constant <spanclass="math inline">\(\delta\)</span>, perhaps <spanclass="math inline">\(10^{-7}\)</span>, for numerical stabilityInitialize gradient accumulation variable <spanclass="math inline">\(\pmb{r}=0\)</span> <strong>while</strong> stoppingcriterion not met <strong>do</strong> Sample a minibatch of <spanclass="math inline">\(m\)</span> examples from the training set <spanclass="math inline">\(\{x^{(1)},\dots,x^{(m)} \}\)</span> withcorresponding targets <span class="math inline">\(y^{(i)}\)</span>Compute gradient estimate: <span class="math inline">\(\hat{\pmb{g}}\leftarrow \frac{1}{m} \nabla_{\pmb{\theta}}\sum_iL(f(x^{(i)};\pmb{\theta}),y^{(i)})\)</span> Accumulate squared gradient:<span class="math inline">\(\pmb{r} \leftarrow \pmb{r} + \pmb{g} \odot\pmb{g}\)</span> Compute update: <span class="math inline">\(\Delta\pmb{\theta} \leftarrow -\frac{\epsilon}{\delta+\sqrt{\pmb{r}}} \odot\pmb{g}\)</span>. (Division and square root applied element-wise) Applyupdate: <span class="math inline">\(\pmb{\theta} \leftarrow \pmb{\theta}+ \Delta \pmb{\theta}\)</span> <strong>end while</strong></em></strong></p><h2 id="rmsprop">RMSProp</h2><hr /><p>Algorithm The RMSProp algorithm <strong><em><strong>Require</strong>: Global learning rate <spanclass="math inline">\(\epsilon\)</span>, decay rate <spanclass="math inline">\(\rho\)</span> <strong>Require</strong>: Initialparameter <span class="math inline">\(\pmb{\theta}\)</span><strong>Require</strong>: Small constant <spanclass="math inline">\(\delta\)</span>, usually <spanclass="math inline">\(10^{-6}\)</span>, used to stabilize division bysmall numbers Initialize gradient accumulation variable <spanclass="math inline">\(\pmb{r}=0\)</span> <strong>while</strong> stoppingcriterion not met <strong>do</strong> Sample a minibatch of <spanclass="math inline">\(m\)</span> examples from the training set <spanclass="math inline">\(\{x^{(1)},\dots,x^{(m)} \}\)</span> withcorresponding targets <span class="math inline">\(y^{(i)}\)</span>Compute gradient estimate: <span class="math inline">\(\hat{\pmb{g}}\leftarrow \frac{1}{m} \nabla_{\pmb{\theta}}\sum_iL(f(x^{(i)};\pmb{\theta}),y^{(i)})\)</span> Accumulate squared gradient:<span class="math inline">\(\pmb{r} \leftarrow \rho \pmb{r} + (1-\rho)\pmb{g} \odot \pmb{g}\)</span> Compute update: <spanclass="math inline">\(\Delta \pmb{\theta} =-\frac{\epsilon}{\sqrt{\delta+\pmb{r}}} \odot \pmb{g}\)</span>. (<spanclass="math inline">\(\frac{1}{\sqrt{\delta+\pmb{r}}}\)</span> appliedelement-wise) Apply update: <span class="math inline">\(\pmb{\theta}\leftarrow \pmb{\theta} + \Delta \pmb{\theta}\)</span> <strong>endwhile</strong> </em></strong></p><h2 id="adam">Adam</h2><hr /><p>Algorithm The Adam algorithm <strong><em> <strong>Require</strong>:Step size <span class="math inline">\(\epsilon\)</span> (Suggesteddefault: 0.001) <strong>Require</strong>: Expontential decay rates formoment estimates, <span class="math inline">\(\rho_1\)</span> and <spanclass="math inline">\(\rho_2\)</span> in <spanclass="math inline">\([0,1)\)</span>. (Suggested defaults: 0.9 and 0.999respectively) <strong>Require</strong>: Small constant <spanclass="math inline">\(\delta\)</span> used for numerical stabilization.(Suggested default: <span class="math inline">\(10^{-8}\)</span>)<strong>Require</strong>: Initial parameters <spanclass="math inline">\(\pmb{\theta}\)</span> Initialize 1st and 2ndmoment variables <spanclass="math inline">\(\pmb{s}=0,\pmb{r}=0\)</span> Initialize time step<span class="math inline">\(t=0\)</span> <strong>while</strong> stoppingcriterion not met <strong>do</strong> Sample a minibatch of <spanclass="math inline">\(m\)</span> examples from the training set <spanclass="math inline">\(\{x^{(1)},\dots,x^{(m)} \}\)</span> withcorresponding targets <span class="math inline">\(y^{(i)}\)</span>Compute gradient estimate: <span class="math inline">\(\hat{\pmb{g}}\leftarrow \frac{1}{m} \nabla_{\pmb{\theta}}\sum_iL(f(x^{(i)};\pmb{\theta}),y^{(i)})\)</span> <spanclass="math inline">\(t\leftarrow t+1\)</span> Update biased firstmoment estimate: <span class="math inline">\(\pmb{s} \leftarrow \rho_1\pmb{s} + (1 - \rho_1)\pmb{g}\)</span> Update biased second momentestimate: <span class="math inline">\(\pmb{r} \leftarrow \rho_2 \pmb{r}+ (1-\rho_2)\pmb{g} \odot \pmb{g}\)</span> Correct bias in first moment:<span class="math inline">\(\hat{\pmb{s}} \leftarrow\frac{\pmb{s}}{1-\rho_1^t}\)</span> Correct bias in first moment: <spanclass="math inline">\(\hat{\pmb{r}} \leftarrow\frac{\pmb{r}}{1-\rho_2^t}\)</span> Compute update: <spanclass="math inline">\(\Delta \pmb{\theta} = -\epsilon\frac{\hat{\pmb{s}}}{\sqrt{\hat{\pmb{r}}+\delta}}\)</span>. (<spanclass="math inline">\(\frac{1}{\sqrt{\delta+\pmb{r}}}\)</span> appliedelement-wise) Apply update: <span class="math inline">\(\pmb{\theta}\leftarrow \pmb{\theta} + \Delta \pmb{\theta}\)</span> <strong>endwhile</strong> </em></strong></p>]]></content>
+    <content type="html"><![CDATA[<p>本文主要介绍了深度学习模型中主要使用的几个 optimizer (优化器)。</p><h2 id="sgd">SGD</h2><hr /><p>Algorithm Stochastic gradient descent (SGD) update at trainingiteration k ___ <strong>Require</strong>: Learning rate <spanclass="math inline">\(\epsilon_k\)</span> <strong>Require</strong>:Intial parameter <span class="math inline">\(\pmb{\theta}\)</span><strong>while</strong> stopping criterion not met <strong>do</strong>Sample a minibatch of <span class="math inline">\(m\)</span> examplesfrom the training set <spanclass="math inline">\(\{x^{(1)},\dots,x^{(m)} \}\)</span> withcorresponding targets <span class="math inline">\(y^{(i)}\)</span>Compute gradient estimate: <span class="math inline">\(\hat{\pmb{g}}\leftarrow +\frac{1}{m} \nabla_{\pmb{\theta}}\sum_iL(f(x^{(i)};\pmb{\theta}),y^{(i)})\)</span> Apply update: <spanclass="math inline">\(\pmb{\theta} \leftarrow \pmb{\theta} - \epsilon\hat{\pmb{g}}\)</span> <strong>end while</strong></p><hr /><h2 id="adagrad">Adagrad</h2><hr /><p>Algorithm The AdaGrad algorithm <strong><em><strong>Require</strong>: Global learning rate <spanclass="math inline">\(\epsilon\)</span> <strong>Require</strong>:Initial parameter <span class="math inline">\(\pmb{\theta}\)</span><strong>Require</strong>: Small constant <spanclass="math inline">\(\delta\)</span>, perhaps <spanclass="math inline">\(10^{-7}\)</span>, for numerical stabilityInitialize gradient accumulation variable <spanclass="math inline">\(\pmb{r}=0\)</span> <strong>while</strong> stoppingcriterion not met <strong>do</strong> Sample a minibatch of <spanclass="math inline">\(m\)</span> examples from the training set <spanclass="math inline">\(\{x^{(1)},\dots,x^{(m)} \}\)</span> withcorresponding targets <span class="math inline">\(y^{(i)}\)</span>Compute gradient estimate: <span class="math inline">\(\hat{\pmb{g}}\leftarrow \frac{1}{m} \nabla_{\pmb{\theta}}\sum_iL(f(x^{(i)};\pmb{\theta}),y^{(i)})\)</span> Accumulate squared gradient:<span class="math inline">\(\pmb{r} \leftarrow \pmb{r} + \pmb{g} \odot\pmb{g}\)</span> Compute update: <span class="math inline">\(\Delta\pmb{\theta} \leftarrow -\frac{\epsilon}{\delta+\sqrt{\pmb{r}}} \odot\pmb{g}\)</span>. (Division and square root applied element-wise) Applyupdate: <span class="math inline">\(\pmb{\theta} \leftarrow \pmb{\theta}+ \Delta \pmb{\theta}\)</span> <strong>end while</strong></em></strong></p><h2 id="rmsprop">RMSProp</h2><hr /><p>Algorithm The RMSProp algorithm <strong><em><strong>Require</strong>: Global learning rate <spanclass="math inline">\(\epsilon\)</span>, decay rate <spanclass="math inline">\(\rho\)</span> <strong>Require</strong>: Initialparameter <span class="math inline">\(\pmb{\theta}\)</span><strong>Require</strong>: Small constant <spanclass="math inline">\(\delta\)</span>, usually <spanclass="math inline">\(10^{-6}\)</span>, used to stabilize division bysmall numbers Initialize gradient accumulation variable <spanclass="math inline">\(\pmb{r}=0\)</span> <strong>while</strong> stoppingcriterion not met <strong>do</strong> Sample a minibatch of <spanclass="math inline">\(m\)</span> examples from the training set <spanclass="math inline">\(\{x^{(1)},\dots,x^{(m)} \}\)</span> withcorresponding targets <span class="math inline">\(y^{(i)}\)</span>Compute gradient estimate: <span class="math inline">\(\hat{\pmb{g}}\leftarrow \frac{1}{m} \nabla_{\pmb{\theta}}\sum_iL(f(x^{(i)};\pmb{\theta}),y^{(i)})\)</span> Accumulate squared gradient:<span class="math inline">\(\pmb{r} \leftarrow \rho \pmb{r} + (1-\rho)\pmb{g} \odot \pmb{g}\)</span> Compute update: <spanclass="math inline">\(\Delta \pmb{\theta} =-\frac{\epsilon}{\sqrt{\delta+\pmb{r}}} \odot \pmb{g}\)</span>. (<spanclass="math inline">\(\frac{1}{\sqrt{\delta+\pmb{r}}}\)</span> appliedelement-wise) Apply update: <span class="math inline">\(\pmb{\theta}\leftarrow \pmb{\theta} + \Delta \pmb{\theta}\)</span> <strong>endwhile</strong> </em></strong></p><h2 id="adam">Adam</h2><hr /><p>Algorithm The Adam algorithm <strong><em> <strong>Require</strong>:Step size <span class="math inline">\(\epsilon\)</span> (Suggesteddefault: 0.001) <strong>Require</strong>: Expontential decay rates formoment estimates, <span class="math inline">\(\rho_1\)</span> and <spanclass="math inline">\(\rho_2\)</span> in <spanclass="math inline">\([0,1)\)</span>. (Suggested defaults: 0.9 and 0.999respectively) <strong>Require</strong>: Small constant <spanclass="math inline">\(\delta\)</span> used for numerical stabilization.(Suggested default: <span class="math inline">\(10^{-8}\)</span>)<strong>Require</strong>: Initial parameters <spanclass="math inline">\(\pmb{\theta}\)</span> Initialize 1st and 2ndmoment variables <spanclass="math inline">\(\pmb{s}=0,\pmb{r}=0\)</span> Initialize time step<span class="math inline">\(t=0\)</span> <strong>while</strong> stoppingcriterion not met <strong>do</strong> Sample a minibatch of <spanclass="math inline">\(m\)</span> examples from the training set <spanclass="math inline">\(\{x^{(1)},\dots,x^{(m)} \}\)</span> withcorresponding targets <span class="math inline">\(y^{(i)}\)</span>Compute gradient estimate: <span class="math inline">\(\hat{\pmb{g}}\leftarrow \frac{1}{m} \nabla_{\pmb{\theta}}\sum_iL(f(x^{(i)};\pmb{\theta}),y^{(i)})\)</span> <spanclass="math inline">\(t\leftarrow t+1\)</span> Update biased firstmoment estimate: <span class="math inline">\(\pmb{s} \leftarrow \rho_1\pmb{s} + (1 - \rho_1)\pmb{g}\)</span> Update biased second momentestimate: <span class="math inline">\(\pmb{r} \leftarrow \rho_2 \pmb{r}+ (1-\rho_2)\pmb{g} \odot \pmb{g}\)</span> Correct bias in first moment:<span class="math inline">\(\hat{\pmb{s}} \leftarrow\frac{\pmb{s}}{1-\rho_1^t}\)</span> Correct bias in first moment: <spanclass="math inline">\(\hat{\pmb{r}} \leftarrow\frac{\pmb{r}}{1-\rho_2^t}\)</span> Compute update: <spanclass="math inline">\(\Delta \pmb{\theta} = -\epsilon\frac{\hat{\pmb{s}}}{\sqrt{\hat{\pmb{r}}+\delta}}\)</span>. (<spanclass="math inline">\(\frac{1}{\sqrt{\delta+\pmb{r}}}\)</span> appliedelement-wise) Apply update: <span class="math inline">\(\pmb{\theta}\leftarrow \pmb{\theta} + \Delta \pmb{\theta}\)</span> <strong>endwhile</strong> </em></strong></p>]]></content>
     
     
     <categories>
@@ -1118,33 +1118,6 @@
   
   
   <entry>
-    <title>Github Pages + Hexo + Vercel 个人博客搭建（四）Typora + PicGo+ 腾讯云图床</title>
-    <link href="/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/"/>
-    <url>/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-    
-    <categories>
-      
-      <category>Blog</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>Blog</tag>
-      
-      <tag>Hexo</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Github Pages + Hexo + Vercel 个人博客搭建（二）Matery 主题</title>
     <link href="/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-er-matery-zhu-ti/"/>
     <url>/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-er-matery-zhu-ti/</url>
@@ -1175,6 +1148,33 @@
     <title>Github Pages + Hexo + Vercel 个人博客搭建（五）自定义域名及百度谷歌收录</title>
     <link href="/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-wu-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/"/>
     <url>/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-wu-zi-ding-yi-yu-ming-ji-bai-du-gu-ge-shou-lu/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>Blog</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Blog</tag>
+      
+      <tag>Hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Github Pages + Hexo + Vercel 个人博客搭建（四）Typora + PicGo+ 腾讯云图床</title>
+    <link href="/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/"/>
+    <url>/2023/06/04/github-pages-ge-ren-bo-ke-da-jian-san-typora-teng-xun-yun-tu-chuang/</url>
     
     <content type="html"><![CDATA[]]></content>
     
