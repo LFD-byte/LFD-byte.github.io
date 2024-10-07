@@ -1,0 +1,1001 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="培根请加蛋">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="DeepZero-Scaling Up Zeroth-Order Optimization for Deep Model Training">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文日记-2024-DeepZero-Scaling Up Zeroth-Order Optimization for Deep Model Training">
+<meta property="og:url" content="https://blog.lfd.world/2024/10/07/lun-wen-ri-ji-2024-deepzero-scaling-up-zeroth-order-optimization-for-deep-model-training/index.html">
+<meta property="og:site_name" content="培根请加蛋">
+<meta property="og:description" content="DeepZero-Scaling Up Zeroth-Order Optimization for Deep Model Training">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefined20241005221540.png">
+<meta property="article:published_time" content="2024-10-07T14:24:00.000Z">
+<meta property="article:modified_time" content="2024-10-07T16:08:52.973Z">
+<meta property="article:author" content="培根请加蛋">
+<meta property="article:tag" content="Deep Learning">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefined20241005221540.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>论文日记-2024-DeepZero-Scaling Up Zeroth-Order Optimization for Deep Model Training - 培根请加蛋</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.lfd.world","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>培根请加蛋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="论文日记-2024-DeepZero-Scaling Up Zeroth-Order Optimization for Deep Model Training"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-07 22:24" pubdate>
+          2024年10月7日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          82 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">论文日记-2024-DeepZero-Scaling Up Zeroth-Order Optimization for Deep Model Training</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="abstract">Abstract</h2>
+<p>当很难或不可能获得一阶 (first-order, FO) 信息时，零阶 (zeroth-order,
+ZO) 优化已成为解决机器学习 (machine learning, ML)
+问题的流行技术。然而，ZO
+优化的可扩展性仍然是一个悬而未决的问题：它的使用主要限于相对小规模的 ML
+问题，例如样本对抗攻击生成。据我们所知，之前的工作还没有证明 ZO
+优化在训练深度神经网络 (deep neural networks, DNN)
+时的有效性，并且性能不会显着下降。为了克服这一障碍，我们开发了
+DeepZero，这是一个有原则的 ZO 深度学习 (deep learning, DL)
+框架，可以通过三项主要创新从头开始将 ZO 优化扩展到 DNN
+训练。<font color="#ff0000">首先，我们证明了坐标梯度估计（coordinate-wise
+gradient estimation, CGE）相对于随机向量梯度估计（randomized vector-wise
+gradient estimation,
+RGE）在训练精度和计算效率方面的优势。其次，我们提出了一种稀疏性诱导的 ZO
+训练协议，该协议仅使用有限差分来扩展模型修剪方法，以探索和利用 CGE
+中的稀疏 DL 先验。第三，我们开发了特征重用和前向并行化的方法来推进 ZO
+训练的实际实现。</font>我们的大量实验表明，DeepZero 在 CIFAR-10 上训练的
+ResNet-20 上实现了最先进的 (SOTA) 精度，首次接近 FO
+训练性能。此外，我们还展示了 DeepZero 在经过认证的对抗性防御和基于 DL
+的偏微分方程纠错应用中的实际效用，比 SOTA 实现了 1020%
+的改进。我们相信我们的结果将激发未来可扩展 ZO
+优化的研究，并有助于利用黑盒推进深度学习。代码可在
+https://github.com/OPTML-Group/DeepZero 获取。 ## Introduction
+在机器学习 (ML)
+领域，优化算法在复杂模型的训练、跨不同领域产生前所未有的洞察力和预测能力方面发挥了至关重要的作用。多年来，基于一阶（FO）梯度的方法，例如随机梯度下降（stochastic
+gradient descent,
+SGD）及其变体，已成为模型训练的默认选择。这些方法依靠梯度信息迭代更新模型参数，旨在最小化给定的损失函数。尽管如此，在一些实际情况下，FO
+梯度信息要么不可用，要么无法计算，需要替代策略。零阶 (ZO)
+优化已成为解决这些挑战的一种有前途的方法，因为它利用函数值的有限差异来估计梯度，而不是请求显式的梯度信息。因此，通过对
+FO 算法进行少量修改，ZO 优化可以应用于各种 FO
+梯度难以获得的现实情况。例如，在物理和化学等学科中，ML
+模型可能与复杂的模拟器或实验交互，其中底层系统是不可微分的。此外，当深度学习（DL）模型与第三方API集成时，经常会出现黑盒学习场景，例如针对黑盒DL模型的对抗性攻击和防御和语言模型即服务的黑盒提示学习。此外，在硬件系统上实现深度学习模型时，用于计算
+FO 梯度的原则性反向传播 (backpropagation, BP) 机制也可能不受支持。除了
+ZO 优化之外，DL 领域的另一个相关研究方向侧重于开发生物学上合理的、无 BP
+的方法。示例包括基于前向梯度的方法、贪婪分层学习和 Hebbian
+学习。然而，这些技术需要访问计算图，并且高度依赖于所使用的深度学习软件框架和/或模型架构。相比之下，ZO
+优化仅依赖于模型查询，并且不使用计算图。因此，ZO
+优化对于涉及黑盒仅查询组件的深度学习问题具有广泛的适用性。尽管 ZO
+优化前景广阔，但可扩展性瓶颈阻碍了其在中型或大规模 DNN
+训练中的应用。随着问题维度的增加，传统 ZO
+方法的准确性和效率会下降。这是因为基于 ZO 有限差分的梯度估计是 FO
+梯度的有偏估计，并且这种偏差在高维空间中变得更加明显。</p>
+<p><img
+src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefined20241005163725.png"
+alt="image.png" /> 这些挑战激发了这项工作中解决的核心问题：（Q）如何扩大
+ZO
+优化以训练深度模型？为了解决（Q）问题，我们提出了一个新颖的框架“DeepZero”，它注入了新颖的模型修剪和并行计算技术来扩大
+ZO DNN 训练（见图 1 的示意图）。我们的主要贡献总结如下。 *
+我们证明，当扩展到深度模型训练时，确定性坐标梯度估计（CGE）在准确性和计算效率方面都优于向量随机梯度估计（RGE）。此外，随着模型深度的增加，CGE
+变得越来越有利。 * 我们表明，稀疏性对于通过有限差分 CGE
+实现模型训练至关重要。与之前的工作相比，我们发现通过将当前的初始化剪枝技术扩展到
+ZO 学习范式，可以“免费”获得黑盒模型的稀疏性。剪枝和 CGE
+之间已建立的协同作用为 DNN 的高效 ZO 训练提供了一条有前途的途径。 *
+我们确定了基于 CGE 的 ZO
+优化固有的并行化拟合属性，并提出了一种基于该属性的新颖的前向并行化方法。我们的框架支持深度学习中的特征重用，通过消除冗余计算进一步加速并行训练。
+* 我们介绍了我们提出的 ZO 深度模型训练框架“DeepZero”。为了证明 DeepZero
+的经验优势，我们在标准图像分类基准和现实世界的黑盒深度学习应用程序上进行了广泛的实验。例如，当使用
+DeepZero 在 CIFAR-10 上训练 ResNet20 时，我们获得了 86.94%
+的测试准确率，这是无梯度模型训练文献中最好的报告。我们还举例说明了
+DeepZero
+在两个现实世界的深度学习任务中的巨大潜力和实际影响：对抗鲁棒性的黑盒防御和具有循环求解器的物理信息深度学习。
+需要澄清的是，我们的工作旨在扩展 DL 应用程序的 ZO 优化的可扩展性，解决
+FO 优化变得具有挑战性或不可行的情况。然而，值得注意的是，ZO
+训练中提出的进步并不是为了克服训练任何规模的深度网络的最终可扩展性挑战。
+## Related Work <strong>经典的无梯度优化</strong>
+早期的研究工作可大致分为两类：基于直接搜索的方法（direct search-based
+methods, DSM）和基于模型的方法（model-based methods, MBM）。 DSM
+包括坐标和模式搜索方法以及 Nelder-Mead 单纯形法等技术。 MBM
+包括基于模型的下降和信任域方法。进化优化提供了一个通用的基于群体的无梯度计算框架，包括遗传算法和粒子群优化。贝叶斯优化最近通过使用高斯过程（Gaussian
+process,
+GP）来拟合黑盒目标函数并估计优化解决方案而引起了人们的关注。然而，获取准确的
+GP 需要大量计算。</p>
+<p><strong>零阶优化</strong>
+<font color="#ff0000">与经典的无梯度方法相比，ZO
+优化使用有限差分来近似梯度，通过最小化基于 FO
+梯度的算法的修改来简化实现。</font>与 FO 方法一样，ZO
+享有可证明的收敛保证。 ZO
+优化因其在解决各种新兴机器学习问题方面的成功而受到广泛关注。例子包括对抗性攻击和防御，模型无关的对比解释，迁移学习的视觉提示，计算图展开、自动化机器学习、强化学习中的策略搜索、网络资源管理、基于
+ML 的科学工作流程优化以及 on-chip learning。尽管 ZO
+在解决机器学习问题方面取得了成功，但其应用仅限于相对较小的规模。例如，用于生成对抗性攻击、对比解释和视觉提示的
+ZO
+优化器仅在输入参数空间中运行，该空间具有单个输入示例的维度。已经开发了一些加速技术来提高较大问题中的
+ZO 性能，例如使用历史信息来增强 ZO 梯度估计器，以及利用梯度稀疏性来减少
+ZO
+对问题规模。虽然梯度稀疏性已用于提高可扩展性，但我们提出了一种高级策略，利用模型修剪技术来有效识别和利用神经网络参数中的稀疏性。我们的方法比传统的梯度稀疏假设限制更少，并且在选择修剪内容方面具有更大的灵活性。据我们所知，之前的工作还没有证明可扩展
+ZO 优化在深度模型训练中的实用性，并且与 FO 相比没有显着的性能损失。</p>
+<p><strong>无反向传播的深度学习</strong>
+前向梯度学习建立在当前深度学习软件框架的前向模式自动微分（forward-mode
+automatic differentiation, AD）功能的基础上，不像 ZO
+优化那样依赖有限差分来近似 FO 梯度。相反，它依靠前向模式 AD
+来计算前向（方向）梯度。该梯度是通过将 FO 梯度投影到方向向量上获得的，是
+FO 梯度的无偏估计量。相比之下，基于有限差分的 ZO
+梯度估计是有偏差的。然而，前向梯度学习的一个主要限制是它需要完全访问 AD
+软件和深度模型，这使得它无法解决黑盒深度学习问题。
+最新进展通过使用更精细的模型信息来设计特定于架构的局部目标函数，进一步提高了前向梯度学习的可扩展性。其他无
+BP
+深度学习方法的动机是寻求深度学习的生物学解释，但与前向梯度学习也有类似的局限性。一些例子包括贪婪分层学习、神经切线核（neural
+tangent kernel,
+NTK）机制中宽神经网络的输入权重对齐、前向-前向算法、Hebbian Learning
+和合成梯度。 ## ZO Optimization through Function Value-Based Gradient
+Estimation: Randomized or Coordinate-Wise? 我们现在介绍 ZO
+优化设置并讨论两种 ZO 梯度估计方案：确定性坐标梯度估计（coordinate-wise
+gradient estimation, CGE）和随机向量梯度估计（randomized vector-wise
+gradient estimation, RGE）。我们将展示 CGE 相对于 RGE 在 DNN
+训练方面的优势。这激发了基于 CGE 的 ZO 优化扩展的进一步改进。</p>
+<p><strong>ZO优化和梯度估计</strong> 令 <span
+class="math inline">\(\ell(\theta)\)</span> 表示我们希望在优化变量 <span
+class="math inline">\(\pmb{\theta} \in
+\mathbb{R}^d\)</span>（例如神经网络的模型参数）上最小化的损失函数。 ZO
+优化器仅通过提交输入（即 <span class="math inline">\(\theta\)</span>
+的实现）并接收相应的函数值来与目标函数 <span
+class="math inline">\(\ell\)</span>
+交互。它稍微修改了常用的基于一阶（FO）梯度的算法，通过基于函数值的梯度估计来近似
+FO
+梯度。当由于损失函数的黑箱性质而难以进行显式微分时，或者当出于对能源效率的考虑而不需要显式微分的时候，这一点至关重要。
+RGE 和 CGE 是两个基于 <span class="math inline">\(\ell\)</span>
+的有限差分的常用梯度估计器。 RGE 通过 <span
+class="math inline">\(\theta\)</span> 的随机扰动获得有限差分，而 CGE
+使用 <span class="math inline">\(\theta\)</span>
+的确定性坐标扰动。它们的正式定义由下式给出 <span class="math display">\[
+(\mathbf{RGE})\hat{\nabla}_{\boldsymbol{\theta}}\ell(\boldsymbol{\theta})
+= \frac{1}{q}\sum_{i=1}^{q}
+\left[\frac{\ell(\boldsymbol{\theta}+\mu\mathbf{u}_{i})-\ell(\boldsymbol{\theta})}{\mu}\mathbf{u}_{i}\right];
+\mathrm{~(CGE)~}\hat{\nabla}_{\boldsymbol{\theta}}\ell(\boldsymbol{\theta})
+= \sum_{i=1}^{d}
+\left[\frac{\ell(\boldsymbol{\theta}+\mu\mathbf{e}_{i})-\ell(\boldsymbol{\theta})}{\mu}\mathbf{e}_{i}\right],
+\tag{1}
+\]</span> 其中 <span
+class="math inline">\(\hat{\nabla}_{\mathbf{\theta}}\ell\)</span> 表示
+FO 梯度 <span class="math inline">\(\nabla_{\pmb{\theta}}\ell\)</span>
+相对于 <span class="math inline">\(\pmb{\theta}\)</span> 的估计。在
+(RGE) 中，<span class="math inline">\(\pmb{u}_i\)</span>
+表示随机扰动向量，例如，从标准高斯分布 <span
+class="math inline">\(\mathcal{N}(0,1)\)</span> 中得出，<span
+class="math inline">\(\mu &gt; 0\)</span>
+是扰动大小（又名平滑参数），<span class="math inline">\(q\)</span>
+是用于获得有限差分的随机方向的数量。在 (CGE) 中，<span
+class="math inline">\(e_i\)</span> 表示标准基向量，<span
+class="math inline">\(\frac{\ell(\pmb{\theta}+\mu
+e_i)-\ell(\pmb{\theta})}{\mu}\)</span> 提供 <span
+class="math inline">\(\ell(\pmb{\theta})\)</span> 在第 <span
+class="math inline">\(i\)</span> 个坐标 <span
+class="math inline">\(\pmb{\theta}_i\)</span> 处的偏导数的有限差分估计。
+(1) 中的有限差分近似是由方向导数驱动的。以 RGE（<span
+class="math inline">\(q = 1\)</span>）为例。当 <span
+class="math inline">\(\mu \rightarrow 0\)</span> 时，RGE
+中的有限差分收敛于函数 <span class="math inline">\(\ell\)</span> 在
+<span class="math inline">\(\pmb{\theta}\)</span> 点的朝 <span
+class="math inline">\(\pmb{u}\)</span> 方向的方向导数 <span
+class="math inline">\(\ell^{\prime}(\boldsymbol{\theta}):=\mathbf{u}^T\nabla_\boldsymbol{\theta}\ell(\boldsymbol{\theta})=\lim_{\mu\to0}\frac{\ell(\boldsymbol{\theta}+\mu\mathbf{u}_i)-\ell(\boldsymbol{\theta})}\mu\)</span>
+。因此，表达式 <span
+class="math inline">\(\ell&#39;(\pmb{\theta})\pmb{u}\)</span> 得出 <span
+class="math inline">\(\mathbb{E}[\ell^{\prime}(\boldsymbol{\theta})\mathbf{u}]
+=
+\mathbb{E}[(\mathbf{u}\mathbf{u}^T)\nabla_{\boldsymbol{\theta}}\ell(\boldsymbol{\theta})]
+=\nabla_{\pmb{\theta}}\ell(\pmb{\theta})\)</span>（回想一下 <span
+class="math inline">\(\mathbb{E}[\pmb{u}\pmb{u}^T]=\mathbf{I}\)</span>）
+。这意味着 <span
+class="math inline">\(\ell&#39;(\pmb{\theta})\pmb{u}\)</span> 是 <span
+class="math inline">\(\nabla_{\pmb{\theta}}\ell(\pmb{\theta})\)</span>
+的无偏梯度估计量，其有偏有限差分近似由 (1) 给出。</p>
+<p><strong>RGE 还是 CGE?</strong> 首先，RGE 和 CGE
+的函数查询成本不同，基于 (1)，RGE 需要 <span
+class="math inline">\(O(q)\)</span> 次查询，而 CGE 需要 <span
+class="math inline">\(O(d)\)</span> 次查询。与 CGE 相比，RGE
+可以灵活地指定 <span class="math inline">\(q &lt; d\)</span>
+以减少函数评估的次数。尽管查询效率很高，但在从头开始训练深度模型时，RGE
+能否提供令人满意的准确性仍然不确定。为此，我们进行了初步研究，其中我们使用
+RGE 和 CGE 在 CIFAR-10 上训练不同大小的基本卷积神经网络
+(CNN)。为了确保查询复杂度的公平比较，我们将 RGE 中的查询数量 <span
+class="math inline">\(q\)</span> 设置为等于 CGE 中使用的问题大小 <span
+class="math inline">\(d\)</span>。图 2 显示了学习的 CNN
+相对于模型参数数量（相当于模型查询数量）的测试准确率。这里的训练配方由
+FO SGD、基于 ZO RGE 的 SGD 和基于 ZO CGE 的 SGD 指定。我们观察到 CGE
+可以达到与 FO 训练相当的测试精度，并且显着优于 RGE。该实验凸显了 CGE
+在优化精度方面优于 RGE，即使后者使用 <span class="math inline">\(q =
+d\)</span>。在训练更复杂的神经网络时，CGE
+的这种准确性优点尤其有价值。在附录 C 中，我们使用 CGE 与 RGE
+提供了计算成本的详细分析。相对于模型深度的时间成本如图 A2 所示。表 A1
+评估梯度估计时间成本。我们发现 CGE 表现出比 RGE 更高的时间效率。 RGE
+的计算效率损失在于它需要在每次查询时立即生成一个 <span
+class="math inline">\(d\)</span> 维扰动向量并将其集成到整个模型中。基于
+CGE 相对于 RGE 在精度和计算效率方面的优势，我们选择 CGE 作为首选的 ZO
+梯度估计器。然而，CGE 的查询复杂性仍然是一个瓶颈，因为它随着模型大小
+<span class="math inline">\(d\)</span> 的变化而扩展。
+<img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefined20241005221540.png" alt="Fig. 1" style="zoom:67%;" /></p>
+<h2
+id="sparsity-assisted-zo-training-a-pruning-lens-and-beyond">Sparsity-Assisted
+ZO Training: A Pruning Lens And Beyond</h2>
+<p>CGE 的一个有价值的特性是跨坐标的有限差分的解纠缠，这表明降低 CGE
+的查询复杂性与修剪正在优化的模型权重是一致的。考虑到这一点，我们建议将
+ZO 优化与修剪梯度相结合，为 ZO
+深度模型训练设计更有效的归纳偏差。值得注意的是，现有的几种 ZO
+优化方法已经探索了稀疏性，以提高梯度估计的查询效率。然而，先前的工作存在两个主要局限性。首先，在原始
+FO 梯度中假设了精确的稀疏性，这需要额外的稀疏学习方法（例如
+LASSO）来从函数查询中恢复这些稀疏梯度。其次，目前尚不清楚如何通过 ZO
+oracle
+优化稀疏模式，因为现有方法需要过度基于启发式的修剪方法（例如随机或幅度修剪）。过度增加稀疏性最终会限制优化性能。接下来，我们提出了一种新的剪枝方法，该方法仅依赖于模型查询，具有计算效率，并且可以通过引入适当的梯度稀疏性来提高
+ZO 优化精度。</p>
+<p><strong>ZO-GraSP：通过 ZO oracle 进行模型剪枝</strong> DL
+模型权重的可压缩性已得到广泛研究。例如，彩票假设证明随机初始化的密集神经网络包含高质量的稀疏子网络。然而，当前有效的剪枝方法将模型训练作为中间步骤。因此，它们不太适合通过
+ZO oracle 发现稀疏性。</p>
+<p>为了应对上述挑战，我们从免训练剪枝方法中汲取灵感，称为初始化剪枝。在这个家族中，梯度信号保留（gradient
+signal preservation, GraSP）是一种通过随机初始化网络的梯度流来识别 DL
+稀疏先验的方法。虽然 GraSP 仍然需要 FO
+和二阶导数信息，但我们可以仅使用函数查询来估计这些导数，以设计 GraSP 的
+ZO 版本（称为 ZO-GraSP）。具体来说，GraSP 将剪枝分数（用 S
+表示）分配给模型初始化 <span
+class="math inline">\(\pmb{\theta}\)</span>。这些分数反映了修剪权重后梯度流的变化：
+<span class="math display">\[
+\mathbf{S}=-\boldsymbol{\theta}\odot(\mathbf{Hg}),
+\mathbf{H}=\nabla_{\boldsymbol{\theta},\boldsymbol{\theta}}^2\ell(\boldsymbol{\theta}),
+\mathbf{g}=\nabla_{\boldsymbol{\theta}}\ell(\boldsymbol{\theta}),
+\tag{2}
+\]</span> 其中，<span class="math inline">\(\ell\)</span>
+是模型训练的损失函数，<span class="math inline">\(\odot\)</span>
+表示逐项乘法，<span class="math inline">\(\mathbf{H}_g\)</span> 表示
+Hessian 梯度积。使用 ZO 学习范式，我们可以首先将 Hessian 梯度积近似为
+<span class="math inline">\(g\)</span> 方向上两个梯度（即 <span
+class="math inline">\(\nabla_{\pmb{\theta}}\ell(\pmb{\theta}+\mu
+g)\)</span> 和 <span
+class="math inline">\(\nabla_{\pmb{\theta}}\ell(\pmb{\theta})\)</span>）之间的有限差分，平滑参数为
+<span class="math inline">\(\mu\)</span>。其次，我们将 FO 梯度 <span
+class="math inline">\(\nabla_{\pmb{\theta}}\ell\)</span> 替换为 (1)
+中给出的 ZO 梯度估计 <span
+class="math inline">\(\hat{\nabla}_{\pmb{\theta}}
+\ell\)</span>。结合起来产生 ZO-GraSP： <span class="math display">\[
+\hat{\mathbf{S}}:=-\boldsymbol{\theta}\odot\frac{\hat{\nabla}_\boldsymbol{\theta}\ell(\boldsymbol{\theta}+\mu\hat{\mathbf{g}})-\hat{\nabla}_\boldsymbol{\theta}\ell(\boldsymbol{\theta})}\mu.\tag{3}
+\]</span> 在实践中，我们发现通过对 <span
+class="math inline">\(\hat{\mathbf{S}}\)</span>
+中的条目进行排序而确定的剪枝掩码对于 ZO
+梯度估计误差具有弹性。因此，我们利用具有相对少量查询（<span
+class="math inline">\(q &lt; d\)</span>）的 RGE 来实现
+ZO-GraSP。这在不影响剪枝性能的情况下降低了函数查询成本；参见表 A2 和表
+A3 的经验论证。我们的结果表明，ZO-GraSP
+显着优于随机剪枝，并且生成的剪枝模型的精度与 FO-GraSP 相当。</p>
+<p><strong>将稀疏性与 CGE 集成</strong> 由于 CGE (1)
+中的有限差分可在权重上分解，因此很容易将稀疏性纳入 CGE
+中。为了保留训练密集模型的准确性优势，我们采用梯度稀疏性（在 CGE
+中）而不是权重稀疏性。这确保了我们在权重空间中训练密集模型，而不是直接应用
+ZO-GraSP 确定的稀疏性训练稀疏模型。令 <span
+class="math inline">\(S_{\text{ZO-GraSP}}\)</span> 为 ZO-GraSP
+找到的未剪枝模型权重的坐标集。稀疏引起的 CGE 由下式给出</p>
+<p><span class="math display">\[
+\hat{\nabla}_\theta\ell(\boldsymbol{\theta})=\sum_{i\in\mathcal{S}_{\mathrm{ZO}\cdot\mathrm{GraSP}}}\left[\frac{\ell(\boldsymbol{\theta}+\mu\mathbf{e}_i)-\ell(\boldsymbol{\theta})}\mu\mathbf{e}_i\right]
+\tag{Sparse-CGE}
+\]</span></p>
+<p>很明显，(Sparse-CGE) 将原始 CGE 的查询复杂度从 <span
+class="math inline">\(O(d)\)</span> 降低到 <span
+class="math inline">\(O(|S_{\text{ZO-GraSP}}|)\)</span>，其中 <span
+class="math inline">\(|S_{\text{ZO-GraSP}}|\)</span> 表示坐标集 <span
+class="math inline">\(S_{\text{ZO-GraSP}}\)</span>
+的基数。可能存在两种将（Sparse-CGE）集成到 ZO 优化中的直接方法。 <span
+class="math inline">\(\mathcal{M}_1\)</span>：此方法涉及 ZO-GraSP 和基于
+CGE 的 ZO 优化之间的交替。在每次迭代中，<span
+class="math inline">\(S_{\text{ZO-GraSP}}\)</span>
+都会根据前一次迭代的模型权重进行更新，然后用于构造（Sparse-CGE）以在当前迭代中更新
+<span class="math inline">\(\pmb{\theta}\)</span>。 <span
+class="math inline">\(\mathcal{M}_2\)</span>：该方法涉及在 ZO
+训练之前进行剪枝。也就是说，ZO-GraSP 在模型初始化时进行，所得的 <span
+class="math inline">\(S_{\text{ZO-GraSP}}\)</span>
+应用于（Sparse-CGE）并在训练期间保持固定。 <span
+class="math inline">\(\mathcal{M}_1\)</span> 和 <span
+class="math inline">\(\mathcal{M}_2\)</span> 都有局限性。 <span
+class="math inline">\(\mathcal{M}_1\)</span> 需要重复调用 ZO-GraSP
+来更新 <span class="math inline">\(S_{\text{ZO-GraSP}}\)</span>，导致 ZO
+模型训练的查询成本较高。 <span
+class="math inline">\(\mathcal{M}_2\)</span> 通过在训练前执行 ZO-GraSP
+来解决查询复杂性，但训练后只能产生较小的模型。众所周知，经过大量剪枝的模型会出现性能下降的情况（例如，附录
+D 中的表 A2 中的 95%
+稀疏模型）。因此，由于平衡查询效率和训练效果的要求，将 ZO-GraSP 与 ZO
+训练集成起来并非易事。为了解决这个问题，我们提出了面向 ZO-GraSP
+的动态稀疏模式，它利用 ZO-GraSP 来确定可以捕获 DNN 压缩性的分层剪枝率
+(layer-wise pruning ratios,
+LPRs)。这种方法与中引入的智能比率有着相似的本质。具体来说，我们在 ZO
+训练之前以随机初始化的权重从 ZO-GraSP 获取 LPR，这与 <span
+class="math inline">\(\mathcal{M}_2\)</span> 一样具有查询效率。然而，与
+<span class="math inline">\(\mathcal{M}_2\)</span> 不同，LPR
+仅在遵守这些 LPR 的情况下才允许对 <span
+class="math inline">\(\pmb{\theta}\)</span>
+中的稀疏梯度位置进行随机改组。这使我们能够模仿 <span
+class="math inline">\(\mathcal{M}_1\)</span> 在模型权重更新和 <span
+class="math inline">\(S_{\text{ZO-GraSP}}\)</span>
+更新之间交替，后者通过 LPR 引导的随机更新稀疏模式来实现。因此，ZO
+优化可以使用迭代更新 (Sparse-CGE) 和 LPR
+引导的动态稀疏模式来训练密集模型。总体而言，我们的建议具有 <span
+class="math inline">\(\mathcal{M}_2\)</span> 的查询效率和 <span
+class="math inline">\(\mathcal{M}_1\)</span> 的训练效果，从而将 ZO-GraSP
+均衡地集成到 ZO 训练中。我们在附录 E 中的算法 1 中总结了算法流程，其中
+CGE 和面向 ZO-GraSP
+的动态稀疏模式在统一的框架中得到了清晰的描述。我们还建议读者参考附录 E
+提供更多解释以及与 <span class="math inline">\(\mathcal{M}_1\)</span> 和
+<span class="math inline">\(\mathcal{M}_2\)</span> 的比较。我们在附录 A
+中提供收敛率分析。 ## Improving Scalability: Feature Reuse &amp; Forward
+Parallel 我们研究了 ZO
+训练的两个特征，可以进一步增强实现的可扩展性：特征重用和前向并行化。前者将中间特征与权重扰动分开，而后者则利用
+CGE 中的有限差分性质来实现可扩展的分布式实现。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Deep-Learning/" class="category-chain-item">Deep Learning</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Deep-Learning/" class="print-no-link">#Deep Learning</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>论文日记-2024-DeepZero-Scaling Up Zeroth-Order Optimization for Deep Model Training</div>
+      <div>https://blog.lfd.world/2024/10/07/lun-wen-ri-ji-2024-deepzero-scaling-up-zeroth-order-optimization-for-deep-model-training/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>培根请加蛋</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/10/07/optimizer/" title="Optimizer">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Optimizer</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/13/2024-shi-xu-yu-ce/" title="时序预测">
+                        <span class="hidden-mobile">时序预测</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
