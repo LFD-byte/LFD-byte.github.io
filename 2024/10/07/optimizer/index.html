@@ -24,7 +24,7 @@
 <meta property="og:description" content="Optimizer">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-07T14:24:00.000Z">
-<meta property="article:modified_time" content="2024-10-07T16:57:09.161Z">
+<meta property="article:modified_time" content="2024-10-08T01:33:37.854Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="Deep Learning">
 <meta name="twitter:card" content="summary_large_image">
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.8k 字
+          3.5k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          32 分钟
+          29 分钟
         
       </span>
     
@@ -289,8 +289,7 @@
 <p>Algorithm Stochastic gradient descent (SGD) update at training
 iteration k</p>
 <hr />
-<ul>
-<li><p><strong>Require</strong>: Learning rate <span
+<p><strong>Require</strong>: Learning rate <span
 class="math inline">\(\epsilon_k\)</span></p>
 <p><strong>Require</strong>: Intial parameter <span
 class="math inline">\(\pmb{\theta}\)</span></p>
@@ -305,126 +304,122 @@ corresponding targets <span class="math inline">\(y^{(i)}\)</span></p>
 L(f(x^{(i)};\pmb{\theta}),y^{(i)})\)</span></p>
 <p>​ Apply update: <span class="math inline">\(\pmb{\theta} \leftarrow
 \pmb{\theta} - \epsilon \hat{\pmb{g}}\)</span></p>
-<p>​ <strong>end while</strong></p></li>
-</ul>
+<p>​ <strong>end while</strong></p>
 <hr />
 <h2 id="adagrad">Adagrad</h2>
 <hr />
-<p>Algorithm The AdaGrad algorithm ___ <strong>Require</strong>: Global
-learning rate <span class="math inline">\(\epsilon\)</span>
-<strong>Require</strong>: Initial parameter <span
-class="math inline">\(\pmb{\theta}\)</span> <strong>Require</strong>:
-Small constant <span class="math inline">\(\delta\)</span>, perhaps
-<span class="math inline">\(10^{-7}\)</span>, for numerical stability
-Initialize gradient accumulation variable <span
-class="math inline">\(\pmb{r}=0\)</span> <strong>while</strong> stopping
-criterion not met <strong>do</strong> Sample a minibatch of <span
-class="math inline">\(m\)</span> examples from the training set <span
+<p>Algorithm The AdaGrad algorithm</p>
+<hr />
+<p><strong>Require</strong>: Global learning rate <span
+class="math inline">\(\epsilon\)</span></p>
+<p><strong>Require</strong>: Initial parameter <span
+class="math inline">\(\pmb{\theta}\)</span></p>
+<p><strong>Require</strong>: Small constant <span
+class="math inline">\(\delta\)</span>, perhaps <span
+class="math inline">\(10^{-7}\)</span>, for numerical stability</p>
+<p>​ Initialize gradient accumulation variable <span
+class="math inline">\(\pmb{r}=0\)</span></p>
+<p>​ <strong>while</strong> stopping criterion not met
+<strong>do</strong></p>
+<p>​ Sample a minibatch of <span class="math inline">\(m\)</span>
+examples from the training set <span
 class="math inline">\(\{x^{(1)},\dots,x^{(m)} \}\)</span> with
-corresponding targets <span class="math inline">\(y^{(i)}\)</span>
-Compute gradient estimate: <span class="math inline">\(\hat{\pmb{g}}
+corresponding targets <span class="math inline">\(y^{(i)}\)</span></p>
+<p>​ Compute gradient estimate: <span class="math inline">\(\hat{\pmb{g}}
 \leftarrow \frac{1}{m} \nabla_{\pmb{\theta}}\sum_i
-L(f(x^{(i)};\pmb{\theta}),y^{(i)})\)</span> Accumulate squared gradient:
-<span class="math inline">\(\pmb{r} \leftarrow \pmb{r} + \pmb{g} \odot
-\pmb{g}\)</span> Compute update: <span class="math inline">\(\Delta
-\pmb{\theta} \leftarrow -\frac{\epsilon}{\delta+\sqrt{\pmb{r}}} \odot
-\pmb{g}\)</span>. (Division and square root applied element-wise) Apply
-update: <span class="math inline">\(\pmb{\theta} \leftarrow \pmb{\theta}
-+ \Delta \pmb{\theta}\)</span> <strong>end while</strong></p>
+L(f(x^{(i)};\pmb{\theta}),y^{(i)})\)</span></p>
+<p>​ Accumulate squared gradient: <span class="math inline">\(\pmb{r}
+\leftarrow \pmb{r} + \pmb{g} \odot \pmb{g}\)</span></p>
+<p>​ Compute update: <span class="math inline">\(\Delta \pmb{\theta}
+\leftarrow -\frac{\epsilon}{\delta+\sqrt{\pmb{r}}} \odot
+\pmb{g}\)</span>. (Division and square root applied element-wise)</p>
+<p>​ Apply update: <span class="math inline">\(\pmb{\theta} \leftarrow
+\pmb{\theta} + \Delta \pmb{\theta}\)</span></p>
+<p>​ <strong>end while</strong></p>
 <hr />
 <h2 id="rmsprop">RMSProp</h2>
 <hr />
-<p>Algorithm The RMSProp algorithm <strong><em>
-<strong>Require</strong>: Global learning rate <span
+<p>Algorithm The RMSProp algorithm</p>
+<hr />
+<p><strong>Require</strong>: Global learning rate <span
 class="math inline">\(\epsilon\)</span>, decay rate <span
-class="math inline">\(\rho\)</span> <strong>Require</strong>: Initial
-parameter <span class="math inline">\(\pmb{\theta}\)</span>
-<strong>Require</strong>: Small constant <span
+class="math inline">\(\rho\)</span></p>
+<p><strong>Require</strong>: Initial parameter <span
+class="math inline">\(\pmb{\theta}\)</span></p>
+<p><strong>Require</strong>: Small constant <span
 class="math inline">\(\delta\)</span>, usually <span
 class="math inline">\(10^{-6}\)</span>, used to stabilize division by
-small numbers Initialize gradient accumulation variable <span
-class="math inline">\(\pmb{r}=0\)</span> <strong>while</strong> stopping
-criterion not met <strong>do</strong> Sample a minibatch of <span
-class="math inline">\(m\)</span> examples from the training set <span
+small numbers</p>
+<p>​ Initialize gradient accumulation variable <span
+class="math inline">\(\pmb{r}=0\)</span></p>
+<p>​ <strong>while</strong> stopping criterion not met
+<strong>do</strong></p>
+<p>​ Sample a minibatch of <span class="math inline">\(m\)</span>
+examples from the training set <span
 class="math inline">\(\{x^{(1)},\dots,x^{(m)} \}\)</span> with
-corresponding targets <span class="math inline">\(y^{(i)}\)</span>
-Compute gradient estimate: <span class="math inline">\(\hat{\pmb{g}}
+corresponding targets <span class="math inline">\(y^{(i)}\)</span></p>
+<p>​ Compute gradient estimate: <span class="math inline">\(\hat{\pmb{g}}
 \leftarrow \frac{1}{m} \nabla_{\pmb{\theta}}\sum_i
-L(f(x^{(i)};\pmb{\theta}),y^{(i)})\)</span> Accumulate squared gradient:
-<span class="math inline">\(\pmb{r} \leftarrow \rho \pmb{r} + (1-
-\rho)\pmb{g} \odot \pmb{g}\)</span> Compute update: <span
-class="math inline">\(\Delta \pmb{\theta} =
+L(f(x^{(i)};\pmb{\theta}),y^{(i)})\)</span></p>
+<p>​ Accumulate squared gradient: <span class="math inline">\(\pmb{r}
+\leftarrow \rho \pmb{r} + (1- \rho)\pmb{g} \odot \pmb{g}\)</span></p>
+<p>​ Compute update: <span class="math inline">\(\Delta \pmb{\theta} =
 -\frac{\epsilon}{\sqrt{\delta+\pmb{r}}} \odot \pmb{g}\)</span>. (<span
 class="math inline">\(\frac{1}{\sqrt{\delta+\pmb{r}}}\)</span> applied
-element-wise) Apply update: <span class="math inline">\(\pmb{\theta}
-\leftarrow \pmb{\theta} + \Delta \pmb{\theta}\)</span> <strong>end
-while</strong> </em></strong></p>
+element-wise)</p>
+<p>​ Apply update: <span class="math inline">\(\pmb{\theta} \leftarrow
+\pmb{\theta} + \Delta \pmb{\theta}\)</span></p>
+<p>​ <strong>end while</strong></p>
+<hr />
 <h2 id="adam">Adam</h2>
 <hr />
-<p>Algorithm The Adam algorithm ___ <strong>Require</strong>: Step size
-<span class="math inline">\(\epsilon\)</span> (Suggested default: 0.001)
-<strong>Require</strong>: Expontential decay rates for moment estimates,
-<span class="math inline">\(\rho_1\)</span> and <span
+<p>Algorithm The Adam algorithm</p>
+<hr />
+<p><strong>Require</strong>: Step size <span
+class="math inline">\(\epsilon\)</span> (Suggested default: 0.001)</p>
+<p><strong>Require</strong>: Expontential decay rates for moment
+estimates, <span class="math inline">\(\rho_1\)</span> and <span
 class="math inline">\(\rho_2\)</span> in <span
 class="math inline">\([0,1)\)</span>. (Suggested defaults: 0.9 and 0.999
-respectively) <strong>Require</strong>: Small constant <span
+respectively)</p>
+<p><strong>Require</strong>: Small constant <span
 class="math inline">\(\delta\)</span> used for numerical stabilization.
-(Suggested default: <span class="math inline">\(10^{-8}\)</span>)
-<strong>Require</strong>: Initial parameters <span
-class="math inline">\(\pmb{\theta}\)</span> Initialize 1st and 2nd
-moment variables <span
-class="math inline">\(\pmb{s}=0,\pmb{r}=0\)</span> Initialize time step
-<span class="math inline">\(t=0\)</span> <strong>while</strong> stopping
-criterion not met <strong>do</strong> Sample a minibatch of <span
-class="math inline">\(m\)</span> examples from the training set <span
+(Suggested default: <span class="math inline">\(10^{-8}\)</span>)</p>
+<p><strong>Require</strong>: Initial parameters <span
+class="math inline">\(\pmb{\theta}\)</span></p>
+<p>​ Initialize 1st and 2nd moment variables <span
+class="math inline">\(\pmb{s}=0,\pmb{r}=0\)</span></p>
+<p>​ Initialize time step <span class="math inline">\(t=0\)</span></p>
+<p>​ <strong>while</strong> stopping criterion not met
+<strong>do</strong></p>
+<p>​ Sample a minibatch of <span class="math inline">\(m\)</span>
+examples from the training set <span
 class="math inline">\(\{x^{(1)},\dots,x^{(m)} \}\)</span> with
-corresponding targets <span class="math inline">\(y^{(i)}\)</span>
-Compute gradient estimate: <span class="math inline">\(\hat{\pmb{g}}
+corresponding targets <span class="math inline">\(y^{(i)}\)</span></p>
+<p>​ Compute gradient estimate: <span class="math inline">\(\hat{\pmb{g}}
 \leftarrow \frac{1}{m} \nabla_{\pmb{\theta}}\sum_i
-L(f(x^{(i)};\pmb{\theta}),y^{(i)})\)</span> <span
-class="math inline">\(t\leftarrow t+1\)</span> Update biased first
-moment estimate: <span class="math inline">\(\pmb{s} \leftarrow \rho_1
-\pmb{s} + (1 - \rho_1)\pmb{g}\)</span> Update biased second moment
-estimate: <span class="math inline">\(\pmb{r} \leftarrow \rho_2 \pmb{r}
-+ (1-\rho_2)\pmb{g} \odot \pmb{g}\)</span> Correct bias in first moment:
-<span class="math inline">\(\hat{\pmb{s}} \leftarrow
-\frac{\pmb{s}}{1-\rho_1^t}\)</span> Correct bias in first moment: <span
+L(f(x^{(i)};\pmb{\theta}),y^{(i)})\)</span></p>
+<p>​ <span class="math inline">\(t\leftarrow t+1\)</span></p>
+<p>​ Update biased first moment estimate: <span
+class="math inline">\(\pmb{s} \leftarrow \rho_1 \pmb{s} + (1 -
+\rho_1)\pmb{g}\)</span></p>
+<p>​ Update biased second moment estimate: <span
+class="math inline">\(\pmb{r} \leftarrow \rho_2 \pmb{r} +
+(1-\rho_2)\pmb{g} \odot \pmb{g}\)</span></p>
+<p>​ Correct bias in first moment: <span
+class="math inline">\(\hat{\pmb{s}} \leftarrow
+\frac{\pmb{s}}{1-\rho_1^t}\)</span></p>
+<p>​ Correct bias in first moment: <span
 class="math inline">\(\hat{\pmb{r}} \leftarrow
-\frac{\pmb{r}}{1-\rho_2^t}\)</span> Compute update: <span
-class="math inline">\(\Delta \pmb{\theta} = -\epsilon
-\frac{\hat{\pmb{s}}}{\sqrt{\hat{\pmb{r}}+\delta}}\)</span>. (<span
-class="math inline">\(\frac{1}{\sqrt{\delta+\pmb{r}}}\)</span> applied
-element-wise) Apply update: <span class="math inline">\(\pmb{\theta}
-\leftarrow \pmb{\theta} + \Delta \pmb{\theta}\)</span> <strong>end
-while</strong></p>
+\frac{\pmb{r}}{1-\rho_2^t}\)</span></p>
+<p>​ Compute update: <span class="math inline">\(\Delta \pmb{\theta} =
+-\epsilon \frac{\hat{\pmb{s}}}{\sqrt{\hat{\pmb{r}}+\delta}}\)</span>.
+(<span class="math inline">\(\frac{1}{\sqrt{\delta+\pmb{r}}}\)</span>
+applied element-wise)</p>
+<p>​ Apply update: <span class="math inline">\(\pmb{\theta} \leftarrow
+\pmb{\theta} + \Delta \pmb{\theta}\)</span></p>
+<p>​ <strong>end while</strong></p>
 <hr />
-<p><span class="math display">\[
-\begin{algorithm}
-    \caption{Calculate $y = x^n$}
-    \label{alg1}
-    \begin{algorithmic}
-    \REQUIRE $n \geq 0 \vee x \neq 0$
-    \ENSURE $y = x^n$
-    \STATE $y \gets 1$
-    \IF{$n &lt; 0$}
-    \STATE $X \gets 1 / x$
-    \STATE $N \gets -n$
-    \ELSE
-    \STATE $X \gets x$
-    \STATE $N \gets n$
-    \ENDIF
-    \WHILE{$N \neq 0$}
-    \IF{$N$ is even}
-    \STATE $X \gets X \times X$
-    \STATE $N \gets N / 2$
-    \ELSE[$N$ is odd]
-    \STATE $y \gets y \times X$
-    \STATE $N \gets N - 1$
-    \ENDIF
-    \ENDWHILE
-    \end{algorithmic}
-  \end{algorithm}
-\]</span></p>
 
                 
               </div>
