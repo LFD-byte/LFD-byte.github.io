@@ -1,7 +1,7 @@
 {
-  "name": "live2d-widget-model-miku",
+  "name": "live2d-widget-model-chitose",
   "version": "1.0.5",
-  "description": "miku live2d model for live2d-widget.js",
+  "description": "chitose live2d model for live2d-widget.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,6 +15,6 @@
   },
   "homepage": "https://github.com/xiazeyu/live2d-widget-models#readme",
   "dependencies": {
-    "live2d-widget-model-miku": "file:"
+    "live2d-widget-model-chitose": "file:"
   }
 }
