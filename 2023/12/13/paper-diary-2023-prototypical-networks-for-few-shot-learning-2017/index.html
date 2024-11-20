@@ -16,24 +16,24 @@
   <meta name="author" content="培根请加蛋">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Leveraging Label Non-Uniformity for Node Classification in Graph Neural Networks">
+    <meta name="description" content="Prototypical Networks for Few shot Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2023 论文砖 Leveraging Label Non-Uniformity for Node Classification in Graph Neural Networks">
-<meta property="og:url" content="https://blog.lfd.world/2023/12/01/lun-wen-ri-ji-2023-leveraging-label-non-uniformity-for-node-classification-in-graph-neural-networks/index.html">
+<meta property="og:title" content="Paper Diary-2023-Prototypical Networks for Few-shot Learning (2017)">
+<meta property="og:url" content="https://blog.lfd.world/2023/12/13/paper-diary-2023-prototypical-networks-for-few-shot-learning-2017/index.html">
 <meta property="og:site_name" content="培根请加蛋">
-<meta property="og:description" content="Leveraging Label Non-Uniformity for Node Classification in Graph Neural Networks">
+<meta property="og:description" content="Prototypical Networks for Few shot Learning">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-01T03:02:00.000Z">
-<meta property="article:modified_time" content="2024-11-19T14:53:50.108Z">
+<meta property="article:published_time" content="2023-12-13T13:05:00.000Z">
+<meta property="article:modified_time" content="2024-11-20T08:50:47.181Z">
 <meta property="article:author" content="培根请加蛋">
-<meta property="article:tag" content="Graph">
+<meta property="article:tag" content="Few-shot-Learning">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>2023 论文砖 Leveraging Label Non-Uniformity for Node Classification in Graph Neural Networks - 培根请加蛋</title>
+  <title>Paper Diary-2023-Prototypical Networks for Few-shot Learning (2017) - 培根请加蛋</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="2023 论文砖 Leveraging Label Non-Uniformity for Node Classification in Graph Neural Networks"></span>
+            <span id="subtitle" data-typed-text="Paper Diary-2023-Prototypical Networks for Few-shot Learning (2017)"></span>
           
         </div>
 
@@ -210,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-01 11:02" pubdate>
-          2023年12月1日 上午
+        <time datetime="2023-12-13 21:05" pubdate>
+          2023年12月13日 晚上
         </time>
       </span>
     
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          408 字
+          5.1k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          4 分钟
+          43 分钟
         
       </span>
     
@@ -278,33 +278,151 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">2023 论文砖 Leveraging Label Non-Uniformity for Node Classification in Graph Neural Networks</h1>
+            <h1 id="seo-header">Paper Diary-2023-Prototypical Networks for Few-shot Learning (2017)</h1>
             
             
               <div class="markdown-body">
                 
-                <p>符号约定</p>
-<p><span class="math inline">\(\mathcal{G}=(\mathcal{V},
-\mathcal{E})\)</span></p>
-<p>无向图，点集为 <span
-class="math inline">\(\mathcal{V}\)</span>，边集为 <span
-class="math inline">\(\mathcal{E}\)</span></p>
-<p><span class="math inline">\(\mathbb{S}\)</span>
-为类标签集合，每一个点 <span class="math inline">\(v \in
-\mathcal{V}\)</span> 有一个标签 ，对于每类标签 <span
-class="math inline">\(s \in \mathbb{S}\)</span>，<span
-class="math inline">\(\mathcal{V}_s\)</span> 表示标签为 <span
-class="math inline">\(s\)</span> 的点集。</p>
-<p>训练集表示为 <span
-class="math inline">\(\mathfrak{R}\)</span>，测试集表示为 <span
-class="math inline">\(\mathfrak{T}\)</span>。</p>
-<p><span class="math inline">\((f_1(v),f_2(v))\)</span></p>
-<p><span class="math inline">\(f_1(v) = min_{v&#39; \in \mathfrak{R}}
-d_{\mathcal{G}}(v,v&#39;)\)</span></p>
-<p><span class="math inline">\(\text{arg} min_{v&#39; \in \mathfrak{R}}
-d_{\mathcal{G}}(v,v&#39;)\)</span></p>
-<p><span class="math inline">\(g(v)\)</span></p>
-<p><span class="math inline">\(f_2 = 1 - g(v)\)</span></p>
+                <h1 id="prototypical-networks-for-few-shot-learning">Prototypical
+Networks for Few-shot Learning</h1>
+<h2 id="摘要">摘要</h2>
+<p>我们针对小样本分类问题提出了原型网络（Prototypical
+Networks），其中分类器必须泛化到训练集中未见过的新类，每个新类的仅有少量样本。原型网络学习一个度量空间，在该空间中可以通过计算到每个类的原型表示的距离来执行分类。与最近的小样本学习方法相比，它们反映了更简单的归纳偏差，这在这种有限数据的情况下是有益的，并取得了优异的结果。我们提供的分析表明，一些简单的设计决策可以比涉及复杂架构选择和元学习的最新方法产生重大改进。我们进一步将原型网络扩展到零样本学习，并在
+CU-Birds 数据集上取得了最先进的结果。</p>
+<h2 id="介绍">介绍</h2>
+<p>小样本分类是一项任务，其中分类器必须适应训练中未见过的新类别，每个类别仅给出几个样本。简单的方法，例如根据新数据重新训练模型，会严重过度拟合。虽然这个问题相当困难，但事实证明，人类甚至有能力执行一次性分类，即仅给出每个新类别的一个样本，并且具有很高的准确度。</p>
+<p>最近的两种方法在小样本学习方面取得了重大进展。Vinyals 等人提出了
+Matching Networks，它在标记样本集（support
+set）的学习嵌入上使用注意机制来预测未标记点（query set）的类别。Matching
+Networks
+可以解释为在嵌入空间中应用的加权最近邻分类器。值得注意的是，该模型在训练期间使用称为
+“episode” 的采样小批量，其中每个 episode
+都旨在通过对类和数据点进行二次采样来模拟小样本任务。episode
+的使用使训练问题更加忠实于测试环境，从而提高泛化能力。 Ravi 和
+Larochelle 进一步采用 episode
+训练思想，提出了一种用于小样本学习的元学习方法。他们的方法涉及训练
+LSTM，以在给定的情况下生成分类器的更新，以便它能够很好地推广到测试集。在这里，LSTM
+元学习器不是在多个 episode 上训练单个模型，而是学习为每个 episode
+训练一个自定义模型。</p>
+<p>我们通过解决过度拟合的关键问题来解决小样本学习的问题。由于数据严重有限，我们假设分类器应该具有非常简单的归纳偏差。我们的方法“原型网络”基于这样的想法：存在一种嵌入，其中点聚集在每个类的单个原型表示周围。为了做到这一点，我们使用神经网络学习输入到嵌入空间的非线性映射，并将类的原型作为其在嵌入空间中支持集的平均值。然后通过简单地查找最近的类原型来对嵌入查询点执行分类。我们遵循相同的方法来解决零样本学习，这里，每个类都带有元数据（meta-data），提供类的高级描述，而不是少量标记的示例。因此，我们学习将元数据嵌入到共享空间中，作为每个类的原型。与在少数场景中一样，通过查找嵌入查询点的最近的类原型来执行分类。</p>
+<p>在本文中，我们为小样本和零样本设置制定了原型网络。我们在 one-shot
+设置中建立与 Matching Networks
+的连接，并分析模型中使用的基础距离函数。特别是，我们将原型网络与聚类联系起来，以便在使用
+Bregman
+散度（例如平方欧几里得距离）计算距离时证明使用类均值作为原型的合理性。我们根据经验发现距离的选择至关重要，因为欧几里得距离远远优于更常用的余弦相似度。在多项基准测试任务中，我们实现了最先进的性能。原型网络比最近的元学习算法更简单、更高效，这使得它们成为小样本和零样本学习的一种有吸引力的方法。</p>
+<h2 id="原型网络">原型网络</h2>
+<h3 id="notion">Notion</h3>
+<p>在小样本分类中，我们得到了一个由 N 个标记样本组成的小 support set
+<span class="math inline">\(S=\{(x_i,y_i), \dots,
+(x_N,y_N)\}\)</span>，其中每个 <span class="math inline">\(x_i \in
+\mathbb{R}^D\)</span> 是一个样本的 D 维向量特征，<span
+class="math inline">\(y_i \in \{1,\dots,K\}\)</span> 是相应的标签。<span
+class="math inline">\(S_k\)</span> 表示被标记为类 k 的样本集合。</p>
+<h3 id="模型">模型</h3>
+<p>原型网络通过一个拥有可学习参数 <span
+class="math inline">\(\phi\)</span> 的嵌入函数 <span
+class="math inline">\(f_{\phi}: \mathbb{R}^D \rightarrow
+\mathbb{R}^M\)</span> 计算每个类的 M 维表示或称原型 <span
+class="math inline">\(c_k \in
+\mathbb{R}^M\)</span>，每一个原型是属于该类的所有 support 点的均值向量：
+<span class="math display">\[
+c_k = \frac{1}{S_k} \sum_{(x_i,y_i) \in S_k} f_{\phi} (x_i) \tag{1}
+\]</span> 给定距离函数 <span
+class="math inline">\(d:\mathbb{R}^M\times\mathbb{R}^M\rightarrow[0,+\infty)\)</span>，原型网络基于嵌入空间中到原型的距离上的
+softmax 为 query 点 <span class="math inline">\(x\)</span> 生成类分布：
+<span class="math display">\[
+p_{\boldsymbol{\phi}}(y=k|\mathbf{x}) =
+\frac{\exp(-d(f_{\boldsymbol{\phi}}(\mathbf{x}),\mathbf{c}_k))}{\sum_{k&#39;}\exp(-d(f_{\boldsymbol{\phi}}(\mathbf{x}),\mathbf{c}_{k&#39;}))}
+\tag{2}
+\]</span> 通过 SGD 最小化真实类别 k 的负对数概率 <span
+class="math inline">\(J(\phi) = −log p_{\phi}(y = k|x)\)</span>
+来进行学习。</p>
+<p>训练 episodes
+是通过从训练集中随机选择类的子集，然后选择每个类中的样本子集作为 support
+set，剩余样本作为 query 点来形成的。算法 1 中提供了计算训练集损失 <span
+class="math inline">\(J(\phi)\)</span> 的伪代码。</p>
+<h3 id="作为混合密度估计的原型网络">作为混合密度估计的原型网络</h3>
+<p>对于一类特定的距离函数（称为常规 Bregman
+散度），原型网络算法相当于对具有指数族密度的 support set
+执行混合密度估计。常规 Bregman 散度 <span
+class="math inline">\(d_{\phi}\)</span> 定义为： <span
+class="math display">\[
+d_\varphi(\mathbf{z},\mathbf{z}^{\prime})=\varphi(\mathbf{z})-\varphi(\mathbf{z}^{\prime})-(\mathbf{z}-\mathbf{z}^{\prime})^T\nabla\varphi(\mathbf{z}^{\prime})
+\tag{3}
+\]</span> 其中 <span class="math inline">\(\varphi\)</span>
+是勒让德类型的可微、严格凸函数。Bregman 散度的例子包括平方欧几里得距离
+<span class="math inline">\(||z-z&#39;||^2\)</span> 和 Mahalanobis
+距离。</p>
+<p>原型计算可以看作是 support set 上的硬聚类，每个类一个簇，每个 support
+point 分配给其相应的类簇。对于 Bregman
+散度，达到其指定点的最小距离的簇代表是簇平均值。因此，当使用 Bregman
+散度时，等式（1）中的原型计算在给定 support set
+标签的情况下产生最佳簇代表。</p>
+<p>此外，任何具有参数 <span class="math inline">\(\theta\)</span>
+和累积函数 <span class="math inline">\(\psi\)</span> 的正则指数族分布
+<span class="math inline">\(p_{\psi}(z|\theta)\)</span>
+都可以写成唯一确定的正则 Bregman 散度: <span class="math display">\[
+p_\psi(\mathbf{z}|\boldsymbol{\theta})=\exp\{\mathbf{z}^T\boldsymbol{\theta}-\psi(\boldsymbol{\theta})-g_\psi(\mathbf{z})\}=\exp\{-d_\varphi(\mathbf{z},\boldsymbol{\mu}(\boldsymbol{\theta}))-g_\varphi(\mathbf{z})\}
+\tag{4}
+\]</span> 现在考虑带有参数的正则指数族混合模型 <span
+class="math inline">\(\Gamma=\{\theta_{k},\pi_{k}\}_{k=1}^{K}\)</span>:
+<span class="math display">\[
+p(\mathbf{z}|\Gamma)=\sum_{k=1}^K\pi_kp_\psi(\mathbf{z}|\boldsymbol{\theta}_k)=\sum_{k=1}^K\pi_k\exp(-d_\varphi(\mathbf{z},\boldsymbol{\mu}(\boldsymbol{\theta}_k))-g_\varphi(\mathbf{z}))
+\tag{5}
+\]</span> 给定 <span class="math inline">\(\Gamma\)</span>，未标记点
+<span class="math inline">\(z\)</span> 的簇分配 <span
+class="math inline">\(y\)</span> 的推断变为： <span
+class="math display">\[
+p(y=k|\mathbf{z})=\frac{\pi_k\exp(-d_\varphi(\mathbf{z},\boldsymbol{\mu}(\boldsymbol{\theta}_k)))}{\sum_{k&#39;}\pi_{k&#39;}\exp(-d_\varphi(\mathbf{z},\boldsymbol{\mu}(\boldsymbol{\theta}_k)))}
+\tag{6}
+\]</span> 对于每个类一个簇的等权混合模型，簇分配推断 (6)
+等效于查询类预测 (2)，其中 <span
+class="math inline">\(f_{\phi}(x)=z\)</span> 和 <span
+class="math inline">\(c_k=\mu
+(\theta_k)\)</span>。在这种情况下，原型网络通过 <span
+class="math inline">\(d_{\varphi}\)</span>
+确定的指数族分布有效地执行混合密度估计。因此，距离的选择指定了有关嵌入空间中类条件数据分布的建模假设。</p>
+<h3 id="重新解释为线性模型">重新解释为线性模型</h3>
+<p>简单的分析有助于深入了解学习分类器的本质。当我们使用欧氏距离 <span
+class="math inline">\(d(z, z&#39;) = ||z − z&#39;||^2\)</span>
+时，方程（2）中的模型相当于具有特定参数化的线性模型。要看到这一点，要展开指数中的项：
+<span class="math display">\[
+-\|f_{\boldsymbol{\phi}}(\mathbf{x})-\mathbf{c}_{k}\|^2=-f_{\boldsymbol{\phi}}(\mathbf{x})^T
+f_{\boldsymbol{\phi}}(\mathbf{x})+2\mathbf{c}_{k}^T
+f_{\boldsymbol{\phi}}(\mathbf{x})-\mathbf{c}_{k}^T\mathbf{c}_{k} \tag{7}
+\]</span> 等式 (7) 中的第一项对于 k 类而言是常数，因此它不会影响 softmax
+概率。我们可以将其余项写成线性模型，如下所示： <span
+class="math display">\[
+2\mathbf{c}_k^T
+f_{\boldsymbol{\phi}}(\mathbf{x})-\mathbf{c}_k^T\mathbf{c}_k=\mathbf{w}_k^T
+f_{\boldsymbol{\phi}}(\mathbf{x})+b_k\text{, where
+w}_k=2\mathbf{c}_k\mathrm{~and~}b_k=-\mathbf{c}_k^T\mathbf{c}_k \tag{8}
+\]</span>
+在这项工作中，我们主要关注平方欧几里德距离（对应于球面高斯密度）。我们的结果表明，尽管欧几里得距离等效于线性模型，但它是一种有效的选择。我们假设这是因为所有所需的非线性都可以在嵌入函数中学习。事实上，这是现代神经网络分类系统当前使用的方法。</p>
+<h4 id="与-matching-networks-的比较">与 Matching Networks 的比较</h4>
+<p>原型网络在小样本情况下与匹配网络不同，但在 one-shot
+情况下是等效的。Matching Networks
+在给定支持集的情况下生成加权最近邻分类器，而原型网络在使用平方欧几里得距离时生成线性分类器。在
+one-shot learning 情况下，<span class="math inline">\(c_k =
+x_k\)</span>，因为每个类只有一个 support point，所以 Matching Networks
+和原型网络变得等效。</p>
+<p>一个自然的问题是每个类使用多个原型而不是一个原型是否有意义。如果每个类的原型数量是固定的并且大于
+1，那么这将需要一个分区方案来进一步聚集类内的 support point。 Mensink
+等人和 Rippel
+等人已经提出了这一点；然而，这两种方法都需要一个与权重更新分离的单独的分区阶段，而我们的方法很容易用普通的梯度下降方法来学习。</p>
+<p>Vinyals 等人提出了许多扩展，包括解耦 support points 和 query points
+的嵌入函数，以及使用考虑每个 episode
+中特定点的二级全条件嵌入（FCE）。这些同样可以合并到原型网络中，但是它们增加了可学习参数的数量，并且
+FCE 使用双向 LSTM 对 support set
+施加任意排序。相反，我们展示了使用简单的设计选择可以实现相同水平的性能，我们接下来将概述这一点。</p>
+<h4 id="设计选择">设计选择</h4>
+<p><strong>距离度量</strong> Vinyals 等人以及 Ravi 和 Larochelle
+使用余弦距离应用匹配网络。然而，对于原型网络和 Matching Networks
+来说，任何距离都是允许的，我们发现使用平方欧几里德距离可以极大地改善两者的结果。对于典型网络，我们推测这主要是由于余弦距离不是
+Bregman 散度，因此混合密度估计的等价性不成立。</p>
+<p><strong>Episode 构成</strong></p>
+<h4 id="零样本学习">零样本学习</h4>
+<h2 id="实验">实验</h2>
 
                 
               </div>
@@ -338,7 +456,7 @@ d_{\mathcal{G}}(v,v&#39;)\)</span></p>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Graph/" class="print-no-link">#Graph</a>
+        <a href="/tags/Few-shot-Learning/" class="print-no-link">#Few-shot-Learning</a>
       
     </div>
   
@@ -350,8 +468,8 @@ d_{\mathcal{G}}(v,v&#39;)\)</span></p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>2023 论文砖 Leveraging Label Non-Uniformity for Node Classification in Graph Neural Networks</div>
-      <div>https://blog.lfd.world/2023/12/01/lun-wen-ri-ji-2023-leveraging-label-non-uniformity-for-node-classification-in-graph-neural-networks/</div>
+      <div>Paper Diary-2023-Prototypical Networks for Few-shot Learning (2017)</div>
+      <div>https://blog.lfd.world/2023/12/13/paper-diary-2023-prototypical-networks-for-few-shot-learning-2017/</div>
     </div>
     <div class="license-meta">
       
@@ -363,7 +481,7 @@ d_{\mathcal{G}}(v,v&#39;)\)</span></p>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年12月1日</div>
+          <div>2023年12月13日</div>
         </div>
       
       
@@ -395,9 +513,9 @@ d_{\mathcal{G}}(v,v&#39;)\)</span></p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/02/lun-wen-ri-ji-2023-evolving-semantic-prototype-improves-generative-zero-shot-learning/" title="2023 论文砖 Evolving Semantic Prototype Improves Generative Zero-Shot Learning">
+                      <a href="/2023/12/13/paper-diary-2023-graph-neural-network-with-curriculum-learning-for-imbalanced-node-classification-2023/" title="Paper Diary-2023-Graph Neural Network with Curriculum Learning for Imbalanced Node Classification (2023)">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">2023 论文砖 Evolving Semantic Prototype Improves Generative Zero-Shot Learning</span>
+                        <span class="hidden-mobile">Paper Diary-2023-Graph Neural Network with Curriculum Learning for Imbalanced Node Classification (2023)</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -405,8 +523,8 @@ d_{\mathcal{G}}(v,v&#39;)\)</span></p>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/11/29/2023-top-drug-discovery-review/" title="2023 TOP Drug Discovery Review">
-                        <span class="hidden-mobile">2023 TOP Drug Discovery Review</span>
+                      <a href="/2023/12/07/2023-top-differential-privacy-review/" title="2023 TOP Differential Privacy Review">
+                        <span class="hidden-mobile">2023 TOP Differential Privacy Review</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

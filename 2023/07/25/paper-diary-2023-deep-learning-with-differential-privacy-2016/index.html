@@ -16,24 +16,24 @@
   <meta name="author" content="培根请加蛋">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Towards Deep Graph Convolutional Networks on Node Classification">
+    <meta name="description" content="Deep Learning with Differential Privacy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文日记 2024 Dropedge-Towards Deep Graph Convolutional Networks on Node Classification (2020)">
-<meta property="og:url" content="https://blog.lfd.world/2024/03/20/lun-wen-ri-ji-2024-dropedge-towards-deep-graph-convolutional-networks-on-node-classification/index.html">
+<meta property="og:title" content="Paper Diary-2023-Deep Learning with Differential Privacy (2016)">
+<meta property="og:url" content="https://blog.lfd.world/2023/07/25/paper-diary-2023-deep-learning-with-differential-privacy-2016/index.html">
 <meta property="og:site_name" content="培根请加蛋">
-<meta property="og:description" content="Towards Deep Graph Convolutional Networks on Node Classification">
+<meta property="og:description" content="Deep Learning with Differential Privacy">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-03-20T07:26:00.000Z">
-<meta property="article:modified_time" content="2024-11-19T15:13:10.715Z">
+<meta property="article:published_time" content="2023-07-25T07:56:00.000Z">
+<meta property="article:modified_time" content="2024-11-20T08:49:50.950Z">
 <meta property="article:author" content="培根请加蛋">
-<meta property="article:tag" content="Graph">
+<meta property="article:tag" content="Differential-Privacy">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>论文日记 2024 Dropedge-Towards Deep Graph Convolutional Networks on Node Classification (2020) - 培根请加蛋</title>
+  <title>Paper Diary-2023-Deep Learning with Differential Privacy (2016) - 培根请加蛋</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="论文日记 2024 Dropedge-Towards Deep Graph Convolutional Networks on Node Classification (2020)"></span>
+            <span id="subtitle" data-typed-text="Paper Diary-2023-Deep Learning with Differential Privacy (2016)"></span>
           
         </div>
 
@@ -210,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-03-20 15:26" pubdate>
-          2024年3月20日 下午
+        <time datetime="2023-07-25 15:56" pubdate>
+          2023年7月25日 下午
         </time>
       </span>
     
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k 字
+          313 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          26 分钟
+          3 分钟
         
       </span>
     
@@ -278,117 +278,26 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">论文日记 2024 Dropedge-Towards Deep Graph Convolutional Networks on Node Classification (2020)</h1>
+            <h1 id="seo-header">Paper Diary-2023-Deep Learning with Differential Privacy (2016)</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="abstract">Abstract</h2>
-<p>过度拟合和过度平滑是开发用于节点分类的深度图卷积网络（GCN）的两个主要障碍。特别是，过度拟合会削弱小数据集上的泛化能力，而过度平滑会随着网络深度的增加将输出表示与输入特征隔离，从而阻碍模型训练。本文提出了
-DropEdge，这是一种新颖且灵活的技术来缓解这两个问题。 DropEdge
-的核心是在每个训练时期从输入图中随机删除一定数量的边，充当数据增强器和消息传递缩减器。此外，我们从理论上证明，DropEdge
-要么降低了过度平滑的收敛速度，要么减轻了过度平滑造成的信息损失。更重要的是，我们的
-DropEdge 是一种通用技能，可以配备许多其他 backbone 模型（例如
-GCN、ResGCN、GraphSAGE 和 JKNet）以增强性能。对多个基准的大量实验验证了
-DropEdge 能够持续提高各种浅层和深层 GCN 的性能。 DropEdge
-在防止过度平滑方面的效果也通过经验可视化和验证。代码发布在 <a
-target="_blank" rel="noopener" href="https://github.com/DropEdge/DropEdge">Github</a> 上。</p>
-<h2 id="introduction">Introduction</h2>
-<p>图卷积网络（GCN）利用消息传递或等效的某些邻域聚合函数从节点及其邻域中提取高级特征，提高了图上各种任务的最新技术，例如节点分类（Bhagat
-等人，2011；Zhang 等人，2018）、社交推荐（Freeman，2000；Perozzi
-等人，2014）和链接预测（Liben-Nowell 和
-Kleinberg，2007）等。换句话说，GCN
-已经成为图表示学习最重要的工具之一。然而，当我们重新审视节点分类上的典型
-GCN（Kipf &amp; Welling，2017）时，它们通常很浅（例如层数为 21）。受深度
-CNN
-在图像分类方面成功的启发，人们提出了一些尝试来探索如何构建用于节点分类的深度
-GCN（Kipf &amp; Welling，2017；Li 等人，2018a；Xu 等人，2018a；Li 等人）
-.,
-2019);然而，它们都没有提供足够表示能力的架构。本文的动机是分析阻碍更深层次
-GCN 发挥作用的因素，并开发解决这些问题的方法。</p>
-<p>我们首先调查两个因素：过度拟合和过度平滑。<strong>过度拟合</strong>来自于当我们利用超参数模型来拟合训练数据有限的分布时，我们学习的模型非常适合训练数据，但对测试数据的泛化性很差。如果我们在小图上应用深度
-GCN，它确实存在（参见图 1 中 Cora 上的 4 层
-GCN）。<strong>过度平滑</strong>，走向另一个极端，使得训练非常深的 GCN
-变得困难。正如 Li 等人首先介绍的那样。 (2018a) 并在 Wu
-等人中进一步解释。 （2019）；Xu 等人。 （2018a）；Klicpera 等人。
-（2019），图卷积本质上推动相邻节点的表示相互混合，这样，如果我们使用无限数量的层，所有节点的表示将收敛到一个固定点，使它们与输入特征无关，并且导致梯度消失。我们将这种现象称为节点特征的过度平滑。为了说明其影响，我们用图
-1 中的 8 层 GCN 进行了示例实验，观察到这样的深度 GCN
-的训练收敛性很差。</p>
+                <h1 id="deep-learning-with-differential-privacy">Deep Learning with
+Differential Privacy</h1>
 <figure>
 <img
-src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240528195220877.png"
-alt="图1 Performance of Multi-layer GCNs on Cora. We implement 4-layer GCN w and w/o DropEdge (in orange), 8-layer GCN w and w/o DropEdge (in blue)2. GCN-4 gets stuck in the over-fitting issue attaining low training error but high validation error; the training of GCN-8 fails to converge satisfactorily due to over-smoothing. By applying DropEdge, both GCN-4 and GCN-8 work well for both training and validation." />
-<figcaption aria-hidden="true">图1 Performance of Multi-layer GCNs on
-Cora. We implement 4-layer GCN w and w/o DropEdge (in orange), 8-layer
-GCN w and w/o DropEdge (in blue)2. GCN-4 gets stuck in the over-fitting
-issue attaining low training error but high validation error; the
-training of GCN-8 fails to converge satisfactorily due to
-over-smoothing. By applying DropEdge, both GCN-4 and GCN-8 work well for
-both training and validation.</figcaption>
+src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20230725160345731.png"
+alt="image-20230725160345731" />
+<figcaption aria-hidden="true">image-20230725160345731</figcaption>
 </figure>
-<p>使用所提出的方法 DropEdge
-可以缓解上述两个问题。术语“DropEdge”是指在每次训练时随机丢弃输入图的一定比例的边。应用
-DropEdge 进行 GCN 训练有几个好处（参见图 1 中 DropEdge
-的实验改进）。首先，DropEdge 可以被视为一种数据增强技术。通过
-DropEdge，我们实际上是生成原始图的不同随机变形副本；因此，我们增强了输入数据的随机性和多样性，从而更好地防止过度拟合。其次，DropEdge
-也可以被视为消息传递减速器。在 GCN
-中，相邻节点之间的消息传递是沿着边缘路径进行的。删除某些边使节点连接更加稀疏，从而在一定程度上避免
-GCN
-深入时的过度平滑。事实上，正如我们将在本文中从理论上得出的那样，DropEdge
-要么降低了过度平滑的收敛速度，要么减轻了其造成的信息损失。</p>
-<p>我们还意识到，JKNet（Xu
-等人，2018a）采用的密集连接是另一种可以防止过度平滑的工具。在其公式中，JKNet
-将每个隐藏层密集地连接到顶层，因此仍然保留了几乎不受过度平滑影响的较低层中的特征映射。有趣且有希望的是，我们发现如果将
-JKNet 与我们的 DropEdge 一起使用，它的性能可以进一步提升。实际上，我们的
-DropEdge
-作为一种灵活且通用的技术，能够在多个基准上增强各种流行骨干网络的性能，包括
-GCN (Kipf &amp; Welling, 2017)、ResGCN (Li et al., 2019)、JKNet
-(Xu等人，2018a）和 GraphSAGE（Hamilton
-等人，2017）。我们在实验中提供详细的评估。</p>
-<h2 id="related-work">Related Work</h2>
-<h2 id="notations-and-preliminaries">Notations and Preliminaries</h2>
-<p><strong>Notations.</strong> 令 <span
-class="math inline">\(\mathcal{G} = (\mathbb{V}, \mathcal{E})\)</span>
-表示大小为 N 的输入图，其中节点 <span class="math inline">\(v_i \in
-\mathbb{V}\)</span> 且边 <span class="math inline">\((v_i, v_j) \in
-E\)</span>。节点特征表示为 <span class="math inline">\(X = \{x_1, · · ·
-, x_N \} \in \mathbb{R}^{N× C}\)</span> ，邻接矩阵定义为 <span
-class="math inline">\(A \in \mathbb{R}^{N×N}\)</span> ，它将每条边 <span
-class="math inline">\((v_i, v_j)\)</span> 与其元素 <span
-class="math inline">\(A_{ij}\)</span> 相关联。节点度数由 <span
-class="math inline">\(d = \{d_1, · · ·, d_N \}\)</span> 给出，其中 <span
-class="math inline">\(d_i\)</span> 计算连接到节点 <span
-class="math inline">\(i\)</span> 的边权重之和。我们将 <span
-class="math inline">\(D\)</span> 定义为度矩阵，其对角线元素由 <span
-class="math inline">\(d\)</span> 获得。</p>
-<h2 id="our-method-dropedge">Our Method: Dropedge</h2>
-<p>本节首先介绍 DropEdge 技术的方法及其逐层变体，其中每个 GCN
-层的邻接矩阵被单独扰动。我们还解释了所提出的 DropEdge 如何防止通用 GCN
-中的过度拟合和过度平滑。特别是对于过度平滑，我们提供了其数学定义和理论推导来展示
-DropEdge 的优势。</p>
-<h3 id="methodology">Methodology</h3>
-<p>在每个训练时期，DropEdge
-技术会随机丢弃输入图的一定比例的边。形式上，它随机强制邻接矩阵 <span
-class="math inline">\(A\)</span> 的 <span
-class="math inline">\(V_p\)</span> 个非零元素为零，其中 <span
-class="math inline">\(V\)</span> 是边总数，<span
-class="math inline">\(p\)</span>
-是丢弃率。如果我们将生成的邻接矩阵表示为 <span
-class="math inline">\(A_{drop}\)</span>，那么它与 <span
-class="math inline">\(A\)</span> 的关系变为 <span
-class="math display">\[
-A_{drop}=A-A&#39; \tag{1}
-\]</span> 其中 <span class="math inline">\(A′\)</span>
-是一个稀疏矩阵，由原始边缘 <span class="math inline">\(E\)</span>
-的大小为 <span class="math inline">\(V_p\)</span> 的随机子集扩展。遵循
-Kipf &amp; Welling (2017) 的想法，我们还对 <span
-class="math inline">\(A_{drop}\)</span> 执行重新归一化技巧，得到 <span
-class="math inline">\(\hat{A}_{drop}\)</span>。我们将等式 1 中的 <span
-class="math inline">\(\hat{A}\)</span> 替换为 <span
-class="math inline">\(\hat{A}_{drop}\)</span>
-以进行传播和训练。验证和测试时，不使用 DropEdge。</p>
-<h2 id="experiments">Experiments</h2>
-<h2 id="conclusion">Conclusion</h2>
+<p>其中，对于高斯机制，<span class="math inline">\(\sigma\)</span>
+如下式： <span class="math display">\[
+\sigma^2=\frac{2s^2\log(1.25/\delta)}{\epsilon^2}
+\]</span></p>
+<p>通过实验作者观察到，模型精度对训练参数（例如批量大小和噪声水平）比神经网络的结构更敏感。非凸学习本质上不太稳定，聚合时需要更大的
+batch size，更大的 batch size
+带来了更大的隐私消耗，合理的权衡是使每个时期的批次数量与所需的时期数量具有相同的数量级。从相对较大的学习率开始，然后在几个时期内将其线性衰减到较小的值，并在之后保持恒定，有一定的好处。</p>
 
                 
               </div>
@@ -422,7 +331,7 @@ class="math inline">\(\hat{A}_{drop}\)</span>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Graph/" class="print-no-link">#Graph</a>
+        <a href="/tags/Differential-Privacy/" class="print-no-link">#Differential-Privacy</a>
       
     </div>
   
@@ -434,8 +343,8 @@ class="math inline">\(\hat{A}_{drop}\)</span>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>论文日记 2024 Dropedge-Towards Deep Graph Convolutional Networks on Node Classification (2020)</div>
-      <div>https://blog.lfd.world/2024/03/20/lun-wen-ri-ji-2024-dropedge-towards-deep-graph-convolutional-networks-on-node-classification/</div>
+      <div>Paper Diary-2023-Deep Learning with Differential Privacy (2016)</div>
+      <div>https://blog.lfd.world/2023/07/25/paper-diary-2023-deep-learning-with-differential-privacy-2016/</div>
     </div>
     <div class="license-meta">
       
@@ -447,7 +356,7 @@ class="math inline">\(\hat{A}_{drop}\)</span>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年3月20日</div>
+          <div>2023年7月25日</div>
         </div>
       
       
@@ -479,9 +388,9 @@ class="math inline">\(\hat{A}_{drop}\)</span>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/03/20/lun-wen-ri-ji-2024-clnode-curriculum-learning-for-node-classification-2023/" title="2024 论文砖 CLNode Curriculum Learning for Node Classification(2023)">
+                      <a href="/2023/08/05/tu-shen-jing-wang-luo-xue-xi-ri-ji-wu-tu-shen-jing-wang-luo-gnn-de-li-lun-dong-ji/" title="图神经网络学习日记（五）图神经网络（GNN）的理论动机">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">2024 论文砖 CLNode Curriculum Learning for Node Classification(2023)</span>
+                        <span class="hidden-mobile">图神经网络学习日记（五）图神经网络（GNN）的理论动机</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -489,8 +398,8 @@ class="math inline">\(\hat{A}_{drop}\)</span>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/02/22/lun-wen-ri-ji-2024-curriculum-learning-a-survey/" title="2024 论文砖 Curriculum Learning A Survey">
-                        <span class="hidden-mobile">2024 论文砖 Curriculum Learning A Survey</span>
+                      <a href="/2023/07/11/shen-du-dan-xi-bao-fen-xi/" title="2023 深度单细胞分析">
+                        <span class="hidden-mobile">2023 深度单细胞分析</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
