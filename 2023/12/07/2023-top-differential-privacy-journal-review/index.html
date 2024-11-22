@@ -16,24 +16,24 @@
   <meta name="author" content="培根请加蛋">
   <meta name="keywords" content="">
   
-    <meta name="description" content="使用矩阵消元">
+    <meta name="description" content="2023 年度的顶刊已经出炉，在此把关于 Differential Privacy 的部分筛选出来，以供后续学习。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="线性代数学习日记（一）">
-<meta property="og:url" content="https://blog.lfd.world/2023/08/26/xian-xing-dai-shu-xue-xi-ri-ji-yi/index.html">
+<meta property="og:title" content="2023 TOP Differential Privacy Review">
+<meta property="og:url" content="https://blog.lfd.world/2023/12/07/2023-top-differential-privacy-journal-review/index.html">
 <meta property="og:site_name" content="培根请加蛋">
-<meta property="og:description" content="使用矩阵消元">
+<meta property="og:description" content="2023 年度的顶刊已经出炉，在此把关于 Differential Privacy 的部分筛选出来，以供后续学习。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-08-26T07:31:00.000Z">
-<meta property="article:modified_time" content="2024-11-19T15:14:25.349Z">
+<meta property="article:published_time" content="2023-12-07T06:27:00.000Z">
+<meta property="article:modified_time" content="2024-11-22T10:35:18.461Z">
 <meta property="article:author" content="培根请加蛋">
-<meta property="article:tag" content="线性代数">
+<meta property="article:tag" content="Differential-Privacy">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>线性代数学习日记（一） - 培根请加蛋</title>
+  <title>2023 TOP Differential Privacy Review - 培根请加蛋</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="线性代数学习日记（一）"></span>
+            <span id="subtitle" data-typed-text="2023 TOP Differential Privacy Review"></span>
           
         </div>
 
@@ -210,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-26 15:31" pubdate>
-          2023年8月26日 下午
+        <time datetime="2023-12-07 14:27" pubdate>
+          2023年12月7日 下午
         </time>
       </span>
     
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          1.5k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          11 分钟
+          13 分钟
         
       </span>
     
@@ -278,93 +278,100 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">线性代数学习日记（一）</h1>
+            <h1 id="seo-header">2023 TOP Differential Privacy Review</h1>
             
             
               <div class="markdown-body">
                 
-                <p>线性代数的核心问题是解决等式的一系列问题，这些等式是线性的，即未知数仅被数字乘，不会出现两个未知数
-<span class="math inline">\(x\)</span> 乘 <span
-class="math inline">\(y\)</span> 的情况。</p>
-<h2 id="introduction-to-vectors">Introduction to Vectors</h2>
-<p>向量 <span class="math inline">\(cv\)</span> 在一条线上，当 <span
-class="math inline">\(w\)</span> 不在这条线上时，<span
-class="math inline">\(cv + dw\)</span> 构成了一个平面。</p>
-<p>线性代数建立在 <span class="math inline">\(v + w\)</span>，<span
-class="math inline">\(cv\)</span> 和 <span
-class="math inline">\(dw\)</span>
-这些运算上，也就是向量加法和与标量相乘。</p>
-<h2 id="lengths-and-dot-products">Lengths and Dot Products</h2>
-<p><span class="math inline">\(v = (v_1,v_2)\)</span> 和 <span
-class="math inline">\(w = (w_1, w_2)\)</span> 的点积或内积是标量 <span
-class="math inline">\(v \cdot w\)</span> ： <span
-class="math display">\[
-v \cdot w = v_1w_1 + v_2w_2
-\]</span> 向量 <span class="math inline">\(v\)</span> 的长度 <span
-class="math inline">\(||v||\)</span> 是 <span class="math inline">\(v
-\cdot v\)</span> 的平方根： <span class="math display">\[
-length = ||v|| = \sqrt{v \cdot v} = (v_1^2 + v_2^2 + \cdots +
-v_n^2)^{1/2}
-\]</span> 单位向量是长度为 1 的向量，即 <span class="math inline">\(u
-\cdot u = 1\)</span>。</p>
-<p>v 的单位向量与 v 在同一方向为 <span class="math inline">\(u = v /
-||v||\)</span>。</p>
-<p>当 v 和 w 垂直时，他们的点积 <span class="math inline">\(v \cdot w =
-0\)</span>。</p>
-<p>如果 v 和 w 是非零向量，那么 <span class="math inline">\(\frac{v
-\cdot w}{||v|| ||w||} = cos \theta\)</span></p>
-<p>schwarz inequality <span class="math inline">\(|v \cdot w| \leq ||v||
-\ ||w||\)</span></p>
-<p>triangle inequality <span class="math inline">\(|v + w| \leq ||v|| +
-||w||\)</span></p>
-<h2 id="matrices">Matrices</h2>
-<h3 id="列角度">列角度</h3>
-<p>矩阵 A 与向量 x 相乘是矩阵 A 的各列以 x 的方式组合 <span
-class="math display">\[
-Ax =
-\left[\begin{array}{}
-   1 &amp; 0 &amp; 0 \\
-   -1 &amp; 1 &amp; 0 \\
-   0 &amp; -1 &amp; 1
-\end{array}\right]
-\left[\begin{array}{}
-   x_1 \\
-   x_2 \\
-   x_3
-\end{array}\right] =
-\left[\begin{array}{}
-   x_1 \\
-   x_2 - x_1 \\
-   x_3 - x_2
-\end{array}\right] =
-\left[\begin{array}{}
-   b_1 \\
-   b_2 \\
-   b_3
-\end{array}\right] =
-b
-\]</span> 这个 A 称作 diffenence matrix，因为 b 包括了输入向量 x
-的所有差值。</p>
-<h3 id="行角度">行角度</h3>
-<p>矩阵 A 与向量 x 相乘也可以看作是行的点积 <span
-class="math display">\[
-Ax =
-\left[\begin{array}{}
-   1 &amp; 0 &amp; 0 \\
-   -1 &amp; 1 &amp; 0 \\
-   0 &amp; -1 &amp; 1
-\end{array}\right]
-\left[\begin{array}{}
-   x_1 \\
-   x_2 \\
-   x_3
-\end{array}\right] =
-\left[\begin{array}{}
-   (1, 0, 0) \cdot (x_1, x_2, x_3) \\
-   (-1, 1, 0) \cdot (x_1, x_2, x_3) \\
-   (0, -1, 1) \cdot (x_1, x_2, x_3)
-\end{array}\right]
-\]</span></p>
+                <p>2023年度的顶刊已经出炉，在此把关于 Differential Privacy
+的部分筛选出来，以供后续学习，整理内容已同步在 <a
+target="_blank" rel="noopener" href="https://github.com/LFD-byte/awesome-differential-privacy-papers/blob/main/2023_CCF-A_top_differential-privacy.md">Github</a>。</p>
+<h2 id="人工智能">人工智能</h2>
+<h3 id="ai">AI</h3>
+<p>未查阅到相关文献。</p>
+<h3 id="tpami">TPAMI</h3>
+<ul>
+<li>Differentially Private Graph Neural Networks for Whole-Graph
+Classification <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9980390">pdf</a> <a
+target="_blank" rel="noopener" href="https://github.com/tamaramueller/DP-GNNs">code</a></li>
+</ul>
+<h3 id="ijcv">IJCV</h3>
+<p>未查阅到相关文献。</p>
+<h3 id="jmlr">JMLR</h3>
+<ul>
+<li>Generalized Linear Models in Non-interactive Local Differential
+Privacy with Public Data <a
+target="_blank" rel="noopener" href="https://jmlr.org/papers/v24/21-0523.html">pdf</a></li>
+</ul>
+<h2 id="数据库数据挖掘内容检索">数据库／数据挖掘／内容检索</h2>
+<h3 id="期刊">期刊</h3>
+<h3 id="tods">TODS</h3>
+<ul>
+<li>Efficient Bi-objective SQL Optimization for Enclaved Cloud Databases
+with Differentially Private Padding <a
+target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3597021">pdf</a></li>
+</ul>
+<h3 id="tois">TOIS</h3>
+<p>无相关文献。</p>
+<h3 id="tkde">TKDE</h3>
+<ul>
+<li>Collecting Geospatial Data Under Local Differential Privacy With
+Improving Frequency Estimation <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9792226">pdf</a> <a
+target="_blank" rel="noopener" href="https://github.com/daeyounghong/square-mechanism">code</a><br />
+</li>
+<li>Global Combination and Clustering Based Differential Privacy Mixed
+Data Publishing <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10018869">pdf</a><br />
+</li>
+<li>DP2-Pub: Differentially Private High-Dimensional Data Publication
+With Invariant Post Randomization <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10097536">pdf</a><br />
+</li>
+<li>Multi-Party Sequential Data Publishing Under Differential Privacy <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10035304">pdf</a><br />
+</li>
+<li>Local Differentially Private Fuzzy Counting in Stream Data Using
+Probabilistic Data Structures <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9855874">pdf</a><br />
+</li>
+<li>DDRM: A Continual Frequency Estimation Mechanism With Local
+Differential Privacy <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9782510">pdf</a><br />
+</li>
+<li>Collecting Preference Rankings Under Local Differential Privacy <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9813492">pdf</a><br />
+</li>
+<li>Differentially Private Demand Side Management for Incentivized
+Dynamic Pricing in Smart Grid <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9740467">pdf</a><br />
+</li>
+<li>Publishing Graphs Under Node Differential Privacy <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9619911">pdf</a><br />
+</li>
+<li>Private and Utility Enhanced Recommendations With Local Differential
+Privacy and Gaussian Mixture Model <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9609550">pdf</a><br />
+</li>
+<li>Data Level Privacy Preserving: A Stochastic Perturbation Approach
+Based on Differential Privacy <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9658125">pdf</a><br />
+</li>
+<li>A Robust Game-Theoretical Federated Learning Framework With Joint
+Differential Privacy <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9669031">pdf</a><br />
+</li>
+<li>Applications of Differential Privacy in Social Network Analysis: A
+Survey <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9403974">pdf</a></li>
+</ul>
+<h3 id="vldbj">VLDBJ</h3>
+<ul>
+<li>Local dampening: differential privacy for non-numeric queries via
+local sensitivity <a
+target="_blank" rel="noopener" href="https://link.springer.com/article/10.1007/s00778-022-00774-w">pdf</a></li>
+</ul>
 
                 
               </div>
@@ -383,7 +390,7 @@ Ax =
     
       <span class="category-chain">
         
-  <a href="/categories/Math/" class="category-chain-item">Math</a>
+  <a href="/categories/Deep-Learning/" class="category-chain-item">Deep Learning</a>
   
   
 
@@ -398,7 +405,7 @@ Ax =
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" class="print-no-link">#线性代数</a>
+        <a href="/tags/Differential-Privacy/" class="print-no-link">#Differential-Privacy</a>
       
     </div>
   
@@ -410,8 +417,8 @@ Ax =
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>线性代数学习日记（一）</div>
-      <div>https://blog.lfd.world/2023/08/26/xian-xing-dai-shu-xue-xi-ri-ji-yi/</div>
+      <div>2023 TOP Differential Privacy Review</div>
+      <div>https://blog.lfd.world/2023/12/07/2023-top-differential-privacy-journal-review/</div>
     </div>
     <div class="license-meta">
       
@@ -423,7 +430,7 @@ Ax =
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年8月26日</div>
+          <div>2023年12月7日</div>
         </div>
       
       
@@ -455,9 +462,9 @@ Ax =
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/05/latex-markdown-zi-mu-pian/" title="Latex &amp; Markdown 字母符号篇">
+                      <a href="/2023/12/13/paper-diary-2023-prototypical-networks-for-few-shot-learning-2017/" title="Paper Diary-2023-Prototypical Networks for Few-shot Learning (2017)">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Latex &amp; Markdown 字母符号篇</span>
+                        <span class="hidden-mobile">Paper Diary-2023-Prototypical Networks for Few-shot Learning (2017)</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -465,8 +472,8 @@ Ax =
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/26/gao-xiao-neng-ren-shi-de-qi-ge-xi-guan-xue-xi-ri-ji-yi/" title="高效能人士的七个习惯 学习日记（一）">
-                        <span class="hidden-mobile">高效能人士的七个习惯 学习日记（一）</span>
+                      <a href="/2023/12/07/2023-top-differential-privacy-conference-review/" title="2023 TOP Differential Privacy Review">
+                        <span class="hidden-mobile">2023 TOP Differential Privacy Review</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
