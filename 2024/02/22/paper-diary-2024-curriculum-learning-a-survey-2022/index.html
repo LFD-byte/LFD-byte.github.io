@@ -16,15 +16,15 @@
   <meta name="author" content="培根请加蛋">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Curriculum Learning A Survey">
+    <meta name="description" content="Curriculum Learning@A Survey">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Paper Diary-2024-Curriculum Learning@A Survey (2022)">
 <meta property="og:url" content="https://blog.lfd.world/2024/02/22/paper-diary-2024-curriculum-learning-a-survey-2022/index.html">
 <meta property="og:site_name" content="培根请加蛋">
-<meta property="og:description" content="Curriculum Learning A Survey">
+<meta property="og:description" content="Curriculum Learning@A Survey">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-02-22T06:36:00.000Z">
-<meta property="article:modified_time" content="2024-11-20T08:51:30.257Z">
+<meta property="article:modified_time" content="2024-11-21T07:48:17.268Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="Curriculum-Learning">
 <meta name="twitter:card" content="summary_large_image">
@@ -310,7 +310,7 @@ Grauman (2011) 中，objectness 被用来定义训练顺序。</li>
 基于这样的直觉：除了传统的 CL
 训练标准之外，在向模型提出样本时还必须足够多样化。此类别引入了多种订购标准。根据难度标准，首先向模型输入简单的样本，然后随着训练的进行，添加较难的样本。同时，样本的选择必须在额外的约束下进行平衡，例如确保图像区域（Zhang
 et al. 2015a）或类别（Soviany 2020）多样性的约束。</li>
-<li><strong>Self-paced curriculum learning (SPCL) </strong>
+<li><strong>Self-paced curriculum learning (SPCL)</strong>
 在本节的介绍部分中，我们明确指出类别之间可能存在的重叠不仅是可能的，而且实际上很常见。然而，我们认为
 SPL 和 CL
 需要特别提及，因为许多作品都来自这两个类别。为此，我们可以具体确定
@@ -318,16 +318,15 @@ SPCL，这是一种联合使用预定义标准和基于学习的指标来定义�
 Jiang 等人 (2015)
 首先提出，并应用于矩阵分解和多媒体事件检测。它还被用于其他任务，例如视频中的弱监督对象分割（Zhang
 et al. 2017a）或人员重新识别（Ma et al. 2017）。</li>
-<li><strong>Progressive CL (PCL) </strong>
+<li><strong>Progressive CL (PCL)</strong>
 是指课程与每个样本的难度无关，而是配置为模型能力或任务设置的渐进突变的任务。原则上，PCL
 并没有实现关于样本顺序的
 CL（样本确实以传统的随机顺序提供给模型），而是将课程概念应用于连接的任务或网络的特定部分，从而产生训练开始时任务比较容易，训练结束时任务会变得更难。Morerio
 等人（2017）的 Curriculum Dropout
 就是一个例子，其中设计了单调函数来降低训练期间丢失的概率。作者声称，在训练开始时，dropout
 会很弱，应该逐渐增加以显着提高性能水平。该类别的另一个例子是 Karras
-等人（2018）提出的方法
-，它逐步提高生成对抗网络获得高质量结果的能力。</li>
-<li><strong>Teacher–student CL </strong>
+等人（2018）提出的方法，它逐步提高生成对抗网络获得高质量结果的能力。</li>
+<li><strong>Teacher–student CL</strong>
 将训练分为两个任务，一个学习主要任务（学生）的模型和一个确定学生最佳学习参数的辅助模型（教师）。在这个特定的架构中，课程是通过网络实施的，该网络将策略应用于学生模型，最终提供最终的推论。这种方法首先由
 Kim 和
 Choi（2018）以深度强化学习的方式提出，然后在后来的作品中重新表述（Jiang
@@ -349,7 +348,7 @@ SPL 方法以不平衡方式采样的态度，因此被分类为 SPL 和
 BCL。另一个有趣的组合是使用师生框架和基于复杂性的方法（Kim 和 Choi
 2018；Hacohen 和 Weinshall 2019；Huang 和 Du 2019）。例如，Kim 和 Choi
 (2018) 使用基于学生损失的 SPL 方法一起训练教师和学生网络。</li>
-<li><strong>Related methodologies </strong> 除了 CL
+<li><strong>Related methodologies</strong> 除了 CL
 中采用的标准由易到难的方法之外，其他策略在构建课程的方式上也有所不同。在这个方向上，Shrivastava
 等人。
 （2016）采用困难示例挖掘（HEM）策略进行对象检测，该策略强调困难示例，即损失较高的示例。布劳恩等人。
@@ -358,7 +357,7 @@ BCL。另一个有趣的组合是使用师生框架和基于复杂性的方法�
 AL 方式对示例进行排序，可能会提供实现更高质量结果的通用解决方案。 Tang
 和 Huang（2019）将主动学习和 SPL
 结合起来，创建了一种算法，共同考虑示例对于改进整体模型的潜在价值和实例的难度。</li>
-<li><strong>Other elements of curriculum learning </strong>
+<li><strong>Other elements of curriculum learning</strong>
 除了基于方法论的分类之外，课程技术还采用不同的标准来构建课程、多种调度方法，并且可以应用于不同的级别（数据、任务或模型）。</li>
 </ul>
 
@@ -451,9 +450,9 @@ AL 方式对示例进行排序，可能会提供实现更高质量结果的通�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/03/20/paper-diary-2024-clnode-curriculum-learning-for-node-classification-2023/" title="Paper Diary-2024-CLNode@Curriculum Learning for Node Classification (2023)">
+                      <a href="/2024/03/20/paper-diary-2024-dropedge-towards-deep-graph-convolutional-networks-on-node-classification-2019/" title="Paper Diary-2024-Dropedge@Towards Deep Graph Convolutional Networks on Node Classification (2019)">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Paper Diary-2024-CLNode@Curriculum Learning for Node Classification (2023)</span>
+                        <span class="hidden-mobile">Paper Diary-2024-Dropedge@Towards Deep Graph Convolutional Networks on Node Classification (2019)</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

@@ -1,0 +1,1317 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="培根请加蛋">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="2023 年度的顶刊已经出炉，在此把关于 Graph 的部分筛选出来，以供后续学习。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2023 TOP Graph Journal Review">
+<meta property="og:url" content="https://blog.lfd.world/2023/11/19/2023-top-graph-journal-review/index.html">
+<meta property="og:site_name" content="培根请加蛋">
+<meta property="og:description" content="2023 年度的顶刊已经出炉，在此把关于 Graph 的部分筛选出来，以供后续学习。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-19T01:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-21T07:36:08.606Z">
+<meta property="article:author" content="培根请加蛋">
+<meta property="article:tag" content="Graph">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>2023 TOP Graph Journal Review - 培根请加蛋</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.lfd.world","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>培根请加蛋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2023 TOP Graph Journal Review"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-19 09:00" pubdate>
+          2023年11月19日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          64 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">2023 TOP Graph Journal Review</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="top-graph-journal-review">2023 TOP Graph Journal Review</h1>
+<p>2023 年度的顶刊已经出炉，在此把关于 Graph
+的论文筛选出来，以供后续学习，整理内容已同步在 <a
+target="_blank" rel="noopener" href="https://github.com/LFD-byte/awesome-graph-papers">Github</a>。</p>
+<h2 id="人工智能">人工智能</h2>
+<h3 id="ai">AI</h3>
+<ul>
+<li>AutoSTG+: An automatic framework to discover the optimal network for
+spatio-temporal graph prediction <a
+target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/S0004370223000450">pdf</a></li>
+<li>Improved local search for the minimum weight dominating set problem
+in massive graphs by using a deep optimization mechanism <a
+target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/S000437022200159X">pdf</a></li>
+<li>Corrigendum to “Separators and adjustment sets in causal graphs:
+Complete criteria and an algorithmic framework” <a
+target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/pii/S000437022300084X?via%3Dihub">pdf</a></li>
+<li>Multi-modal graph contrastive encoding for neural machine
+translation <a
+target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/S0004370223001327?via%3Dihub">pdf</a></li>
+<li>Privacy-preserving graph convolution network for federated item
+recommendation <a
+target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/S000437022300142X?via%3Dihub">pdf</a></li>
+</ul>
+<h3 id="tpami">TPAMI</h3>
+<ul>
+<li>Learning Representations by Graphical Mutual Information Estimation
+and Maximization <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9699378">pdf</a> <a
+target="_blank" rel="noopener" href="https://github.com/zpeng27/GMI">code</a></li>
+<li>Neighborhood Preserving Kernels for Attributed Graphs <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9684725">pdf</a> <a
+target="_blank" rel="noopener" href="https://github.com/asif-salim/NP-graph-kernels">code</a></li>
+<li>Representing Graphs via Gromov-Wasserstein Factorization <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9720092">pdf</a> <a
+target="_blank" rel="noopener" href="https://github.com/HongtengXu/Relational-Factorization-Model">code</a></li>
+<li>Bilinear Scoring Function Search for Knowledge Graph Learning <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9729658">pdf</a> <a
+target="_blank" rel="noopener" href="https://github.com/LARS-research/AutoSF">code</a></li>
+<li>Differentiable Graph Module (DGM) for Graph Convolutional Networks
+<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9763421">pdf</a>
+<a target="_blank" rel="noopener" href="https://github.com/lcosmo/DGM_pytorch">code</a></li>
+<li>Reinforced Causal Explainer for Graph Neural Networks <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9763330">pdf</a> <a
+target="_blank" rel="noopener" href="https://github.com/xiangwang1223/reinforced_causal_explainer">code</a></li>
+<li>Self-Supervised Learning of Graph Neural Networks: A Unified Review
+<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9764632">pdf</a>
+<a target="_blank" rel="noopener" href="https://github.com/divelab/DIG/">code</a></li>
+<li>Unsupervised Feature Selection via Graph Regularized Nonnegative CP
+Decomposition <a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9737358">pdf</a> <a
+target="_blank" rel="noopener" href="https://github.com/Kwan1997/CPUFS">code</a></li>
+<li>Bag of Tricks for Training Deeper Graph Neural Networks: A
+Comprehensive Benchmark Study <a href="">pdf</a> <a
+target="_blank" rel="noopener" href="https://github.com/VITA-Group/Deep_GCN_Benchmarking">code</a></li>
+<li>SIGN: Statistical Inference Graphs Based on Probabilistic Network
+Activity Interpretation <a href="">pdf</a> <a
+target="_blank" rel="noopener" href="https://github.com/yaelkon/GMM-CNN">code</a></li>
+<li></li>
+</ul>
+<table>
+
+<thead>
+<tr class="header">
+<th>paper</th>
+<th>code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9858006">Debiased
+Scene Graph Generation for Dual Imbalance Learning</a></td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/zhouhao0515/unbiasedSGG-DSDI">url</a></td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9808404">Hierarchical
+Prototype Networks for Continual Graph Representation Learning</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/QueuQ/HPNs">url</a></td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9815553">Integrating
+Multi-Label Contrastive Learning With Dual Adversarial Graph Neural
+Networks for Cross-Modal Retrieval</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/LivXue/GNN4CMR/">url</a></td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9816105">Permute Me
+Softly: Learning Soft Permutations for Graph Representations</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/giannisnik/pi-GNN">url</a></td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9813586">Tensorized
+Bipartite Graph Learning for Multi-View Clustering</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/xdweixia/TBGL-MVC">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9895141">Dynamic Graph
+Message Passing Networks</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/fudan-zvg/DGMN2">url</a></td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9875989">Explainability
+in Graph Neural Networks: A Taxonomic Survey</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/divelab/DIG/">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.03535">Graph Neural Networks in
+Network Neuroscience</a></td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/basiralab/GNNs-in-Network-Neuroscience">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2103.04256">Robust Point Cloud
+Registration Framework Based on Deep Graph Matching</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/fukexue/RGM">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2206.05416">Semi-Supervised
+Hierarchical Graph Classification</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/kochsnow/SEAL_MASTER">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2007.10467">Second-Order Pooling for
+Graph Neural Networks</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/divelab/sopool">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9241410">HiGCIN:
+Hierarchical Graph-Based Cross Inference Network for Group Activity
+Recognition</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/ruiyan1995/HiGCIN">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9128045">Combinatorial
+Learning of Robust Deep Graph Matching: An Embedding Based
+Approach</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Thinklab-SJTU/ThinkMatch">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2104.14236">Learning Multi-Attention
+Context Graph for Group-Based Re-Identification</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/daodaofr/group_reid">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2010.13242">Co-Embedding of Nodes and
+Edges With Graph Neural Networks</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/ronghangzhu/CensNet">url</a></td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9980390">Differentially
+Private Graph Neural Networks for Whole-Graph Classification</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/tamaramueller/DP-GNNs">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9947327">Learning
+View-Based Graph Convolutional Network for Multi-View 3D Shape
+Analysis</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/weixmath/view-GCN">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2109.13098">One-Hot Graph Encoder
+Embedding</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/cshen6/GraphEmd">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9982412">A Generic
+Graph-Based Neural Architecture Encoding Scheme With Multifaceted
+Information</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/walkerning/aw_nas">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2205.07404">A New Outlier Removal
+Strategy Based on Reliability of Correspondence Graph for Fast Point
+Cloud Registration</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/WPC-WHU/GROR">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2203.02177">GCNet: Graph Completion
+Network for Incomplete Multimodal Learning in Conversation</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/zeroQiaoba/GCNet">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10012542">SIGMA++:
+Improved Semantic-Complete Graph Matching for Domain Adaptive Object
+Detection</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/CityU-AIM-Group/SIGMA">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2206.04665">AGConv: Adaptive Graph
+Convolution on 3D Point Clouds</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/hrzhou2/AdaptConv-master">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10086644">muxGNN:
+Multiplex Graph Neural Network for Heterogeneous Graphs</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/NASCL/muxGNN">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2201.11460">RelTR: Relation
+Transformer for Scene Graph Generation</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/yrcong/RelTR">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2202.06174">Source-Free Progressive
+Graph Learning for Open-Set Domain Adaptation</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Luoyadan/SF-PGL">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2206.08842">Entity-Graph Enhanced
+Cross-Modal Pretraining for Instance-Level Product Retrieval</a></td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/Xiaodongsuper/Entity-Graph-Enhanced-Cross-Modal-Pretraining-for-Instance-level-Product-Retrieval">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2302.13668">Contrastive Video
+Question Answering via Video Graph Transformer</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/doc-doc/CoVGT">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10194972">A
+Heterogeneous Graph to Abstract Syntax Tree Framework for
+Text-to-SQL</a></td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/rhythmcao/text2sql-graph2tree">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2205.09753">HDGT: Heterogeneous
+Driving Graph Transformer for Multi-Agent Trajectory Prediction via
+Scene Encoding</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/OpenDriveLab/HDGT">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2103.13225">STAR-FC: Structure-Aware
+Face Clustering on Ultra-Large-Scale Graphs</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/sstzal/STAR-FC">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2307.14617">Multiscale Dynamic Graph
+Representation for Biometric Recognition With Occlusions</a></td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/RenMin1991/Dyamic-Graph-Representation">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10193837">Long and
+Short-Range Dependency Graph Structure Learning Framework on Point
+Cloud</a></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2204.08646">Label Efficient
+Regularization and Propagation for Graph Node Classification</a></td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2206.15174">Graph-Time Convolutional
+Neural Networks: Architecture and Theoretical Analysis</a></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2207.04602">Adaptive Fine-Grained
+Predicates Learning for Scene Graph Generation</a></td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2306.09114">Relational Temporal Graph
+Reasoning for Dual-Task Dialogue Language Understanding</a></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10149528/">Graph
+Neural Network Meets Sparse Representation: Graph Sparse Neural Networks
+via Exclusive Group Lasso</a></td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2301.09071">Variational Cross-Graph
+Reasoning and Adaptive Structured Semantics Learning for Compositional
+Temporal Grounding</a></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2307.05276">Unbiased Scene Graph
+Generation via Two-Stage Causal Modeling</a></td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10120982">Learning to
+Infer Unseen Single-/ Multi-Attribute-Object Compositions With Graph
+Networks</a></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10145799">Learning
+Hidden Graphs From Samples</a></td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2207.01450">Discourse-Aware Graph
+Networks for Textual Logical Reasoning</a></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2201.11697">Constrained Structure
+Learning for Scene Graph Generation</a></td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10091452">Sparse
+Quadratic Approximation for Graph Learning</a></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10073537">Unsupervised
+Learning of Graph Matching With Mixture of Modes via Discrepancy
+Minimization</a></td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2112.05727">Neural Belief Propagation
+for Scene Graph Generation</a></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10129060">Large-Scale
+Clustering With Structured Optimal Bipartite Graph</a></td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10068311">Graph Theory
+Based Large-Scale Machine Learning With Multi-Dimensional Constrained
+Optimization Approaches for Exact Epidemiological Modeling of Pandemic
+Diseases</a></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2207.12659">Graph Neural Network and
+Spatiotemporal Transformer Attention for 3D Video Object Detection From
+Point Clouds</a></td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2302.10237">SceneHGN: Hierarchical
+Graph Networks for 3D Indoor Scene Generation With Fine-Grained
+Geometry</a></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9996549">Non-Graph
+Data Clustering via <span class="math inline">\(\mathcal{O}(n)\)</span>
+Bipartite Graph Convolution</a></td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10023982">Graph
+Diffusion Convolutional Network for Skeleton Based Semantic Recognition
+of Two-Person Actions</a></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9966846">Structure
+Evolution on Manifold for Graph Learning</a></td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2011.04055">Fourier-Based and
+Rational Graph Filters for Spectral Processing</a></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1908.07141">LogicENN: A Neural Based
+Knowledge Graphs Embedding Model With Logical Rules</a></td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1908.11754">Fashion Retrieval via
+Graph Reasoning Networks on a Similarity Pyramid</a></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9369105">Learning
+Graph Convolutional Networks for Multi-Label Recognition and
+Applications</a></td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9234715">Learning
+Multi-View Interactional Skeleton Graph for Action Recognition</a></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2105.11016">Revisiting 2D
+Convolutional Neural Networks for Graph-Based Applications</a></td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10120667">Guest
+Editorial: Introduction to the Special Section on Graphs in Vision and
+Pattern Analysis</a></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9920219">A
+Systematic Survey on Deep Generative Models for Graph
+Generation</a></td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9868157">Unsupervised
+Graph Embedding via Adaptive Graph Learning</a></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9786681">Relation
+Matters: Foreground-Aware Graph-Based Relational Reasoning for Domain
+Adaptive Object Detection</a></td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9780235">Group
+Contrastive Self-Supervised Learning on Graphs</a></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9796468">Are
+Graph Convolutional Networks With Random Weights Feasible?</a></td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9756344">Graph
+Learning on Millions of Data in Seconds: Label Propagation Acceleration
+on Graph Using Data Distribution</a></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9741534">Duality-Induced
+Regularizer for Semantic Matching Knowledge Graph Embeddings</a></td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9681162">Point Cloud
+Sampling via Graph Balancing and Gershgorin Disc Alignment</a></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9721082">Improving
+Graph Neural Network Expressivity via Subgraph Isomorphism
+Counting</a></td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a
+target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9672718">Efficient
+Variational Bayes Learning of Graphical Models With Smooth Structural
+Changes</a></td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/9661322">A
+Comprehensive Survey of Scene Graphs: Generation and
+Application</a></td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ijcv">IJCV</h3>
+<ul>
+<li>Recurrent Graph Neural Networks for Video Instance Segmentation <a
+target="_blank" rel="noopener" href="https://link.springer.com/article/10.1007/s11263-022-01703-8#Sec4">pdf</a>
+<a target="_blank" rel="noopener" href="https://github.com/emibr948/RGNNVIS-PlusPlus">code</a></li>
+<li>Bipartite Graph Reasoning GANs for Person Pose and Facial Image
+Synthesis <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2211.06719">pdf</a> <a
+target="_blank" rel="noopener" href="https://github.com/Ha0Tang/BiGraphGAN">code</a></li>
+<li>Importance First: Generating Scene Graph of Human Interest <a
+target="_blank" rel="noopener" href="https://link.springer.com/article/10.1007/s11263-023-01817-7">pdf</a>
+<a target="_blank" rel="noopener" href="https://github.com/Kenneth-Wong/TGIR">code</a></li>
+<li>Automatic Generation of 3D Scene Animation Based on Dynamic
+Knowledge Graphs and Contextual Encoding <a
+target="_blank" rel="noopener" href="https://link.springer.com/article/10.1007/s11263-023-01839-1">pdf</a>
+<a
+target="_blank" rel="noopener" href="https://github.com/ZxyLinkstart/Automatic-Generation-of-3D-Scene-Animation">code</a></li>
+</ul>
+<h3 id="jmlr">JMLR</h3>
+<table>
+
+<thead>
+<tr class="header">
+<th>paper</th>
+<th>authors</th>
+<th>code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://jmlr.org/papers/v24/20-1206.html">Bayesian Spiked
+Laplacian Graphs</a></td>
+<td>Leo L Duan</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/leoduan/BayesSpikedLaplacian">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://jmlr.org/papers/v24/20-449.html">Sampling random
+graph homomorphisms and applications to network data analysis</a></td>
+<td>Hanbaek Lyu</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/HanbaekLyu/motif_sampling">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://jmlr.org/papers/v24/21-0877.html">Graph-Aided
+Online Multi-Kernel Learning</a></td>
+<td>Pouya M. Ghari</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/pouyamghari/Graph-Aided-Online-Multi-Kernel-Learning">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://www.jmlr.org/papers/v24/22-0567.html">Benchmarking
+Graph Neural Networks</a></td>
+<td>Vijay Prakash Dwivedi</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/graphdeeplearning/benchmarking-gnns">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://jmlr.org/papers/v24/21-0855.html">Inference for a
+Large Directed Acyclic Graph with Unspecified Interventions</a></td>
+<td>Chunlin Li</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/chunlinli/intdag">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://jmlr.org/papers/v24/22-0337.html">Fitting
+Autoregressive Graph Generative Models through Maximum Likelihood
+Estimation</a></td>
+<td>Xu Han</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/tufts-ml/Graph-Generation-MLE">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://jmlr.org/papers/v24/22-1085.html">A Unified
+Framework for Optimization-Based Graph Coarsening</a></td>
+<td>Manoj Kumar</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/GraphCoarsening/Featured-Graph-Coarsening">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://jmlr.org/papers/v24/20-998.html">Graph Clustering
+with Graph Neural Networks</a></td>
+<td>Anton Tsitsulin</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/google-research/google-research/tree/master/graph_embedding/dmon">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://jmlr.org/papers/v24/21-1254.html">Large sample
+spectral analysis of graph-based multi-manifold clustering</a></td>
+<td>Nicolas Garcia Trillos</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/chl781/manifold-clustering">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://jmlr.org/papers/v24/21-0434.html">Factor Graph
+Neural Networks</a></td>
+<td>Zhen Zhang</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/zzhang1987/Factor-Graph-Neural-Network">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://jmlr.org/papers/v24/21-082.html">Quantifying
+Network Similarity using Graph Cumulants</a></td>
+<td>Gecia Bravo-Hermsdorff</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/TheGravLab/GraphCumulantComparison">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://jmlr.org/papers/v24/22-1154.html">Sparse Graph
+Learning from Spatiotemporal Time Series</a></td>
+<td>Andrea Cini</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/andreacini/sparse-graph-learning">url</a></td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://jmlr.org/papers/v24/22-125.html">Graph Attention
+Retrospective</a></td>
+<td>Kimon Fountoulakis</td>
+<td><a
+target="_blank" rel="noopener" href="https://github.com/opallab/Graph-Attention-Retrospective">url</a></td>
+</tr>
+<tr class="even">
+<td><a target="_blank" rel="noopener" href="https://jmlr.org/papers/v24/21-0449.html">Combinatorial
+Optimization and Reasoning with Graph Neural Networks</a></td>
+<td>Quentin Cappart</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td><a target="_blank" rel="noopener" href="https://jmlr.org/papers/v24/22-1138.html">An Annotated
+Graph Model with Differential Degree Heterogeneity for Directed
+Networks</a></td>
+<td>Stefan Stein</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数据库数据挖掘内容检索">数据库/数据挖掘/内容检索</h2>
+<h3 id="tods">TODS</h3>
+<h3 id="tois">TOIS</h3>
+<h3 id="tkde">TKDE</h3>
+<h3 id="vldbj">VLDBJ</h3>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Deep-Learning/" class="category-chain-item">Deep Learning</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Graph/" class="print-no-link">#Graph</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2023 TOP Graph Journal Review</div>
+      <div>https://blog.lfd.world/2023/11/19/2023-top-graph-journal-review/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>培根请加蛋</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年11月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/11/28/2021-top-conference-graph-review/" title="2021 TOP Conference Graph Review">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">2021 TOP Conference Graph Review</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/19/2023-top-graph-conference-review/" title="2023 TOP Graph Conference Review">
+                        <span class="hidden-mobile">2023 TOP Graph Conference Review</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-15,"vOffset":-15},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
