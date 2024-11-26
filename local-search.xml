@@ -54,11 +54,11 @@
   
   
   <entry>
-    <title>Optimizer</title>
-    <link href="/2024/10/07/optimizer/"/>
-    <url>/2024/10/07/optimizer/</url>
+    <title>Optimization Methods</title>
+    <link href="/2024/10/07/optimization-methods/"/>
+    <url>/2024/10/07/optimization-methods/</url>
     
-    <content type="html"><![CDATA[<p>本文主要介绍了深度学习模型中主要使用的几个 optimizer (优化器)。</p><h2 id="sgd">SGD</h2><hr /><p>Algorithm Stochastic gradient descent (SGD) update at trainingiteration k</p><hr /><p><strong>Require</strong>: Learning rate <spanclass="math inline">\(\epsilon_k\)</span></p><p><strong>Require</strong>: Intial parameter <spanclass="math inline">\(\pmb{\theta}\)</span></p><p>​ <strong>while</strong> stopping criterion not met<strong>do</strong></p><p>​ Sample a minibatch of <span class="math inline">\(m\)</span>examples from the training set <spanclass="math inline">\(\{x^{(1)},\dots,x^{(m)} \}\)</span> withcorresponding targets <span class="math inline">\(y^{(i)}\)</span></p><p>​ Compute gradient estimate: <span class="math inline">\(\hat{\pmb{g}}\leftarrow +\frac{1}{m} \nabla_{\pmb{\theta}}\sum_iL(f(x^{(i)};\pmb{\theta}),y^{(i)})\)</span></p><p>​ Apply update: <span class="math inline">\(\pmb{\theta} \leftarrow\pmb{\theta} - \epsilon \hat{\pmb{g}}\)</span></p><p>​ <strong>end while</strong></p><hr /><h2 id="adagrad">Adagrad</h2><hr /><p>Algorithm The AdaGrad algorithm</p><hr /><p><strong>Require</strong>: Global learning rate <spanclass="math inline">\(\epsilon\)</span></p><p><strong>Require</strong>: Initial parameter <spanclass="math inline">\(\pmb{\theta}\)</span></p><p><strong>Require</strong>: Small constant <spanclass="math inline">\(\delta\)</span>, perhaps <spanclass="math inline">\(10^{-7}\)</span>, for numerical stability</p><p>​ Initialize gradient accumulation variable <spanclass="math inline">\(\pmb{r}=0\)</span></p><p>​ <strong>while</strong> stopping criterion not met<strong>do</strong></p><p>​ Sample a minibatch of <span class="math inline">\(m\)</span>examples from the training set <spanclass="math inline">\(\{x^{(1)},\dots,x^{(m)} \}\)</span> withcorresponding targets <span class="math inline">\(y^{(i)}\)</span></p><p>​ Compute gradient estimate: <span class="math inline">\(\hat{\pmb{g}}\leftarrow \frac{1}{m} \nabla_{\pmb{\theta}}\sum_iL(f(x^{(i)};\pmb{\theta}),y^{(i)})\)</span></p><p>​ Accumulate squared gradient: <span class="math inline">\(\pmb{r}\leftarrow \pmb{r} + \pmb{g} \odot \pmb{g}\)</span></p><p>​ Compute update: <span class="math inline">\(\Delta \pmb{\theta}\leftarrow -\frac{\epsilon}{\delta+\sqrt{\pmb{r}}} \odot\pmb{g}\)</span>. (Division and square root applied element-wise)</p><p>​ Apply update: <span class="math inline">\(\pmb{\theta} \leftarrow\pmb{\theta} + \Delta \pmb{\theta}\)</span></p><p>​ <strong>end while</strong></p><hr /><h2 id="rmsprop">RMSProp</h2><hr /><p>Algorithm The RMSProp algorithm</p><hr /><p><strong>Require</strong>: Global learning rate <spanclass="math inline">\(\epsilon\)</span>, decay rate <spanclass="math inline">\(\rho\)</span></p><p><strong>Require</strong>: Initial parameter <spanclass="math inline">\(\pmb{\theta}\)</span></p><p><strong>Require</strong>: Small constant <spanclass="math inline">\(\delta\)</span>, usually <spanclass="math inline">\(10^{-6}\)</span>, used to stabilize division bysmall numbers</p><p>​ Initialize gradient accumulation variable <spanclass="math inline">\(\pmb{r}=0\)</span></p><p>​ <strong>while</strong> stopping criterion not met<strong>do</strong></p><p>​ Sample a minibatch of <span class="math inline">\(m\)</span>examples from the training set <spanclass="math inline">\(\{x^{(1)},\dots,x^{(m)} \}\)</span> withcorresponding targets <span class="math inline">\(y^{(i)}\)</span></p><p>​ Compute gradient estimate: <span class="math inline">\(\hat{\pmb{g}}\leftarrow \frac{1}{m} \nabla_{\pmb{\theta}}\sum_iL(f(x^{(i)};\pmb{\theta}),y^{(i)})\)</span></p><p>​ Accumulate squared gradient: <span class="math inline">\(\pmb{r}\leftarrow \rho \pmb{r} + (1- \rho)\pmb{g} \odot \pmb{g}\)</span></p><p>​ Compute update: <span class="math inline">\(\Delta \pmb{\theta} =-\frac{\epsilon}{\sqrt{\delta+\pmb{r}}} \odot \pmb{g}\)</span>. (<spanclass="math inline">\(\frac{1}{\sqrt{\delta+\pmb{r}}}\)</span> appliedelement-wise)</p><p>​ Apply update: <span class="math inline">\(\pmb{\theta} \leftarrow\pmb{\theta} + \Delta \pmb{\theta}\)</span></p><p>​ <strong>end while</strong></p><hr /><h2 id="adam">Adam</h2><hr /><p>Algorithm The Adam algorithm</p><hr /><p><strong>Require</strong>: Step size <spanclass="math inline">\(\epsilon\)</span> (Suggested default: 0.001)</p><p><strong>Require</strong>: Expontential decay rates for momentestimates, <span class="math inline">\(\rho_1\)</span> and <spanclass="math inline">\(\rho_2\)</span> in <spanclass="math inline">\([0,1)\)</span>. (Suggested defaults: 0.9 and 0.999respectively)</p><p><strong>Require</strong>: Small constant <spanclass="math inline">\(\delta\)</span> used for numerical stabilization.(Suggested default: <span class="math inline">\(10^{-8}\)</span>)</p><p><strong>Require</strong>: Initial parameters <spanclass="math inline">\(\pmb{\theta}\)</span></p><p>​ Initialize 1st and 2nd moment variables <spanclass="math inline">\(\pmb{s}=0,\pmb{r}=0\)</span></p><p>​ Initialize time step <span class="math inline">\(t=0\)</span></p><p>​ <strong>while</strong> stopping criterion not met<strong>do</strong></p><p>​ Sample a minibatch of <span class="math inline">\(m\)</span>examples from the training set <spanclass="math inline">\(\{x^{(1)},\dots,x^{(m)} \}\)</span> withcorresponding targets <span class="math inline">\(y^{(i)}\)</span></p><p>​ Compute gradient estimate: <span class="math inline">\(\hat{\pmb{g}}\leftarrow \frac{1}{m} \nabla_{\pmb{\theta}}\sum_iL(f(x^{(i)};\pmb{\theta}),y^{(i)})\)</span></p><p>​ <span class="math inline">\(t\leftarrow t+1\)</span></p><p>​ Update biased first moment estimate: <spanclass="math inline">\(\pmb{s} \leftarrow \rho_1 \pmb{s} + (1 -\rho_1)\pmb{g}\)</span></p><p>​ Update biased second moment estimate: <spanclass="math inline">\(\pmb{r} \leftarrow \rho_2 \pmb{r} +(1-\rho_2)\pmb{g} \odot \pmb{g}\)</span></p><p>​ Correct bias in first moment: <spanclass="math inline">\(\hat{\pmb{s}} \leftarrow\frac{\pmb{s}}{1-\rho_1^t}\)</span></p><p>​ Correct bias in first moment: <spanclass="math inline">\(\hat{\pmb{r}} \leftarrow\frac{\pmb{r}}{1-\rho_2^t}\)</span></p><p>​ Compute update: <span class="math inline">\(\Delta \pmb{\theta} =-\epsilon \frac{\hat{\pmb{s}}}{\sqrt{\hat{\pmb{r}}+\delta}}\)</span>.(<span class="math inline">\(\frac{1}{\sqrt{\delta+\pmb{r}}}\)</span>applied element-wise)</p><p>​ Apply update: <span class="math inline">\(\pmb{\theta} \leftarrow\pmb{\theta} + \Delta \pmb{\theta}\)</span></p><p>​ <strong>end while</strong></p><hr />]]></content>
+    <content type="html"><![CDATA[<p>本文主要介绍了深度学习模型中主要使用的几个方法。</p><h2 id="sgd">SGD</h2><figure><imgsrc="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefined20241126164927.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure><h2 id="adagrad">Adagrad</h2><figure><imgsrc="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefined20241126165445.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure><h2 id="rmsprop">RMSProp</h2><figure><imgsrc="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefined20241126165511.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure><h2 id="adam">Adam</h2><figure><imgsrc="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefined20241126165611.png"alt="image.png" /><figcaption aria-hidden="true">image.png</figcaption></figure>]]></content>
     
     
     <categories>
@@ -481,11 +481,11 @@
   
   
   <entry>
-    <title>Latex &amp; Markdown 论文写作篇</title>
-    <link href="/2023/09/17/latex-markdown-lun-wen-xie-zuo-pian/"/>
-    <url>/2023/09/17/latex-markdown-lun-wen-xie-zuo-pian/</url>
+    <title>Latex &amp; Markdown 空格</title>
+    <link href="/2023/09/17/latex-markdown-kong-ge/"/>
+    <url>/2023/09/17/latex-markdown-kong-ge/</url>
     
-    <content type="html"><![CDATA[<h2 id="伪代码">伪代码</h2><p>在 latex 生成伪代码的方式有 algorithmic, algpseudocode, algorithm2e,algorithmicx 等几种方法，这里主要介绍前两种。</p><h3 id="algorithmic">algorithmic</h3><p>主要的命令有如下几个：</p><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\STATE</span> &lt;text&gt;<br> <span class="hljs-keyword">\IF</span>&#123;&lt;condition&gt;&#125; <span class="hljs-keyword">\STATE</span> &#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ELSE</span> <span class="hljs-keyword">\STATE</span>&#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDIF</span><br> <span class="hljs-keyword">\IF</span>&#123;&lt;condition&gt;&#125; <span class="hljs-keyword">\STATE</span> &#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ELSIF</span>&#123;&lt;condition&gt;&#125; <span class="hljs-keyword">\STATE</span>&#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDIF</span><br> <span class="hljs-keyword">\FOR</span>&#123;&lt;condition&gt;&#125; <span class="hljs-keyword">\STATE</span> &#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDFOR</span><br> <span class="hljs-keyword">\FOR</span>&#123;&lt;condition&gt; <span class="hljs-keyword">\TO</span> &lt;condition&gt; &#125; <span class="hljs-keyword">\STATE</span> &#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDFOR</span><br> <span class="hljs-keyword">\FORALL</span>&#123;&lt;condition&gt;&#125; <span class="hljs-keyword">\STATE</span>&#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDFOR</span><br> <span class="hljs-keyword">\WHILE</span>&#123;&lt;condition&gt;&#125; <span class="hljs-keyword">\STATE</span>&#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDWHILE</span><br> <span class="hljs-keyword">\REPEAT</span> <span class="hljs-keyword">\STATE</span>&#123;&lt;text&gt;&#125; <span class="hljs-keyword">\UNTIL</span>&#123;&lt;condition&gt;&#125;<br> <span class="hljs-keyword">\LOOP</span> <span class="hljs-keyword">\STATE</span>&#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDLOOP</span><br> <span class="hljs-keyword">\REQUIRE</span> &lt;text&gt;<br> <span class="hljs-keyword">\ENSURE</span> &lt;text&gt;<br> <span class="hljs-keyword">\RETURN</span> &lt;text&gt;<br> <span class="hljs-keyword">\PRINT</span> &lt;text&gt;<br> <span class="hljs-keyword">\COMMENT</span>&#123;&lt;text&gt;&#125;<br> <span class="hljs-keyword">\AND</span>, <span class="hljs-keyword">\OR</span>, <span class="hljs-keyword">\XOR</span>, <span class="hljs-keyword">\NOT</span>, <span class="hljs-keyword">\TO</span>, <span class="hljs-keyword">\TRUE</span>, <span class="hljs-keyword">\FALSE</span><br></code></pre></td></tr></table></figure><p>示例：</p><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\documentclass</span>&#123;article&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;algcompatible&#125;<br><span class="hljs-comment">% OR \usepackage&#123;algorithmic&#125;</span><br><span class="hljs-keyword">\begin</span>&#123;document&#125;<br><span class="hljs-keyword">\begin</span>&#123;algorithmic&#125;<br><span class="hljs-keyword">\STATE</span> <span class="hljs-built_in">$</span>i<span class="hljs-keyword">\gets</span> 10<span class="hljs-built_in">$</span><br><span class="hljs-keyword">\IF</span> &#123;<span class="hljs-built_in">$</span>i<span class="hljs-keyword">\geq</span> 5<span class="hljs-built_in">$</span>&#125; <br>  <span class="hljs-keyword">\STATE</span> <span class="hljs-built_in">$</span>i<span class="hljs-keyword">\gets</span> i-1<span class="hljs-built_in">$</span><br><span class="hljs-keyword">\ELSE</span><br>  <span class="hljs-keyword">\IF</span> &#123;<span class="hljs-built_in">$</span>i<span class="hljs-keyword">\leq</span> 3<span class="hljs-built_in">$</span>&#125;<br>    <span class="hljs-keyword">\STATE</span> <span class="hljs-built_in">$</span>i<span class="hljs-keyword">\gets</span> i+2<span class="hljs-built_in">$</span><br>  <span class="hljs-keyword">\ENDIF</span><br><span class="hljs-keyword">\ENDIF</span> <br><span class="hljs-keyword">\end</span>&#123;algorithmic&#125;<br><br><span class="hljs-keyword">\end</span>&#123;document&#125;<br></code></pre></td></tr></table></figure><h3 id="algpseudocode">algpseudocode</h3>]]></content>
+    <content type="html"><![CDATA[<table><thead><tr class="header"><th>空格类型</th><th>示例</th><th>文章中空格绝对大小</th></tr></thead><tbody><tr class="odd"><td>两个 quad 空格</td><td>a b</td><td>两个 m 的宽度</td></tr><tr class="even"><td>quad 空格</td><td>a b</td><td>一个 m 的宽度</td></tr><tr class="odd"><td>大空格</td><td>a b</td><td>1/3 m 宽度</td></tr><tr class="even"><td>中等空格</td><td>a;b</td><td>2/7 m 宽度</td></tr><tr class="odd"><td>小空格</td><td>a,b</td><td>1/6 m 宽度</td></tr><tr class="even"><td>没有空格</td><td>ab</td><td></td></tr><tr class="odd"><td>紧贴</td><td>a!b</td><td>缩进 1/6 m 宽度</td></tr></tbody></table><h2 id="参考">参考</h2><p>[1] <ahref="https://blog.csdn.net/kangkanglhb88008/article/details/125547204">latex如何打空格</a></p>]]></content>
     
     
     <categories>
@@ -508,11 +508,11 @@
   
   
   <entry>
-    <title>Latex &amp; Markdown 空格</title>
-    <link href="/2023/09/17/latex-markdown-kong-ge/"/>
-    <url>/2023/09/17/latex-markdown-kong-ge/</url>
+    <title>Latex &amp; Markdown 论文写作篇</title>
+    <link href="/2023/09/17/latex-markdown-lun-wen-xie-zuo-pian/"/>
+    <url>/2023/09/17/latex-markdown-lun-wen-xie-zuo-pian/</url>
     
-    <content type="html"><![CDATA[<table><thead><tr class="header"><th>空格类型</th><th>示例</th><th>文章中空格绝对大小</th></tr></thead><tbody><tr class="odd"><td>两个 quad 空格</td><td>a b</td><td>两个 m 的宽度</td></tr><tr class="even"><td>quad 空格</td><td>a b</td><td>一个 m 的宽度</td></tr><tr class="odd"><td>大空格</td><td>a b</td><td>1/3 m 宽度</td></tr><tr class="even"><td>中等空格</td><td>a;b</td><td>2/7 m 宽度</td></tr><tr class="odd"><td>小空格</td><td>a,b</td><td>1/6 m 宽度</td></tr><tr class="even"><td>没有空格</td><td>ab</td><td></td></tr><tr class="odd"><td>紧贴</td><td>a!b</td><td>缩进 1/6 m 宽度</td></tr></tbody></table><h2 id="参考">参考</h2><p>[1] <ahref="https://blog.csdn.net/kangkanglhb88008/article/details/125547204">latex如何打空格</a></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="伪代码">伪代码</h2><p>在 latex 生成伪代码的方式有 algorithmic, algpseudocode, algorithm2e,algorithmicx 等几种方法，这里主要介绍前两种。</p><h3 id="algorithmic">algorithmic</h3><p>主要的命令有如下几个：</p><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\STATE</span> &lt;text&gt;<br> <span class="hljs-keyword">\IF</span>&#123;&lt;condition&gt;&#125; <span class="hljs-keyword">\STATE</span> &#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ELSE</span> <span class="hljs-keyword">\STATE</span>&#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDIF</span><br> <span class="hljs-keyword">\IF</span>&#123;&lt;condition&gt;&#125; <span class="hljs-keyword">\STATE</span> &#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ELSIF</span>&#123;&lt;condition&gt;&#125; <span class="hljs-keyword">\STATE</span>&#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDIF</span><br> <span class="hljs-keyword">\FOR</span>&#123;&lt;condition&gt;&#125; <span class="hljs-keyword">\STATE</span> &#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDFOR</span><br> <span class="hljs-keyword">\FOR</span>&#123;&lt;condition&gt; <span class="hljs-keyword">\TO</span> &lt;condition&gt; &#125; <span class="hljs-keyword">\STATE</span> &#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDFOR</span><br> <span class="hljs-keyword">\FORALL</span>&#123;&lt;condition&gt;&#125; <span class="hljs-keyword">\STATE</span>&#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDFOR</span><br> <span class="hljs-keyword">\WHILE</span>&#123;&lt;condition&gt;&#125; <span class="hljs-keyword">\STATE</span>&#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDWHILE</span><br> <span class="hljs-keyword">\REPEAT</span> <span class="hljs-keyword">\STATE</span>&#123;&lt;text&gt;&#125; <span class="hljs-keyword">\UNTIL</span>&#123;&lt;condition&gt;&#125;<br> <span class="hljs-keyword">\LOOP</span> <span class="hljs-keyword">\STATE</span>&#123;&lt;text&gt;&#125; <span class="hljs-keyword">\ENDLOOP</span><br> <span class="hljs-keyword">\REQUIRE</span> &lt;text&gt;<br> <span class="hljs-keyword">\ENSURE</span> &lt;text&gt;<br> <span class="hljs-keyword">\RETURN</span> &lt;text&gt;<br> <span class="hljs-keyword">\PRINT</span> &lt;text&gt;<br> <span class="hljs-keyword">\COMMENT</span>&#123;&lt;text&gt;&#125;<br> <span class="hljs-keyword">\AND</span>, <span class="hljs-keyword">\OR</span>, <span class="hljs-keyword">\XOR</span>, <span class="hljs-keyword">\NOT</span>, <span class="hljs-keyword">\TO</span>, <span class="hljs-keyword">\TRUE</span>, <span class="hljs-keyword">\FALSE</span><br></code></pre></td></tr></table></figure><p>示例：</p><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs latex"><span class="hljs-keyword">\documentclass</span>&#123;article&#125;<br><span class="hljs-keyword">\usepackage</span>&#123;algcompatible&#125;<br><span class="hljs-comment">% OR \usepackage&#123;algorithmic&#125;</span><br><span class="hljs-keyword">\begin</span>&#123;document&#125;<br><span class="hljs-keyword">\begin</span>&#123;algorithmic&#125;<br><span class="hljs-keyword">\STATE</span> <span class="hljs-built_in">$</span>i<span class="hljs-keyword">\gets</span> 10<span class="hljs-built_in">$</span><br><span class="hljs-keyword">\IF</span> &#123;<span class="hljs-built_in">$</span>i<span class="hljs-keyword">\geq</span> 5<span class="hljs-built_in">$</span>&#125; <br>  <span class="hljs-keyword">\STATE</span> <span class="hljs-built_in">$</span>i<span class="hljs-keyword">\gets</span> i-1<span class="hljs-built_in">$</span><br><span class="hljs-keyword">\ELSE</span><br>  <span class="hljs-keyword">\IF</span> &#123;<span class="hljs-built_in">$</span>i<span class="hljs-keyword">\leq</span> 3<span class="hljs-built_in">$</span>&#125;<br>    <span class="hljs-keyword">\STATE</span> <span class="hljs-built_in">$</span>i<span class="hljs-keyword">\gets</span> i+2<span class="hljs-built_in">$</span><br>  <span class="hljs-keyword">\ENDIF</span><br><span class="hljs-keyword">\ENDIF</span> <br><span class="hljs-keyword">\end</span>&#123;algorithmic&#125;<br><br><span class="hljs-keyword">\end</span>&#123;document&#125;<br></code></pre></td></tr></table></figure><h3 id="algpseudocode">algpseudocode</h3>]]></content>
     
     
     <categories>
@@ -589,31 +589,6 @@
   
   
   <entry>
-    <title>高效能人士的七个习惯 学习日记（一）</title>
-    <link href="/2023/08/26/gao-xiao-neng-ren-shi-de-qi-ge-xi-guan-xue-xi-ri-ji-yi/"/>
-    <url>/2023/08/26/gao-xiao-neng-ren-shi-de-qi-ge-xi-guan-xue-xi-ri-ji-yi/</url>
-    
-    <content type="html"><![CDATA[<h2 id="section"></h2><p>习惯一：积极主动</p><p>习惯二：以终为始</p><p>习惯三：要事第一</p><p>习惯四：双赢思维</p><p>习惯五：知彼解己</p><p>习惯六：统合综效</p><p>习惯七：不断更新</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>心理学</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>心理学</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>线性代数学习日记（一）</title>
     <link href="/2023/08/26/xian-xing-dai-shu-xue-xi-ri-ji-yi/"/>
     <url>/2023/08/26/xian-xing-dai-shu-xue-xi-ri-ji-yi/</url>
@@ -631,6 +606,31 @@
     <tags>
       
       <tag>线性代数</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>高效能人士的七个习惯 学习日记（一）</title>
+    <link href="/2023/08/26/gao-xiao-neng-ren-shi-de-qi-ge-xi-guan-xue-xi-ri-ji-yi/"/>
+    <url>/2023/08/26/gao-xiao-neng-ren-shi-de-qi-ge-xi-guan-xue-xi-ri-ji-yi/</url>
+    
+    <content type="html"><![CDATA[<h2 id="section"></h2><p>习惯一：积极主动</p><p>习惯二：以终为始</p><p>习惯三：要事第一</p><p>习惯四：双赢思维</p><p>习惯五：知彼解己</p><p>习惯六：统合综效</p><p>习惯七：不断更新</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>心理学</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>心理学</tag>
       
     </tags>
     
