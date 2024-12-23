@@ -24,7 +24,7 @@
 <meta property="og:description" content="图神经网络学习日记（四）图神经网络（GNN）">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-05-31T02:07:00.000Z">
-<meta property="article:modified_time" content="2024-11-19T15:14:13.503Z">
+<meta property="article:modified_time" content="2024-12-10T13:53:15.836Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="Graph">
 <meta name="twitter:card" content="summary_large_image">
@@ -233,7 +233,7 @@
         
         
         
-          97 分钟
+          100 分钟
         
       </span>
     
@@ -284,18 +284,17 @@
               <div class="markdown-body">
                 
                 <p><strong>置换不变性和置换同变性</strong></p>
-<p>任何将邻接矩阵<span
-class="math inline">\(A\)</span>作为输入的函数<span
-class="math inline">\(f\)</span>在理想状态下，都应满足下面两个条件之一：
-<span class="math display">\[
+<p>任何将邻接矩阵 <span class="math inline">\(A\)</span> 作为输入的函数
+<span class="math inline">\(f\)</span>
+在理想状态下，都应满足下面两个条件之一： <span class="math display">\[
 \begin{align}
 f(PAP^T)&amp;=f(A)\text{(置换不变)} \\
 f(PAP^T)&amp;=Pf(A)\text{(置换同变)}
 \end{align}
 \]</span></p>
-<p>其中<span
-class="math inline">\(P\)</span>是置换矩阵。置换不变是指函数不依赖邻接矩阵中行/列的任意顺序，置换同变表示当置换邻接矩阵时<span
-class="math inline">\(f\)</span>的输出以一致的方式置换。</p>
+<p>其中 <span class="math inline">\(P\)</span>
+是置换矩阵。置换不变是指函数不依赖邻接矩阵中行/列的任意顺序，置换同变表示当置换邻接矩阵时
+<span class="math inline">\(f\)</span> 的输出以一致的方式置换。</p>
 <h2 id="神经消息传递">神经消息传递</h2>
 <h3 id="gnn-框架">GNN 框架</h3>
 <p>在 GNN 的每个消息传递迭代期，通过聚合每个节点<span
@@ -304,24 +303,33 @@ class="math inline">\(\mathcal{N}(u)\)</span>的信息来更新其隐藏嵌入<s
 class="math inline">\(h_u^{(k)}\)</span>，过程如下式所示： <span
 class="math display">\[
 \begin{align}
-  h_u^{(k+1)} &amp; = UPDATE^{(k)}(h_u^{(k)},
-AGGREGATE^{(k)}(\{h_v^{(k)}, \forall v \in \mathcal{N}(u)\})) \\\\
-  &amp; = UPDATE^{(k)}(h_u^{(k)}, m_{\mathcal{N}(u)}^{(k)})
+  h_u^{(k+1)} &amp; = \mathrm{UPDATE}^{(k)}(h_u^{(k)},
+\mathrm{AGGREGATE}^{(k)}(\{h_v^{(k)}, \forall v \in \mathcal{N}(u)\}))
+\\\\
+  &amp; = \mathrm{UPDATE}^{(k)}(h_u^{(k)}, m_{\mathcal{N}(u)}^{(k)})
 \end{align}
 \]</span></p>
-<p>其中 <span class="math inline">\(UPDATA\)</span> 和 <span
-class="math inline">\(AGGREGATE\)</span> 是任意可微函数，<span
+<p>其中 <span class="math inline">\(\mathrm{UPDATE}\)</span> 和 <span
+class="math inline">\(\mathrm{AGGREGATE}\)</span> 是任意可微函数，<span
 class="math inline">\(m_{\mathcal{N}(u)}\)</span> 是聚合节点 <span
 class="math inline">\(u\)</span>
 邻域消息的结果，上标表示消息迭代期的索引。</p>
 <p>迭代最后一层的输出定义为每个节点的嵌入： <span
 class="math display">\[
 z_u = h_u^{(K)}, \forall u \in \mathcal{V}
-\]</span> 由于 <span class="math inline">\(AGGREGATE\)</span>
+\]</span> 由于 <span class="math inline">\(\mathrm{AGGREGATE}\)</span>
 函数将整个集合作为输入，这种方式定义的 GNN 是置换同变的。</p>
-<p>节点嵌入编码了两种形式的信息。</p>
-<p><strong>图的结构信息</strong></p>
-<p><strong>基于节点特征的信息</strong></p>
+<p>节点嵌入编码了两种形式的信息：</p>
+<p><strong>图的结构信息</strong> 例如，在经过 GNN 消息传递的 <span
+class="math inline">\(k\)</span> 次迭代后，节点 <span
+class="math inline">\(u\)</span> 的嵌入 <span
+class="math inline">\(h_{u}^{(k)}\)</span> 可能会编码 <span
+class="math inline">\(u\)</span> 的 <span
+class="math inline">\(k\)</span> 跳邻居中的所有节点的度的信息。</p>
+<p><strong>基于节点特征的信息</strong> GNN 的消息传递进行了 <span
+class="math inline">\(k\)</span> 次迭代后，每个节点的嵌入对其 <span
+class="math inline">\(k\)</span>
+跳邻居中所有节点的特征信息进行编码。</p>
 <h3 id="gnn-实例">GNN 实例</h3>
 <p>基本 GNN 的消息传递定义如下式： <span class="math display">\[
 h_u^{(k)} = \sigma(W_{self}^{(k)}h_u^{(k-1)} + W_{neigh}^{(k)}\sum_{v
@@ -330,27 +338,28 @@ h_u^{(k)} = \sigma(W_{self}^{(k)}h_u^{(k-1)} + W_{neigh}^{(k)}\sum_{v
 <span class="math inline">\(W_{neigh}^{(k)} \in \mathbb{R}^{d^{(k)}
 \times d^{(k-1)}}\)</span> 是可训练参数矩阵，<span
 class="math inline">\(\sigma\)</span> 表示逐元素的非线性函数。</p>
-<p>通过定义更新和聚合函数等效地定义基本的 GNN： <span
-class="math display">\[
-m_{\mathcal{N}(u)} = \sum_{v \in \mathcal{N}(u)} h_v \\\\
-UPDATE(h_u, m_{\mathcal{N}(u)}) = \sigma (W_{self} h_u +
+通过定义更新和聚合函数等效地定义基本的 GNN： $$
+<span class="math display">\[\begin{aligned}
+m_{\mathcal{N}(u)} &amp;= \sum_{v \in \mathcal{N}(u)} h_v \\\\
+\mathrm{UPDATE}(h_u, m_{\mathcal{N}(u)}) &amp;= \sigma (W_{self} h_u +
 W_{neigh}m_{\mathcal{N}(u)})
-\]</span> 下式可作为从节点 <span class="math inline">\(u\)</span>
-的图上邻域聚合消息的简写： <span class="math display">\[
-m_{\mathcal{N}(u)} = AGGREGATE^{(k)}(\{h_v^{(k)}, \forall v \in
-\mathcal{N}(u)\})
-\]</span> <strong>图级别 GNN 定义</strong> <span class="math display">\[
-H^{(k)} = \sigma(AH^{(k-1)}W_{neigh}^{(k)} + H^{(k-1)}W_{self}^{(k)})
-\]</span> 其中，<span class="math inline">\(H^{(k)} \in
-\mathbb{R}^{|\mathcal{V}| \times d}\)</span> 表示 GNN 中第 <span
-class="math inline">\(k\)</span>
+\end{aligned} \tag{5.8,5.9}\]</span>
+<p><span class="math display">\[
+下式可作为从节点 $u$ 的图上邻域聚合消息的简写：
+\]</span> m_{(u)} = <sup>{(k)}({h_v</sup>{(k)}, v (u)}) <span
+class="math display">\[
+**图级别 GNN 定义**
+\]</span> H^{(k)} = (AH<sup>{(k-1)}W_{neigh}</sup>{(k)} +
+H<sup>{(k-1)}W_{self}</sup>{(k)}) $$ 其中，<span
+class="math inline">\(H^{(k)} \in \mathbb{R}^{|\mathcal{V}| \times
+d}\)</span> 表示 GNN 中第 <span class="math inline">\(k\)</span>
 层的节点表示矩阵（每个节点对应矩阵的一行），<span
 class="math inline">\(A\)</span> 是邻接矩阵。</p>
 <p><strong>自环消息传递</strong></p>
 <p>添加自环并省略显示的更新步骤消息传递可定义如下： <span
 class="math display">\[
-h_u^{(k)} = AGGREGATE(\{ h_v^{(k-1)}, \forall v \in \mathcal{N}(n)
-\bigcup \{u\} \})
+h_u^{(k)} = \mathrm{AGGREGATE}(\{ h_v^{(k-1)}, \forall v \in
+\mathcal{N}(n) \bigcup \{u\} \})
 \]</span> 其中，聚合在集合 <span class="math inline">\(\mathcal{N}(u)
 \bigcup \{u\}\)</span>
 上进行。这种消息传递方式可以缓解拟合问题，也因为无法区分节点和邻域的信息严重限制了
@@ -398,8 +407,8 @@ class="math inline">\(\pi_i\)</span>
 将无序的邻居嵌入集置于任意排列的序列中。然后通过 Janossy
 池化实现邻域聚合，如下式所示：</p>
 <p><span class="math display">\[
-m_{\mathcal{N}(u)} = MLP_{\theta} (\frac{1}{|\Pi|} \sum_{\pi \in \Pi}
-\rho_{\phi} (h_{v_1}, h_{v_2}, \cdots,
+m_{\mathcal{N}(u)} = \mathrm{MLP}_{\theta} (\frac{1}{|\Pi|} \sum_{\pi
+\in \Pi} \rho_{\phi} (h_{v_1}, h_{v_2}, \cdots,
 h_{v_{|\mathcal{N}(u)|}})_{\pi_i})
 \]</span></p>
 <p>其中，<span class="math inline">\(\Pi\)</span> 表示一组置换函数，
@@ -477,7 +486,7 @@ class="math inline">\(u\)</span> 的初始嵌入对节点 <span
 class="math inline">\(v\)</span> 的最终嵌入的影响程度。</p>
 <p>定理：对于任何使用自环更新方法和用下式表示聚合函数的 GNN 模型 <span
 class="math display">\[
-AGGRGATE(\{h_v, \forall v \in \mathcal{N}(u) \bigcup \{u\}\}) =
+\mathrm{AGGRGATE}(\{h_v, \forall v \in \mathcal{N}(u) \bigcup \{u\}\}) =
 \frac{1}{f_n(|\mathcal{N}(u) \bigcup \{u\}|)} \sum_{v \in \mathcal{N}(u)
 \bigcup \{u\}} h_v
 \]</span> 其中，<span class="math inline">\(f:\mathbb{R}^+ \rightarrow
@@ -505,15 +514,15 @@ W_{self}^{(k)} \| &lt; \| W_{neigh}^{(k)}
 <h3 id="拼接和跳跃连接">拼接和跳跃连接</h3>
 <p>最简单更新跳跃连接的方式之一是使用拼接操作再消息传递期间保留更多节点级别信息，如下式所示：
 <span class="math display">\[
-UPDATE_{concat}(h_u, m_{\mathcal{N}(u)}) =
-[UPDATE_{base}(h_u,m_{\mathcal{N}(u)}) \bigoplus h_u]
+\mathrm{UPDATE}_{concat}(h_u, m_{\mathcal{N}(u)}) =
+[\mathrm{UPDATE}_{base}(h_u,m_{\mathcal{N}(u)}) \bigoplus h_u]
 \]</span>
 其中，直接将基本更新函数的输出与节点的上一层表示拼接，鼓励模型再消息传递过程中解耦信息，将来自邻域的信息（<span
 class="math inline">\(m_{\mathcal{N}(u)}\)</span>）与每个节点当前的表示（<span
 class="math inline">\(h_u\)</span>）分开。</p>
 <p>线性插值法跳跃连接，如下式所示： <span class="math display">\[
-UPDATE_{interpolate}(h_u,m_{\mathcal{N}(u)}) = \alpha_1 \circ
-UPDATE_{base}(h_u,m_{\mathcal{N}(u)}) + \alpha_2 \bigodot h_u
+\mathrm{UPDATE}_{interpolate}(h_u,m_{\mathcal{N}(u)}) = \alpha_1 \circ
+\mathrm{UPDATE}_{base}(h_u,m_{\mathcal{N}(u)}) + \alpha_2 \bigodot h_u
 \]</span> 其中，<span class="math inline">\(\alpha_1,\alpha_2 \in
 [0,1]^d\)</span> 是满足 <span class="math inline">\(\alpha_2 = 1 -
 \alpha_1\)</span> 的门控向量，<span class="math inline">\(\circ\)</span>
@@ -526,7 +535,7 @@ UPDATE_{base}(h_u,m_{\mathcal{N}(u)}) + \alpha_2 \bigodot h_u
 消息传递算法的观点是：聚合函数从邻域接收观察结果，然后将其用于更新每个节点的隐状态。基于这一观点可以根据观察结果直接使用更新
 RNN 框架的隐状态的方法，最早的 GNN 架构之一定义更新函数如下式所示：
 <span class="math display">\[
-h_u^{(k)} = GRU(h_u^{(k-1)},m_{\mathcal{N}(u)}^{(k)})
+h_u^{(k)} = \mathrm{GRU}(h_u^{(k-1)},m_{\mathcal{N}(u)}^{(k)})
 \]</span> 其中，GRU 表示 GRU 单元的更新函数。</p>
 <p>门控更新方法在提高 GNN
 框架的模型深度（超过10层）和防止过度平滑问题方面非常有效。</p>
@@ -578,11 +587,11 @@ class="math inline">\(i\)</span> 的张量积。另一种理解参数共享 RGCN
 方法的过程是：学习每个关系的嵌入及所有关系之间共享的张量。</p>
 <h3 id="注意力机制和特征拼接">注意力机制和特征拼接</h3>
 <p>为适应更一般形式的边特征的情况，可以在消息传递过程中基于注意力机制或将这些信息与邻域嵌入拼接来充分利用这些特征。在给定任意基本聚合方法
-<span class="math inline">\(AGGREGATE_{base}\)</span>
+<span class="math inline">\(\mathrm{AGGREGATE}_{base}\)</span>
 的情况下，利用边特征的一种简单策略是如下式定义新的聚合函数： <span
 class="math display">\[
-m_{\mathcal{N}(u)} = AGGREGATE_{base}(\{h_v \bigoplus e_{(u,\tau,v)},
-\forall v \in \mathcal{N}(u) \})
+m_{\mathcal{N}(u)} = \mathrm{AGGREGATE}_{base}(\{h_v \bigoplus
+e_{(u,\tau,v)}, \forall v \in \mathcal{N}(u) \})
 \]</span> 其中，<span class="math inline">\(e_{(u,\tau,v)}\)</span>
 表示边 <span class="math inline">\((u,\tau,v)\)</span> 的特征。</p>
 <h2 id="图池化">图池化</h2>
@@ -604,7 +613,7 @@ z_c}{f_n(|\mathcal{V}|)}
 class="math inline">\(t=1,\cdots,T\)</span>
 步基于注意力机制的聚合操作，如下式所示： <span class="math display">\[
 \begin{aligned}
-q_i &amp;= LSTM(o_{t-1}, q_{t-1}) \\\\
+q_i &amp;= \mathrm{LSTM}(o_{t-1}, q_{t-1}) \\\\
 e_{v,t} &amp;= f_a(z_v,q_t),\forall v \in \mathcal{V} \\\\
 a_{v,t} &amp;= \frac{exp(e_{v,i})}{\sum_{u \in \mathcal{V}} e_{u,t}},
 \forall v \in \mathcal{V} \\\\
@@ -650,15 +659,16 @@ GNN，并在每次迭代的过程中重复粗糙化过程，图在每一步都�
 消息传递方法可以泛化为在消息传递的每个阶段利用边和图级别的信息。</p>
 <p>更为通用的消息传递方法如下式： <span class="math display">\[
 \begin{aligned}
-h_{(u,v)}^{(k)} &amp;= UPDATE_{edge}(h_{(u,v)}^{(k-1)}, h_u^{(k-1)},
-h_v^{(k-1)}, h_{\mathcal{G}}^{(k-1)}) \\\\
-m_{\mathcal{N}(u)} &amp;= AGGREGATE_{node}(\{ h_{(u,v)}^{(k-1)}, \forall
-v \in \mathcal{N}(u) \}) \\\\
-h_u^{(k)} &amp;= UPDATE_{node}(h_u^{(k-1)}, m_{\mathcal{N}(u)},
+h_{(u,v)}^{(k)} &amp;= \mathrm{UPDATE}_{edge}(h_{(u,v)}^{(k-1)},
+h_u^{(k-1)}, h_v^{(k-1)}, h_{\mathcal{G}}^{(k-1)}) \\\\
+m_{\mathcal{N}(u)} &amp;= \mathrm{AGGREGATE}_{node}(\{
+h_{(u,v)}^{(k-1)}, \forall v \in \mathcal{N}(u) \}) \\\\
+h_u^{(k)} &amp;= \mathrm{UPDATE}_{node}(h_u^{(k-1)}, m_{\mathcal{N}(u)},
 h_{\mathcal{G}}^{(k-1)}) \\\\
-h_{\mathcal{G}}^{(k)} &amp;= UPDATE_{graph}(h_{\mathcal{G}}^{(k-1)}, \{
-h_u^{(k-1)}, \forall u \in \mathcal{V}, \{ h_{(u,v)}^{(k)}, \forall
-(u,v) \in \varepsilon \} \})
+h_{\mathcal{G}}^{(k)} &amp;=
+\mathrm{UPDATE}_{graph}(h_{\mathcal{G}}^{(k-1)}, \{ h_u^{(k-1)}, \forall
+u \in \mathcal{V}, \{ h_{(u,v)}^{(k)}, \forall (u,v) \in \varepsilon \}
+\})
 \end{aligned}
 \]</span> 通用消息传递框架中，在消息传递过程中为图上的每条边生成嵌入
 <span
@@ -671,7 +681,8 @@ class="math inline">\(h_{\mathcal{G}}^{(k)}\)</span>，这使得消息传递模�
 <p>以完全监督方式训练 GNN，使用 softmax
 分类函数和负对数似然损失来定义损失函数，如下式：</p>
 <p><span class="math display">\[
-\mathcal{L} = \sum_{u \in \mathcal{V}_{train}} = -log(softmax(z_u,y_u))
+\mathcal{L} = \sum_{u \in \mathcal{V}_{train}} =
+-log(\mathrm{softmax}(z_u,y_u))
 \]</span></p>
 <p>其中，假设 <span class="math inline">\(y_u \in \mathbb{Z}^c\)</span>
 是一个独热向量，表示用于训练的节点 <span class="math inline">\(u \in
@@ -681,8 +692,8 @@ class="math inline">\(h_{\mathcal{G}}^{(k)}\)</span>，这使得消息传递模�
 表示通过 softmax 函数计算节点属于类 <span
 class="math inline">\(y_u\)</span> 的概率，如下式：</p>
 <p><span class="math display">\[
-softmax(z_u,y_u) = \sum_{i=1}^c y_u[i]\frac{e^{z_u^Tw_i}}{\sum_{j=1}^c
-e^{z_u^Tw_j}}
+\mathrm{softmax}(z_u,y_u) = \sum_{i=1}^c
+y_u[i]\frac{e^{z_u^Tw_i}}{\sum_{j=1}^c e^{z_u^Tw_j}}
 \]</span></p>
 <p>其中，<span class="math inline">\(w_i \in
 \mathbb{R}^d,i=1,\cdots,c\)</span> 是可训练的参数。</p>
@@ -694,7 +705,7 @@ class="math inline">\(z_{\mathcal{G}_i}\)</span>
 计算，通常使用如下式定义的平方误差损失函数：</p>
 <p><span class="math display">\[
 \mathcal{L} = \sum_{\mathcal{G} \in \mathcal{T}}\|
-MLP(z_{\mathcal{G}_i}) - y_{\mathcal{G}_i} \|_2^2
+\mathrm{MLP}(z_{\mathcal{G}_i}) - y_{\mathcal{G}_i} \|_2^2
 \]</span></p>
 <p>其中，MLP 是具有单一变量输出的密集连接的神经网络，<span
 class="math inline">\(y_{\mathcal{G}_i} \in \mathbb{R}\)</span> 是训练图

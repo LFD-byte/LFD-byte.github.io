@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702205636812.png">
 <meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefinedimage-20240702205700737.png">
 <meta property="article:published_time" content="2024-07-02T08:09:00.000Z">
-<meta property="article:modified_time" content="2024-11-20T08:57:28.169Z">
+<meta property="article:modified_time" content="2024-12-05T06:11:57.239Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="Graph">
 <meta name="twitter:card" content="summary_large_image">
@@ -370,14 +370,14 @@ pretext tasks
 (GNN) 最新进展的图学习研究人员以及需要了解图数据的领域专家。希望将图 SSL
 方法推广到新应用程序或其他领域。本次调查的核心贡献总结如下：</p>
 <ul>
-<li><strong>统一的框架和系统的分类。</strong>我们提出了一个统一的框架，以数学形式化图
-SSL
+<li><strong>统一的框架和系统的分类。</strong>
+我们提出了一个统一的框架，以数学形式化图 SSL
 方法。基于我们的框架，我们将现有的工作系统地分为四组：基于生成的方法、基于辅助属性的方法、基于对比的方法和混合方法。我们还构建了下游任务的分类法和
 SSL 学习方案。</li>
-<li><strong>全面且最新的审查。</strong>我们对经典和最新的图 SSL
+<li><strong>全面且最新的审查。</strong> 我们对经典和最新的图 SSL
 方法进行了全面、及时的审查。对于每种类型的图 SSL
 方法，我们提供细粒度的分类、数学描述、详细的比较和高级摘要。</li>
-<li><strong>丰富的资源和应用。</strong>我们收集了丰富的图 SSL
+<li><strong>丰富的资源和应用。</strong> 我们收集了丰富的图 SSL
 资源，包括数据集、评估基准、性能比较和开源代码。我们还总结了图 SSL
 在各个研究领域的实际应用。</li>
 <li><strong>展望未来方向</strong>。我们指出当前研究的技术局限性。我们进一步从不同角度提出了未来工作的六个有前景的方向。</li>
@@ -581,7 +581,7 @@ class="math inline">\(L_{ssl}\)</span>，pretext
 解码器和/或训练目标组成。我们根据等式（3）至（5）的公式将这一方法分支表述为两个或多个图
 SSL 方案的加权或未加权组合。 GMI [41]
 联合考虑边缘级重建和节点级对比度，是一种典型的混合方法。</p>
-<p><strong>讨论。</strong>不同的图 SSL
+<p><strong>讨论。</strong> 不同的图 SSL
 方法具有不同的属性。基于生成的方法很容易实现，因为重建任务很容易构建，但有时对于大规模图来说，恢复输入数据非常消耗内存。基于属性的辅助方法具有简单的解码器和损失函数设计；然而，选择有用的辅助属性通常需要领域知识。与其他类别相比，基于对比的方法具有更灵活的设计和更广泛的应用。然而，对比框架、增强策略和损失函数的设计通常依赖于耗时的实证实验。混合方法受益于多个
 pretext tasks，但主要挑战是如何设计联合学习框架来平衡每个组件。</p>
 <h3 id="taxonomy-of-self-supervised-training-schemes">Taxonomy of
@@ -766,7 +766,8 @@ BCE 损失训练的基于成对相似性的解码器来恢复丢弃的连接。 
 函数最小化两个连接节点的嵌入之间的差异。Zhu 等人 [51] 对输入图 (<span
 class="math inline">\(\tilde{\mathcal{G}}=(\tilde{\bf{A}},\tilde{\bf{X}})\)</span>)
 应用两种扰动策略，即随机删除链接和随机覆盖特征，其目标是通过解码器恢复屏蔽链接。</p>
-<p><strong>讨论。</strong>由于学习目标不同，基于生成的方法的两个分支具有不同的解码器和损失函数设计。由于结构生成侧重于边缘重建，因此通过结构生成学习到的表示通常包含更多的节点对级信息；相反，特征生成方法通常捕获节点级知识。</p>
+<p><strong>讨论。</strong>
+由于学习目标不同，基于生成的方法的两个分支具有不同的解码器和损失函数设计。由于结构生成侧重于边缘重建，因此通过结构生成学习到的表示通常包含更多的节点对级信息；相反，特征生成方法通常捕获节点级知识。</p>
 <h2 id="auxiliary-propert-based-methods">Auxiliary Propert-based
 Methods</h2>
 <p>基于辅助属性的方法从节点、链路和图级属性获取监督信号，这些属性可以从图数据中自由获得。这些方法与监督学习具有相似的训练范式，因为它们都通过“样本-标签”对进行学习。它们的区别在于标签的获取方式：在监督学习中，人工标注的标签往往需要昂贵的成本；在基于辅助属性的
@@ -901,7 +902,8 @@ class="math inline">\(\Omega(v_i,v_j)=\text{cosine}(x_i,x_j)\)</span>
 class="math inline">\(\mathcal{P}{}\)</span>。与PairwiseAttrSim
 类似，SimP-GCN [58]
 也考虑将预测原始特征的余弦相似度作为下游任务的自监督正则化。</p>
-<p><strong>讨论。</strong>正如我们所观察到的，辅助属性分类方法比回归方法更加多样化，因为离散伪标签可以通过各种算法获取。在未来的工作中，回归方法预计将利用更多的连续属性。</p>
+<p><strong>讨论。</strong>
+正如我们所观察到的，辅助属性分类方法比回归方法更加多样化，因为离散伪标签可以通过各种算法获取。在未来的工作中，回归方法预计将利用更多的连续属性。</p>
 <h2 id="contrast-based-methods">Contrast-based Methods</h2>
 <p>基于对比的方法建立在互信息（MI）最大化的思想之上
 [65]，它通过预测两个增强实例之间的一致性来学习。具体来说，具有相似语义信息的图实例（即正样本）之间的

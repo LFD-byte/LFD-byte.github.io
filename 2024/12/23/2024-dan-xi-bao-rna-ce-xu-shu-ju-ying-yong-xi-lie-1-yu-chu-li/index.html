@@ -1,0 +1,740 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="培根请加蛋">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="对于单细胞 RNA 测序数据我们通常会进行一个预处理过程，这个也和大多数机器学习和深度学习项目一致。这里我们介绍以 h5 文件格式存储的单细胞 RNA 测序数据的预处理。预处理主要是对表达矩阵进行归一化和去除低表达基因和细胞。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024 单细胞 RNA 测序数据应用系列 1 预处理">
+<meta property="og:url" content="https://blog.lfd.world/2024/12/23/2024-dan-xi-bao-rna-ce-xu-shu-ju-ying-yong-xi-lie-1-yu-chu-li/index.html">
+<meta property="og:site_name" content="培根请加蛋">
+<meta property="og:description" content="对于单细胞 RNA 测序数据我们通常会进行一个预处理过程，这个也和大多数机器学习和深度学习项目一致。这里我们介绍以 h5 文件格式存储的单细胞 RNA 测序数据的预处理。预处理主要是对表达矩阵进行归一化和去除低表达基因和细胞。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefined20241223150655.png">
+<meta property="article:published_time" content="2024-12-23T04:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-23T07:27:50.862Z">
+<meta property="article:author" content="培根请加蛋">
+<meta property="article:tag" content="Bioinformatics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefined20241223150655.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>2024 单细胞 RNA 测序数据应用系列 1 预处理 - 培根请加蛋</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.lfd.world","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>培根请加蛋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2024 单细胞 RNA 测序数据应用系列 1 预处理"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-12-23 12:00" pubdate>
+          2024年12月23日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          53 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">2024 单细胞 RNA 测序数据应用系列 1 预处理</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="单细胞-rna-测序数据应用系列-1-预处理">2024 单细胞 RNA
+测序数据应用系列 1 预处理</h1>
+<p>对于单细胞 RNA
+测序数据我们通常会进行一个预处理过程，这个也和大多数机器学习和深度学习项目一致。这里我们介绍以
+h5 文件格式存储的单细胞 RNA
+测序数据的预处理。预处理主要是对表达矩阵进行归一化和去除低表达基因和细胞。</p>
+<h2 id="数据预处理">数据预处理</h2>
+<h3 id="读取计数数据count-data">读取计数数据（count data）</h3>
+<p>以 “ZINB-Based Graph Embedding Autoencoder for Single-Cell RNA-Seq
+Interpretations” （scTAG）中读取存储单细胞 RNA 测序数据为例。</p>
+<h4 id="数据格式介绍">数据格式介绍</h4>
+<p>首先对 scTAG 中 h5 文件进行简要介绍。H5 文件是层次数据格式第 5
+代的版本（Hierarchical Data
+Format，HDF5），它是用于存储科学数据的一种文件格式和库文件。</p>
+<p>h5 文件中有两个主要结构：组“group”和数据集“dataset”。一个 h5 文件就是
+“group” 和 “dataset” 二合一的容器，group 名称为key，datasets 为
+value。</p>
+<div style="text-align: center">
+<p><img src="https://blog-img-1304093596.cos.ap-shanghai.myqcloud.com/undefined20241223150655.png" width='60%'/></p>
+</div>
+<h4 id="代码实现">代码实现</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">prepro</span>(<span class="hljs-params">filename</span>):<br>	<span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    函数用于预处理数据文件。</span><br><span class="hljs-string">    </span><br><span class="hljs-string">    参数:</span><br><span class="hljs-string">    filename (str): 数据文件的路径名。</span><br><span class="hljs-string">    </span><br><span class="hljs-string">    返回值:</span><br><span class="hljs-string">    tuple: 一个包含两个元素的元组：</span><br><span class="hljs-string">        - X (numpy.ndarray): 预处理后的表达矩阵。</span><br><span class="hljs-string">        - cell_label (numpy.ndarray): 细胞类型的标签数组。</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 设置数据文件的路径</span><br>    data_path = filename  <br>    <span class="hljs-comment"># 读取数据文件，返回四个对象：mat(表达矩阵), obs(观测信息), var(变量信息), uns(未分类信息)。</span><br>    mat, obs, var, uns = read_data(data_path, sparsify=<span class="hljs-literal">False</span>, skip_exprs=<span class="hljs-literal">False</span>)<br>    <span class="hljs-comment"># 检查表达矩阵是否为NumPy数组类型，如果不是则转换为密集数组。</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(mat, np.ndarray):<br>        X = np.array(mat)<br>    <span class="hljs-keyword">else</span>:<br>        X = np.array(mat.toarray())<br>    <span class="hljs-comment"># 从观测信息中提取细胞类型名称，并将其转换为NumPy数组</span><br>    cell_name = np.array(obs[<span class="hljs-string">&quot;cell_type1&quot;</span>]) <br>    <span class="hljs-comment"># 获取唯一的细胞类型和对应的标签编码</span><br>    cell_type, cell_label = np.unique(cell_name, return_inverse=<span class="hljs-literal">True</span>) <br>    <span class="hljs-comment"># 返回表达矩阵和细胞类型标签</span><br>    <span class="hljs-keyword">return</span> X, cell_label <br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> h5py<br><span class="hljs-keyword">import</span> scipy <span class="hljs-keyword">as</span> sp <br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> scanpy <span class="hljs-keyword">as</span> sc<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">read_data</span>(<span class="hljs-params">filename, sparsify=<span class="hljs-literal">False</span>, skip_exprs=<span class="hljs-literal">False</span></span>):<br>	<span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">	从HDF5格式的数据文件中读取数据。</span><br><span class="hljs-string">    </span><br><span class="hljs-string">    参数:</span><br><span class="hljs-string">    filename (str): HDF5文件的路径名。</span><br><span class="hljs-string">    sparsify (bool): 是否将表达矩阵转换为稀疏矩阵，默认为False。</span><br><span class="hljs-string">    skip_exprs (bool): 是否跳过表达矩阵的加载，默认为False。</span><br><span class="hljs-string">    </span><br><span class="hljs-string">    返回值:</span><br><span class="hljs-string">    tuple: 包含四个元素的元组：</span><br><span class="hljs-string">        - mat (scipy.sparse.csr_matrix 或 numpy.ndarray): 表达矩阵。</span><br><span class="hljs-string">        - obs (pandas.DataFrame): 观测信息。</span><br><span class="hljs-string">        - var (pandas.DataFrame): 变量信息。</span><br><span class="hljs-string">        - uns (dict): 未分类信息。</span><br><span class="hljs-string">	&quot;&quot;&quot;</span><br>	<span class="hljs-comment"># 使用上下文管理器打开HDF5文件以确保正确关闭文件</span><br>    <span class="hljs-keyword">with</span> h5py.File(filename, <span class="hljs-string">&quot;r&quot;</span>) <span class="hljs-keyword">as</span> f:  <br>    	<span class="hljs-comment"># 将观测信息（obs）从HDF5文件转换为Pandas DataFrame，并设置索引</span><br>        obs = pd.DataFrame(dict_from_group(f[<span class="hljs-string">&quot;obs&quot;</span>]), index=utils.decode(f[<span class="hljs-string">&quot;obs_names&quot;</span>][...]))<br>        <span class="hljs-comment"># 将变量信息（var）从HDF5文件转换为Pandas DataFrame，并设置索引</span><br>        var = pd.DataFrame(dict_from_group(f[<span class="hljs-string">&quot;var&quot;</span>]), index=utils.decode(f[<span class="hljs-string">&quot;var_names&quot;</span>][...]))<br>        <span class="hljs-comment"># 将未分类信息（uns）从HDF5文件转换为Python字典</span><br>        uns = dict_from_group(f[<span class="hljs-string">&quot;uns&quot;</span>])<br>        <span class="hljs-comment"># 如果skip_exprs为False，则加载表达矩阵</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> skip_exprs:<br>            exprs_handle = f[<span class="hljs-string">&quot;exprs&quot;</span>]<br>            <span class="hljs-comment"># 检查表达矩阵是否存储在一个HDF5 Group中，如果是则表示它是一个稀疏矩阵</span><br>            <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(exprs_handle, h5py.Group):<br>            	<span class="hljs-comment"># 构建一个稀疏的CSR矩阵 </span><br>                mat = sp.sparse.csr_matrix((<br>                		exprs_handle[<span class="hljs-string">&quot;data&quot;</span>][...], <br>                		exprs_handle[<span class="hljs-string">&quot;indices&quot;</span>][...],<br>                		exprs_handle[<span class="hljs-string">&quot;indptr&quot;</span>][...]), shape=exprs_handle[<span class="hljs-string">&quot;shape&quot;</span>][...])  <br>            <span class="hljs-keyword">else</span>:<br>            	<span class="hljs-comment"># 否则，假设是一个密集矩阵并将其加载为numpy数组</span><br>                mat = exprs_handle[...].astype(np.float32)<br>                <span class="hljs-comment"># 如果sparsify为True，则将密集矩阵转换为稀疏矩阵</span><br>                <span class="hljs-keyword">if</span> sparsify:<br>                    mat = sp.sparse.csr_matrix(mat)<br>        <span class="hljs-keyword">else</span>:<br>        	<span class="hljs-comment"># 如果skip_exprs为True，则创建一个空的稀疏矩阵作为占位符</span><br>            mat = sp.sparse.csr_matrix((obs.shape[<span class="hljs-number">0</span>], var.shape[<span class="hljs-number">0</span>]))<br>    <span class="hljs-comment"># 返回表达矩阵和相关的数据框及字典</span><br>    <span class="hljs-keyword">return</span> mat, obs, var, uns<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> h5py<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">dotdict</span>(<span class="hljs-title class_ inherited__">dict</span>):<br>	<span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    创建一个字典的子类，它允许使用点符号（.）来访问字典键，就像访问对象属性一样。</span><br><span class="hljs-string">    </span><br><span class="hljs-string">    方法:</span><br><span class="hljs-string">        __getattr__(self, key): 通过点符号访问字典中的值。</span><br><span class="hljs-string">        __setattr__(self, key, value): 通过点符号设置字典中的值。</span><br><span class="hljs-string">        __delattr__(self, key): 通过点符号删除字典中的值。</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    __getattr__ = <span class="hljs-built_in">dict</span>.get  <span class="hljs-comment"># 获取字典中对应的值，如果不存在则返回None</span><br>    __setattr__ = <span class="hljs-built_in">dict</span>.__setitem__  <span class="hljs-comment"># 设置字典中的值</span><br>    __delattr__ = <span class="hljs-built_in">dict</span>.__delitem__  <span class="hljs-comment"># 删除字典中的值</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">read_clean</span>(<span class="hljs-params">data</span>):<br>	<span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    清理从HDF5文件读取的数据。</span><br><span class="hljs-string">    </span><br><span class="hljs-string">    参数:</span><br><span class="hljs-string">    data (numpy.ndarray): 需要清理的数据数组。</span><br><span class="hljs-string">    </span><br><span class="hljs-string">    返回:</span><br><span class="hljs-string">    数据清理后的结果，可能是单个值或解码后的字符串数组。</span><br><span class="hljs-string">    </span><br><span class="hljs-string">    断言:</span><br><span class="hljs-string">    确保传入的数据是NumPy数组类型。</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-keyword">assert</span> <span class="hljs-built_in">isinstance</span>(data, np.ndarray)  <span class="hljs-comment"># 检查输入是否为NumPy数组</span><br>    <span class="hljs-comment"># 如果数据类型是字节，则进行解码转换为字符串</span><br>    <span class="hljs-keyword">if</span> data.dtype.<span class="hljs-built_in">type</span> <span class="hljs-keyword">is</span> np.bytes_:  <br>        data = utils.decode(data)  <br>    <span class="hljs-comment"># 如果数组大小为1，则提取出唯一的元素作为标量返回</span><br>    <span class="hljs-keyword">if</span> data.size == <span class="hljs-number">1</span>:  <br>        data = data.flat[<span class="hljs-number">0</span>]  <span class="hljs-comment"># 将单元素数组转换为标量</span><br>    <span class="hljs-keyword">return</span> data<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">dict_from_group</span>(<span class="hljs-params">group</span>):  <br>	<span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    递归地将HDF5 Group对象转换为Python字典。</span><br><span class="hljs-string">    </span><br><span class="hljs-string">    参数:</span><br><span class="hljs-string">    group (h5py.Group): HDF5 Group对象，包含数据集和其他Group。</span><br><span class="hljs-string">    </span><br><span class="hljs-string">    返回:</span><br><span class="hljs-string">    dotdict: 包含所有子组和数据集的字典，可以使用点符号访问。</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-keyword">assert</span> <span class="hljs-built_in">isinstance</span>(group, h5py.Group)  <span class="hljs-comment"># 检查输入是否为HDF5 Group</span><br>    d = dotdict()  <span class="hljs-comment"># 创建一个新的dotdict实例</span><br>    <span class="hljs-comment"># 遍历HDF5 Group中的每个key</span><br>    <span class="hljs-keyword">for</span> key <span class="hljs-keyword">in</span> group:  <br>    	<span class="hljs-comment"># 如果值是一个子Group，则递归调用dict_from_group以构建嵌套字典</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(group[key], h5py.Group):  <br>            value = dict_from_group(group[key])  <br>        <span class="hljs-keyword">else</span>: <br>        	<span class="hljs-comment"># 否则，假设是数据集并清理其内容 </span><br>            value = read_clean(group[key][...])  <span class="hljs-comment"># 使用read_clean函数清理数据</span><br>        d[key] = value  <span class="hljs-comment"># 将清理后的值存储在dotdict中</span><br>    <span class="hljs-keyword">return</span> d  <span class="hljs-comment"># 返回填充好的dotdict</span><br></code></pre></td></tr></table></figure>
+<h3 id="预处理pre-processing">预处理（Pre-processing）</h3>
+<p>原始 scRAN-seq 读取计数数据由 Python 包 SCANPY
+进行预处理。首先，过滤掉任何细胞中没有计数的基因。其次，计算大小因子，并根据文库大小对读取计数进行归一化，因此细胞间的总计数相同。形式上，如果我们将细胞
+<span class="math inline">\(i\)</span> 的库大小（总读取计数数）表示为
+<span class="math inline">\(s_i\)</span>，则细胞 <span
+class="math inline">\(i\)</span> 的大小因子为 <span
+class="math inline">\(s_i/median(s)\)</span>。最后一步是对读数进行对数变换和缩放，以便计数值遵循单位方差和零均值。预处理的读取计数矩阵为模型的的输入。</p>
+<h4 id="代码实现-1">代码实现</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> scipy <span class="hljs-keyword">as</span> sp <br><span class="hljs-keyword">import</span> scanpy <span class="hljs-keyword">as</span> sc<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">normalize</span>(<span class="hljs-params">adata, copy=<span class="hljs-literal">True</span>, highly_genes=<span class="hljs-literal">None</span>, filter_min_counts=<span class="hljs-literal">True</span>, size_factors=<span class="hljs-literal">True</span>, 				normalize_input=<span class="hljs-literal">True</span>, logtrans_input=<span class="hljs-literal">True</span></span>):  <br>	<span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    对单细胞RNA测序数据进行标准化预处理。</span><br><span class="hljs-string">    </span><br><span class="hljs-string">    参数:</span><br><span class="hljs-string">    adata (AnnData 或 str): 输入的AnnData对象或文件路径。</span><br><span class="hljs-string">    copy (bool): 是否在操作前复制输入数据，默认为True。</span><br><span class="hljs-string">    highly_genes (int 或 None): 选择高变基因的数量。如果为None，则不选择。</span><br><span class="hljs-string">    filter_min_counts (bool): 是否过滤掉表达量低的基因和细胞，默认为True。</span><br><span class="hljs-string">    size_factors (bool): 是否计算并应用大小因子（size factors）进行标准化，默认为True。</span><br><span class="hljs-string">    normalize_input (bool): 是否对输入数据进行标准化，默认为True。</span><br><span class="hljs-string">    logtrans_input (bool): 是否对输入数据进行对数转换，默认为True。</span><br><span class="hljs-string">    </span><br><span class="hljs-string">    返回:</span><br><span class="hljs-string">    AnnData: 经过预处理后的AnnData对象。</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 检查输入类型，如果是AnnData对象且copy为True，则复制该对象；如果是字符串，则读取文件创建AnnData对象</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(adata, sc.AnnData):  <br>        <span class="hljs-keyword">if</span> copy:  <br>            adata = adata.copy()  <br>    <span class="hljs-keyword">elif</span> <span class="hljs-built_in">isinstance</span>(adata, <span class="hljs-built_in">str</span>):  <br>        adata = sc.read(adata)  <br>    <span class="hljs-keyword">else</span>:  <br>        <span class="hljs-keyword">raise</span> NotImplementedError  <br>    norm_error = <span class="hljs-string">&#x27;Make sure that the dataset (adata.X) contains unnormalized count data.&#x27;</span>  <br>    <span class="hljs-keyword">assert</span> <span class="hljs-string">&#x27;n_count&#x27;</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> adata.obs, norm_error  <br>    <span class="hljs-comment"># 如果数据集较小，检查是否所有元素都是整数（即原始计数数据）</span><br>    <span class="hljs-keyword">if</span> adata.X.size &lt; <span class="hljs-number">50e6</span>:  <span class="hljs-comment"># check if adata.X is integer only if array is small  </span><br>        <span class="hljs-keyword">if</span> sp.sparse.issparse(adata.X):  <br>            <span class="hljs-keyword">assert</span> (adata.X.astype(<span class="hljs-built_in">int</span>) != adata.X).nnz == <span class="hljs-number">0</span>, norm_error  <br>        <span class="hljs-keyword">else</span>:  <br>            <span class="hljs-keyword">assert</span> np.<span class="hljs-built_in">all</span>(adata.X.astype(<span class="hljs-built_in">int</span>) == adata.X), norm_error  <br>  	<span class="hljs-comment"># 过滤掉表达水平低于最小计数值的基因和细胞</span><br>    <span class="hljs-keyword">if</span> filter_min_counts:  <br>        sc.pp.filter_genes(adata, min_counts=<span class="hljs-number">1</span>)  <br>        sc.pp.filter_cells(adata, min_counts=<span class="hljs-number">1</span>)<br>    <span class="hljs-comment"># 根据参数设置决定是否保存原始数据到.raw属性中</span><br>    <span class="hljs-keyword">if</span> size_factors <span class="hljs-keyword">or</span> normalize_input <span class="hljs-keyword">or</span> logtrans_input:  <br>        adata.raw = adata.copy()  <br>    <span class="hljs-keyword">else</span>:  <br>        adata.raw = adata<br>    <span class="hljs-comment"># 计算大小因子，并根据其调整每个细胞的总表达量</span><br>    <span class="hljs-keyword">if</span> size_factors:  <br>        sc.pp.normalize_per_cell(adata)  <br>        adata.obs[<span class="hljs-string">&#x27;size_factors&#x27;</span>] = adata.obs.n_counts / np.median(adata.obs.n_counts)  <br>    <span class="hljs-keyword">else</span>:  <br>        adata.obs[<span class="hljs-string">&#x27;size_factors&#x27;</span>] = <span class="hljs-number">1.0</span><br>    <span class="hljs-comment"># 如果需要，对输入数据进行对数转换</span><br>    <span class="hljs-keyword">if</span> logtrans_input:  <br>        sc.pp.log1p(adata)<br>    <span class="hljs-comment"># 如果指定了highly_genes数量，则选择高变基因</span><br>    <span class="hljs-keyword">if</span> highly_genes != <span class="hljs-literal">None</span>:  <br>        sc.pp.highly_variable_genes(adata, min_mean=<span class="hljs-number">0.0125</span>, max_mean=<span class="hljs-number">3</span>, min_disp=<span class="hljs-number">0.5</span>, <br>        							n_top_genes=highly_genes, subset=<span class="hljs-literal">True</span>)<br>    <span class="hljs-comment"># 如果需要，对输入数据进行标准化</span><br>    <span class="hljs-keyword">if</span> normalize_input:  <br>        sc.pp.scale(adata)  <br>    <span class="hljs-keyword">return</span> adata<br></code></pre></td></tr></table></figure>
+<h2 id="参考">参考</h2>
+<p>[1] <a
+target="_blank" rel="noopener" href="https://blog.csdn.net/YYY_77/article/details/118269666">H5文件简介以及python对h5文件的操作</a></p>
+<p>[2] <a
+target="_blank" rel="noopener" href="https://blog.csdn.net/Jessica__Chan/article/details/103891690">.h5文件的写入和读取(HDF5)</a></p>
+<p>[3] <a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/yld321/p/14851388.html">.h5图像文件(数据集)的读取并存储工具贴(二)</a></p>
+<p>[4] <a target="_blank" rel="noopener" href="https://github.com/Philyzh8/scTAG">ZINB-based Graph
+Embedding Autoencoder for Single-cell RNA-seq Interpretations</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Bioinformatics/" class="category-chain-item">Bioinformatics</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Bioinformatics/" class="print-no-link">#Bioinformatics</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2024 单细胞 RNA 测序数据应用系列 1 预处理</div>
+      <div>https://blog.lfd.world/2024/12/23/2024-dan-xi-bao-rna-ce-xu-shu-ju-ying-yong-xi-lie-1-yu-chu-li/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>培根请加蛋</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年12月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/26/openai-papers/" title="OpenAI-papers">
+                        <span class="hidden-mobile">OpenAI-papers</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-15,"vOffset":-15},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

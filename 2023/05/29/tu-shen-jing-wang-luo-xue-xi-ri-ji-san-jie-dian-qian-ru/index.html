@@ -24,7 +24,7 @@
 <meta property="og:description" content="节点嵌入目的是将节点编码为包含图位置和局部邻域结构信息的低维向量，其几何关系与原始图或网络中的关系相对应。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-05-29T07:29:00.000Z">
-<meta property="article:modified_time" content="2024-11-19T15:14:09.179Z">
+<meta property="article:modified_time" content="2024-12-10T14:06:36.907Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="Graph">
 <meta name="twitter:card" content="summary_large_image">
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.2k 字
+          7.6k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          61 分钟
+          64 分钟
         
       </span>
     
@@ -293,10 +293,10 @@
 ，其中，<span class="math inline">\(z_v\)</span> 为节点 <span
 class="math inline">\(v \in \mathcal{V}\)</span>
 对应的嵌入表示，可表示为下式： <span class="math display">\[
-ENC: \mathcal{V} \rightarrow \mathbb{R}^d
+\mathrm{ENC}: \mathcal{V} \rightarrow \mathbb{R}^d
 \]</span> 编码器依赖 shallow embedding 方法，即根据节点的 ID
 进行简单地嵌入查找，如下式： <span class="math display">\[
-ENC(v) = Z[v]
+\mathrm{ENC}(v) = Z[v]
 \]</span> 其中，<span class="math inline">\(Z \in
 \mathbb{R}^{|\mathcal{V}| \times d}\)</span>
 为包含所有节点嵌入向量的矩阵，<span class="math inline">\(Z[v]\)</span>
@@ -305,14 +305,15 @@ class="math inline">\(Z\)</span> 的某一行向量。</p>
 <p><strong>解码器</strong></p>
 <p>解码器的任务是根据解码器生成的节点嵌入重构某些确定的图形统计信息。</p>
 <p>标准形式为成对的解码器，如下式： <span class="math display">\[
-DEC:\mathbb{R}^d \times \mathbb{R}^d \rightarrow \mathbb{R}^+
+\mathrm{DEC}:\mathbb{R}^d \times \mathbb{R}^d \rightarrow \mathbb{R}^+
 \]</span> 成对的解码器可以预测成对出现的节点的关系和相似性。</p>
 <p>在一对节点的嵌入表示 <span class="math inline">\((z_u,z_v)\)</span>
 中使用成对解码器，能重构节点 <span class="math inline">\(u\)</span> 和
 <span class="math inline">\(v\)</span>
 之间的关系。重构的目标在于通过最小化重构损失来优化编码器和解码器，如下式：
 <span class="math display">\[
-DEC(ENC(u),ENC(v)) = DEC(z_u,z_v) \approx S[u,v]
+\mathrm{DEC}(\mathrm{ENC}(u),\mathrm{ENC}(v)) = \mathrm{DEC}(z_u,z_v)
+\approx S[u,v]
 \]</span> 其中，假定 <span class="math inline">\(S[u,v]\)</span>
 是基于图的节点间相似性的度量。</p>
 <p><strong>损失函数</strong></p>
@@ -321,10 +322,10 @@ class="math inline">\(\mathcal{D}\)</span> 上最小化经验重构损失 <span
 class="math inline">\(\mathcal{L}\)</span> ，如下式： <span
 class="math display">\[
 \mathcal{L} = \sum_{(u,v)\in \mathcal{D}}
-\mathcal{l}(DEC(z_u,z_v),S[u,v])
+\mathcal{l}(\mathrm{DEC}(z_u,z_v),S[u,v])
 \]</span> 其中，<span class="math inline">\(\mathcal{l}: \mathbb{R}
 \times \mathbb{R}\)</span> 是衡量解码后的近似值 <span
-class="math inline">\(DEC(z_u,z_v)\)</span> 与真值 <span
+class="math inline">\(\mathrm{DEC}(z_u,z_v)\)</span> 与真值 <span
 class="math inline">\(S[u,v]\)</span> 之间差异的函数。在训练集 <span
 class="math inline">\(\mathcal{D}\)</span>
 上，全过程的目标就是通过训练编码器和解码器，有效地重构成对节点的关系信息。</p>
@@ -336,18 +337,20 @@ class="math inline">\(S\)</span>
 <p><strong>拉普拉斯特征映射</strong></p>
 <p>使用基于节点嵌入之间的 <span class="math inline">\(L_2\)</span>
 距离定义解码器，如下式： <span class="math display">\[
-DEC(z_u,z_v) = ||z_u - z_v||_2^2
+\mathrm{DEC}(z_u,z_v) = ||z_u - z_v||_2^2
 \]</span>
 根据节点在图中的相似性对节点对进行加权，以得到最终的损失函数，如下式：
 <span class="math display">\[
-\mathcal{L} = \sum_{(u,v) \in \mathcal{D}} DEC(z_u,z_v) \cdot S[u,v]
+\mathcal{L} = \sum_{(u,v) \in \mathcal{D}} \mathrm{DEC}(z_u,z_v) \cdot
+S[u,v]
 \]</span> <strong>内积法</strong></p>
 <p>基于内积的解码器，如下式： <span class="math display">\[
-DEC(z_u,z_v) = z_u^Tz_v
+\mathrm{DEC}(z_u,z_v) = z_u^Tz_v
 \]</span>
 假设两个节点之间的相似度（如这两个节点局部邻域之间重叠的部分）与节点嵌入表示的点积成正比。</p>
 <p>损失函数如下式： <span class="math display">\[
-\mathcal{L} = \sum_{(u,v) \in \mathcal{D}} ||DEC(Z_u,z_v)-S[u,v]||_2^2
+\mathcal{L} = \sum_{(u,v) \in \mathcal{D}}
+||\mathrm{DEC}(z_u,z_v)-S[u,v]||_2^2
 \]</span> 将节点嵌入表示 <span class="math inline">\(z_u \in
 \mathbb{R}^d\)</span> 堆叠为矩阵 <span class="math inline">\(Z \in
 \mathbb{R}^{|\mathcal{V}| \times d}\)</span>
@@ -360,7 +363,7 @@ DEC(z_u,z_v) = z_u^Tz_v
 <p>Deepwalk 和 node2vec 使用了 shallow embedding
 方法和内积解码器，巧妙的定义相似度和邻域重构的概念，通过优化嵌入表示对随机游走的统计信息进行编码。通过学习节点嵌入使得下式成立：
 <span class="math display">\[
-DEC(z_u,z_v) \overset{d}{=} \frac{e^{z_u^Tz_v}}{\sum_{v_k \in
+\mathrm{DEC}(z_u,z_v) \overset{d}{=} \frac{e^{z_u^Tz_v}}{\sum_{v_k \in
 \mathcal{V}}e^{z_u^Tz_k}} \approx p_{\mathcal{g},T}(v|u)
 \]</span> 其中，<span
 class="math inline">\(p_{\mathcal{g},T}(v|u)\)</span> 是指从节点 <span
@@ -370,7 +373,7 @@ class="math inline">\(v\)</span> 的概率，<span class="math inline">\(T
 \in {2,\cdots}, 10\)</span>。</p>
 <p>通过上式的解码器使用下式训练随机游走嵌入： <span
 class="math display">\[
-\mathcal{L} = \sum_{(u,v) \in \mathcal{D}} -log(DEC(z_u,z_v))
+\mathcal{L} = \sum_{(u,v) \in \mathcal{D}} -log(\mathrm{DEC}(z_u,z_v))
 \]</span>
 通过从每一个节点开始进行随机游走采样，可以生成随机游走的训练集，并用
 <span class="math inline">\(\mathcal{D}\)</span> 表示。</p>
@@ -412,8 +415,9 @@ Z^TZ \approx S_{DW}
 <li><p>shallow embedding
 方法不会在编码器的节点之间共享任何参数，因为编码器会直接为每个节点优化唯一的嵌入向量，不进行参数共享会导致算法在统计和计算过程中效率低下。</p></li>
 <li><p>shallow embedding 方法没有利用编码器中的节点特征。</p></li>
-<li><p>shallow embedding
-方法是转导性（Transductive）的，只能为训练过程中存在的节点生成嵌入，无法为训练之后出现的新节点生成嵌入。</p></li>
+<li><p>shallow embedding 方法是转导性（[[基本概念#Transductive
+learning|Transductive]]
+）的，只能为训练过程中存在的节点生成嵌入，无法为训练之后出现的新节点生成嵌入。</p></li>
 </ul>
 <h2 id="多关系图节点嵌入">多关系图节点嵌入</h2>
 <p>设多关系图为 <span class="math inline">\(\mathcal{G} = (\mathcal{V},
@@ -423,16 +427,17 @@ class="math inline">\(e=(u,\tau,v)\)</span> 中两个节点间存在的特定关
 <p>可以将嵌入多关系图视作重构任务，即给定两个节点的嵌入表示 <span
 class="math inline">\(z_u\)</span> 和 <span
 class="math inline">\(z_v\)</span>，重构这些节点之间的关系。将解码器定义为可同时输入一对节点嵌入及一个关系类型（<span
-class="math inline">\(DEC: \mathbb{R}^d \times \mathcal{R} \times
-\mathbb{R}^d \rightarrow \mathbb{R}+\)</span>），将解码器的输出（<span
-class="math inline">\(DEC(z_u,\tau,z_v)\)</span>）定义为边 <span
-class="math inline">\((u,\tau,v)\)</span> 存在于图谱的可能性。</p>
+class="math inline">\(\mathrm{DEC}: \mathbb{R}^d \times \mathcal{R}
+\times \mathbb{R}^d \rightarrow
+\mathbb{R}+\)</span>），将解码器的输出（<span
+class="math inline">\(\mathrm{DEC}(z_u,\tau,z_v)\)</span>）定义为边
+<span class="math inline">\((u,\tau,v)\)</span> 存在于图谱的可能性。</p>
 <p>本节所有方法都是假定从低维向量中直接重构（多关系）邻居。</p>
 <h3 id="损失函数">损失函数</h3>
 <p><strong>负采样的交叉熵函数</strong> <span class="math display">\[
 \mathcal{L} = \sum_{(u,\tau,v) \in \varepsilon}
--log(\sigma(DEC(z_u,\tau,z_v))) - \gamma\mathbb{E}_{v_n \sim
-P_{n,u}(\mathcal{V})}[log(\sigma(-DEC(z_u,\tau,z_{v_n})))])
+-log(\sigma(\mathrm{DEC}(z_u,\tau,z_v))) - \gamma\mathbb{E}_{v_n \sim
+P_{n,u}(\mathcal{V})}[log(\sigma(-\mathrm{DEC}(z_u,\tau,z_{v_n})))])
 \]</span> 其中，<span class="math inline">\(\sigma\)</span>
 为对数函数，<span class="math inline">\(P_{n,u}(\mathcal{V})\)</span>
 为节点集 <span class="math inline">\(\mathcal{V}\)</span>
@@ -440,23 +445,23 @@ P_{n,u}(\mathcal{V})}[log(\sigma(-DEC(z_u,\tau,z_{v_n})))])
 0\)</span> 。</p>
 <p>实际存在于图谱中的、预测为 true 的边的对数似然如下式： <span
 class="math display">\[
-log(\sigma(DEC(z_u,\tau,z_v)))
+log(\sigma(\mathrm{DEC}(z_u,\tau,z_v)))
 \]</span> 图中不存在的、预测为 false 的边的期望对数似然如下式： <span
 class="math display">\[
 \mathbb{E}_{v_n \sim
-P_{n,u}(\mathcal{V})}[log(\sigma(-DEC(z_u,\tau,z_{v_n})))]
+P_{n,u}(\mathcal{V})}[log(\sigma(-\mathrm{DEC}(z_u,\tau,z_{v_n})))]
 \]</span> 使用蒙特卡洛近似法可以对期望值进行评估，常见损失函数如下式：
 <span class="math display">\[
 \mathcal{L} = \sum_{(u,\tau,v)\in \varepsilon}
--log(\sigma(DEC(z_u,\tau,z_v))) - \sum_{v_n \in \mathcal{P}_{n,u}}
--[log(\sigma(-DEC(z_u,\tau,z_{v_n})))]
+-log(\sigma(\mathrm{DEC}(z_u,\tau,z_v))) - \sum_{v_n \in
+\mathcal{P}_{n,u}} -[log(\sigma(-\mathrm{DEC}(z_u,\tau,z_{v_n})))]
 \]</span> 其中，<span class="math inline">\(\mathcal{P}_{n,u}\)</span>
 为从 <span class="math inline">\(P_{n,u}(\mathcal{V})\)</span>
 采样得到的较小节点集。</p>
 <p><strong>最大间距损失</strong> <span class="math display">\[
 \mathcal{L} = \sum_{(u,\tau,v)\in \varepsilon} \sum_{v_n \in
-\mathcal{P}_{n,u}} max(0, -DEC(z_u,\tau,z_v) + DEC(z_u,\tau,z_{v_n}) +
-\Delta)
+\mathcal{P}_{n,u}} max(0, -\mathrm{DEC}(z_u,\tau,z_v) +
+\mathrm{DEC}(z_u,\tau,z_{v_n}) + \Delta)
 \]</span>
 该损失函数采用对比估计策略，将真实节点解码后的得分与负样本进行对比。其中，<span
 class="math inline">\(\Delta\)</span>
@@ -465,7 +470,7 @@ hinge loss。</p>
 <h3 id="多关系解码器">多关系解码器</h3>
 <p><strong>RESCAL 方法</strong></p>
 <p>解码器定义为如下式： <span class="math display">\[
-DEC(u,\tau,v) = z_u^TR_{\tau}z_v
+\mathrm{DEC}(u,\tau,v) = z_u^TR_{\tau}z_v
 \]</span> 其中，<span class="math inline">\(R_{\tau} \in \mathbb{E}^{d
 \times d}\)</span> 是基于特定关系 <span class="math inline">\(\tau \in
 \mathcal{R}\)</span> 的可学习矩阵。可借助基本的重构损失函数训练嵌入矩阵
@@ -474,7 +479,8 @@ class="math inline">\(R_{\tau}, \forall \tau \in
 \mathcal{R}\)</span>，如下式： <span class="math display">\[
 \begin{aligned}
   \mathcal{L} &amp;= \sum_{u\in \mathcal{V}} \sum_{v\in \mathcal{V}}
-\sum_{\tau\in \mathcal{R}} ||DEC(u,\tau,v)-\mathcal{A}[u,\tau,v||^2 \\
+\sum_{\tau\in \mathcal{R}} ||
+\mathrm{DEC}(u,\tau,v)-\mathcal{A}[u,\tau,v||^2 \\
   &amp;= \sum_{u\in \mathcal{V}} \sum_{v\in \mathcal{V}} \sum_{\tau\in
 \mathcal{R}} ||z_u^T\mathcal{R}_{\tau},z_v - \mathcal{A}[u,\tau,v]||
 \end{aligned}
@@ -487,16 +493,17 @@ class="math inline">\(R_{\tau}, \forall \tau \in
 <p><strong>平移解码模型（Translational Decoders）</strong></p>
 <p>TransE 模型将关系作为嵌入空间中的平移向量，定义的解码器如下图所示：
 <span class="math display">\[
-DEC(z_u,\tau,z_v) = -|| z_u + r_{\tau} +z_v ||
+\mathrm{DEC}(z_u,\tau,z_v) = -|| z_u + r_{\tau} +z_v ||
 \]</span> 其中，使用 <span class="math inline">\(d\)</span>
 维嵌入向量来表示每种关系。在嵌入空间中，根据关系嵌入对头节点进行平移，边存在的可能性与头节点和尾节点嵌入间的距离成比例。</p>
 <p>改进模型 1 <span class="math display">\[
-DEC(z_u,\tau,z_v) = -|| g_{1,\tau}(z_u) + r_{\tau} - g_{2,\tau}(z_v)||
+\mathrm{DEC}(z_u,\tau,z_v) = -|| g_{1,\tau}(z_u) + r_{\tau} -
+g_{2,\tau}(z_v)||
 \]</span> 其中，<span class="math inline">\(g_{i,\tau}\)</span>
 为一种基于关系 <span class="math inline">\(\tau\)</span>
 空间的可训练转换方式。</p>
 <p>改进模型 2 TransH <span class="math display">\[
-DEC(z_u,\tau,z_v) = -|| (z_u - w_r^Tz_uw_r) + r_{\tau} - (z_u -
+\mathrm{DEC}(z_u,\tau,z_v) = -|| (z_u - w_r^Tz_uw_r) + r_{\tau} - (z_u -
 w_r^Tz_vw_r) ||
 \]</span> TransH
 模型可将实体嵌入映射到一个可学习的特定关系超平面上（在执行转换之前，由法线向量
@@ -504,13 +511,13 @@ w_r^Tz_vw_r) ||
 <p><strong>多段点积（Multi-Linear Dot Products）</strong></p>
 <p>多段点积方法通过从简单图中扩展点积解码器来研究多关系解码模型，解码器如下式所示：
 <span class="math display">\[
-DEC(z_u, \tau, z_v) = &lt;z_u,r_{\tau},z_v&gt; = \sum_{i=1}^d z_u[i]
-\times r_{\tau}[i] \times z_v[i]
+\mathrm{DEC}(z_u, \tau, z_v) = &lt;z_u,r_{\tau},z_v&gt; = \sum_{i=1}^d
+z_u[i] \times r_{\tau}[i] \times z_v[i]
 \]</span>
 该方法直接计算解码器中三个向量表示的点积。该解码器只能编码对称的关系，满足下式：
 <span class="math display">\[
 \begin{aligned}
-DEC(z_u, \tau, z_v) &amp;= &lt;z_u,r_{\tau},z_v&gt; \\
+\mathrm{DEC}(z_u, \tau, z_v) &amp;= &lt;z_u,r_{\tau},z_v&gt; \\
 &amp;= \sum_{i=1}^d z_u[i] \times r_{\tau}[i] \times z_v[i] \\
 &amp;= &lt;z_v,r_{\tau},z_u&gt; \\
 &amp;= DEC(z_v, \tau, z_u)
@@ -520,7 +527,7 @@ DEC(z_u, \tau, z_v) &amp;= &lt;z_u,r_{\tau},z_v&gt; \\
 <p>ComplEx 通过引入复值嵌入表示来扩展 DistMult 解码器，定义为下式：
 <span class="math display">\[
 \begin{aligned}
-DEC(z_u,\tau,z_v) &amp;= Re&lt;z_u,r_{\tau},\bar{z}_v&gt; \\
+\mathrm{DEC}(z_u,\tau,z_v) &amp;= Re&lt;z_u,r_{\tau},\bar{z}_v&gt; \\
 &amp;= Re(\sum_{i=1}^d z_u[i] \times r_{\tau}[i] \times z_v[i])
 \end{aligned}
 \]</span> 其中，<span class="math inline">\(z_u,z_v,r_{\tau} \in
@@ -529,7 +536,7 @@ DEC(z_u,\tau,z_v) &amp;= Re&lt;z_u,r_{\tau},\bar{z}_v&gt; \\
 class="math inline">\(\bar{z}_v\)</span>，因此这种解码方法适用于非对称关系。</p>
 <p>RotateE 方法主要将解码过程定义为嵌入表示在复平面上的旋转，如下式：
 <span class="math display">\[
-DEC(z_u,\tau,z_v) = || Z_u \circ r_{\tau} - z_v ||
+\mathrm{DEC}(z_u,\tau,z_v) = || Z_u \circ r_{\tau} - z_v ||
 \]</span> 其中，<span class="math inline">\(\circ\)</span>
 为哈达玛乘积。假设上式中所有嵌入表示都是复值，且使 <span
 class="math inline">\(|r_{\tau}[i]|=1,\forall i \in
@@ -545,7 +552,7 @@ class="math inline">\(r_{\tau}[i]=e^{i\theta_{r,i}}\)</span>，其对应关系�
 <p>TransE 解码器仅能建模非对称关系，如下式所示： <span
 class="math display">\[
 \begin{aligned}
-DEC(Z_u, \tau, z_v) &amp;= DEC(z_v,\tau,z_u) \\
+\mathrm{DEC}(Z_u, \tau, z_v) &amp;= \mathrm{DEC}(z_v,\tau,z_u) \\
 -|| z_u + r_{\tau} -z_v || &amp;= -|| z_v + r_{\tau} -z_u || \\
 \Longrightarrow -r_{\tau} &amp;= r_{\tau} \\
 \Longrightarrow r_{\tau} &amp;= 0

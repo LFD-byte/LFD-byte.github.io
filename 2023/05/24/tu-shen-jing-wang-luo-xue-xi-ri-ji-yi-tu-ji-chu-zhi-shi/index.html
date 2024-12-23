@@ -24,7 +24,7 @@
 <meta property="og:description" content="图神经网络学习日记（一）">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-05-24T07:22:00.000Z">
-<meta property="article:modified_time" content="2024-11-19T15:14:20.349Z">
+<meta property="article:modified_time" content="2024-12-09T06:43:54.283Z">
 <meta property="article:author" content="培根请加蛋">
 <meta property="article:tag" content="Graph">
 <meta name="twitter:card" content="summary_large_image">
@@ -283,22 +283,25 @@
             
               <div class="markdown-body">
                 
-                <h2 id="图的定义">图的定义</h2>
-<p>图由节点集合<span
-class="math inline">\(\mathcal{V}\)</span>和边集合<span
-class="math inline">\(\varepsilon\)</span>组成，记作<span
-class="math inline">\(\mathcal{G}=(\mathcal{V},\varepsilon)\)</span>，节点<span
-class="math inline">\(u\in \mathcal{V}\)</span>到节点<span
-class="math inline">\(v\in \mathcal{V}\)</span>的边表示为<span
+                <h1
+id="图神经网络学习日记一图基础知识">图神经网络学习日记（一）图基础知识</h1>
+<h2 id="图的定义">图的定义</h2>
+<p>图由节点集合 <span class="math inline">\(\mathcal{V}\)</span>
+和边集合 <span class="math inline">\(\varepsilon\)</span> 组成，记作
+<span
+class="math inline">\(\mathcal{G}=(\mathcal{V},\varepsilon)\)</span>，节点
+<span class="math inline">\(u\in \mathcal{V}\)</span> 到节点 <span
+class="math inline">\(v\in \mathcal{V}\)</span> 的边表示为 <span
 class="math inline">\((u,v)\in\varepsilon\)</span>.</p>
 <h2 id="图的表示">图的表示</h2>
-<p>图可以由邻接矩阵<span class="math inline">\(A\in
-\mathbb{R}^{|\mathcal{V}|\times|\mathcal{V}|}\)</span>表示，矩阵的行和列代表节点索引，矩阵元素<span
-class="math inline">\(A[u,v]\)</span>表示节点<span
-class="math inline">\(u\)</span>和节点<span
-class="math inline">\(v\)</span>的连接情况，如果<span
-class="math inline">\((u,v)\in \varepsilon\)</span>，则<span
-class="math inline">\(A[u,v]=1\)</span>，否则<span
+<p>图可以由邻接矩阵 <span class="math inline">\(A\in
+\mathbb{R}^{|\mathcal{V}|\times|\mathcal{V}|}\)</span>
+表示，矩阵的行和列代表节点索引，矩阵元素 <span
+class="math inline">\(A[u,v]\)</span> 表示节点 <span
+class="math inline">\(u\)</span> 和节点 <span
+class="math inline">\(v\)</span> 的连接情况，如果 <span
+class="math inline">\((u,v)\in \varepsilon\)</span>，则 <span
+class="math inline">\(A[u,v]=1\)</span>，否则 <span
 class="math inline">\(A[u,v]=0\)</span>。</p>
 <h2 id="多关系图的分类">多关系图的分类</h2>
 <p><strong>异构图</strong></p>
@@ -330,15 +333,17 @@ class="math inline">\(y_u\)</span>应该属于哪种类型、类别或属性。<
 <p><strong>非标准的半监督任务。</strong></p>
 <p>在半监督学习中，模型训练过程同时使用有标签数据和无标签数据，标准的半监督学习以独立同分布假设为前提，标准的监督学习在训练过程中不使用所有无标签的测试数据。节点分类任务中，图中节点全部都被使用，包括无标签节点，故节点分类任务是半监督学习，同时节点分类任务对一组相互连接的节点进行建模，打破了独立同分布假设，故节点分类是非标准的半监督任务。</p>
 <h3 id="关系预测">关系预测</h3>
-<p>给定一组节点<span
-class="math inline">\(\mathcal{V}\)</span>和部分边的集合<span
-class="math inline">\(\varepsilon_{train}\)</span>（<span
-class="math inline">\(\varepsilon_{train} \subset \varepsilon,
-\varepsilon\)</span>表示全体边的集合），利用这些给定信息推断缺失边的集合<span
-class="math inline">\((\varepsilon\)</span>  $ _{train})$。</p>
+<p>给定一组节点 <span class="math inline">\(\mathcal{V}\)</span>
+和部分边的集合 <span class="math inline">\(\varepsilon_{train}\)</span>
+（<span class="math inline">\(\varepsilon_{train} \subset \varepsilon,
+\varepsilon\)</span>
+表示全体边的集合），利用这些给定信息推断缺失边的集合 <span
+class="math inline">\((\varepsilon \textbackslash
+\varepsilon_{train})\)</span>。</p>
 <h3 id="社区发现">社区发现</h3>
-<p>通过输入一张图<span
-class="math inline">\(\mathcal{G}=(\mathcal{V},\varepsilon)\)</span>推断出潜在的社区结构。</p>
+<p>通过输入一张图 <span
+class="math inline">\(\mathcal{G}=(\mathcal{V},\varepsilon)\)</span>
+推断出潜在的社区结构。</p>
 <p>社区发现常被类比为图领域的无监督学习中的聚类任务。</p>
 <h3 id="图预测">图预测</h3>
 <p>图预测包括对整张图进行分类、回归与聚类。</p>
